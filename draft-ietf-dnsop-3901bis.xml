@@ -44,7 +44,7 @@
         <note removeInRFC="true">
             <name>Discussion Venues</name>
             <t>Source for this draft and an issue tracker can be found at
-        <eref target="https://github.com/ichdasich/draft-dnsop-3901bis"/>.</t>
+        <eref target="https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis"/>.</t>
         </note>
     </front>
     <middle>
