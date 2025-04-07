@@ -57,7 +57,8 @@
             </t>
             <t>
                 This creates a complex landscape where authoritative name servers might be accessible only via specific network protocols <xref target="V6DNSRDY-23" format="default"/>.
-                At the same time, DNS resolvers may only be able to access the Internet via either IPv4 or IPv6. This poses a challenge for such resolvers because they may encounter names for which queries must be directed to authoritative name servers with which they do not share an IP version during the name resolution process.
+                At the same time, DNS resolvers may only be able to access the Internet via either IPv4 or IPv6.
+                This poses a challenge for such resolvers because they may encounter names for which queries must be directed to authoritative name servers with which they do not share an IP version during the name resolution process.
             </t>
             <t>
                 <xref target="RFC3901" format="default"/> was initially written at a time when IPv6 deployment was not widespread, focusing primarily on maintaining namespace continuity within the IPv4 landscape.
@@ -104,13 +105,15 @@
                     IPv4 name server:
                 </dt>
                 <dd>
-                    A name server providing DNS services reachable via IPv4. It does not imply anything about what DNS data is served, but requires DNS queries to be received and answered over IPv4.
+                    A name server providing DNS services reachable via IPv4.
+                    It does not imply anything about what DNS data is served, but requires DNS queries to be received and answered over IPv4.
                 </dd>
                 <dt>
                     IPv6 name server:
                 </dt>
                 <dd>
-                    A name server providing DNS services reachable via IPv6. It does not imply anything about what DNS data is served, but requires DNS queries to be received and answered over IPv6.
+                    A name server providing DNS services reachable via IPv6.
+                    It does not imply anything about what DNS data is served, but requires DNS queries to be received and answered over IPv6.
                 </dd>
                 <dt>
                     Dual-stack name server:
@@ -130,7 +133,9 @@
                 If this occurs, the DNS has, effectively, fragmented based on the resolver's and authoritative's mismatching IP version support.
             </t>
             <t>
-                In a mixed IP Internet, fragmentation can occur for different reasons. One reason is that DNS zones are consistently configured to support only either IPv4 or IPv6. Another reason is due to misconfigurations that make a zone unresolvable by either IPv4 or IPv6-only resolvers.
+                In a mixed IP Internet, fragmentation can occur for different reasons.
+                One reason is that DNS zones are consistently configured to support only either IPv4 or IPv6.
+                Another reason is due to misconfigurations that make a zone unresolvable by either IPv4 or IPv6-only resolvers.
                 The latter cases are often hard to identify, as the impact of misconfigurations for only one IP version (IPv4 or IPv6) may be hidden in a dual-stack setting.
                 In the worst case, a specific name may only be resolvable via dual-stack enabled resolvers.
             </t>
@@ -167,13 +172,15 @@
                         Zone of sibling domain NSes not resolving:
                     </dt>
                     <dd>
-                        If the name from an NS record for a zone is sibling domain, the corresponding zone must be resolvable via the IP version in question as well. It is insufficient if the name pointed to by the NS record has an associated A or AAAA record correspondingly.
+                        If the name from an NS record for a zone is sibling domain, the corresponding zone must be resolvable via the IP version in question as well
+                        It is insufficient if the name pointed to by the NS record has an associated A or AAAA record correspondingly.
                     </dd>
                     <dt>
                         Parent zone not resolvable via one IP version:
                     </dt>
                     <dd>
-                        For a zone to be resolvable via an IP version the parent zones up to the root zone must be resolvable via that IP version as well. Any zone not resolvable via the concerned IP version breaks the delegation chain for all its children.
+                        For a zone to be resolvable via an IP version the parent zones up to the root zone must be resolvable via that IP version as well.
+                        Any zone not resolvable via the concerned IP version breaks the delegation chain for all its children.
                     </dd>
                 </dl>
 
