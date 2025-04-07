@@ -1,3 +1,5 @@
+<!-- regenerate: on (set to off if you edit this file) -->
+
 # DNS IPv6 Transport Operational Guidelines
 
 This is the working area for the IETF [DNSOP Working Group](https://datatracker.ietf.org/group/dnsop/documents/) Internet-Draft, "DNS IPv6 Transport Operational Guidelines".
