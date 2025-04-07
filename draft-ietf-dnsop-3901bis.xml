@@ -316,6 +316,9 @@
                 <t>
                     Similarly, a recursive resolver <bcp14>MAY</bcp14> be IPv4-only, if it uses a configuration where such resolvers forward queries failing IPv4-only DNS resolution to a recursive name servers that is able to perform DNS resolution over IPv6.
                 </t>
+                <t>
+                    Finally, when responding to recrusive queries sent by DNS stub resolvers, a DNS resolver <bcp14>SHOULD</bcp14> follow the above guidance for communication between authoritative DNS servers and recursive DNS servers analogously.
+                </t>
             </section>
         </section>
         <section anchor="security-considerations">
