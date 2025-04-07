@@ -310,7 +310,7 @@
                     Hence, a recursive resolver <bcp14>MAY</bcp14> be IPv6-only, if it uses a transition mechanism that allows it to also query IPv4 authoritative NS or uses a configuration where it forward queries failing IPv6-only DNS resolution to a set of dual-stack recursive name servers that perform the actual recursive queries.
                 </t>
                 <t>
-                    Similarly, a recursive resolver <bcp14>MAY</bcp14> be IPv4-only, if it uses a configuration where such resolvers forward queries failing IPv4-only DNS resolution to a set of dual-stack recursive name servers that perform the actual recursive queries.
+                    Similarly, a recursive resolver <bcp14>MAY</bcp14> be IPv4-only, if it uses a configuration where such resolvers forward queries failing IPv4-only DNS resolution to a recursive name servers that is able to perform DNS resolution over IPv6.
                 </t>
             </section>
         </section>
