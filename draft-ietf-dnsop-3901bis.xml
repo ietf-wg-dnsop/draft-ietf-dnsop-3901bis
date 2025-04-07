@@ -191,6 +191,48 @@
                     Furthermore, any of the misconfigurations above may not only materialize via a missing Resource Record (RR) but also via an RR providing the IP address of a nameserver that is not configured to answer queries via that IP version <xref target="V6DNSRDY-23" format="default"/>.
                 </t>
             </section>
+            <section anchor="misconfigurations-causing-network-related-name-space-fragmentation">
+                <name>Network Conditions Causing IP Version Related Name Space Fragmentation</name>
+                <t>
+                    In addition to explicit misconfigurations in the served DNS zones, network conditions may also influence a resolver's ability to resolve names in a zone.
+                    The most common issue here are packets requiring fragmentation given a reduced path MTU (PMTU) and MTU blackholes, i.e., packets being dropped on-path due to exceeding the MTU of the link to the next-hop without the sender being notified.
+                    This can manifest in the following way:
+                </t>
+                <dl newline="true" spacing="normal">
+                    <dt>
+                        DNS-over-UDP packets requiring fragmentation
+                    </dt>
+                    <dd>
+                        <t>
+                            When using EDNS0 to communicate support for DNS messages larger than 512b <xref target="RFC6891" format="default"/>, an IP packet carrying a DNS response may exceed the PMTU for the path to a resolver.
+                            If an authoritative server and does not follow <xref target="RFC9715" format="default"/>, i.e., honors EDNS0 sizes larger than 1232, it will try to fragment the packet according to the discovered PMTU.
+                            Such packets mostly occur for DNSKEY responses with DNSSEC <xref target="RFC4034" format="default"/>.
+                        </t>
+                        <t>
+                            If the requesting resolver is unable to process fragments, or if fragments are filtered on-path, resolution will fail over UDP.
+                            These issues are more prevalent for IPv6, as it no longer allows on-path hosts to fragment packets.
+                            Therefore, working Path MTU Discovery (PMTUD) is essential for IPv6 DNS-over-UDP packets to be fragmented to a size that allows them to traverse all segments on a path.
+                        </t>
+                        <t>
+                            <xref target="RFC9715" format="default"/> provides guidance on preventing this issue by always using a maximum EDNS0 size of 1232b.
+                        </t>
+                    </dd>
+                    <dt>
+                        DNS-over-TCP packets requiring fragmentation
+                    </dt>
+                    <dd>
+                        <t>
+                            If DNS resolution over UDP fails, or if a packet exceeds the communicated EDNS0 size, a resolver should fall back to DNS resolution over TCP.
+                            However, similar to the case of DNS-over-UDP, DNS-over-TCP may encounter MTU blackholes, especially on IPv6, if PMTUD does not work, if the MSS honored by the authoritative server leads to IP packets exceeding the PMTU.
+                            In that case, similar to the case of DNS-over-UDP, DNS resolution will time out when the recrusive resolver did not receive a response in time.
+                        </t>
+                        <t>
+                            <xref target="RFC9715" format="default"/> does not povide explicit guidance on mitigating this issue.
+                            However, similar to the guidance in <xref target="RFC9715" format="default"/>, setting an MSS of 1240b for IPv4 and 1220b for IPv6 would similarly mitigate this issue.
+                        </t>
+                    </dd>
+                </dl>
+            </section>
             <section anchor="reasons-for-intentional-ip-version-related-name-space-fragmentation">
                 <name>Reasons for Intentional IP Version Related Name Space Fragmentation</name>
                 <t>
@@ -301,6 +343,8 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.1883.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.2119.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.3901.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4034.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6891.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7766.xml"/>
                 <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-ns-revalidation.xml"/>
