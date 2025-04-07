@@ -320,6 +320,19 @@
                     Finally, when responding to recrusive queries sent by DNS stub resolvers, a DNS resolver <bcp14>SHOULD</bcp14> follow the above guidance for communication between authoritative DNS servers and recursive DNS servers analogously.
                 </t>
             </section>
+            <section anchor="guidelines-for-dns-stub">
+                <name>Guidelines for DNS Stub Resolvers</name>
+                <t>
+                    In general, DNS Stub Resolvers <bcp14>SHOULD</bcp14> follow the same guidance as outlined for recursive DNS servers.
+                    Contrary to authoritative and recursive DNS servers, DNS Stub Resolvers are more likely to find themselves in an IPv6 mostly environment, as they are usually run on end-hosts / clients.
+                    Nevertheless, they may receive multiple IPv4 and IPv6 addresses for possible DNS resolvers to use via different protocols (DHCPv4, DHCPv6, SLAAC).
+                </t>
+                <t>
+                    Hence, when a host running a stub DNS resolver receives addresses for IPv4 and IPv6 recursive resolver to use, it <bcp14>SHOULD</bcp14> prioritize reachable IPv6 recursive DNS servers.
+                    If the host is aware of a PREF64 being used, it <bcp14>SHOULD NOT</bcp14> use IPv4 recursive DNS servers for which it also received the corresponding mapped address in the PREF64, but instead <bcp14>SHOULD</bcp14> only use the supplied IPv6 address.
+                    Additionally, if the host receives multiple IPv6 reachable recursive DNS servers and is aware of a PREF64 being in use, it <bcp14>SHOULD</bcp14> prioritize recursive DNS servers outside the PREF64.
+                </t>
+            </section>
         </section>
         <section anchor="security-considerations">
             <name>Security Considerations</name>
