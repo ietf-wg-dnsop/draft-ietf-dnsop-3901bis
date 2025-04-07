@@ -307,7 +307,11 @@
                 </t>
                 <t>
                     While the zones that IPv6-only recursive DNS resolvers can resolve are growing but do not yet cover all zones, they cannot fully resolve all zones.
-                    Hence, a recursive resolver <bcp14>MAY</bcp14> be IPv6-only, if it uses a transition mechanism that allows it to also query IPv4 authoritative NS or uses a configuration where it forward queries failing IPv6-only DNS resolution to a set of dual-stack recursive name servers that perform the actual recursive queries.
+                    Hence, a recursive resolver <bcp14>MAY</bcp14> be IPv6-only, if it uses a transition mechanism that allows it to also query IPv4 authoritative NS or uses a configuration where it forward queries failing IPv6-only DNS resolution to a recursive name servers that is able to perform DNS resolution over IPv4.
+                </t>
+                <t>
+                    If a recursive DNS server is run in a network that uses XLAT <xref target="RFC6877" format="default"/>, and the recursive DNS server is aware of the used PREF64 <xref target="RFC6146" format="default"/>, it <bcp14>SHOULD</bcp14> synthesize mapped IPv6 addresses for remote authoritative DNS servers directly for DNS resolution, instead of relying on the socket translation layer of the operating system.
+                    Additionally, the PREF64 in use <bcp14>MAY</bcp14> also be statically configured for the DNS resolver.
                 </t>
                 <t>
                     Similarly, a recursive resolver <bcp14>MAY</bcp14> be IPv4-only, if it uses a configuration where such resolvers forward queries failing IPv4-only DNS resolution to a recursive name servers that is able to perform DNS resolution over IPv6.
@@ -345,6 +349,8 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.2119.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.3901.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4034.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6146.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6877.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6891.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7766.xml"/>
                 <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
