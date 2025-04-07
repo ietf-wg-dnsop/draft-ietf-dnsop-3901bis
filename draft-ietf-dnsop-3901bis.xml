@@ -75,6 +75,9 @@
                 <li>
                     <t>Guidelines for operating recursive DNS resolvers.</t>
                 </li>
+                <li>
+                    <t>Guidelines for stub DNS resolvers.</t>
+                </li>
             </ul>
             <t>
                 While transitional technologies and dual-stack setups may mitigate some of the issues of DNS resolution in a mixed protocol-version Internet, making DNS data accessible over both IPv4 and IPv6 is the most robust and flexible approach, as it allows resolvers to reach the information they need without requiring intermediary translation or forwarding services which may introduce additional failure cases.
