@@ -293,6 +293,7 @@
                             IP fragmentation has been reported to be fragile <xref target="RFC8900" format="default"/>.
                             Furthermore, IPv6 transition technologies can introduce unexpected MTU breaks, e.g., when NAT64 is used <xref target="RFC7269" format="default"/>.
                             Therefore, IP fragmentation <bcp14>SHOULD</bcp14> be avoided by following guidance on maximum DNS payload sizes <xref target="RFC9715" format="default"/> and providing TCP fall-back options <xref target="RFC7766" format="default"/>.
+                            Furthermore, similar to the guidance in <xref target="RFC9715" format="default"/>, it is <bcp14>RECOMMENDED</bcp14> that authoritative servers set an MSS of 1240b for IPv4 and 1220b for IPv6 in TCP sessions carrying DNS resposes.
                     </dd>
                 </dl>
                 <t>
