@@ -65,14 +65,14 @@
                 This poses a challenge for such resolvers because they may encounter names for which queries must be directed to authoritative DNS servers with which they do not share an IP version during the name resolution process.
             </t>
             <t>
-                <xref target="RFC3901" format="default"/> was initially written at a time when IPv6 deployment was not widespread, focusing primarily on maintaining namespace continuity within the IPv4 landscape.
+                <xref target="RFC3901" format="default"/> was initially written at a time when IPv6 deployment was not widespread, focusing primarily on maintaining name space continuity within the IPv4 landscape.
                 Now, nearly two decades later, with IPv6 not only widely deployed but also becoming the de facto standard in many areas,
                 this document seeks to expand the scope of RFC3901 by recommending IPv6 compatibility for authoritative DNS servers, as well as recursive and stub DNS resolvers.
             </t>
-            <t>In this document, we discuss:</t>
+            <t>This document provides guidance on:</t>
             <ul spacing="normal">
                 <li>
-                    <t>IP version related namespace fragmentation and best-practices for avoiding it.</t>
+                    <t>IP version related name space fragmentation and best-practices for avoiding it.</t>
                 </li>
                 <li>
                     <t>Guidelines for configuring authoritative DNS servers for zones.</t>
@@ -208,8 +208,8 @@
                     </dt>
                     <dd>
                         <t>
-                            When using EDNS0 to communicate support for DNS messages larger than 512b <xref target="RFC6891" format="default"/>, an IP packet carrying a DNS response may exceed the PMTU for the path to a resolver.
-                            If an authoritative DNS server and does not follow <xref target="RFC9715" format="default"/>, i.e., honors EDNS0 sizes larger than 1232, it will try to fragment the packet according to the discovered PMTU.
+                            When using EDNS(0) to communicate support for DNS messages larger than 512 bytes <xref target="RFC6891" format="default"/>, an IP packet carrying a DNS response may exceed the PMTU for the path to a resolver.
+                            If an authoritative DNS server and does not follow <xref target="RFC9715" format="default"/>, i.e., honors EDNS(0) sizes larger than 1232, it will try to fragment the packet according to the discovered PMTU.
                             Such packets mostly occur for DNSKEY responses with DNSSEC <xref target="RFC4034" format="default"/>.
                         </t>
                         <t>
@@ -218,7 +218,7 @@
                             Therefore, working Path MTU Discovery (PMTUD) is essential for IPv6 DNS-over-UDP packets to be fragmented to a size that allows them to traverse all segments on a path.
                         </t>
                         <t>
-                            <xref target="RFC9715" format="default"/> provides guidance on preventing this issue by always using a maximum EDNS0 size of 1232b.
+                            <xref target="RFC9715" format="default"/> provides guidance on preventing this issue by always using a maximum EDNS(0) size of 1232 bytes.
                         </t>
                     </dd>
                     <dt>
@@ -226,13 +226,13 @@
                     </dt>
                     <dd>
                         <t>
-                            If DNS resolution over UDP fails, or if a packet exceeds the communicated EDNS0 size, a resolver should fall back to DNS resolution over TCP.
+                            If DNS resolution over UDP fails, or if a packet exceeds the communicated EDNS(0) size, a resolver should fall back to DNS resolution over TCP.
                             However, similar to the case of DNS-over-UDP, DNS-over-TCP may encounter MTU blackholes, especially on IPv6, if PMTUD does not work, if the MSS honored by the authoritative DNS server leads to IP packets exceeding the PMTU.
                             In that case, similar to the case of DNS-over-UDP, DNS resolution will time out when the recursive DNS resolver did not receive a response in time.
                         </t>
                         <t>
-                            <xref target="RFC9715" format="default"/> does not povide explicit guidance on mitigating this issue.
-                            However, similar to the guidance in <xref target="RFC9715" format="default"/>, setting an MSS of 1240b for IPv4 and 1220b for IPv6 would similarly mitigate this issue.
+                            <xref target="RFC9715" format="default"/> does not provide explicit guidance on mitigating this issue.
+                            However, similar to the guidance in <xref target="RFC9715" format="default"/>, setting an MSS of 1240 bytes for IPv4 and 1220 bytes for IPv6 would similarly mitigate this issue.
                         </t>
                     </dd>
                 </dl>
@@ -356,7 +356,7 @@
         <section numbered="false" anchor="acknowledgments">
             <name>Acknowledgments</name>
             <t>
-                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter
+                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch
             </t>
             <t>
                 Thank you for reading this draft.
