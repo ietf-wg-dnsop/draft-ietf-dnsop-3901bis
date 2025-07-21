@@ -176,7 +176,7 @@
                         Zone of sibling domain NSes not resolving:
                     </dt>
                     <dd>
-                        If the name from an NS record for a zone is sibling domain, the corresponding zone must be resolvable via the IP version in question as well
+                        If the name from an NS record for a zone is sibling domain, the corresponding zone must be resolvable via the IP version in question as well.
                         It is insufficient if the name pointed to by the NS record has an associated A or AAAA record correspondingly.
                     </dd>
                     <dt>
@@ -209,7 +209,7 @@
                     <dd>
                         <t>
                             When using EDNS(0) to communicate support for DNS messages larger than 512 bytes <xref target="RFC6891" format="default"/>, an IP packet carrying a DNS response may exceed the PMTU for the path to a resolver.
-                            If an authoritative DNS server and does not follow <xref target="RFC9715" format="default"/>, i.e., honors EDNS(0) sizes larger than 1232, it will try to fragment the packet according to the discovered PMTU.
+                            If an authoritative DNS server and does not follow <xref target="RFC9715" format="default"/>, i.e., honors EDNS(0) sizes larger than 1232 bytes, it will try to fragment the packet according to the discovered PMTU.
                             Such packets mostly occur for DNSKEY responses with DNSSEC <xref target="RFC4034" format="default"/>.
                         </t>
                         <t>
