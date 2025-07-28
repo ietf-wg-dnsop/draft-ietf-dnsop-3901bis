@@ -137,7 +137,7 @@
                 If this occurs, the DNS has, effectively, fragmented based on the recursive DNS resolver's and authoritative DNS server's mismatching IP version support.
             </t>
             <t>
-                In a mixed IP Internet, fragmentation can occur for different reasons.
+                In a mixed IP Internet, namespace fragmentation can occur for different reasons.
                 One reason is that DNS zones are consistently configured to support only either IPv4 or IPv6.
                 Another reason is due to misconfigurations that make a zone unresolvable by either IPv4 or IPv6-only resolvers.
                 The latter cases are often hard to identify, as the impact of misconfigurations for only one IP version (IPv4 or IPv6) may be hidden in a dual-stack setting.
