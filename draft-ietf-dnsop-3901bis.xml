@@ -235,6 +235,16 @@
                             However, similar to the guidance in <xref target="RFC9715" format="default"/>, setting an MSS of 1240 bytes for IPv4 and 1220 bytes for IPv6 would similarly mitigate this issue.
                         </t>
                     </dd>
+                    <dt>
+                        Broken IPv6 Connectivity at the Resolver
+                    </dt>
+                    <dd>
+                        <t>
+                            Similar to authoritative servers, (stub) recursive resolvers may face broken IPv6 connectivity, e.g., if a client has been assigned a global unicast IPv6 address, but IPv6 traffic is not routed on the resolver's network.
+                            Furthermore, broken IPv6 connectivity may be encountered when IPv4-IPv6 transition technologies, e.g., NAT64 on IPv6-mostly networks <xref target="RFC9313" format="default"/> are in use.
+                            There, the synthesized IPv6 addresses used in XLAT encounter additional PMTU fluctuation due to the difference in header size between IPv4 and IPv6.
+                        </t>
+                    </dd>
                 </dl>
             </section>
             <section anchor="reasons-for-intentional-ip-version-related-name-space-fragmentation">
@@ -385,6 +395,7 @@
                 <name>Informative References</name>
                 <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7269.xml"/>
                 <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8900.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9313.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9386.xml"/>
                 <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.9499.xml"/>
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-v6ops-ipv6-only-resolver.xml"/>
