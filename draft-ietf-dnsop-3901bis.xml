@@ -339,7 +339,7 @@
                 </t>
                 <t>
                     If a recursive DNS resolver runs in a network that uses XLAT <xref target="RFC6877" format="default"/>, and the recursive DNS resolver is aware of the used PREF64 <xref target="RFC6146" format="default"/>, it <bcp14>SHOULD</bcp14> synthesize mapped IPv6 addresses for remote authoritative DNS servers directly for DNS resolution, instead of relying on the socket translation layer of the operating system.
-                    A recursive DNS resolver <bcp14>SHOULD</bcp14> always prefer non-synthesized IPv6 addresses over synthesized IPv6 addresses based on a PREF64.
+                    A recursive DNS resolver <bcp14>SHOULD</bcp14> prefer non-synthesized IPv6 addresses over synthesized IPv6 addresses based on a PREF64.
                     Additionally, the PREF64 in use <bcp14>MAY</bcp14> also be statically configured for the DNS resolver.
                 </t>
                 <t>
