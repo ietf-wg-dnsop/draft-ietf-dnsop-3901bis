@@ -232,7 +232,7 @@
                         </t>
                         <t>
                             <xref target="RFC9715" format="default"/> does not provide explicit guidance on mitigating this issue.
-                            However, similar to the guidance in <xref target="RFC9715" format="default"/>, setting an MSS of 1240 bytes for IPv4 and 1220 bytes for IPv6 would similarly mitigate this issue.
+                            However, similar to the guidance in <xref target="RFC9715" format="default"/>, setting an MSS of 1220 bytes would similarly mitigate this issue.
                         </t>
                     </dd>
                     <dt>
@@ -307,7 +307,7 @@
                             IP fragmentation has been reported to be fragile <xref target="RFC8900" format="default"/>.
                             Furthermore, IPv6 transition technologies can introduce unexpected MTU breaks, e.g., when NAT64 is used <xref target="RFC7269" format="default"/>.
                             Therefore, IP fragmentation <bcp14>SHOULD</bcp14> be avoided by following guidance on maximum DNS payload sizes <xref target="RFC9715" format="default"/> and providing TCP fall-back options <xref target="RFC7766" format="default"/>.
-                            Furthermore, similar to the guidance in <xref target="RFC9715" format="default"/>, it is <bcp14>RECOMMENDED</bcp14> that authoritative DNS servers sets an MSS of 1240b for IPv4 and 1220b for IPv6 in TCP sessions carrying DNS responses.
+                            Furthermore, similar to the guidance in <xref target="RFC9715" format="default"/>, it is <bcp14>RECOMMENDED</bcp14> that authoritative DNS servers sets an MSS of 1220 in TCP sessions carrying DNS responses.
                     </dd>
                 </dl>
                 <t>
@@ -381,7 +381,7 @@
         <section numbered="false" anchor="acknowledgments">
             <name>Acknowledgments</name>
             <t>
-                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch
+                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp Tiesel
             </t>
             <t>
                 Thank you for reading this draft.
