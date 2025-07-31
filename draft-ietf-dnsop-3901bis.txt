@@ -6,7 +6,7 @@ dnsop                                                          Momoka. Y
 Internet-Draft                                              WIDE Project
 Obsoletes: 3901 (if approved)                                  T. Fiebig
 Intended status: Best Current Practice                           MPI-INF
-Expires: 30 January 2026                                    29 July 2025
+Expires: 1 February 2026                                    31 July 2025
 
 
                DNS IPv6 Transport Operational Guidelines
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 January 2026.
+   This Internet-Draft will expire on 1 February 2026.
 
 Copyright Notice
 
