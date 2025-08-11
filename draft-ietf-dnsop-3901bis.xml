@@ -260,7 +260,7 @@
         <section anchor="policy-based-avoidance-of-name-space-fragmentation">
             <name>Policy Based Avoidance of Name Space Fragmentation</name>
             <t>
-                With the final exhaustion of IPv4 pools in RIRs, e.g., <xref target="RIPEV4" format="default"/>, and the progressing deployment of IPv6, there no longer is a "preferred" IP version.
+                With the final exhaustion of IPv4 pools in RIRs, e.g., <xref target="RIPEV4" format="default"/>, and the progressing deployment of IPv6, IPv4 and IPv6 have become comaprably relevant.
                 Yet, while we now observe the first zones becoming exclusively IPv6 resolvable, we also still see a major portion of zones solely relying on IPv4 <xref target="V6DNSRDY-23" format="default"/>.
                 Hence, at the moment, dual stack connectivity is instrumental to be able to resolve zones and avoid name space fragmentation.
             </t>
