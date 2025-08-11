@@ -419,7 +419,6 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9313.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9386.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9499.xml"/>
-                <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-v6ops-ipv6-only-resolver.xml"/>
                 <reference anchor="V6DNSRDY-23" target="https://link.springer.com/chapter/10.1007/978-3-031-28486-1_22">
                     <front>
                         <title>How Ready is DNS for an IPv6-Only World?</title>
