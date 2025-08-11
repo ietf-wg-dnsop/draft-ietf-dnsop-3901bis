@@ -69,7 +69,9 @@
                 Now, nearly two decades later, with IPv6 not only widely deployed but also becoming the de facto standard in many areas,
                 this document seeks to expand the scope of RFC3901 by recommending IPv6 compatibility for authoritative DNS servers, as well as recursive and stub DNS resolvers.
             </t>
-            <t>This document provides guidance on:</t>
+            <t>
+                This document provides guidance on:
+            </t>
             <ul spacing="normal">
                 <li>
                     <t>IP version related name space fragmentation and best-practices for avoiding it.</t>
