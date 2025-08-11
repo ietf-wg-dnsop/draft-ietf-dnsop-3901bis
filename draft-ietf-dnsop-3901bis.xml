@@ -357,7 +357,7 @@
                 </t>
                 <t>
                     For IPv4 only environments, a stub DNS resolver has to rely on the provided recursive DNS server following guidance in this document.
-                    However, in a XLAT <xref target="RFC6877" format="default"/> scenario using RFC1918 adressing <xref target="RFC1918" format="default"/>, the environment may be indistinguishable from a dual-stack scenario, and the host running the stub DNS resolver may receive multiple IPv4 and IPv6 addresses for possible DNS resolvers to use via different protocols (DHCPv4 <xref target="RFC3456" format="default"/>, DHCPv6 <xref target="RFC8415" format="default"/>, SLAAC <xref target="RFC4862" format="default"/>).
+                    However, in a XLAT <xref target="RFC6877" format="default"/> scenario using RFC1918 addressing <xref target="RFC1918" format="default"/>, the environment may be indistinguishable from a dual-stack scenario, and the host running the stub DNS resolver may receive multiple IPv4 and IPv6 addresses for possible DNS resolvers to use via different protocols (DHCPv4 <xref target="RFC3456" format="default"/>, DHCPv6 <xref target="RFC8415" format="default"/>, SLAAC <xref target="RFC4862" format="default"/>).
                 </t>
                 <t>
                     Hence, when a host running a stub DNS resolver receives addresses for IPv4 and IPv6 recursive DNS resolver to use, it <bcp14>SHOULD</bcp14> prioritize reachable IPv6 recursive DNS resolvers.
