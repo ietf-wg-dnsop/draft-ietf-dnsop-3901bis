@@ -339,7 +339,7 @@
                     Hence, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv6-only, if it uses a transition mechanism that allows it to also query IPv4-only authoritative DNS server or uses a configuration where it forwards queries failing IPv6-only DNS resolution to a recursive DNS resolver that is able to perform DNS resolution over IPv4.
                 </t>
                 <t>
-                    If a recursive DNS resolver runs in a network that uses XLAT <xref target="RFC6877" format="default"/>, and the recursive DNS resolver is aware of the used PREF64 <xref target="RFC6146" format="default"/>, it <bcp14>SHOULD</bcp14> synthesize mapped IPv6 addresses for remote authoritative DNS servers directly, instead of relying on the socket translation layer of the operating system.
+                    If a recursive DNS resolver operates in a network that uses XLAT <xref target="RFC6877" format="default"/>, and the recursive DNS resolver is aware of the PREF64 <xref target="RFC6146" format="default"/> in use in its administrative domain, it <bcp14>SHOULD</bcp14> synthesize mapped IPv6 addresses for remote authoritative DNS servers directly, instead of relying on the socket translation layer of the operating system.
                     When available, a recursive DNS resolver <bcp14>SHOULD</bcp14> prefer using non-synthesized IPv6 addresses, instead of using NAT64 connectivity discovered through a PREF64<xref target="RFC6146" format="default"/> or RFC7050 <xref target="RFC7050" format="default"/>.
                 </t>
                 <t>
