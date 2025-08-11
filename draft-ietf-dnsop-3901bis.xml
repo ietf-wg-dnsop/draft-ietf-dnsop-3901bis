@@ -56,16 +56,16 @@
         <section anchor="introduction">
             <name>Introduction</name>
             <t>
-                Despite IPv6 being first discussed in the mid-1990s <xref target="RFC1883" format="default"/>, consistent deployment throughout the whole Internet has not yet been accomplished <xref target="RFC9386" format="default"/>.
+                Despite IPv6 being first discussed in the mid-1990s <xref target="RFC2460"/>, consistent deployment throughout the whole Internet has not yet been accomplished <xref target="RFC9386"/>.
                 Hence, today, the Internet is a mixture of IPv4, dual-stack (networks connected via both IP versions), and IPv6 networks.
             </t>
             <t>
-                This creates a complex landscape where authoritative DNS servers might be accessible only via specific network protocols <xref target="V6DNSRDY-23" format="default"/>.
+                This creates a complex landscape where authoritative DNS servers might be accessible only via specific network protocols <xref target="V6DNSRDY-23"/>.
                 At the same time, DNS resolvers may only be able to access the Internet via either IPv4 or IPv6.
                 This poses a challenge for such resolvers because they may encounter names for which queries must be directed to authoritative DNS servers with which they do not share an IP version during the name resolution process.
             </t>
             <t>
-                <xref target="RFC3901" format="default"/> was initially written at a time when IPv6 deployment was not widespread, focusing primarily on maintaining name space continuity within the IPv4 landscape.
+                <xref target="RFC3901"/> was initially written at a time when IPv6 deployment was not widespread, focusing primarily on maintaining name space continuity within the IPv4 landscape.
                 Now, nearly two decades later, with IPv6 not only widely deployed but also becoming the de facto standard in many areas,
                 this document seeks to expand the scope of RFC3901 by recommending IPv6 compatibility for authoritative DNS servers, as well as recursive and stub DNS resolvers.
             </t>
@@ -101,7 +101,7 @@
         <section anchor="terminology">
             <name>Terminology</name>
             <t>
-                This document uses DNS terminology as described in <xref target="RFC9499" format="default"/>.
+                This document uses DNS terminology as described in <xref target="RFC9499"/>.
                 Furthermore, the following terms are used with a defined meaning:
             </t>
             <dl newline="true" spacing="normal">
@@ -170,7 +170,7 @@
                     </dt>
                     <dd>
                         If an NS record of a child zone, either provided by the parent or from the child zone's apex, points to a name in the NS RDATA that is in-domain but the name does not contain corresponding A or AAAA record(s) in the child zone,
-                        name resolution via the concerned IP version will fail even if the parent provides GLUE, when the recursive DNS resolver revalidates the delegation path <xref target="I-D.ietf-dnsop-ns-revalidation" format="default"/>.
+                        name resolution via the concerned IP version will fail even if the parent provides GLUE, when the recursive DNS resolver revalidates the delegation path <xref target="I-D.ietf-dnsop-ns-revalidation"/>.
                     </dd>
                     <dt>
                         Zone of sibling domain NSes not resolving:
@@ -192,7 +192,7 @@
                     The above misconfigurations are not mutually exclusive.
                 </t>
                 <t>
-                    Furthermore, any of the misconfigurations above may not only materialize via a missing Resource Record (RR) but also via an RR providing the IP address of a nameserver that is not configured to answer queries via that IP version <xref target="V6DNSRDY-23" format="default"/>.
+                    Furthermore, any of the misconfigurations above may not only materialize via a missing Resource Record (RR) but also via an RR providing the IP address of a nameserver that is not configured to answer queries via that IP version <xref target="V6DNSRDY-23"/>.
                 </t>
             </section>
             <section anchor="misconfigurations-causing-network-related-name-space-fragmentation">
@@ -208,9 +208,9 @@
                     </dt>
                     <dd>
                         <t>
-                            When using EDNS(0) to communicate support for DNS messages larger than 512 bytes <xref target="RFC6891" format="default"/>, an IP packet carrying a DNS response may exceed the PMTU for the path to a resolver.
-                            If an authoritative DNS server and does not follow <xref target="RFC9715" format="default"/>, i.e., honors EDNS(0) sizes larger than 1232 bytes, it will try to fragment the packet according to the discovered PMTU.
-                            Such packets mostly occur for DNSKEY responses with DNSSEC <xref target="RFC4034" format="default"/>.
+                            When using EDNS(0) to communicate support for DNS messages larger than 512 bytes <xref target="RFC6891"/>, an IP packet carrying a DNS response may exceed the PMTU for the path to a resolver.
+                            If an authoritative DNS server and does not follow <xref target="RFC9715"/>, i.e., honors EDNS(0) sizes larger than 1232 bytes, it will try to fragment the packet according to the discovered PMTU.
+                            Such packets mostly occur for DNSKEY responses with DNSSEC <xref target="RFC4034"/>.
                         </t>
                         <t>
                             If the requesting resolver is unable to process fragments, or if fragments are filtered on-path, resolution will fail over UDP.
@@ -218,7 +218,7 @@
                             Therefore, working Path MTU Discovery (PMTUD) is essential for IPv6 DNS-over-UDP packets to be fragmented to a size that allows them to traverse all segments on a path.
                         </t>
                         <t>
-                            <xref target="RFC9715" format="default"/> provides guidance on preventing this issue by always using a maximum EDNS(0) size of 1232 bytes.
+                            <xref target="RFC9715"/> provides guidance on preventing this issue by always using a maximum EDNS(0) size of 1232 bytes.
                         </t>
                     </dd>
                     <dt>
@@ -231,8 +231,8 @@
                             In that case, similar to the case of DNS-over-UDP, DNS resolution will time out when the recursive DNS resolver did not receive a response in time.
                         </t>
                         <t>
-                            <xref target="RFC9715" format="default"/> does not provide explicit guidance on mitigating this issue.
-                            However, similar to the guidance in <xref target="RFC9715" format="default"/>, setting an MSS of 1220 bytes would similarly mitigate this issue.
+                            <xref target="RFC9715"/> does not provide explicit guidance on mitigating this issue.
+                            However, similar to the guidance in <xref target="RFC9715"/>, setting an MSS of 1220 bytes would similarly mitigate this issue.
                         </t>
                     </dd>
                     <dt>
@@ -241,7 +241,7 @@
                     <dd>
                         <t>
                             Similar to authoritative servers, (stub) recursive resolvers may face broken IPv6 connectivity, e.g., if a client has been assigned a global unicast IPv6 address, but IPv6 traffic is not routed on the resolver's network.
-                            Furthermore, broken IPv6 connectivity may be encountered when IPv4-IPv6 transition technologies, e.g., NAT64 on IPv6-mostly networks <xref target="RFC9313" format="default"/>, or NAT64 connectivity discovered through PREF64 or RFC7050 <xref target="RFC7050" format="default"/> on IPv6-only networks are in use.
+                            Furthermore, broken IPv6 connectivity may be encountered when IPv4-IPv6 transition technologies, e.g., NAT64 on IPv6-mostly networks <xref target="RFC9313"/>, or NAT64 connectivity discovered through PREF64 or RFC7050 <xref target="RFC7050"/> on IPv6-only networks are in use.
                             There, the synthesized IPv6 addresses used in XLAT encounter additional PMTU fluctuation due to the difference in header size between IPv4 and IPv6.
                         </t>
                     </dd>
@@ -252,7 +252,7 @@
                 <t>
                     Intentional IP related name space fragmentation occurs if an operator consciously decides not to deploy IPv4 or IPv6 for a part of the resolution chain.
                     Most commonly, this is realized by intentionally not listing A/AAAA records for NS names.
-                    At the time of writing, the share of zones not resolvable via IPv4 is negligible, while a little less than 40% of zones are not resolvable via IPv6 <xref target="V6DNSRDY-23" format="default"/>.
+                    At the time of writing, the share of zones not resolvable via IPv4 is negligible, while a little less than 40% of zones are not resolvable via IPv6 <xref target="V6DNSRDY-23"/>.
                     However, as IPv4 exhaustion progresses, IPv6 adoption will have to increase.
                 </t>
             </section>
@@ -260,8 +260,8 @@
         <section anchor="policy-based-avoidance-of-name-space-fragmentation">
             <name>Policy Based Avoidance of Name Space Fragmentation</name>
             <t>
-                With the final exhaustion of IPv4 pools in RIRs, e.g., <xref target="RIPEV4" format="default"/>, and the progressing deployment of IPv6, IPv4 and IPv6 have become comaprably relevant.
-                Yet, while we now observe the first zones becoming exclusively IPv6 resolvable, we also still see a major portion of zones solely relying on IPv4 <xref target="V6DNSRDY-23" format="default"/>.
+                With the final exhaustion of IPv4 pools in RIRs, e.g., <xref target="RIPEV4"/>, and the progressing deployment of IPv6, IPv4 and IPv6 have become comaprably relevant.
+                Yet, while we now observe the first zones becoming exclusively IPv6 resolvable, we also still see a major portion of zones solely relying on IPv4 <xref target="V6DNSRDY-23"/>.
                 Hence, at the moment, dual stack connectivity is instrumental to be able to resolve zones and avoid name space fragmentation.
             </t>
             <t>
@@ -274,7 +274,7 @@
             <section anchor="guidelines-for-authoritative-dns-configuration">
                 <name>Guidelines for Authoritative DNS Server Configuration</name>
                 <t>
-                    It is usually recommended that DNS zones contain at least two name servers, which are geographically diverse and operate under different routing policies <xref target="IANANS" format="default"/>.
+                    It is usually recommended that DNS zones contain at least two name servers, which are geographically diverse and operate under different routing policies <xref target="IANANS"/>.
                     To reduce the chance of DNS name space fragmentation, it is <bcp14>RECOMMENDED</bcp14> that at least two name servers for a zone are dual stack name servers.
                     Specifically, this means that the following minimal requirements <bcp14>SHOULD</bcp14> be implemented for a zone:
                 </t>
@@ -305,10 +305,10 @@
                             Avoiding IP Fragmentation:
                     </dt>
                     <dd>
-                            IP fragmentation has been reported to be fragile <xref target="RFC8900" format="default"/>.
-                            Furthermore, IPv6 transition technologies can introduce unexpected MTU breaks, e.g., when NAT64 is used <xref target="RFC7269" format="default"/>.
-                            Therefore, IP fragmentation <bcp14>SHOULD</bcp14> be avoided by following guidance on maximum DNS payload sizes <xref target="RFC9715" format="default"/> and providing TCP fall-back options <xref target="RFC7766" format="default"/>.
-                            Furthermore, similar to the guidance in <xref target="RFC9715" format="default"/>, it is <bcp14>RECOMMENDED</bcp14> that authoritative DNS servers sets an MSS of 1220 in TCP sessions carrying DNS responses.
+                            IP fragmentation has been reported to be fragile <xref target="RFC8900"/>.
+                            Furthermore, IPv6 transition technologies can introduce unexpected MTU breaks, e.g., when NAT64 is used <xref target="RFC7269"/>.
+                            Therefore, IP fragmentation <bcp14>SHOULD</bcp14> be avoided by following guidance on maximum DNS payload sizes <xref target="RFC9715"/> and providing TCP fall-back options <xref target="RFC7766"/>.
+                            Furthermore, similar to the guidance in <xref target="RFC9715"/>, it is <bcp14>RECOMMENDED</bcp14> that authoritative DNS servers sets an MSS of 1220 in TCP sessions carrying DNS responses.
                     </dd>
                 </dl>
                 <t>
@@ -319,10 +319,10 @@
                         <t>There is at least one IPv4 address record and one IPv6 address record available for the name servers of any child delegation within the zone.</t>
                     </li>
                     <li>
-                        <t>The zone's authoritative servers follow <xref target="RFC9715" format="default"/> for avoiding fragmentation on DNS-over-UDP.</t>
+                        <t>The zone's authoritative servers follow <xref target="RFC9715"/> for avoiding fragmentation on DNS-over-UDP.</t>
                     </li>
                     <li>
-                        <t>The zone's authoritative servers support DNS-over-TCP <xref target="RFC9210" format="default"/>.</t>
+                        <t>The zone's authoritative servers support DNS-over-TCP <xref target="RFC9210"/>.</t>
                     </li>
                     <li>
                         <t>The zone's authoritative servers can be reached via IPv4 and IPv6 when when performing DNS resolution via IPv4-only and IPv6-only networks.</t>
@@ -339,8 +339,8 @@
                     Hence, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv6-only, if it uses a transition mechanism that allows it to also query IPv4-only authoritative DNS server or uses a configuration where it forwards queries failing IPv6-only DNS resolution to a recursive DNS resolver that is able to perform DNS resolution over IPv4.
                 </t>
                 <t>
-                    If a recursive DNS resolver operates in a network that uses XLAT <xref target="RFC6877" format="default"/>, and the recursive DNS resolver is aware of the PREF64 <xref target="RFC6146" format="default"/> in use in its administrative domain, it <bcp14>SHOULD</bcp14> synthesize mapped IPv6 addresses for remote authoritative DNS servers directly, instead of relying on the socket translation layer of the operating system.
-                    When available, a recursive DNS resolver <bcp14>SHOULD</bcp14> prefer using non-synthesized IPv6 addresses, instead of using NAT64 connectivity discovered through a PREF64<xref target="RFC6146" format="default"/> or RFC7050 <xref target="RFC7050" format="default"/>.
+                    If a recursive DNS resolver operates in a network that uses XLAT <xref target="RFC6877"/>, and the recursive DNS resolver is aware of the PREF64 <xref target="RFC6146"/> in use in its administrative domain, it <bcp14>SHOULD</bcp14> synthesize mapped IPv6 addresses for remote authoritative DNS servers directly, instead of relying on the socket translation layer of the operating system.
+                    When available, a recursive DNS resolver <bcp14>SHOULD</bcp14> prefer using non-synthesized IPv6 addresses, instead of using NAT64 connectivity discovered through a PREF64<xref target="RFC6146"/> or RFC7050 <xref target="RFC7050"/>.
                 </t>
                 <t>
                     Similarly, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv4-only, if it uses a configuration where such resolvers forward queries failing IPv4-only DNS resolution to a recursive DNS resolver that is able to perform DNS resolution over IPv6.
@@ -357,12 +357,12 @@
                 </t>
                 <t>
                     For IPv4 only environments, a stub DNS resolver has to rely on the provided recursive DNS server following guidance in this document.
-                    However, in a XLAT <xref target="RFC6877" format="default"/> scenario using RFC1918 addressing <xref target="RFC1918" format="default"/>, the environment may be indistinguishable from a dual-stack scenario, and the host running the stub DNS resolver may receive multiple IPv4 and IPv6 addresses for possible DNS resolvers to use via different protocols (DHCPv4 <xref target="RFC3456" format="default"/>, DHCPv6 <xref target="RFC8415" format="default"/>, SLAAC <xref target="RFC4862" format="default"/>).
+                    However, in a XLAT <xref target="RFC6877"/> scenario using RFC1918 addressing <xref target="RFC1918"/>, the environment may be indistinguishable from a dual-stack scenario, and the host running the stub DNS resolver may receive multiple IPv4 and IPv6 addresses for possible DNS resolvers to use via different protocols (DHCPv4 <xref target="RFC3456"/>, DHCPv6 <xref target="RFC8415"/>, SLAAC <xref target="RFC4862"/>).
                 </t>
                 <t>
                     Hence, when a host running a stub DNS resolver receives addresses for IPv4 and IPv6 recursive DNS resolver to use, it <bcp14>SHOULD</bcp14> prioritize reachable IPv6 recursive DNS resolvers.
-                    When available, a stub DNS resolver <bcp14>SHOULD</bcp14> prefer using non-synthesized IPv6 addresses, instead of using NAT64 connectivity discovered through a PREF64<xref target="RFC6146" format="default"/> or RFC7050 <xref target="RFC7050" format="default"/>.
-                    If a stub DNS resolver runs in an IPv6-mostly network <xref target="RFC9313" format="default"/>, and the stub DNS resolver is aware of the used PREF64 <xref target="RFC6146" format="default"/>, it <bcp14>SHOULD</bcp14> synthesize mapped IPv6 addresses for remote authoritative DNS servers directly, instead of relying on the socket translation layer of the operating system.
+                    When available, a stub DNS resolver <bcp14>SHOULD</bcp14> prefer using non-synthesized IPv6 addresses, instead of using NAT64 connectivity discovered through a PREF64<xref target="RFC6146"/> or RFC7050 <xref target="RFC7050"/>.
+                    If a stub DNS resolver runs in an IPv6-mostly network <xref target="RFC9313"/>, and the stub DNS resolver is aware of the used PREF64 <xref target="RFC6146"/>, it <bcp14>SHOULD</bcp14> synthesize mapped IPv6 addresses for remote authoritative DNS servers directly, instead of relying on the socket translation layer of the operating system.
                 </t>
             </section>
         </section>
@@ -375,7 +375,7 @@
         <section anchor="iana-considerations">
             <name>IANA Considerations</name>
             <t>
-                This document requests IANA to update its technical requirements for authoritative DNS servers to require both IPv4 and IPv6 addresses for each authoritative server <xref target="IANANS" format="default"/>.
+                This document requests IANA to update its technical requirements for authoritative DNS servers to require both IPv4 and IPv6 addresses for each authoritative server <xref target="IANANS"/>.
             </t>
         </section>
         <section numbered="false" anchor="acknowledgments">
@@ -393,32 +393,32 @@
             <name>References</name>
             <references anchor="sec-normative-references">
                 <name>Normative References</name>
-                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.1883.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.2119.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.2460.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.3456.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.3901.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4034.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4862.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6146.xml"/>
-                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6877.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6891.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7766.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8174.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8415.xml"/>
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-ns-revalidation.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9210.xml"/>
-                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9715.xml"/>
 
             </references>
             <references anchor="sec-informative-references">
                 <name>Informative References</name>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.1918.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6877.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7050.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7269.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8900.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9313.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9386.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9499.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9715.xml"/>
                 <reference anchor="V6DNSRDY-23" target="https://link.springer.com/chapter/10.1007/978-3-031-28486-1_22">
                     <front>
                         <title>How Ready is DNS for an IPv6-Only World?</title>
@@ -445,19 +445,19 @@
                 </reference>
                 <reference anchor="RIPEV4" target="https://www.ripe.net/publications/news/about-ripe-ncc-and-ripe/the-ripe-ncc-has-run-out-of-ipv4-addresses">
                     <front>
-                    <title>The RIPE NCC has run out of IPv4 Addresses</title>
-                    <author>
-                        <organization>RIPE NCC</organization>
-                    </author>
-                    <date month="November" year="2019"/>
+                        <title>The RIPE NCC has run out of IPv4 Addresses</title>
+                        <author>
+                            <organization>RIPE NCC</organization>
+                        </author>
+                        <date month="November" year="2019"/>
                     </front>
                 </reference>
                 <reference anchor="IANANS" target="https://www.iana.org/help/nameserver-requirements">
                     <front>
-                    <title>Technical requirements for authoritative name servers</title>
-                    <author>
-                        <organization>IANA</organization>
-                    </author>
+                        <title>Technical requirements for authoritative name servers</title>
+                        <author>
+                            <organization>IANA</organization>
+                        </author>
                     </front>
                 </reference>
             </references>
