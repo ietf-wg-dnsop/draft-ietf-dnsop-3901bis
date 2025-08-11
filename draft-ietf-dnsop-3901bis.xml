@@ -403,8 +403,8 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6877.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6891.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7766.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8174.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8415.xml"/>
-                <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-ns-revalidation.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9210.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9715.xml"/>
@@ -412,13 +412,13 @@
             </references>
             <references anchor="sec-informative-references">
                 <name>Informative References</name>
-                <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.1918.xml"/>
-                <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7050.xml"/>
-                <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7269.xml"/>
-                <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8900.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.1918.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7050.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7269.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8900.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9313.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9386.xml"/>
-                <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.9499.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9499.xml"/>
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-v6ops-ipv6-only-resolver.xml"/>
                 <reference anchor="V6DNSRDY-23" target="https://link.springer.com/chapter/10.1007/978-3-031-28486-1_22">
                     <front>
