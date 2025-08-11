@@ -292,7 +292,7 @@
                     </dt>
                     <dd>
                             Every DNS zone <bcp14>SHOULD</bcp14> be served by at least one IPv6-reachable authoritative DNS server to maintain name space continuity.
-                            Authoritative DNS servers <bcp14>SHOULD NOT</bcp14> use addresses from IPv6 transition technologies to be reachable.
+                            To avoid reachability issues, authoritative DNS servers <bcp14>SHOULD</bcp14> use native IPv6 addresses instead of IPv6 addresses synthesized using IPv6 transition technologies for receiving queries.
                             The delegation configuration (Resolution of the parent, resolution of sibling domain names, GLUE) <bcp14>MUST NOT</bcp14> rely on IPv4 connectivity being available.
                     </dd>
                     <dt>
