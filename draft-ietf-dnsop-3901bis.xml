@@ -139,7 +139,7 @@
                 If this occurs, the DNS has, effectively, fragmented based on the recursive DNS resolver's and authoritative DNS server's mismatching IP version support.
             </t>
             <t>
-                In a mixed IP Internet, namespace fragmentation can occur for different reasons.
+                In a mixed IP Internet, name space fragmentation can occur for different reasons.
                 One reason is that DNS zones are consistently configured to support only either IPv4 or IPv6.
                 Another reason is due to misconfigurations that make a zone unresolvable by either IPv4 or IPv6-only resolvers.
                 The latter cases are often hard to identify, as the impact of misconfigurations for only one IP version (IPv4 or IPv6) may be hidden in a dual-stack setting.
@@ -242,8 +242,8 @@
                     <dd>
                         <t>
                             Similar to authoritative servers, (stub) recursive resolvers may face broken IPv6 connectivity, e.g., if a client has been assigned a global unicast IPv6 address, but IPv6 traffic is not routed on the resolver's network.
-                            Furthermore, broken IPv6 connectivity may be encountered when IPv4-IPv6 transition technologies, e.g., NAT64 on IPv6-mostly networks <xref target="RFC9313"/>, or NAT64 connectivity discovered through PREF64 or RFC7050 <xref target="RFC7050"/> on IPv6-only networks are in use.
-                            There, the synthesized IPv6 addresses used in XLAT encounter additional PMTU fluctuation due to the difference in header size between IPv4 and IPv6.
+                            Furthermore, broken IPv6 connectivity may be encountered when IPv4-IPv6 transition technologies, e.g., NAT64 on IPv6-mostly networks <xref target="RFC9313"/>, or NAT64 connectivity discovered through PREF64 <xref target="RFC6146"/> or RFC7050 <xref target="RFC7050"/> on IPv6-only networks are in use.
+                            There, the synthesized IPv6 addresses used in XLAT <xref target="RFC6877"/> encounter additional PMTU fluctuation due to the difference in header size between IPv4 and IPv6.
                         </t>
                     </dd>
                 </dl>
@@ -261,7 +261,7 @@
         <section anchor="policy-based-avoidance-of-name-space-fragmentation">
             <name>Policy Based Avoidance of Name Space Fragmentation</name>
             <t>
-                With the final exhaustion of IPv4 pools in RIRs, e.g., <xref target="RIPEV4"/>, and the progressing deployment of IPv6, IPv4 and IPv6 have become comaprably relevant.
+                With the final exhaustion of IPv4 pools in RIRs, e.g., <xref target="RIPEV4"/>, and the progressing deployment of IPv6, IPv4 and IPv6 have become comparably relevant.
                 Yet, while we now observe the first zones becoming exclusively IPv6 resolvable, we also still see a major portion of zones solely relying on IPv4 <xref target="V6DNSRDY-23"/>.
                 Hence, at the moment, dual stack connectivity is instrumental to be able to resolve zones and avoid name space fragmentation.
             </t>
@@ -313,7 +313,7 @@
                     </dd>
                 </dl>
                 <t>
-                    Note: To prevent namespace fragmentation zone validation processes <bcp14>SHOULD</bcp14> ensure that:
+                    Note: To prevent name space fragmentation zone validation processes <bcp14>SHOULD</bcp14> ensure that:
                 </t>
                 <ul spacing="normal">
                     <li>
@@ -326,7 +326,7 @@
                         <t>The zone's authoritative servers support DNS-over-TCP <xref target="RFC9210"/>.</t>
                     </li>
                     <li>
-                        <t>The zone's authoritative servers can be reached via IPv4 and IPv6 when when performing DNS resolution via IPv4-only and IPv6-only networks.</t>
+                        <t>The zone's authoritative servers can be reached via IPv4 and IPv6 when performing DNS resolution via IPv4-only and IPv6-only networks respectively.</t>
                     </li>
                 </ul>
             </section>
@@ -382,7 +382,7 @@
         <section numbered="false" anchor="acknowledgments">
             <name>Acknowledgments</name>
             <t>
-                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp S. Tiesel, Mark Andrews
+                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp S. Tiesel, Mark Andrews, Stefan Ubbink
             </t>
             <t>
                 Thank you for reading this draft.
