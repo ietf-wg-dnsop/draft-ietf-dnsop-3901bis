@@ -243,8 +243,8 @@
                     <dd>
                         <t>
                             Similar to authoritative servers, (stub) recursive resolvers may face broken IPv6 connectivity, e.g., if a client has been assigned a global unicast IPv6 address, but IPv6 traffic is not routed on the resolver's network.
-                            Furthermore, broken IPv6 connectivity may be encountered when IPv4-IPv6 transition technologies, e.g., NAT64 on IPv6-mostly networks <xref target="RFC9313"/>, or NAT64 connectivity discovered through PREF64 <xref target="RFC6146"/> or RFC7050 <xref target="RFC7050"/> on IPv6-only networks are in use.
-                            There, the synthesized IPv6 addresses used in XLAT <xref target="RFC6877"/> encounter additional PMTU fluctuation due to the difference in header size between IPv4 and IPv6.
+                            Furthermore, broken IPv6 connectivity may be encountered when IPv4-IPv6 transition technologies, e.g., NAT64 <xref target="RFC6146"/> on IPv6-mostly networks <xref target="RFC9313"/>, or NAT64 connectivity discovered through PREF64 <xref target="RFC8781"/> or DNS64 <xref target="RFC7050"/> on IPv6-only networks are in use.
+                            There, the synthesized IPv6 addresses used in 464XLAT <xref target="RFC6877"/> encounter additional PMTU fluctuation due to the difference in header size between IPv4 and IPv6.
                         </t>
                     </dd>
                 </dl>
@@ -341,8 +341,8 @@
                     Hence, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv6-only, if it uses a transition mechanism that allows it to also query IPv4-only authoritative DNS server or uses a configuration where it forwards queries failing IPv6-only DNS resolution to a recursive DNS resolver that is able to perform DNS resolution over IPv4.
                 </t>
                 <t>
-                    If a recursive DNS resolver operates in a network that uses XLAT <xref target="RFC6877"/>, and the recursive DNS resolver is aware of the PREF64 <xref target="RFC6146"/> in use in its administrative domain, it <bcp14>MAY</bcp14> synthesize mapped IPv6 addresses for remote authoritative DNS servers directly, instead of relying on the socket translation layer of the operating system.
-                    When available, a recursive DNS resolver <bcp14>MAY</bcp14> prefer using non-synthesized IPv6 addresses, instead of using NAT64 connectivity discovered through a PREF64<xref target="RFC6146"/> or RFC7050 <xref target="RFC7050"/>.
+                    If a recursive DNS resolver operates in a network that uses 464XLAT <xref target="RFC6877"/>, and the recursive DNS resolver is aware of the PREF64 <xref target="RFC6146"/> in use in its administrative domain, it <bcp14>MAY</bcp14> synthesize mapped IPv6 addresses for remote authoritative DNS servers directly, instead of relying on the socket translation layer of the operating system.
+                    When available, a recursive DNS resolver <bcp14>MAY</bcp14> prefer using non-synthesized IPv6 addresses, instead of synthesized IPv6 addresses using NAT64 connectivity discovered through PREF64 <xref target="RFC8781"/> or DNS64 <xref target="RFC7050"/>.
                 </t>
                 <t>
                     Similarly, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv4-only, if it uses a configuration where such resolvers forward queries failing IPv4-only DNS resolution to a recursive DNS resolver that is able to perform DNS resolution over IPv6.
@@ -355,15 +355,15 @@
                 <name>Guidelines for DNS Stub Resolvers</name>
                 <t>
                     In general, DNS Stub Resolvers <bcp14>SHOULD</bcp14> follow the same guidance as outlined for recursive DNS resolvers when they are deployed to a dual-stack network not using IPv4-IPv6 transition techniques.
-                    Contrary to authoritative DNS servers and recursive DNS resolvers, stub DNS resolvers are more likely to find themselves in either an IPv6 mostly or IPv4 only environment, as they are usually run on end-hosts / clients.
+                    Contrary to authoritative DNS servers and recursive DNS resolvers, stub DNS resolvers are more likely to find themselves in either an IPv6-mostly or IPv4-only environment, as they are usually run on end-hosts / clients.
                 </t>
                 <t>
-                    For IPv4 only environments, a stub DNS resolver has to rely on the provided recursive DNS server following guidance in this document.
-                    However, in a XLAT <xref target="RFC6877"/> scenario using RFC1918 addressing <xref target="RFC1918"/>, the environment may be indistinguishable from a dual-stack scenario, and the host running the stub DNS resolver may receive multiple IPv4 and IPv6 addresses for possible DNS resolvers to use via different protocols (DHCPv4 <xref target="RFC3456"/>, DHCPv6 <xref target="RFC8415"/>, SLAAC <xref target="RFC4862"/>).
+                    For IPv4-only environments, a stub DNS resolver has to rely on the provided recursive DNS server following guidance in this document.
+                    However, in a 464XLAT <xref target="RFC6877"/> scenario using RFC1918 addressing <xref target="RFC1918"/>, the environment may be indistinguishable from a dual-stack scenario, and the host running the stub DNS resolver may receive multiple IPv4 and IPv6 addresses for possible DNS resolvers to use via different protocols (DHCPv4 <xref target="RFC3456"/>, DHCPv6 <xref target="RFC8415"/>, SLAAC <xref target="RFC4862"/>).
                 </t>
                 <t>
                     Hence, when a host running a stub DNS resolver receives addresses for IPv4 and IPv6 recursive DNS resolver to use, it <bcp14>MAY</bcp14> prioritize reachable IPv6 recursive DNS resolvers.
-                    When available, a stub DNS resolver <bcp14>MAY</bcp14> prefer using non-synthesized IPv6 addresses, instead of using NAT64 connectivity discovered through a PREF64<xref target="RFC6146"/> or RFC7050 <xref target="RFC7050"/>.
+                    When available, a stub DNS resolver <bcp14>MAY</bcp14> prefer using non-synthesized IPv6 addresses, instead of synthesized IPv6 addresses using NAT64 connectivity discovered through PREF64 <xref target="RFC8781"/> or DNS64 <xref target="RFC7050"/>.
                     If a stub DNS resolver runs in an IPv6-mostly network <xref target="RFC9313"/>, and the stub DNS resolver is aware of the used PREF64 <xref target="RFC6146"/>, it <bcp14>MAY</bcp14> synthesize mapped IPv6 addresses for remote authoritative DNS servers directly, instead of relying on the socket translation layer of the operating system.
                 </t>
             </section>
@@ -420,6 +420,7 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6877.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7050.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7269.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8781.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8900.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9313.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9386.xml"/>
