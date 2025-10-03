@@ -12,7 +12,7 @@
     <front>
         <title abbrev="3901bis">DNS IPv6 Transport Operational Guidelines</title>
         <seriesInfo name="Internet-Draft" status="standard" value="draft-ietf-dnsop-3901bis-latest"/>
-        <author fullname="山本 桃歌" asciiFullname="Momoka Yamamoto" initials="Momoka" surname="Y">
+        <author fullname="Momoka Yamamoto" initials="M." surname="Yamamoto"
             <organization>WIDE Project</organization>
             <address>
                 <email>momoka.my6@gmail.com</email>
