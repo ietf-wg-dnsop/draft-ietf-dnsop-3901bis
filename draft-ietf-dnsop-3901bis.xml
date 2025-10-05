@@ -364,7 +364,6 @@
                 <t>
                     Hence, when a host running a stub DNS resolver receives addresses for IPv4 and IPv6 recursive DNS resolver to use, it <bcp14>MAY</bcp14> prioritize reachable IPv6 recursive DNS resolvers.
                     When available, a stub DNS resolver <bcp14>MAY</bcp14> prefer using non-synthesized IPv6 addresses, instead of synthesized IPv6 addresses using NAT64 connectivity discovered through PREF64 <xref target="RFC8781"/> or DNS64 <xref target="RFC7050"/>.
-                    If a stub DNS resolver runs in an IPv6-mostly network <xref target="RFC9313"/>, and the stub DNS resolver is aware of the used PREF64 <xref target="RFC6146"/>, it <bcp14>MAY</bcp14> synthesize mapped IPv6 addresses for remote authoritative DNS servers directly, instead of relying on the socket translation layer of the operating system.
                 </t>
             </section>
         </section>
