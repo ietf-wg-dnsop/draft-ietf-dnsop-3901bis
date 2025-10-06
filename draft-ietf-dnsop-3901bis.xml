@@ -218,7 +218,7 @@
                             In general, DNS servers <bcp14>SHOULD</bcp14> follow RFC9715 <xref target="RFC9715"/>, which provides additional guidance on preventing fragmentation by always using a maximum EDNS(0) size of 1232 bytes.
                         </t>
                         <t>
-                            Additionally, DNS servers <bcp14>MAY</bcp14> opt to explicitly not rely on path MTU discovery <xref target="RFC4821"/> or PLPMTUD <xref target="RFC8899"/>, by instead using IPV6_USE_MIN_MTU=1 from RFC3542 <xref target="RFC3542"/> to avoid the need to perform path MTU discovery.
+                            Additionally, DNS servers <bcp14>SHOULD NOT</bcp14> rely on path MTU discovery <xref target="RFC4821"/> or PLPMTUD <xref target="RFC8899"/> for UDP, as this is considered harmful and dangerous per <xref target="RFC9715"/>. DNS servers <bcp14>SHOULD</bcp14> instead use IPV6_USE_MIN_MTU=1 from RFC3542 <xref target="RFC3542"/> to avoid the need to perform path MTU discovery.
                         </t>
                     </dd>
                     <dt>
@@ -234,7 +234,7 @@
                             <xref target="RFC9715"/> does not provide explicit guidance on mitigating this issue.
                             However, similar to the guidance in <xref target="RFC9715"/>, setting an MSS of 1220 bytes mitigates this issue.
                             It is therefore <bcp14>RECOMMENDED</bcp14> that DNS servers set an MSS of 1220 bytes.
-                            Additionally, DNS servers <bcp14>MAY</bcp14> opt to set IPV6_USE_MIN_MTU=1 from RFC3542 <xref target="RFC3542"/>.
+                            Additionally, DNS servers <bcp14>SHOULD</bcp14> set IPV6_USE_MIN_MTU=1 from RFC3542 <xref target="RFC3542"/> to avoid relying on PMTUD for TCP connections.
                         </t>
                     </dd>
                     <dt>
