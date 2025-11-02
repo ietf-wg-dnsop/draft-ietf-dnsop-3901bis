@@ -5,6 +5,7 @@ draft-ietf-dnsop-3901bis.xml
 Gemfile.lock
 /.gems/
 *.html
+/.idea/
 /lib
 /.*.mk
 /node_modules/
