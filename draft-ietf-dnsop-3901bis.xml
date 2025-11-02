@@ -194,7 +194,7 @@
                     The above misconfigurations are not mutually exclusive.
                 </t>
                 <t>
-                    Furthermore, any of the misconfigurations above may not only materialize via a missing Resource Record (RR) but also via an RR providing the IP address of a nameserver that is not configured to answer queries via that IP version <xref target="V6DNSRDY-23"/>.
+                    Furthermore, any of the misconfigurations above may not only materialize via a missing Resource Record (RR) but also via an RR providing the IP address of a name server that is not configured to answer queries via that IP version <xref target="V6DNSRDY-23"/>.
                 </t>
             </section>
             <section anchor="misconfigurations-causing-network-related-name-space-fragmentation">
@@ -211,7 +211,7 @@
                     <dd>
                         <t>
                             When using EDNS(0) to communicate support for DNS messages larger than 512 bytes <xref target="RFC6891"/> via traditional DNS-over-UDP transport according to RFC1035 <xref target="RFC1035"/>, an IP packet carrying a DNS response may exceed the PMTU for the path to a resolver.
-                            If an authoritative DNS server and does not follow <xref target="RFC9715"/>, i.e., honors EDNS(0) sizes larger than 1232 bytes, it will try to fragment the packet according to the discovered PMTU.
+                            If an authoritative DNS server does not follow <xref target="RFC9715"/>, i.e., honors EDNS(0) sizes larger than 1232 bytes, it will try to fragment the packet according to the discovered PMTU.
                             Such packets mostly occur for DNSKEY responses with DNSSEC <xref target="RFC4034"/>.
                         </t>
                         <t>
