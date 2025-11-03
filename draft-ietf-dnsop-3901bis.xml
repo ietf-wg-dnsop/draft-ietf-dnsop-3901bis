@@ -189,7 +189,28 @@
                         Any zone not resolvable via the concerned IP version breaks the delegation chain for all its children.
                     </dd>
                 </dl>
-
+                <t>
+                  <strong>Example:</strong> A zone <tt>child.example.com</tt> has an NS record pointing to
+                  <tt>ns.child.example.com</tt>, but the parent zone <tt>example.com</tt> only provides
+                  an A record (192.0.2.1) and no AAAA record. An IPv6-only resolver will fail to contact
+                  the name server even if the child zone has a valid AAAA record.
+                </t>
+                <figure>
+                  <name>Example: Missing IPv6 GLUE</name>
+                  <artwork type="inline">
+                $ dig @a.root-servers.net child.example.com NS +short
+                ns.child.example.com.
+                
+                $ dig @a.root-servers.net ns.child.example.com AAAA +short
+                &lt;no output&gt;
+                
+                $ dig @a.root-servers.net ns.child.example.com A +short
+                192.0.2.1
+                  </artwork>
+                  <postamble>
+                    The parent provides only an A record (IPv4 GLUE), breaking resolution for IPv6-only resolvers.
+                  </postamble>
+                </figure>
                 <t>
                     The above misconfigurations are not mutually exclusive.
                 </t>
@@ -330,6 +351,20 @@
                         <t>The zone's authoritative servers can be reached via IPv4 and IPv6 when performing DNS resolution via IPv4-only and IPv6-only networks respectively.</t>
                     </li>
                 </ul>
+                <t>
+                  Operators <bcp14>SHOULD</bcp14> use automated tools to validate:
+                </t>
+                <ul spacing="normal">
+                  <li>DNS resolution from both IPv4-only and IPv6-only networks.</li>
+                  <li>Presence of A and AAAA records for all in-bailiwick NS names.</li>
+                  <li>Correct GLUE in parent zones.</li>
+                </ul>
+                <t>
+                  Example command (IPv6-only test):
+                </t>
+                <artwork type="inline">
+                    $ dig @&lt;ipv6-resolver&gt; example.com SOA +dnssec
+                </artwork>
             </section>
             <section anchor="guidelines-for-dns-resolvers">
                 <name>Guidelines for DNS Resolvers</name>
