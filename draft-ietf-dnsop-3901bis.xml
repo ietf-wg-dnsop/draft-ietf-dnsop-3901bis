@@ -165,7 +165,7 @@
                         Missing GLUE:
                     </dt>
                     <dd>
-                        If the name from an NS record for a zone is in-domain, i.e., the name is within the zone or below, a parent zone must contain both IPv4 and IPv6 GLUE records, i.e., a parent must serve the corresponding A and AAAA records as ADDITIONAL data when returning the NS record(s) as the referral response.
+                        If the name from an NS record for a zone is in-domain, i.e., the name is within the zone or below, a parent zone must contain both IPv4 and IPv6 GLUE records, i.e., a parent must serve the corresponding A and AAAA records as ADDITIONAL data when returning the NS record(s) as the referral response <xref target="RFC9471"/>.
                     </dd>
                     <dt>
                         No A/AAAA record for in-domain NS:
@@ -314,7 +314,7 @@
                     </dd>
                 </dl>
                 <t>
-                    Note: To prevent name space fragmentation zone validation processes <bcp14>SHOULD</bcp14> ensure that:
+                    To prevent name space fragmentation, zone validation processes <bcp14>SHOULD</bcp14> ensure that:
                 </t>
                 <ul spacing="normal">
                     <li>
@@ -412,6 +412,7 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8899.xml"/>
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-ns-revalidation.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9210.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9471.xml"/>
 
             </references>
             <references anchor="sec-informative-references">
