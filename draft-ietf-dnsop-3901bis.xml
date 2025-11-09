@@ -57,7 +57,7 @@
             <name>Introduction</name>
             <t>
                 Despite IPv6 being first discussed in the mid-1990s <xref target="RFC2460"/>, consistent deployment throughout the whole Internet has not yet been accomplished <xref target="RFC9386"/>.
-                Hence, today, the Internet is a mixture of IPv4, dual-stack (networks connected via both IP versions), and IPv6 networks.
+                Hence, today, the Internet consists of IPv4-only, dual-stack (networks supporting both IP versions), and IPv6-only networks.
             </t>
             <t>
                 This creates a complex landscape where authoritative DNS servers might be accessible only via specific network protocols <xref target="V6DNSRDY-23"/>.
