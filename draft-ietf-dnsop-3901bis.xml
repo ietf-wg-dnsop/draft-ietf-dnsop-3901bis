@@ -12,7 +12,7 @@
     <front>
         <title abbrev="3901bis">DNS IPv6 Transport Operational Guidelines</title>
         <seriesInfo name="Internet-Draft" status="standard" value="draft-ietf-dnsop-3901bis-latest"/>
-        <author fullname="Momoka Yamamoto" initials="M." surname="Yamamoto">
+        <author fullname="Momoka Yamamoto" initials="" surname="Momoka">
             <organization>WIDE Project</organization>
             <address>
                 <email>momoka.my6@gmail.com</email>
@@ -38,11 +38,11 @@
         <abstract>
             <t indent="0" pn="section-abstract-1">
                 This memo provides guidelines and documents Best Current Practice for operating authoritative DNS servers as well as recursive and stub DNS resolvers, given that queries and responses are carried in a mixed environment of IPv4 and IPv6 networks.
-                This document expands on RFC 3901 by recommending that authoritative DNS servers as well as recursive DNS resolvers support both IPv4 and IPv6.
-                It furthermore provides guidance for how recursive DNS resolver should select upstream DNS servers, if synthesized and non-synthesized IPv6 addresses are available.
+                This document recommends that authoritative DNS servers as well as recursive DNS resolvers support both IPv4 and IPv6.
+                It furthermore provides guidance for how recursive DNS resolvers should select upstream DNS servers, if synthesized and non-synthesized IPv6 addresses are available.
             </t>
             <t indent="0" pn="section-abstract-2">
-                This document obsoletes RFC3901. (if approved)
+                This document obsoletes RFC 3901. (if approved)
             </t>
         </abstract>
         <note removeInRFC="true">
@@ -57,7 +57,7 @@
             <name>Introduction</name>
             <t>
                 Despite IPv6 being first discussed in the mid-1990s <xref target="RFC2460"/>, consistent deployment throughout the whole Internet has not yet been accomplished <xref target="RFC9386"/>.
-                Hence, today, the Internet is a mixture of IPv4, dual-stack (networks connected via both IP versions), and IPv6 networks.
+                Hence, today, the Internet consists of IPv4-only, dual-stack (networks supporting both IP versions), and IPv6-only networks.
             </t>
             <t>
                 This creates a complex landscape where authoritative DNS servers might be accessible only via specific network protocols <xref target="V6DNSRDY-23"/>.
@@ -165,14 +165,13 @@
                         Missing GLUE:
                     </dt>
                     <dd>
-                        If the name from an NS record for a zone is in-domain, i.e., the name is within the zone or below, a parent zone must contain both IPv4 and IPv6 GLUE records, i.e., a parent must serve the corresponding A and AAAA records as ADDITIONAL data when returning the NS record(s) as the referral response.
+                        If the name from an NS record for a zone is in-domain, i.e., the name is within the zone or below, a parent zone must contain both IPv4 and IPv6 GLUE records, i.e., a parent must serve the corresponding A and AAAA records as ADDITIONAL data when returning the NS record(s) as the referral response <xref target="RFC9471"/>.
                     </dd>
                     <dt>
                         No A/AAAA record for in-domain NS:
                     </dt>
                     <dd>
-                        If an NS record of a child zone, either provided by the parent or from the child zone's apex, points to a name in the NS RDATA that is in-domain but the name does not contain corresponding A or AAAA record(s) in the child zone,
-                        name resolution via the concerned IP version will fail even if the parent provides GLUE, when the recursive DNS resolver revalidates the delegation path <xref target="I-D.ietf-dnsop-ns-revalidation"/>.
+                        If the parent provides GLUE records for both IP versions but the child zone itself lacks corresponding A or AAAA records for its in-domain name server names, resolution via the missing IP version will fail during delegation revalidation <xref target="I-D.ietf-dnsop-ns-revalidation"/>.
                     </dd>
                     <dt>
                         Zone of sibling domain NSes not resolving:
@@ -314,7 +313,7 @@
                     </dd>
                 </dl>
                 <t>
-                    Note: To prevent name space fragmentation zone validation processes <bcp14>SHOULD</bcp14> ensure that:
+                    To prevent name space fragmentation, zone validation processes <bcp14>SHOULD</bcp14> ensure that:
                 </t>
                 <ul spacing="normal">
                     <li>
@@ -338,11 +337,8 @@
                 </t>
                 <t>
                     While the zones that IPv6-only recursive DNS resolvers can resolve are growing, they do not yet cover all zones.
-                    Hence, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv6-only, if it uses a transition mechanism that allows it to also query IPv4-only authoritative DNS server or uses a configuration where it forwards queries failing IPv6-only DNS resolution to a recursive DNS resolver that is able to perform DNS resolution over IPv4.
-                </t>
-                <t>
-                    If a recursive DNS resolver operates in a network that uses 464XLAT <xref target="RFC6877"/>, and the recursive DNS resolver is aware of the PREF64 <xref target="RFC6146"/> in use in its administrative domain, it <bcp14>MAY</bcp14> synthesize mapped IPv6 addresses for remote authoritative DNS servers directly, instead of relying on the socket translation layer of the operating system.
-                    When available, a recursive DNS resolver <bcp14>MAY</bcp14> prefer using non-synthesized IPv6 addresses, instead of synthesized IPv6 addresses using NAT64 connectivity discovered through PREF64 learned via Router Advertisements <xref target="RFC8781"/> or DNS64 <xref target="RFC7050"/>.
+                    Hence, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv6-only, if it uses a transition mechanism that allows it to also query IPv4-only authoritative DNS servers, or uses a configuration where it forwards queries failing IPv6-only DNS resolution to a recursive DNS resolver that is able to perform DNS resolution over IPv4.
+                    For example, if a recursive DNS resolver is aware of a PREF64 to use for NAT64 <xref target="RFC6146"/>, either through static configuration or by discovering it <xref target="RFC8781"/>, it <bcp14>MAY</bcp14> synthesize IPv6 addresses for remote authoritative DNS servers.
                 </t>
                 <t>
                     Similarly, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv4-only, if it uses a configuration where such resolvers forward queries failing IPv4-only DNS resolution to a recursive DNS resolver that is able to perform DNS resolution over IPv6.
@@ -354,24 +350,28 @@
             <section anchor="guidelines-for-dns-stub">
                 <name>Guidelines for DNS Stub Resolvers</name>
                 <t>
-                    In general, DNS Stub Resolvers <bcp14>SHOULD</bcp14> follow the same guidance as outlined for recursive DNS resolvers when they are deployed to a dual-stack network not using IPv4-IPv6 transition techniques.
                     Contrary to authoritative DNS servers and recursive DNS resolvers, stub DNS resolvers are more likely to find themselves in either an IPv6-mostly or IPv4-only environment, as they are usually run on end-hosts / clients.
+                    Furthermore, a stub DNS resolver has to rely on recursive DNS servers discovered for the local network, e.g., using DHCPv4 <xref target="RFC3456"/>, DHCPv6 <xref target="RFC8415"/>, and/or SLAAC <xref target="RFC4862"/>.
+                    In that case, the stub resolver may obtain multiple different IPv4 and IPv6 DNS resolver addresses to use.
                 </t>
                 <t>
-                    For IPv4-only environments, a stub DNS resolver has to rely on the provided recursive DNS server following guidance in this document.
-                    However, in a 464XLAT <xref target="RFC6877"/> scenario using RFC1918 addressing <xref target="RFC1918"/>, the environment may be indistinguishable from a dual-stack scenario, and the host running the stub DNS resolver may receive multiple IPv4 and IPv6 addresses for possible DNS resolvers to use via different protocols (DHCPv4 <xref target="RFC3456"/>, DHCPv6 <xref target="RFC8415"/>, SLAAC <xref target="RFC4862"/>).
+                    To prioritize different IPv4 and IPv6 DNS resolver addresses, a stub resolver <bcp14>SHOULD</bcp14> follow <xref target="RFC6724"/>.
+                    However, a stub DNS resolver <bcp14>SHOULD NOT</bcp14> utilize synthesized addresses if it is able to identify them as such, e.g., by having discovered the PREF64 in use for the network <xref target="RFC8781"/>.
                 </t>
                 <t>
-                    Hence, when a host running a stub DNS resolver receives addresses for IPv4 and IPv6 recursive DNS resolver to use, it <bcp14>MAY</bcp14> prioritize reachable IPv6 recursive DNS resolvers.
-                    When available, a stub DNS resolver <bcp14>MAY</bcp14> prefer using non-synthesized IPv6 addresses, instead of synthesized IPv6 addresses using NAT64 connectivity discovered through PREF64 <xref target="RFC8781"/> or DNS64 <xref target="RFC7050"/>.
-                    If a stub DNS resolver runs in an IPv6-mostly network <xref target="RFC9313"/>, and the stub DNS resolver is aware of the used PREF64 <xref target="RFC6146"/>, it <bcp14>MAY</bcp14> synthesize mapped IPv6 addresses for remote authoritative DNS servers directly, instead of relying on the socket translation layer of the operating system.
+                    When providing multiple possible DNS servers to stub resolvers, operators <bcp14>SHOULD</bcp14> consider that various implementations can only configure a small set of possible DNS resolvers, e.g., only up to three for libc, and additional resolvers provided may be ignored by clients.
                 </t>
             </section>
         </section>
         <section anchor="security-considerations">
             <name>Security Considerations</name>
             <t>
-                The guidelines described in this memo introduce no new security considerations into the DNS protocol or associated operational scenarios.
+                The guidelines described in this memo introduce no new security considerations into the DNS protocol.
+            </t>
+            <t>
+                Recommendations for recursive and stub resolvers rely on a correctly discovered PREF64.
+                Security issues may materialize if an incorrect PREF64 is used.
+                Hence, guidance from <xref target="RFC9872"/> on securely discovering PREF64 <bcp14>SHOULD</bcp14> be followed.
             </t>
         </section>
         <section anchor="iana-considerations">
@@ -383,7 +383,7 @@
         <section numbered="false" anchor="acknowledgments">
             <name>Acknowledgments</name>
             <t>
-                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp S. Tiesel, Mark Andrews, Stefan Ubbink, Joey Abley, Gorry Fairhurst, Paul Vixie
+                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp S. Tiesel, Mark Andrews, Stefan Ubbink, Joey Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti
             </t>
             <t>
                 Thank you for reading this draft.
@@ -405,6 +405,7 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4821.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4862.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6146.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6724.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6891.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7766.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8174.xml"/>
@@ -412,6 +413,7 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8899.xml"/>
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-ns-revalidation.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9210.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9471.xml"/>
 
             </references>
             <references anchor="sec-informative-references">
@@ -426,6 +428,7 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9386.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9499.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9715.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9872.xml"/>
                 <reference anchor="V6DNSRDY-23" target="https://link.springer.com/chapter/10.1007/978-3-031-28486-1_22">
                     <front>
                         <title>How Ready is DNS for an IPv6-Only World?</title>
