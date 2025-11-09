@@ -371,7 +371,12 @@
         <section anchor="security-considerations">
             <name>Security Considerations</name>
             <t>
-                The guidelines described in this memo introduce no new security considerations into the DNS protocol or associated operational scenarios.
+                The guidelines described in this memo introduce no new security considerations into the DNS protocol.
+            </t>
+            <t>
+                Recommendations for recursive and stub resolvers rely on a correctly discovered PREF64.
+                Security issues may materialize if an incorrect PREF64 is used.
+                Hence, guidance from <xref target="RFC9872"/> on securely discovering PREF64 <bcp14>SHOULD</bcp14> be followed.
             </t>
         </section>
         <section anchor="iana-considerations">
@@ -427,6 +432,7 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9386.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9499.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9715.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9872.xml"/>
                 <reference anchor="V6DNSRDY-23" target="https://link.springer.com/chapter/10.1007/978-3-031-28486-1_22">
                     <front>
                         <title>How Ready is DNS for an IPv6-Only World?</title>
