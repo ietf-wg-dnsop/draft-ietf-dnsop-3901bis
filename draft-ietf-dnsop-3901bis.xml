@@ -342,8 +342,7 @@
                 </t>
                 <t>
                     If a recursive DNS resolver operates in a network that uses 464XLAT <xref target="RFC6877"/>, and the recursive DNS resolver is aware of the PREF64 <xref target="RFC6146"/> in use in its administrative domain, it <bcp14>MAY</bcp14> synthesize mapped IPv6 addresses for remote authoritative DNS servers directly, instead of relying on the socket translation layer of the operating system.
-                    When available, a recursive DNS resolver <bcp14>MAY</bcp14> prefer using non-synthesized IPv6 addresses, instead of synthesized IPv6 addresses using NAT64 connectivity discovered through PREF64 <xref target="RFC8781"/> or DNS64 <xref target="RFC7050"/>.
-                    <!-- Here, RFC8781 is used instead of RFC6146, as this is about PREF64 discovery, not PREF64 itself. -->
+                    When available, a recursive DNS resolver <bcp14>MAY</bcp14> prefer using non-synthesized IPv6 addresses, instead of synthesized IPv6 addresses using NAT64 connectivity discovered through PREF64 learned via Router Advertisements <xref target="RFC8781"/>
                 </t>
                 <t>
                     Similarly, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv4-only, if it uses a configuration where such resolvers forward queries failing IPv4-only DNS resolution to a recursive DNS resolver that is able to perform DNS resolution over IPv6.
