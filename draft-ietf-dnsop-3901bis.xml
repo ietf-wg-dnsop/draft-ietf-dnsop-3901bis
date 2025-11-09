@@ -38,11 +38,11 @@
         <abstract>
             <t indent="0" pn="section-abstract-1">
                 This memo provides guidelines and documents Best Current Practice for operating authoritative DNS servers as well as recursive and stub DNS resolvers, given that queries and responses are carried in a mixed environment of IPv4 and IPv6 networks.
-                This document expands on RFC 3901 by recommending that authoritative DNS servers as well as recursive DNS resolvers support both IPv4 and IPv6.
-                It furthermore provides guidance for how recursive DNS resolver should select upstream DNS servers, if synthesized and non-synthesized IPv6 addresses are available.
+                This document recommends that authoritative DNS servers as well as recursive DNS resolvers support both IPv4 and IPv6.
+                It furthermore provides guidance for how recursive DNS resolvers should select upstream DNS servers, if synthesized and non-synthesized IPv6 addresses are available.
             </t>
             <t indent="0" pn="section-abstract-2">
-                This document obsoletes RFC3901. (if approved)
+                This document obsoletes RFC 3901. (if approved)
             </t>
         </abstract>
         <note removeInRFC="true">
