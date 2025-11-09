@@ -338,11 +338,8 @@
                 </t>
                 <t>
                     While the zones that IPv6-only recursive DNS resolvers can resolve are growing, they do not yet cover all zones.
-                    Hence, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv6-only, if it uses a transition mechanism that allows it to also query IPv4-only authoritative DNS server or uses a configuration where it forwards queries failing IPv6-only DNS resolution to a recursive DNS resolver that is able to perform DNS resolution over IPv4.
-                </t>
-                <t>
-                    If a recursive DNS resolver operates in a network that uses 464XLAT <xref target="RFC6877"/>, and the recursive DNS resolver is aware of the PREF64 <xref target="RFC6146"/> in use in its administrative domain, it <bcp14>MAY</bcp14> synthesize IPv6 addresses for remote authoritative DNS servers directly, instead of relying on the socket translation layer of the operating system.
-                    When available, a recursive DNS resolver <bcp14>MAY</bcp14> prefer using non-synthesized IPv6 addresses, instead of synthesized IPv6 addresses using NAT64 connectivity discovered through PREF64 <xref target="RFC8781"/> or DNS64 <xref target="RFC7050"/>.
+                    Hence, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv6-only, if it uses a transition mechanism that allows it to also query IPv4-only authoritative DNS servers, or uses a configuration where it forwards queries failing IPv6-only DNS resolution to a recursive DNS resolver that is able to perform DNS resolution over IPv4.
+                    For example, if a recursive DNS resolver is aware of a PREF64 to use for NAT64 <xref target="RFC6146"/>, either through static configuration or by discovering it <xref target="RFC8781"/>, it <bcp14>MAY</bcp14> synthesize IPv6 addresses for remote authoritative DNS servers.
                 </t>
                 <t>
                     Similarly, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv4-only, if it uses a configuration where such resolvers forward queries failing IPv4-only DNS resolution to a recursive DNS resolver that is able to perform DNS resolution over IPv6.
@@ -354,17 +351,13 @@
             <section anchor="guidelines-for-dns-stub">
                 <name>Guidelines for DNS Stub Resolvers</name>
                 <t>
-                    In general, DNS Stub Resolvers <bcp14>SHOULD</bcp14> follow the same guidance as outlined for recursive DNS resolvers when they are deployed to a dual-stack network not using IPv4-IPv6 transition techniques.
                     Contrary to authoritative DNS servers and recursive DNS resolvers, stub DNS resolvers are more likely to find themselves in either an IPv6-mostly or IPv4-only environment, as they are usually run on end-hosts / clients.
+                    Furthermore, a stub DNS resolver has to rely on recursive DNS servers discovered for the local network, e.g., using DHCPv4 <xref target="RFC3456"/>, DHCPv6 <xref target="RFC8415"/>, and/or SLAAC <xref target="RFC4862"/>.
+                    In that case, the stub resolver may obtain multiple different IPv4 and IPv6 DNS resolver addresses to use.
                 </t>
                 <t>
-                    For IPv4-only environments, a stub DNS resolver has to rely on the provided recursive DNS server following guidance in this document.
-                    However, in a 464XLAT <xref target="RFC6877"/> scenario using RFC1918 addressing <xref target="RFC1918"/>, the environment may be indistinguishable from a dual-stack scenario, and the host running the stub DNS resolver may receive multiple IPv4 and IPv6 addresses for possible DNS resolvers to use via different protocols (DHCPv4 <xref target="RFC3456"/>, DHCPv6 <xref target="RFC8415"/>, SLAAC <xref target="RFC4862"/>).
-                </t>
-                <t>
-                    Hence, when a host running a stub DNS resolver receives addresses for IPv4 and IPv6 recursive DNS resolver to use, it <bcp14>MAY</bcp14> prioritize reachable IPv6 recursive DNS resolvers.
-                    When available, a stub DNS resolver <bcp14>MAY</bcp14> prefer using non-synthesized IPv6 addresses, instead of synthesized IPv6 addresses using NAT64 connectivity discovered through PREF64 <xref target="RFC8781"/> or DNS64 <xref target="RFC7050"/>.
-                    If a stub DNS resolver runs in an IPv6-mostly network <xref target="RFC9313"/>, and the stub DNS resolver is aware of the used PREF64 <xref target="RFC6146"/>, it <bcp14>MAY</bcp14> synthesize IPv6 addresses for remote authoritative DNS servers directly, instead of relying on the socket translation layer of the operating system.
+                    To prioritize different IPv4 and IPv6 DNS resolver addresses, a stub resolver <bcp14>SHOULD</bcp14> follow <xref target="RFC6724"/>.
+                    However, a stub DNS resolver <bcp14>SHOULD NOT</bcp14> utilize synthesized addresses if it is able to identify them as such, e.g., by having discovered the PREF64 in use for the network <xref target="RFC8781"/>.
                 </t>
             </section>
         </section>
@@ -388,7 +381,7 @@
         <section numbered="false" anchor="acknowledgments">
             <name>Acknowledgments</name>
             <t>
-                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp S. Tiesel, Mark Andrews, Stefan Ubbink, Joey Abley, Gorry Fairhurst, Paul Vixie
+                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp S. Tiesel, Mark Andrews, Stefan Ubbink, Joey Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti
             </t>
             <t>
                 Thank you for reading this draft.
@@ -410,6 +403,7 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4821.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4862.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6146.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6724.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6891.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7766.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8174.xml"/>
