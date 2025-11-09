@@ -331,7 +331,7 @@
                 </ul>
             </section>
             <section anchor="guidelines-for-dns-resolvers">
-                <name>Guidelines for DNS Resolvers</name>
+                <name>Guidelines for Recursive DNS Resolvers</name>
                 <t>
                     Every recursive DNS resolver <bcp14>SHOULD</bcp14> be dual stack.
                 </t>
