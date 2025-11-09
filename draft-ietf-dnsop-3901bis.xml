@@ -359,6 +359,9 @@
                     To prioritize different IPv4 and IPv6 DNS resolver addresses, a stub resolver <bcp14>SHOULD</bcp14> follow <xref target="RFC6724"/>.
                     However, a stub DNS resolver <bcp14>SHOULD NOT</bcp14> utilize synthesized addresses if it is able to identify them as such, e.g., by having discovered the PREF64 in use for the network <xref target="RFC8781"/>.
                 </t>
+                <t>
+                    When providing multiple possible DNS servers to stub resolvers, operators <bcp14>SHOULD</bcp14> consider that various implementations can only configure a small set of possible DNS resolvers, e.g., only up to three for libc, and additional resolvers provided may be ignored by clients.
+                </t>
             </section>
         </section>
         <section anchor="security-considerations">
