@@ -171,8 +171,7 @@
                         No A/AAAA record for in-domain NS:
                     </dt>
                     <dd>
-                        If an NS record of a child zone, either provided by the parent or from the child zone's apex, points to a name in the NS RDATA that is in-domain but the name does not contain corresponding A or AAAA record(s) in the child zone,
-                        name resolution via the concerned IP version will fail even if the parent provides GLUE, when the recursive DNS resolver revalidates the delegation path <xref target="I-D.ietf-dnsop-ns-revalidation"/>.
+                        If the parent provides GLUE records for both IP versions but the child zone itself lacks corresponding A or AAAA records for its in-domain name server names, resolution via the missing IP version will fail during delegation revalidation <xref target="I-D.ietf-dnsop-ns-revalidation"/>.
                     </dd>
                     <dt>
                         Zone of sibling domain NSes not resolving:
