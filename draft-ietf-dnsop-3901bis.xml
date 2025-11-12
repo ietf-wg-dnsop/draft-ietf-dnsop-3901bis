@@ -209,12 +209,14 @@
                     </dt>
                     <dd>
                         <t>
-                            When using EDNS(0) to communicate support for DNS messages larger than 512 bytes <xref target="RFC6891"/> via traditional DNS-over-UDP transport according to RFC1035 <xref target="RFC1035"/>, an IP packet carrying a DNS response may exceed the PMTU for the path to a resolver.
-                            If an authoritative DNS server does not follow <xref target="RFC9715"/>, i.e., honors EDNS(0) sizes larger than 1232 bytes, it will try to fragment the packet according to the discovered PMTU.
+                            When using EDNS(0) to communicate support for DNS messages larger than 512 octets <xref target="RFC6891"/> via traditional DNS-over-UDP transport according to RFC1035 <xref target="RFC1035"/>, an IP packet carrying a DNS response may exceed the PMTU for the path to a resolver.
+                            If an authoritative DNS server does not follow <xref target="RFC9715"/>, i.e., honors EDNS(0) sizes larger than 1232 octets, it will try to fragment the packet according to the discovered PMTU.
                             Such packets mostly occur for DNSKEY responses with DNSSEC <xref target="RFC4034"/>.
                         </t>
                         <t>
-                            In general, DNS servers <bcp14>SHOULD</bcp14> follow RFC9715 <xref target="RFC9715"/>, which provides additional guidance on preventing fragmentation by always using a maximum EDNS(0) size of 1232 bytes.
+                            In general, DNS servers <bcp14>SHOULD</bcp14> follow RFC9715 <xref target="RFC9715"/>, which provides additional guidance on preventing fragmentation by ensuring that the maximum DNS/UDP payload size does not exceed 1400 octets.
+                            This can be accomplished by setting a corresponding EDNS(0) size, with most implementations using a lower EDNS(0) size of 1232 octets following <xref target="DNSFlagDay2020"/>, to ensure that generated packets always fit into lower bound of the IPv6 MTU of 1280, as defined in <xref target="RFC8200"/>.
+                            Hence, DNS servers <bcp14>MAY</bcp14> opt to set an EDNS(0) size of 1232 octets following <xref target="DNSFlagDay2020"/>.
                         </t>
                         <t>
                             Additionally, DNS servers <bcp14>MAY</bcp14> opt to explicitly not rely on path MTU discovery <xref target="RFC4821"/> or PLPMTUD <xref target="RFC8899"/>, by instead using IPV6_USE_MIN_MTU=1 from RFC3542 <xref target="RFC3542"/> to avoid the need to perform path MTU discovery.
@@ -231,8 +233,9 @@
                         </t>
                         <t>
                             <xref target="RFC9715"/> does not provide explicit guidance on mitigating this issue.
-                            However, similar to the guidance in <xref target="RFC9715"/>, setting an MSS of 1220 bytes mitigates this issue.
-                            It is therefore <bcp14>RECOMMENDED</bcp14> that DNS servers set an MSS of 1220 bytes.
+                            However, transfering the guidance from <xref target="RFC9715"/>, setting an MSS of 1388 octets would reduce the impact of this issue.
+                            It is therefore <bcp14>RECOMMENDED</bcp14> that DNS servers set an MSS of no more than 1388 octets for TCP connections.
+                            Similarly, aligned with the recommendations of the <xref target="DNSFlagDay2020"/>, DNS servers <bcp14>MAY</bcp14> ensure that a total packet size of 1280 octets is not exceeded by setting an MSS of 1220 octets.
                             Additionally, DNS servers <bcp14>MAY</bcp14> opt to set IPV6_USE_MIN_MTU=1 from RFC3542 <xref target="RFC3542"/>.
                         </t>
                     </dd>
@@ -383,7 +386,7 @@
         <section numbered="false" anchor="acknowledgments">
             <name>Acknowledgments</name>
             <t>
-                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp S. Tiesel, Mark Andrews, Stefan Ubbink, Joey Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti
+                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp S. Tiesel, Mark Andrews, Stefan Ubbink, Joey Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti, David Farmer
             </t>
             <t>
                 Thank you for reading this draft.
@@ -409,6 +412,7 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6891.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7766.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8174.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8200.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8415.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8899.xml"/>
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-ns-revalidation.xml"/>
@@ -451,6 +455,15 @@
                             <organization/>
                         </author>
                         <date month="March" year="2023"/>
+                    </front>
+                </reference>
+                <reference anchor="DNSFlagDay2020" target="https://dnsflagday.net/2020/" quoteTitle="true" derivedAnchor="DNSFlagDay2020">
+                    <front>
+                        <title>DNS flag day 2020</title>
+                            <author>
+                                <organization showOnFrontPage="true"/>
+                            </author>
+                        <date/>
                     </front>
                 </reference>
                 <reference anchor="RIPEV4" target="https://www.ripe.net/publications/news/about-ripe-ncc-and-ripe/the-ripe-ncc-has-run-out-of-ipv4-addresses">
