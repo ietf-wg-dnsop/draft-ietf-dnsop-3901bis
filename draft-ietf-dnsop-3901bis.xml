@@ -209,8 +209,8 @@
                     </dt>
                     <dd>
                         <t>
-                            When using EDNS(0) to communicate support for DNS messages larger than 512 bytes <xref target="RFC6891"/> via traditional DNS-over-UDP transport according to RFC1035 <xref target="RFC1035"/>, an IP packet carrying a DNS response may exceed the PMTU for the path to a resolver.
-                            If an authoritative DNS server does not follow <xref target="RFC9715"/>, i.e., honors EDNS(0) sizes larger than 1232 bytes, it will try to fragment the packet according to the discovered PMTU.
+                            When using EDNS(0) to communicate support for DNS messages larger than 512 octets <xref target="RFC6891"/> via traditional DNS-over-UDP transport according to RFC1035 <xref target="RFC1035"/>, an IP packet carrying a DNS response may exceed the PMTU for the path to a resolver.
+                            If an authoritative DNS server does not follow <xref target="RFC9715"/>, i.e., honors EDNS(0) sizes larger than 1232 octets, it will try to fragment the packet according to the discovered PMTU.
                             Such packets mostly occur for DNSKEY responses with DNSSEC <xref target="RFC4034"/>.
                         </t>
                         <t>
@@ -233,9 +233,9 @@
                         </t>
                         <t>
                             <xref target="RFC9715"/> does not provide explicit guidance on mitigating this issue.
-                            However, transfering the guidance from <xref target="RFC9715"/>, setting an MSS of 1388 bytes would reduce the impact of this issue.
-                            It is therefore <bcp14>RECOMMENDED</bcp14> that DNS servers set an MSS of no more than 1388 bytes for TCP connections.
-                            Similarly, aligned with the recommendations of the <xref target="DNSFlagDay2020"/>, DNS servers <bcp14>MAY</bcp14> ensure that a total packet size of 1280 bytes is not exceeded by setting an MSS of 1220 bytes.
+                            However, transfering the guidance from <xref target="RFC9715"/>, setting an MSS of 1388 octets would reduce the impact of this issue.
+                            It is therefore <bcp14>RECOMMENDED</bcp14> that DNS servers set an MSS of no more than 1388 octets for TCP connections.
+                            Similarly, aligned with the recommendations of the <xref target="DNSFlagDay2020"/>, DNS servers <bcp14>MAY</bcp14> ensure that a total packet size of 1280 octets is not exceeded by setting an MSS of 1220 octets.
                             Additionally, DNS servers <bcp14>MAY</bcp14> opt to set IPV6_USE_MIN_MTU=1 from RFC3542 <xref target="RFC3542"/>.
                         </t>
                     </dd>
