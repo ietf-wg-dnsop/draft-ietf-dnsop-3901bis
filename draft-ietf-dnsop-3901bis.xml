@@ -216,6 +216,7 @@
                         <t>
                             In general, DNS servers <bcp14>SHOULD</bcp14> follow RFC9715 <xref target="RFC9715"/>, which provides additional guidance on preventing fragmentation by ensuring that the maximum DNS/UDP payload size does not exceed 1400 octets.
                             This can be accomplished by setting a corresponding EDNS(0) size, with most implementations using a lower EDNS(0) size of 1232 octets following <xref target="DNSFlagDay2020"/>, to ensure that generated packets always fit into lower bound of the IPv6 MTU of 1280, as defined in <xref target="RFC8200"/>.
+                            Hence, DNS servers <bcp14>MAY</bcp14> opt to set an EDNS(0) size of 1232 octets following <xref target="DNSFlagDay2020"/>.
                         </t>
                         <t>
                             Additionally, DNS servers <bcp14>MAY</bcp14> opt to explicitly not rely on path MTU discovery <xref target="RFC4821"/> or PLPMTUD <xref target="RFC8899"/>, by instead using IPV6_USE_MIN_MTU=1 from RFC3542 <xref target="RFC3542"/> to avoid the need to perform path MTU discovery.
@@ -232,8 +233,9 @@
                         </t>
                         <t>
                             <xref target="RFC9715"/> does not provide explicit guidance on mitigating this issue.
-                            However, similar to the guidance in <xref target="RFC9715"/>, setting an MSS of 1220 bytes mitigates this issue.
-                            It is therefore <bcp14>RECOMMENDED</bcp14> that DNS servers set an MSS of 1220 bytes.
+                            However, transfering the guidance from <xref target="RFC9715"/>, setting an MSS of 1388 bytes would reduce the impact of this issue.
+                            It is therefore <bcp14>RECOMMENDED</bcp14> that DNS servers set an MSS of no more than 1388 bytes for TCP connections.
+                            Similarly, aligned with the recommendations of the <xref target="DNSFlagDay2020"/>, DNS servers <bcp14>MAY</bcp14> ensure that a total packet size of 1280 bytes is not exceeded by setting an MSS of 1220 bytes.
                             Additionally, DNS servers <bcp14>MAY</bcp14> opt to set IPV6_USE_MIN_MTU=1 from RFC3542 <xref target="RFC3542"/>.
                         </t>
                     </dd>
