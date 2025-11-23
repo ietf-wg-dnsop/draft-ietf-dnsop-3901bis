@@ -62,7 +62,7 @@
             <t>
                 This creates a complex landscape where authoritative DNS servers might be accessible only via specific network protocols <xref target="V6DNSRDY-23"/>.
                 At the same time, DNS resolvers may only be able to access the Internet via either IPv4 or IPv6.
-                This poses a challenge for such resolvers because they may encounter names for which queries must be directed to authoritative DNS servers with which they do not share an IP version during the name resolution process.
+                This poses a challenge for such resolvers because they may receive queries for names that have authoritative DNS servers which do not support the same IP version as the resolver.
             </t>
             <t>
                 <xref target="RFC3901"/> was initially written at a time when IPv6 deployment was not widespread, focusing primarily on maintaining name space continuity within the IPv4 landscape.
@@ -87,7 +87,7 @@
                 </li>
             </ul>
             <t>
-                While transitional technologies and dual-stack setups may mitigate some of the issues of DNS resolution in a mixed protocol-version Internet, making DNS data accessible over both IPv4 and IPv6 is the most robust and flexible approach, as it allows resolvers to reach the information they need without requiring intermediary translation or forwarding services which may introduce additional failure cases.
+                While transitional technologies and dual-stack setups may mitigate some of the issues of DNS resolution in a mixed protocol-version Internet, making DNS data accessible over both IPv4 and IPv6 is the most robust and flexible approach. This approach allows resolvers to reach the information they need without requiring intermediary translation or forwarding services which may introduce additional failure cases.
             </t>
             <section anchor="requirements-language">
                 <name>Requirements Language</name>
@@ -165,7 +165,7 @@
                         Missing GLUE:
                     </dt>
                     <dd>
-                        If the name from an NS record for a zone is in-domain, i.e., the name is within the zone or below, a parent zone must contain both IPv4 and IPv6 GLUE records, i.e., a parent must serve the corresponding A and AAAA records as ADDITIONAL data when returning the NS record(s) as the referral response <xref target="RFC9471"/>.
+                        If the name from an NS record for a zone is in-domain, i.e., the name is within the zone or below, a parent zone must contain both IPv4 and IPv6 GLUE records. A parent must serve the corresponding A and AAAA records as ADDITIONAL data when returning the NS record(s) as the referral response <xref target="RFC9471"/>.
                     </dd>
                     <dt>
                         No A/AAAA record for in-domain NS:
@@ -201,7 +201,7 @@
                 <t>
                     In addition to explicit misconfigurations in the served DNS zones, network conditions may also influence a resolver's ability to resolve names in a zone.
                     The most common issue here are packets requiring fragmentation given a reduced path MTU (PMTU) and MTU blackholes, i.e., packets being dropped on-path due to exceeding the MTU of the link to the next-hop without the sender being notified.
-                    This can manifest in the following way:
+                    This can manifest in the following ways:
                 </t>
                 <dl newline="true" spacing="normal">
                     <dt>
