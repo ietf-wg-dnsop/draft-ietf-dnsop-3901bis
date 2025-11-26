@@ -2,11 +2,11 @@
 
 
 
-dnsop                                                          Momoka. Y
+dnsop                                                             Momoka
 Internet-Draft                                              WIDE Project
 Obsoletes: 3901 (if approved)                                  T. Fiebig
 Intended status: Best Current Practice                           MPI-INF
-Expires: 1 February 2026                                    31 July 2025
+Expires: 30 May 2026                                    26 November 2025
 
 
                DNS IPv6 Transport Operational Guidelines
@@ -17,14 +17,13 @@ Abstract
    This memo provides guidelines and documents Best Current Practice for
    operating authoritative DNS servers as well as recursive and stub DNS
    resolvers, given that queries and responses are carried in a mixed
-   environment of IPv4 and IPv6 networks.  This document expands on RFC
-   3901 by recommending that authoritative DNS servers as well as
-   recursive DNS resolvers support both IPv4 and IPv6.  It furthermore
-   provides guidance for how recursive DNS resolver should select
-   upstream DNS servers, if synthesized and non-synthesized IPv6
-   addresses are available.
+   environment of IPv4 and IPv6 networks.  This document recommends that
+   authoritative DNS servers as well as recursive DNS resolvers support
+   both IPv4 and IPv6.  It furthermore provides guidance for how
+   recursive DNS resolvers should select upstream DNS servers, if
+   synthesized and non-synthesized IPv6 addresses are available.
 
-   This document obsoletes RFC3901. (if approved)
+   This document obsoletes RFC 3901. (if approved)
 
 Discussion Venues
 
@@ -48,7 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 February 2026.
+   This Internet-Draft will expire on 30 May 2026.
 
 Copyright Notice
 
@@ -78,7 +77,7 @@ Table of Contents
            Fragmentation
    4.  Policy Based Avoidance of Name Space Fragmentation
      4.1.  Guidelines for Authoritative DNS Server Configuration
-     4.2.  Guidelines for DNS Resolvers
+     4.2.  Guidelines for Recursive DNS Resolvers
      4.3.  Guidelines for DNS Stub Resolvers
    5.  Security Considerations
    6.  IANA Considerations
@@ -90,27 +89,27 @@ Table of Contents
 
 1.  Introduction
 
-   Despite IPv6 being first discussed in the mid-1990s [RFC1883],
+   Despite IPv6 being first discussed in the mid-1990s [RFC2460],
    consistent deployment throughout the whole Internet has not yet been
-   accomplished [RFC9386].  Hence, today, the Internet is a mixture of
-   IPv4, dual-stack (networks connected via both IP versions), and IPv6
-   networks.
+   accomplished [RFC9386].  Hence, today, the Internet consists of
+   IPv4-only, dual-stack (networks supporting both IP versions), and
+   IPv6-only networks.
 
    This creates a complex landscape where authoritative DNS servers
    might be accessible only via specific network protocols
    [V6DNSRDY-23].  At the same time, DNS resolvers may only be able to
    access the Internet via either IPv4 or IPv6.  This poses a challenge
-   for such resolvers because they may encounter names for which queries
-   must be directed to authoritative DNS servers with which they do not
-   share an IP version during the name resolution process.
+   for such resolvers because they may receive queries for names that
+   have authoritative DNS servers which do not support the same IP
+   version as the resolver.
 
    [RFC3901] was initially written at a time when IPv6 deployment was
    not widespread, focusing primarily on maintaining name space
-   continuity within the IPv4 landscape.  Now, nearly two decades later,
-   with IPv6 not only widely deployed but also becoming the de facto
-   standard in many areas, this document seeks to expand the scope of
-   RFC3901 by recommending IPv6 compatibility for authoritative DNS
-   servers, as well as recursive and stub DNS resolvers.
+   continuity within the IPv4 landscape.  Two decades later, IPv6 is not
+   only widely deployed but also becoming the de facto standard in many
+   areas.  This document seeks to expand the scope of RFC3901 by
+   recommending IPv6 connectivity for authoritative DNS servers, as well
+   as recursive and stub DNS resolvers.
 
    This document provides guidance on:
 
@@ -126,9 +125,10 @@ Table of Contents
    While transitional technologies and dual-stack setups may mitigate
    some of the issues of DNS resolution in a mixed protocol-version
    Internet, making DNS data accessible over both IPv4 and IPv6 is the
-   most robust and flexible approach, as it allows resolvers to reach
-   the information they need without requiring intermediary translation
-   or forwarding services which may introduce additional failure cases.
+   most robust and flexible approach.  This approach allows resolvers to
+   reach the information they need without requiring intermediary
+   translation or forwarding services which may introduce additional
+   failure cases.
 
 1.1.  Requirements Language
 
@@ -145,13 +145,13 @@ Table of Contents
 
    IPv4 name server:
       A name server providing DNS services reachable via IPv4.  It does
-      not imply anything about what DNS data is served, but requires DNS
-      queries to be received and answered over IPv4.
+      not imply anything about what DNS data is served, but means that
+      the name server receives and answers queries over IPv4.
 
    IPv6 name server:
       A name server providing DNS services reachable via IPv6.  It does
-      not imply anything about what DNS data is served, but requires DNS
-      queries to be received and answered over IPv6.
+      not imply anything about what DNS data is served, but means that
+      the name server receives and answers queries over IPv6.
 
    Dual-stack name server:
       A name server that is both an "IPv4 name server" and also an "IPv6
@@ -170,7 +170,7 @@ Table of Contents
    recursive DNS resolver's and authoritative DNS server's mismatching
    IP version support.
 
-   In a mixed IP Internet, namespace fragmentation can occur for
+   In a mixed IP Internet, name space fragmentation can occur for
    different reasons.  One reason is that DNS zones are consistently
    configured to support only either IPv4 or IPv6.  Another reason is
    due to misconfigurations that make a zone unresolvable by either IPv4
@@ -202,17 +202,15 @@ Table of Contents
    Missing GLUE:
       If the name from an NS record for a zone is in-domain, i.e., the
       name is within the zone or below, a parent zone must contain both
-      IPv4 and IPv6 GLUE records, i.e., a parent must serve the
-      corresponding A and AAAA records as ADDITIONAL data when returning
-      the NS record(s) as the referral response.
+      IPv4 and IPv6 GLUE records.  A parent must serve the corresponding
+      A and AAAA records as ADDITIONAL data when returning the NS
+      record(s) as the referral response [RFC9471].
 
    No A/AAAA record for in-domain NS:
-      If an NS record of a child zone, either provided by the parent or
-      from the child zone's apex, points to a name in the NS RDATA that
-      is in-domain but the name does not contain corresponding A or AAAA
-      record(s) in the child zone, name resolution via the concerned IP
-      version will fail even if the parent provides GLUE, when the
-      recursive DNS resolver revalidates the delegation path
+      If the parent provides GLUE records for both IP versions but the
+      child zone itself lacks corresponding A or AAAA records for its
+      in-domain name server names, resolution via the missing IP version
+      will fail during delegation revalidation
       [I-D.ietf-dnsop-ns-revalidation].
 
    Zone of sibling domain NSes not resolving:
@@ -231,7 +229,7 @@ Table of Contents
 
    Furthermore, any of the misconfigurations above may not only
    materialize via a missing Resource Record (RR) but also via an RR
-   providing the IP address of a nameserver that is not configured to
+   providing the IP address of a name server that is not configured to
    answer queries via that IP version [V6DNSRDY-23].
 
 3.2.  Network Conditions Causing IP Version Related Name Space
@@ -243,27 +241,32 @@ Table of Contents
    fragmentation given a reduced path MTU (PMTU) and MTU blackholes,
    i.e., packets being dropped on-path due to exceeding the MTU of the
    link to the next-hop without the sender being notified.  This can
-   manifest in the following way:
+   manifest in the following ways:
 
    DNS-over-UDP packets requiring fragmentation
       When using EDNS(0) to communicate support for DNS messages larger
-      than 512 bytes [RFC6891], an IP packet carrying a DNS response may
-      exceed the PMTU for the path to a resolver.  If an authoritative
-      DNS server and does not follow [RFC9715], i.e., honors EDNS(0)
-      sizes larger than 1232 bytes, it will try to fragment the packet
-      according to the discovered PMTU.  Such packets mostly occur for
-      DNSKEY responses with DNSSEC [RFC4034].
+      than 512 octets [RFC6891] via traditional DNS-over-UDP transport
+      according to RFC1035 [RFC1035], an IP packet carrying a DNS
+      response may exceed the PMTU for the path to a resolver.  If an
+      authoritative DNS server does not follow [RFC9715], i.e., honors
+      EDNS(0) sizes larger than 1232 octets, it will try to fragment the
+      packet according to the discovered PMTU.  Such packets mostly
+      occur for DNSKEY responses with DNSSEC [RFC4034].
 
-      If the requesting resolver is unable to process fragments, or if
-      fragments are filtered on-path, resolution will fail over UDP.
-      These issues are more prevalent for IPv6, as it no longer allows
-      on-path hosts to fragment packets.  Therefore, working Path MTU
-      Discovery (PMTUD) is essential for IPv6 DNS-over-UDP packets to be
-      fragmented to a size that allows them to traverse all segments on
-      a path.
+      In general, DNS servers SHOULD follow RFC9715 [RFC9715], which
+      provides additional guidance on preventing fragmentation by
+      ensuring that the maximum DNS/UDP payload size does not exceed
+      1400 octets.  This can be accomplished by setting a corresponding
+      EDNS(0) size, with most implementations using a lower EDNS(0) size
+      of 1232 octets following [DNSFlagDay2020], to ensure that
+      generated packets always fit into lower bound of the IPv6 MTU of
+      1280, as defined in [RFC8200].  Hence, DNS servers MAY opt to set
+      an EDNS(0) size of 1232 octets following [DNSFlagDay2020].
 
-      [RFC9715] provides guidance on preventing this issue by always
-      using a maximum EDNS(0) size of 1232 bytes.
+      Additionally, DNS servers MAY opt to explicitly not rely on path
+      MTU discovery [RFC4821] or PLPMTUD [RFC8899], by instead using
+      IPV6_USE_MIN_MTU=1 from RFC3542 [RFC3542] to avoid the need to
+      perform path MTU discovery.
 
    DNS-over-TCP packets requiring fragmentation
       If DNS resolution over UDP fails, or if a packet exceeds the
@@ -277,8 +280,14 @@ Table of Contents
       response in time.
 
       [RFC9715] does not provide explicit guidance on mitigating this
-      issue.  However, similar to the guidance in [RFC9715], setting an
-      MSS of 1220 bytes would similarly mitigate this issue.
+      issue.  However, transfering the guidance from [RFC9715], setting
+      an MSS of 1388 octets would reduce the impact of this issue.  It
+      is therefore RECOMMENDED that DNS servers set an MSS of no more
+      than 1388 octets for TCP connections.  Similarly, aligned with the
+      recommendations of the [DNSFlagDay2020], DNS servers MAY ensure
+      that a total packet size of 1280 octets is not exceeded by setting
+      an MSS of 1220 octets.  Additionally, DNS servers MAY opt to set
+      IPV6_USE_MIN_MTU=1 from RFC3542 [RFC3542].
 
    Broken IPv6 Connectivity at the Resolver
       Similar to authoritative servers, (stub) recursive resolvers may
@@ -286,11 +295,12 @@ Table of Contents
       a global unicast IPv6 address, but IPv6 traffic is not routed on
       the resolver's network.  Furthermore, broken IPv6 connectivity may
       be encountered when IPv4-IPv6 transition technologies, e.g., NAT64
-      on IPv6-mostly networks [RFC9313], or NAT64 connectivity
-      discovered through PREF64 or RFC7050 [RFC7050] on IPv6-only
-      networks are in use.  There, the synthesized IPv6 addresses used
-      in XLAT encounter additional PMTU fluctuation due to the
-      difference in header size between IPv4 and IPv6.
+      [RFC6146] on IPv6-mostly networks [RFC9313], or NAT64 connectivity
+      discovered through PREF64 [RFC8781] or DNS64 [RFC7050] on
+      IPv6-only networks are in use.  There, the synthesized IPv6
+      addresses used in 464XLAT [RFC6877] encounter additional PMTU
+      fluctuation due to the difference in header size between IPv4 and
+      IPv6.
 
 3.3.  Reasons for Intentional IP Version Related Name Space
       Fragmentation
@@ -307,12 +317,12 @@ Table of Contents
 4.  Policy Based Avoidance of Name Space Fragmentation
 
    With the final exhaustion of IPv4 pools in RIRs, e.g., [RIPEV4], and
-   the progressing deployment of IPv6, there no longer is a "preferred"
-   IP version.  Yet, while we now observe the first zones becoming
-   exclusively IPv6 resolvable, we also still see a major portion of
-   zones solely relying on IPv4 [V6DNSRDY-23].  Hence, at the moment,
-   dual stack connectivity is instrumental to be able to resolve zones
-   and avoid name space fragmentation.
+   the progressing deployment of IPv6, IPv4 and IPv6 have become
+   comparably relevant.  Yet, while we now observe the first zones
+   becoming exclusively IPv6 resolvable, we also still see a major
+   portion of zones solely relying on IPv4 [V6DNSRDY-23].  Hence, at the
+   moment, dual stack connectivity is instrumental to be able to resolve
+   zones and avoid name space fragmentation.
 
    Having zones served only by name servers reachable via one IP version
    would fragment the DNS.  Hence, we need to find a way to avoid this
@@ -342,12 +352,13 @@ Table of Contents
 
    IPv6 adoption:
       Every DNS zone SHOULD be served by at least one IPv6-reachable
-      authoritative DNS server to maintain name space continuity.
-      Authoritative DNS servers SHOULD NOT use addresses from IPv6
-      transition technologies to be reachable.  The delegation
-      configuration (Resolution of the parent, resolution of sibling
-      domain names, GLUE) MUST NOT rely on IPv4 connectivity being
-      available.
+      authoritative DNS server to maintain name space continuity.  To
+      avoid reachability issues, authoritative DNS servers SHOULD use
+      native IPv6 addresses instead of IPv6 addresses synthesized using
+      IPv6 transition technologies for receiving queries.  The
+      delegation configuration (Resolution of the parent, resolution of
+      sibling domain names, GLUE) MUST NOT rely on IPv4 connectivity
+      being available.
 
    Consistency:
       Both IPv4 and IPv6 transports should serve identical DNS data to
@@ -364,8 +375,8 @@ Table of Contents
       is RECOMMENDED that authoritative DNS servers sets an MSS of 1220
       in TCP sessions carrying DNS responses.
 
-   Note: To prevent namespace fragmentation zone validation processes
-   SHOULD ensure that:
+   To prevent name space fragmentation, zone validation processes SHOULD
+   ensure that:
 
    *  There is at least one IPv4 address record and one IPv6 address
       record available for the name servers of any child delegation
@@ -377,29 +388,23 @@ Table of Contents
    *  The zone's authoritative servers support DNS-over-TCP [RFC9210].
 
    *  The zone's authoritative servers can be reached via IPv4 and IPv6
-      when when performing DNS resolution via IPv4-only and IPv6-only
-      networks.
+      when performing DNS resolution via IPv4-only and IPv6-only
+      networks respectively.
 
-4.2.  Guidelines for DNS Resolvers
+4.2.  Guidelines for Recursive DNS Resolvers
 
    Every recursive DNS resolver SHOULD be dual stack.
 
    While the zones that IPv6-only recursive DNS resolvers can resolve
    are growing, they do not yet cover all zones.  Hence, a recursive DNS
    resolver MAY be IPv6-only, if it uses a transition mechanism that
-   allows it to also query IPv4-only authoritative DNS server or uses a
-   configuration where it forwards queries failing IPv6-only DNS
+   allows it to also query IPv4-only authoritative DNS servers, or uses
+   a configuration where it forwards queries failing IPv6-only DNS
    resolution to a recursive DNS resolver that is able to perform DNS
-   resolution over IPv4.
-
-   If a recursive DNS resolver runs in a network that uses XLAT
-   [RFC6877], and the recursive DNS resolver is aware of the used PREF64
-   [RFC6146], it SHOULD synthesize mapped IPv6 addresses for remote
-   authoritative DNS servers directly, instead of relying on the socket
-   translation layer of the operating system.  When available, a
-   recursive DNS resolver SHOULD prefer using non-synthesized IPv6
-   addresses, instead of using NAT64 connectivity discovered through a
-   PREF64[RFC6146] or RFC7050 [RFC7050].
+   resolution over IPv4.  For example, if a recursive DNS resolver is
+   aware of a PREF64 to use for NAT64 [RFC6146], either through static
+   configuration or by discovering it [RFC8781], it MAY synthesize IPv6
+   addresses for remote authoritative DNS servers.
 
    Similarly, a recursive DNS resolver MAY be IPv4-only, if it uses a
    configuration where such resolvers forward queries failing IPv4-only
@@ -413,38 +418,36 @@ Table of Contents
 
 4.3.  Guidelines for DNS Stub Resolvers
 
-   In general, DNS Stub Resolvers SHOULD follow the same guidance as
-   outlined for recursive DNS resolvers when they are deployed to a
-   dual-stack network not using IPv4-IPv6 transition techniques.
    Contrary to authoritative DNS servers and recursive DNS resolvers,
    stub DNS resolvers are more likely to find themselves in either an
-   IPv6 mostly or IPv4 only environment, as they are usually run on end-
-   hosts / clients.
+   IPv6-mostly or IPv4-only environment, as they are usually run on end-
+   hosts / clients.  Furthermore, a stub DNS resolver has to rely on
+   recursive DNS servers discovered for the local network, e.g., using
+   DHCPv4 [RFC3456], DHCPv6 [RFC8415], and/or SLAAC [RFC4862].  In that
+   case, the stub resolver may obtain multiple different IPv4 and IPv6
+   DNS resolver addresses to use.
 
-   For IPv4 only environments, a stub DNS resolver has to rely on the
-   provided recursive DNS server following guidance in this document.
-   However, in a XLAT [RFC6877] scenario using RFC1918 adressing
-   [RFC1918], the environment may be indistinguishable from a dual-stack
-   scenario, and the host running the stub DNS resolver may receive
-   multiple IPv4 and IPv6 addresses for possible DNS resolvers to use
-   via different protocols (DHCPv4, DHCPv6, SLAAC).
+   To prioritize different IPv4 and IPv6 DNS resolver addresses, a stub
+   resolver SHOULD follow [RFC6724].  However, a stub DNS resolver
+   SHOULD NOT utilize synthesized addresses if it is able to identify
+   them as such, e.g., by having discovered the PREF64 in use for the
+   network [RFC8781].
 
-   Hence, when a host running a stub DNS resolver receives addresses for
-   IPv4 and IPv6 recursive DNS resolver to use, it SHOULD prioritize
-   reachable IPv6 recursive DNS resolvers.  When available, a stub DNS
-   resolver SHOULD prefer using non-synthesized IPv6 addresses, instead
-   of using NAT64 connectivity discovered through a PREF64[RFC6146] or
-   RFC7050 [RFC7050].  If a stub DNS resolver runs in an IPv6-mostly
-   network [RFC9313], and the stub DNS resolver is aware of the used
-   PREF64 [RFC6146], it SHOULD synthesize mapped IPv6 addresses for
-   remote authoritative DNS servers directly, instead of relying on the
-   socket translation layer of the operating system.
+   When providing multiple possible DNS servers to stub resolvers,
+   operators SHOULD consider that various implementations can only
+   configure a small set of possible DNS resolvers, e.g., only up to
+   three for libc, and additional resolvers provided may be ignored by
+   clients.
 
 5.  Security Considerations
 
    The guidelines described in this memo introduce no new security
-   considerations into the DNS protocol or associated operational
-   scenarios.
+   considerations into the DNS protocol.
+
+   Recommendations for recursive and stub resolvers rely on a correctly
+   discovered PREF64.  Security issues may materialize if an incorrect
+   PREF64 is used.  Hence, guidance from [RFC9872] on securely
+   discovering PREF64 SHOULD be followed.
 
 6.  IANA Considerations
 
@@ -456,7 +459,9 @@ Acknowledgments
 
    Valuable input for this draft was provided by: Bob Harold, Andreas
    Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E
-   Carpenter, Tom Petch, Philipp Tiesel
+   Carpenter, Tom Petch, Philipp S.  Tiesel, Mark Andrews, Stefan
+   Ubbink, Joey Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti,
+   David Farmer
 
    Thank you for reading this draft.
 
@@ -467,18 +472,32 @@ Normative References
    [I-D.ietf-dnsop-ns-revalidation]
               Huque, S., Vixie, P. A., and W. Toorop, "Delegation
               Revalidation by DNS Resolvers", Work in Progress,
-              Internet-Draft, draft-ietf-dnsop-ns-revalidation-10, 25
-              June 2025, <https://datatracker.ietf.org/doc/html/draft-
-              ietf-dnsop-ns-revalidation-10>.
+              Internet-Draft, draft-ietf-dnsop-ns-revalidation-11, 19
+              October 2025, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-dnsop-ns-revalidation-11>.
 
-   [RFC1883]  Deering, S. and R. Hinden, "Internet Protocol, Version 6
-              (IPv6) Specification", RFC 1883, DOI 10.17487/RFC1883,
-              December 1995, <https://www.rfc-editor.org/info/rfc1883>.
+   [RFC1035]  Mockapetris, P., "Domain names - implementation and
+              specification", STD 13, RFC 1035, DOI 10.17487/RFC1035,
+              November 1987, <https://www.rfc-editor.org/info/rfc1035>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
+
+   [RFC2460]  Deering, S. and R. Hinden, "Internet Protocol, Version 6
+              (IPv6) Specification", RFC 2460, DOI 10.17487/RFC2460,
+              December 1998, <https://www.rfc-editor.org/info/rfc2460>.
+
+   [RFC3456]  Patel, B., Aboba, B., Kelly, S., and V. Gupta, "Dynamic
+              Host Configuration Protocol (DHCPv4) Configuration of
+              IPsec Tunnel Mode", RFC 3456, DOI 10.17487/RFC3456,
+              January 2003, <https://www.rfc-editor.org/info/rfc3456>.
+
+   [RFC3542]  Stevens, W., Thomas, M., Nordmark, E., and T. Jinmei,
+              "Advanced Sockets Application Program Interface (API) for
+              IPv6", RFC 3542, DOI 10.17487/RFC3542, May 2003,
+              <https://www.rfc-editor.org/info/rfc3542>.
 
    [RFC3901]  Durand, A. and J. Ihren, "DNS IPv6 Transport Operational
               Guidelines", BCP 91, RFC 3901, DOI 10.17487/RFC3901,
@@ -489,15 +508,24 @@ Normative References
               RFC 4034, DOI 10.17487/RFC4034, March 2005,
               <https://www.rfc-editor.org/info/rfc4034>.
 
+   [RFC4821]  Mathis, M. and J. Heffner, "Packetization Layer Path MTU
+              Discovery", RFC 4821, DOI 10.17487/RFC4821, March 2007,
+              <https://www.rfc-editor.org/info/rfc4821>.
+
+   [RFC4862]  Thomson, S., Narten, T., and T. Jinmei, "IPv6 Stateless
+              Address Autoconfiguration", RFC 4862,
+              DOI 10.17487/RFC4862, September 2007,
+              <https://www.rfc-editor.org/info/rfc4862>.
+
    [RFC6146]  Bagnulo, M., Matthews, P., and I. van Beijnum, "Stateful
               NAT64: Network Address and Protocol Translation from IPv6
               Clients to IPv4 Servers", RFC 6146, DOI 10.17487/RFC6146,
               April 2011, <https://www.rfc-editor.org/info/rfc6146>.
 
-   [RFC6877]  Mawatari, M., Kawashima, M., and C. Byrne, "464XLAT:
-              Combination of Stateful and Stateless Translation",
-              RFC 6877, DOI 10.17487/RFC6877, April 2013,
-              <https://www.rfc-editor.org/info/rfc6877>.
+   [RFC6724]  Thaler, D., Ed., Draves, R., Matsumoto, A., and T. Chown,
+              "Default Address Selection for Internet Protocol Version 6
+              (IPv6)", RFC 6724, DOI 10.17487/RFC6724, September 2012,
+              <https://www.rfc-editor.org/info/rfc6724>.
 
    [RFC6891]  Damas, J., Graff, M., and P. Vixie, "Extension Mechanisms
               for DNS (EDNS(0))", STD 75, RFC 6891,
@@ -513,23 +541,36 @@ Normative References
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
+   [RFC8200]  Deering, S. and R. Hinden, "Internet Protocol, Version 6
+              (IPv6) Specification", STD 86, RFC 8200,
+              DOI 10.17487/RFC8200, July 2017,
+              <https://www.rfc-editor.org/info/rfc8200>.
+
+   [RFC8415]  Mrugalski, T., Siodelski, M., Volz, B., Yourtchenko, A.,
+              Richardson, M., Jiang, S., Lemon, T., and T. Winters,
+              "Dynamic Host Configuration Protocol for IPv6 (DHCPv6)",
+              RFC 8415, DOI 10.17487/RFC8415, November 2018,
+              <https://www.rfc-editor.org/info/rfc8415>.
+
+   [RFC8899]  Fairhurst, G., Jones, T., Tüxen, M., Rüngeler, I., and T.
+              Völker, "Packetization Layer Path MTU Discovery for
+              Datagram Transports", RFC 8899, DOI 10.17487/RFC8899,
+              September 2020, <https://www.rfc-editor.org/info/rfc8899>.
+
    [RFC9210]  Kristoff, J. and D. Wessels, "DNS Transport over TCP -
               Operational Requirements", BCP 235, RFC 9210,
               DOI 10.17487/RFC9210, March 2022,
               <https://www.rfc-editor.org/info/rfc9210>.
 
-   [RFC9715]  Fujiwara, K. and P. Vixie, "IP Fragmentation Avoidance in
-              DNS over UDP", RFC 9715, DOI 10.17487/RFC9715, January
-              2025, <https://www.rfc-editor.org/info/rfc9715>.
+   [RFC9471]  Andrews, M., Huque, S., Wouters, P., and D. Wessels, "DNS
+              Glue Requirements in Referral Responses", RFC 9471,
+              DOI 10.17487/RFC9471, September 2023,
+              <https://www.rfc-editor.org/info/rfc9471>.
 
 Informative References
 
-   [I-D.ietf-v6ops-ipv6-only-resolver]
-              Yamamoto, M. and Y. Toyota, "IPv6-only Capable Resolvers
-              Utilising NAT64", Work in Progress, Internet-Draft, draft-
-              ietf-v6ops-ipv6-only-resolver-00, 23 October 2023,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-v6ops-
-              ipv6-only-resolver-00>.
+   [DNSFlagDay2020]
+              "DNS flag day 2020", <https://dnsflagday.net/2020/>.
 
    [IANANS]   IANA, "Technical requirements for authoritative name
               servers",
@@ -540,6 +581,11 @@ Informative References
               Internets", BCP 5, RFC 1918, DOI 10.17487/RFC1918,
               February 1996, <https://www.rfc-editor.org/info/rfc1918>.
 
+   [RFC6877]  Mawatari, M., Kawashima, M., and C. Byrne, "464XLAT:
+              Combination of Stateful and Stateless Translation",
+              RFC 6877, DOI 10.17487/RFC6877, April 2013,
+              <https://www.rfc-editor.org/info/rfc6877>.
+
    [RFC7050]  Savolainen, T., Korhonen, J., and D. Wing, "Discovery of
               the IPv6 Prefix Used for IPv6 Address Synthesis",
               RFC 7050, DOI 10.17487/RFC7050, November 2013,
@@ -549,6 +595,10 @@ Informative References
               Deployment Options and Experience", RFC 7269,
               DOI 10.17487/RFC7269, June 2014,
               <https://www.rfc-editor.org/info/rfc7269>.
+
+   [RFC8781]  Colitti, L. and J. Linkova, "Discovering PREF64 in Router
+              Advertisements", RFC 8781, DOI 10.17487/RFC8781, April
+              2020, <https://www.rfc-editor.org/info/rfc8781>.
 
    [RFC8900]  Bonica, R., Baker, F., Huston, G., Hinden, R., Troan, O.,
               and F. Gont, "IP Fragmentation Considered Fragile",
@@ -570,6 +620,15 @@ Informative References
               RFC 9499, DOI 10.17487/RFC9499, March 2024,
               <https://www.rfc-editor.org/info/rfc9499>.
 
+   [RFC9715]  Fujiwara, K. and P. Vixie, "IP Fragmentation Avoidance in
+              DNS over UDP", RFC 9715, DOI 10.17487/RFC9715, January
+              2025, <https://www.rfc-editor.org/info/rfc9715>.
+
+   [RFC9872]  Buraglio, N., Jensen, T., and J. Linkova, "Recommendations
+              for Discovering IPv6 Prefix Used for IPv6 Address
+              Synthesis", RFC 9872, DOI 10.17487/RFC9872, September
+              2025, <https://www.rfc-editor.org/info/rfc9872>.
+
    [RIPEV4]   RIPE NCC, "The RIPE NCC has run out of IPv4 Addresses",
               November 2019, <https://www.ripe.net/publications/news/
               about-ripe-ncc-and-ripe/the-ripe-ncc-has-run-out-of-
@@ -587,11 +646,6 @@ Authors' Addresses
    Momoka Yamamoto
    WIDE Project
    Email: momoka.my6@gmail.com
-
-   Additional contact information:
-
-      山本 桃歌
-      WIDE Project
 
 
    Tobias Fiebig
