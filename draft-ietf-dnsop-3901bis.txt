@@ -412,9 +412,10 @@ Table of Contents
    DNS resolution over IPv6.
 
    Finally, when responding to recursive queries sent by stub DNS
-   resolvers, a DNS resolver SHOULD follow the above guidance for
-   communication between authoritative DNS servers and recursive DNS
-   resolvers analogously.
+   resolvers, a DNS resolver SHOULD follow the above guidance on
+   fragmentation avoidance, see also [RFC9715], for communication
+   between authoritative DNS servers and recursive DNS resolvers
+   analogously.
 
 4.3.  Guidelines for DNS Stub Resolvers
 
@@ -461,7 +462,7 @@ Acknowledgments
    Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E
    Carpenter, Tom Petch, Philipp S.  Tiesel, Mark Andrews, Stefan
    Ubbink, Joey Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti,
-   David Farmer
+   David Farmer, Pieter Lexis
 
    Thank you for reading this draft.
 
