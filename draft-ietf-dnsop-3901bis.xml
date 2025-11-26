@@ -87,7 +87,8 @@
                 </li>
             </ul>
             <t>
-                While transitional technologies and dual-stack setups may mitigate some of the issues of DNS resolution in a mixed protocol-version Internet, making DNS data accessible over both IPv4 and IPv6 is the most robust and flexible approach. This approach allows resolvers to reach the information they need without requiring intermediary translation or forwarding services which may introduce additional failure cases.
+                While transitional technologies and dual-stack setups may mitigate some of the issues of DNS resolution in a mixed protocol-version Internet, making DNS data accessible over both IPv4 and IPv6 is the most robust and flexible approach.
+                This approach allows resolvers to reach the information they need without requiring intermediary translation or forwarding services which may introduce additional failure cases.
             </t>
             <section anchor="requirements-language">
                 <name>Requirements Language</name>
@@ -165,7 +166,8 @@
                         Missing GLUE:
                     </dt>
                     <dd>
-                        If the name from an NS record for a zone is in-domain, i.e., the name is within the zone or below, a parent zone must contain both IPv4 and IPv6 GLUE records. A parent must serve the corresponding A and AAAA records as ADDITIONAL data when returning the NS record(s) as the referral response <xref target="RFC9471"/>.
+                        If the name from an NS record for a zone is in-domain, i.e., the name is within the zone or below, a parent zone must contain both IPv4 and IPv6 GLUE records.
+                        A parent must serve the corresponding A and AAAA records as ADDITIONAL data when returning the NS record(s) as the referral response <xref target="RFC9471"/>.
                     </dd>
                     <dt>
                         No A/AAAA record for in-domain NS:
