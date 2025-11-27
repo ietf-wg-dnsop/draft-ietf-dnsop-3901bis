@@ -1,0 +1,1100 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2025-11-27T01:58:39.318979+00:00",
+  "repo": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOOKHo_M6w8fQb",
+      "title": "Note from Mark Andrews on the list re: avoiding PMTUD",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/1",
+      "state": "CLOSED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "For IPv6 servers should use mechanisms to avoid having to do PMTUD.\n\nSet the MSS to the IPv6 network MTU.  This really helps when there are asymmetric\nrouting.\n\nSet IPV6_USE_MINMTU to 1 on UDP sockets.  Again this helps when there are\nasymmetric routing.\n\nBoth of these also help when ICMPv6 is being blocked by operators that don\u2019t\nunderstand IPv6.\n",
+      "createdAt": "2025-04-03T07:51:32Z",
+      "updatedAt": "2025-04-07T12:00:41Z",
+      "closedAt": "2025-04-07T12:00:39Z",
+      "comments": [
+        {
+          "author": "vixie",
+          "authorAssociation": "NONE",
+          "body": "Why are we avoiding pmtud? See also: \n\n\nhttps://datatracker.ietf.org/doc/rfc9715/ \n\n\n\n\nSent from Workspace ONE Boxer \n\n\nOn Apr 3, 2025 00:52, Tobias Fiebig ***@***.***> wrote:\n\nFor IPv6 servers should use mechanisms to avoid having to do PMTUD.\n\nSet the MSS to the IPv6 network MTU. This really helps when there are asymmetric\nrouting.\n\nSet IPV6_USE_MINMTU to 1 on UDP sockets. Again this helps when there are\nasymmetric routing.\n\nBoth of these also help when ICMPv6 is being blocked by operators that don\u2019t\nunderstand IPv6.\n\n\u2014\nReply to this email directly, view it on GitHub, or unsubscribe.\nYou are receiving this because you are subscribed to this thread. Message ID: ***@***.***>\n\n ichdasich created an issue (ietf-wg-dnsop/draft-ietf-dnsop-3901bis#1) \n\nFor IPv6 servers should use mechanisms to avoid having to do PMTUD.\n\nSet the MSS to the IPv6 network MTU. This really helps when there are asymmetric\nrouting.\n\nSet IPV6_USE_MINMTU to 1 on UDP sockets. Again this helps when there are\nasymmetric routing.\n\nBoth of these also help when ICMPv6 is being blocked by operators that don\u2019t\nunderstand IPv6.\n\n\u2014\nReply to this email directly, view it on GitHub, or unsubscribe.\nYou are receiving this because you are subscribed to this thread. Message ID: ***@***.***>\n\n",
+          "createdAt": "2025-04-03T14:20:27Z",
+          "updatedAt": "2025-04-03T14:20:27Z"
+        },
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I so far just verbatim put the mail from the list in here to keep track of the task. I agree with your point, though.\n\nStill, the question coming up means that the text in the draft needs some wording (and ref to 9715) to make sure it does not come up.",
+          "createdAt": "2025-04-07T07:23:37Z",
+          "updatedAt": "2025-04-07T07:23:37Z"
+        },
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Ok, closing this, as I assume that the added references to 9715 and additional text on PMTU issues addresses this.",
+          "createdAt": "2025-04-07T12:00:39Z",
+          "updatedAt": "2025-04-07T12:00:39Z"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "id": "I_kwDOOKHo_M7E9Vrw",
+      "title": "Minor nit: weird logic conflict with definitions",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/3",
+      "state": "CLOSED",
+      "author": "tojens-ietf",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The definition of dual stack is currently being both an IPv4 resolver and an IPv6 resolver, which is reasonable, but the defitions of each is: \n\n> It does not imply anything about what DNS data is served, but requires DNS queries to be received and answered over IPvX.\n\nA dual stack resolver can't actually require receiving and answering over both protocols (very nit, but still). Suggest changing definitions either so that \"only\" is mapped to the existing text and dual stack defined separately, or just change the IPvX definitions to:\n\n> It does not imply anything about what DNS data is served, but receives and answers queries over IPvX.",
+      "createdAt": "2025-08-08T15:23:44Z",
+      "updatedAt": "2025-08-11T08:16:37Z",
+      "closedAt": "2025-08-11T08:16:37Z",
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed by c3df4fa44282f9575bdb2f38a6a30ce00eefd590",
+          "createdAt": "2025-08-11T08:16:37Z",
+          "updatedAt": "2025-08-11T08:16:37Z"
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "id": "I_kwDOOKHo_M7VkJc0",
+      "title": "Comment Erik Nguyen: Discuss resolver number limitation (3 for libc)",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/11",
+      "state": "CLOSED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Erik brought up that many implementations can only deal with a limited set of configured resolvers.\n\nHe argues that the document should provide some note on this issue, without being prescriptive to implementations, and considers making a text-suggestion.",
+      "createdAt": "2025-11-03T17:21:57Z",
+      "updatedAt": "2025-11-03T23:34:18Z",
+      "closedAt": "2025-11-03T23:34:18Z",
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Technically, should be resolved.",
+          "createdAt": "2025-11-03T23:34:18Z",
+          "updatedAt": "2025-11-03T23:34:18Z"
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "id": "I_kwDOOKHo_M7VkLKW",
+      "title": "Comment Jen Linkova: Clarify terminologyt (mapped) and link to corresponding v6ops document in sec-con",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/12",
+      "state": "CLOSED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Jen noted that the terminology in the draft needs to be clarified around derived v6 addresses (_not_ mapped); Furthermore, she noted that ongoing synthesizing implies having more than nothing in the security considerations. To fix that, a recently published document from v6ops discussing these issues should simply be referenced.",
+      "createdAt": "2025-11-03T17:24:08Z",
+      "updatedAt": "2025-11-03T22:31:54Z",
+      "closedAt": "2025-11-03T22:31:54Z",
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "removed mapped wording",
+          "createdAt": "2025-11-03T22:26:16Z",
+          "updatedAt": "2025-11-03T22:26:16Z"
+        },
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "added security considerations, referencing 9872.",
+          "createdAt": "2025-11-03T22:31:53Z",
+          "updatedAt": "2025-11-03T22:31:53Z"
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "id": "I_kwDOOKHo_M7VkL6V",
+      "title": "Stefan Ubbink: editorial comments on ML",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/13",
+      "state": "CLOSED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "# 3.1.  Misconfigurations Causing IP Version Related Name Space Fragmentation\nMaybe the sentence for 'No A/AAAA record for in-domain NS' can be cut into smaller sentences to improve readability.\n\n# 4.2. Guidelines for DNS Resolvers\nThe first sentence starts with 'Every recursive DNS resolver...' and in 4.3 there is also a reference to 'recursive DNS resolvers'. So I think the title of the section should be 'Guidelines for Recursive DNS Resolvers'.\n\nWhy does the first mention of PREF64 in the second paragraph have RFC6164 as reference, when the second PREF64 has RFC8781 as reference (which is the same as in section 3.2)?",
+      "createdAt": "2025-11-03T17:24:56Z",
+      "updatedAt": "2025-11-03T21:56:39Z",
+      "closedAt": "2025-11-03T21:56:39Z",
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Ok, took a look:\n1. I do not really see an easy way to make the sentence shorter.\n2. Added Recursive to the section title\n3. The second ref is for PREF64 discovery, while the first one pertains to the concept of a pref64.",
+          "createdAt": "2025-11-03T21:56:39Z",
+          "updatedAt": "2025-11-03T21:56:39Z"
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "id": "I_kwDOOKHo_M7VksYo",
+      "title": "Lorenzo: Use 6724",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/14",
+      "state": "CLOSED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Lorenzo's suggestion for dst selection on stub:\n\n- Use 6724\n- Never use synthesized dst\n\n\nWrite corresponding text.\n",
+      "createdAt": "2025-11-03T18:07:11Z",
+      "updatedAt": "2025-11-03T23:13:00Z",
+      "closedAt": "2025-11-03T23:13:00Z",
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Cut down text notably; Implemented this. ",
+          "createdAt": "2025-11-03T23:13:00Z",
+          "updatedAt": "2025-11-03T23:13:00Z"
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "id": "I_kwDOOKHo_M7Z8rSA",
+      "title": "Double checking lower case BCP 14 terms?",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/26",
+      "state": "OPEN",
+      "author": "tojens-ietf",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Just double checking that the lowercase must in the \"Missing Glue\" definition and the lowercase should at the bottom of page 8 were intentionally lower case. Both of those seems like they might need to be normative.",
+      "createdAt": "2025-11-23T22:49:30Z",
+      "updatedAt": "2025-11-23T22:49:30Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": [
+    {
+      "number": 2,
+      "id": "PR_kwDOOKHo_M6fymBp",
+      "title": "Minor fixes in readability",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/2",
+      "state": "MERGED",
+      "author": "subbink",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The changes should be clear. If there are any questions, don't hesitate to ask.",
+      "createdAt": "2025-07-21T06:49:00Z",
+      "updatedAt": "2025-07-28T09:05:38Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "f3aa913993e7f0dd5b6d5640a5d594214d18ff64",
+      "headRepository": "subbink/draft-ietf-dnsop-3901bis",
+      "headRefName": "patch-1",
+      "headRefOid": "e6eda88eddaed209c59978f2edd53ddc03513486",
+      "closedAt": "2025-07-28T09:05:38Z",
+      "mergedAt": "2025-07-28T09:05:38Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "d84a0d51eef6e66b3486cac5a5409f1b9998f1ce"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDOOKHo_M6ktwEw",
+      "title": "improve readablity, update RFC references",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/4",
+      "state": "MERGED",
+      "author": "GoetzGoerisch",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Thank you @ichdasich @momoka0122y for this RFC.\r\nUpon initial reading I'm suggesting the following improvements.\r\n\r\nThank you for considering them.",
+      "createdAt": "2025-08-21T15:44:05Z",
+      "updatedAt": "2025-10-03T12:20:25Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "f6aded3452b059630f26e7f09abf8d86ced5743b",
+      "headRepository": "GoetzGoerisch/draft-ietf-dnsop-3901bis",
+      "headRefName": "main",
+      "headRefOid": "b97b701ce3974eb430262ed8fb69202d79f30cc8",
+      "closedAt": "2025-10-03T09:23:17Z",
+      "mergedAt": "2025-10-03T09:23:16Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "6af37c53842eb0269e5479194a0515e0f802ec09"
+      },
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Looks good to me, thx!",
+          "createdAt": "2025-10-03T09:23:13Z",
+          "updatedAt": "2025-10-03T09:23:13Z"
+        },
+        {
+          "author": "GoetzGoerisch",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Thank you!",
+          "createdAt": "2025-10-03T12:20:25Z",
+          "updatedAt": "2025-10-03T12:20:25Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 5,
+      "id": "PR_kwDOOKHo_M6rwDDY",
+      "title": "change my name to be readable",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/5",
+      "state": "MERGED",
+      "author": "momoka0122y",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-10-02T11:41:06Z",
+      "updatedAt": "2025-10-03T09:22:20Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "f6aded3452b059630f26e7f09abf8d86ced5743b",
+      "headRepository": "momoka0122y/draft-ietf-dnsop-3901bis",
+      "headRefName": "patch-1",
+      "headRefOid": "7728d31d73c8bf9df5aa6acbde77d6da360acddf",
+      "closedAt": "2025-10-03T09:22:20Z",
+      "mergedAt": "2025-10-03T09:22:20Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "5c3a8a9db1ddc8cb500ee7a08e6e154828ae7c4d"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7Ells8",
+          "commit": {
+            "abbreviatedOid": "7728d31"
+          },
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "lgtm",
+          "createdAt": "2025-10-03T09:22:03Z",
+          "updatedAt": "2025-10-03T09:22:03Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "id": "PR_kwDOOKHo_M6sKkOV",
+      "title": "Remove DNS synthesis recommendation per Mark Andrews objection",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/6",
+      "state": "CLOSED",
+      "author": "momoka0122y",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "  ## Summary\r\n\r\n  This PR addresses feedback from mailing list discussions by removing DNS-level address synthesis and strengthening guidance for native IPv6 preference.\r\n\r\n  ## Background\r\n\r\n  Mark Andrews strongly objected to DNS-level address synthesis in his mailing list response:\r\n  https://www.mail-archive.com/dnsop@ietf.org/msg31222.html\r\n\r\n  His key argument: DNS is an application layer protocol that deals with IP address literals and should not perform network layer address transformations. Address\r\n   synthesis should be handled at the OS/kernel level via CLAT mechanisms (RFC 6877).",
+      "createdAt": "2025-10-05T23:12:25Z",
+      "updatedAt": "2025-10-07T12:11:54Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "6af37c53842eb0269e5479194a0515e0f802ec09",
+      "headRepository": "momoka0122y/draft-ietf-dnsop-3901bis",
+      "headRefName": "momoka-fixes-dec2025",
+      "headRefOid": "098b1e53048156478d351f3b7964853d96845112",
+      "closedAt": "2025-10-07T12:11:54Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This PR would revert changes (`<bcp14>MAY</bcp14>`) already made to address the comment without preventing the behavior, see `5f8ed59d-e3ac-4415-9f62-e77c418c0420@gmail.com`",
+          "createdAt": "2025-10-07T12:11:54Z",
+          "updatedAt": "2025-10-07T12:11:54Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 7,
+      "id": "PR_kwDOOKHo_M6sKw9z",
+      "title": "Strengthen PMTUD guidance based on RFC 9715",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/7",
+      "state": "CLOSED",
+      "author": "momoka0122y",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "## Summary\n\nThis PR strengthens the PMTUD (Path MTU Discovery) guidance in the draft based on RFC 9715 and mailing list discussions.\n\n## Changes\n\n1. **For UDP**: Changed from `MAY` to `SHOULD NOT` rely on PMTUD\n   - RFC 9715 explicitly states PMTUD for DNS/UDP is \"harmful and dangerous\"\n\n2. **For TCP**: Changed from `MAY` to `SHOULD` use IPV6_USE_MIN_MTU=1\n   - Provides stronger guidance to avoid PMTUD issues\n\n## Background\n\n- Recent discussions from December 2024 about PMTUD being harmful\n- Mark Andrews and others confirmed that PMTUD for DNS/UDP should be avoided\n\nRFC 9715 Section 3.1 and Appendix C confirm that PMTUD for DNS/UDP is considered harmful, with all major DNS implementations explicitly disabling it using IP_PMTUDISC_OMIT.",
+      "createdAt": "2025-10-06T00:23:06Z",
+      "updatedAt": "2025-10-07T12:10:34Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "6af37c53842eb0269e5479194a0515e0f802ec09",
+      "headRepository": "momoka0122y/draft-ietf-dnsop-3901bis",
+      "headRefName": "pmtud-synthesis-fixes",
+      "headRefOid": "28aa5ec27edbe633133c6a9f6b07f124cab0f598",
+      "closedAt": "2025-10-07T12:10:34Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This PR would revert changes made to the text based on `5f8ed59d-e3ac-4415-9f62-e77c418c0420@gmail.com` and before.",
+          "createdAt": "2025-10-07T12:10:34Z",
+          "updatedAt": "2025-10-07T12:10:34Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 8,
+      "id": "PR_kwDOOKHo_M6sKxGM",
+      "title": "Fix XML syntax error in author element",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/8",
+      "state": "MERGED",
+      "author": "momoka0122y",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "## Summary\r\n\r\nThis PR fixes a simple XML syntax error in the author element that was causing XML parsing failures.\r\n\r\n## Change\r\n\r\nThe author element on line 15 was missing a closing angle bracket (`>`).\r\n\r\n",
+      "createdAt": "2025-10-06T00:23:39Z",
+      "updatedAt": "2025-10-07T12:06:47Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "6af37c53842eb0269e5479194a0515e0f802ec09",
+      "headRepository": "momoka0122y/draft-ietf-dnsop-3901bis",
+      "headRefName": "xml-author-fix",
+      "headRefOid": "62cbb1cb111e516618f1494b72dc46b0d21aa0ba",
+      "closedAt": "2025-10-07T12:06:47Z",
+      "mergedAt": "2025-10-07T12:06:47Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "081fad8605adc0b8e710c9ebdc876c4e68fcbc5d"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7FR5Px",
+          "commit": {
+            "abbreviatedOid": "62cbb1c"
+          },
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "lgtm\r\n",
+          "createdAt": "2025-10-07T12:06:40Z",
+          "updatedAt": "2025-10-07T12:06:40Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "id": "PR_kwDOOKHo_M6xEtvR",
+      "title": "nit wording grammer",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/9",
+      "state": "MERGED",
+      "author": "momoka0122y",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-11-02T18:46:05Z",
+      "updatedAt": "2025-11-02T18:48:25Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "081fad8605adc0b8e710c9ebdc876c4e68fcbc5d",
+      "headRepository": "momoka0122y/draft-ietf-dnsop-3901bis",
+      "headRefName": "wording-fix",
+      "headRefOid": "7e7b5c06c7f38f220e4c1c6be25b58b45eb25193",
+      "closedAt": "2025-11-02T18:48:25Z",
+      "mergedAt": "2025-11-02T18:48:25Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "be84e3a4e5bc4da72aeab5983ce0e81cf55c6d4f"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7LMAmW",
+          "commit": {
+            "abbreviatedOid": "7e7b5c0"
+          },
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "lgtm",
+          "createdAt": "2025-11-02T18:48:13Z",
+          "updatedAt": "2025-11-02T18:48:13Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "id": "PR_kwDOOKHo_M6xGMex",
+      "title": "Add examples for missing IPv6 GLUE and zone validation",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/10",
+      "state": "CLOSED",
+      "author": "ramonsoarezcavalcante",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR adds two examples to improve operator understanding:\r\n\r\n1. Section 3.1.1 (Misconfigurations):   A `dig` example showing how missing IPv6 GLUE in a parent zone breaks resolution for IPv6-only resolvers.\r\n\r\n2. Section 4.1 (Authoritative DNS Configuration):   A validation checklist and `dig` command for testing IPv6-only resolution.",
+      "createdAt": "2025-11-03T02:16:21Z",
+      "updatedAt": "2025-11-08T17:37:37Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "92b9eeada498a64636a02547939b174e0fac1915",
+      "headRepository": null,
+      "headRefName": "patch-1",
+      "headRefOid": "8d1e82c858e4bd6d755797088c6680946abfea3a",
+      "closedAt": "2025-11-07T20:29:38Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Before I review this PR, could you please comment whether any AI tools were used when creating its contents? This is important in the context of the note-well.",
+          "createdAt": "2025-11-03T21:49:53Z",
+          "updatedAt": "2025-11-03T21:49:53Z"
+        },
+        {
+          "author": "ramonsoarezcavalcante",
+          "authorAssociation": "NONE",
+          "body": "I would like to note that I relied on artificial intelligence (specifically Grok, from xAI) in the initial phase of developing the XML examples and organizing the proposed changes. However, i thoroughly reviewed, tested, and refined all of the material manually. This ensured that it was fully in line with the purposes of the draft. For example, I validated the XML using the author-tools.ietf.org tool, which resulted in zero errors. The AI did not create any normative text or the main ideas, these derive from my knowledge of DNS best practices, based on the RFCs.\r\n\r\nThe inclusions in this PR were directly inspired by draft-ietf-dnsop-glue-is-not-optional (accessible at: https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-glue-is-not-optional/blob/main/draft-ietf-dnsop-glue-is-not-optional.md).\r\n",
+          "createdAt": "2025-11-07T18:05:27Z",
+          "updatedAt": "2025-11-07T18:05:27Z"
+        },
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I will not expend time and energy to engage with AI generated content.",
+          "createdAt": "2025-11-07T20:29:38Z",
+          "updatedAt": "2025-11-07T20:29:38Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 15,
+      "id": "PR_kwDOOKHo_M6yKEqs",
+      "title": "nits ondrej",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/15",
+      "state": "MERGED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR addresses some small nits posted bei Ondrej",
+      "createdAt": "2025-11-07T15:02:15Z",
+      "updatedAt": "2025-11-07T20:30:29Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "92b9eeada498a64636a02547939b174e0fac1915",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "fiebig_2025-11-03-nits_ondrej",
+      "headRefOid": "d1468ed7752bbf9cb3bf758cbcc2d67e2a8feb02",
+      "closedAt": "2025-11-07T20:30:29Z",
+      "mergedAt": "2025-11-07T20:30:29Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "1eb5abec89424b135d77714db16543157882093b"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7Mw94W",
+          "commit": {
+            "abbreviatedOid": "d1468ed"
+          },
+          "author": "momoka0122y",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-11-07T17:34:13Z",
+          "updatedAt": "2025-11-07T17:34:13Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "id": "PR_kwDOOKHo_M6yKRqh",
+      "title": "address #13",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/16",
+      "state": "MERGED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR addresses ticket 13",
+      "createdAt": "2025-11-07T15:16:59Z",
+      "updatedAt": "2025-11-09T18:39:51Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "a063be7c37b7e16e7490c1ebe7f13dc2571039f9",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "fiebig_2025-11-07-address-13",
+      "headRefOid": "6fc439a2fdf5e032b97836f1859eac478fd47dfc",
+      "closedAt": "2025-11-09T18:39:50Z",
+      "mergedAt": "2025-11-09T18:39:50Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "4cb210b2f5d6d1649e1980d8f8a202bc14e9bb3d"
+      },
+      "comments": [
+        {
+          "author": "momoka0122y",
+          "authorAssociation": "COLLABORATOR",
+          "body": "or we can change\r\n\r\n```\r\ndiscovered through PREF64 <xref target=\"RFC8781\"/>\r\n```\r\n\r\nto \r\n```\r\ndiscovered through PREF64 via Router Advertisements <xref target=\"RFC8781\"/>\r\n```\r\n\r\n\r\ntrying to check how https://datatracker.ietf.org/doc/rfc9872/ references RFC8781 to see which is better.",
+          "createdAt": "2025-11-09T11:13:19Z",
+          "updatedAt": "2025-11-09T11:13:19Z"
+        },
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Maybe:\r\n\r\n```\r\ndiscovered through a PREF64 learned via Router Advertisements <xref target=\"RFC8781\"/>\r\n```",
+          "createdAt": "2025-11-09T14:06:39Z",
+          "updatedAt": "2025-11-09T14:06:39Z"
+        },
+        {
+          "author": "momoka0122y",
+          "authorAssociation": "COLLABORATOR",
+          "body": "seems good. (I'm not sure if the \"a\" is needed though)",
+          "createdAt": "2025-11-09T14:23:45Z",
+          "updatedAt": "2025-11-09T14:23:45Z"
+        },
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Your call; Can you change the PR accordingly and then merge?",
+          "createdAt": "2025-11-09T18:31:28Z",
+          "updatedAt": "2025-11-09T18:31:28Z"
+        },
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Ah, wait, this is my PR; nvmd., omw.",
+          "createdAt": "2025-11-09T18:35:41Z",
+          "updatedAt": "2025-11-09T18:35:41Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 17,
+      "id": "PR_kwDOOKHo_M6yKSc5",
+      "title": "removed mapped",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/17",
+      "state": "MERGED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This removes the term 'mapped' based on a comment by Jen on the mic",
+      "createdAt": "2025-11-07T15:17:52Z",
+      "updatedAt": "2025-11-07T20:30:48Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "92b9eeada498a64636a02547939b174e0fac1915",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "fiebig_2025-11-07-remove-mapped",
+      "headRefOid": "6c76156fb506974c2aaadd2cfb7c2144f11c4145",
+      "closedAt": "2025-11-07T20:30:48Z",
+      "mergedAt": "2025-11-07T20:30:48Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "eb364def88203cd4f78220a9ae86a0644e0b45dc"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7Mw_K4",
+          "commit": {
+            "abbreviatedOid": "6c76156"
+          },
+          "author": "momoka0122y",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-11-07T17:35:14Z",
+          "updatedAt": "2025-11-07T17:35:14Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "id": "PR_kwDOOKHo_M6yKTb-",
+      "title": "updated security considerations",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/18",
+      "state": "MERGED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This updates the security considerations based on Jen's comment to just ref. to an appropriate v6ops doc.",
+      "createdAt": "2025-11-07T15:18:43Z",
+      "updatedAt": "2025-11-09T14:01:38Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "92b9eeada498a64636a02547939b174e0fac1915",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "fiebig_2025-11-07-update-sec-con",
+      "headRefOid": "98e13801ebddb4ea204e7fb24a49eddec4229e66",
+      "closedAt": "2025-11-09T14:01:38Z",
+      "mergedAt": "2025-11-09T14:01:38Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "c9b7a44339a4b970c1d7534b5a295319885037f8"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7NBzno",
+          "commit": {
+            "abbreviatedOid": "98e1380"
+          },
+          "author": "momoka0122y",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-11-09T11:14:27Z",
+          "updatedAt": "2025-11-09T11:14:27Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "id": "PR_kwDOOKHo_M6yKUjf",
+      "title": "simplified DNS resolver selection for stub resolvers.",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/19",
+      "state": "MERGED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR implements a suggestion by lorenzo to simplify server selection by stubs by refing RFC6724 and making synthesized addresses SHOULD NOT.",
+      "createdAt": "2025-11-07T15:20:00Z",
+      "updatedAt": "2025-11-09T14:03:19Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "c9b7a44339a4b970c1d7534b5a295319885037f8",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "fiebig_2025-11-07-simplified-dns-stub-selection",
+      "headRefOid": "344483a2dc64adcd85218257422a454578f93327",
+      "closedAt": "2025-11-09T14:03:19Z",
+      "mergedAt": "2025-11-09T14:03:19Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "2560075b64847992468740c98001293bf71914e2"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7NB94O",
+          "commit": {
+            "abbreviatedOid": "1efa209"
+          },
+          "author": "momoka0122y",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-11-09T11:44:04Z",
+          "updatedAt": "2025-11-09T11:44:04Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "id": "PR_kwDOOKHo_M6yKVqG",
+      "title": "Added comment on max. of three resolvers.",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/20",
+      "state": "MERGED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "During dnsop at 124, there was a comment that some implementations only support up to three NS (libc most prominently). It was recommended to at least note this issue in the document. This PR implements that.",
+      "createdAt": "2025-11-07T15:21:12Z",
+      "updatedAt": "2025-11-09T14:03:33Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "92b9eeada498a64636a02547939b174e0fac1915",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "fiebig_2025-11-07-added-max-three-resolver-comment",
+      "headRefOid": "ce6eba0cb351ec0f6bb3185fa4277a93559221b5",
+      "closedAt": "2025-11-09T14:03:33Z",
+      "mergedAt": "2025-11-09T14:03:33Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "19c6f82d2deceaf0dd4a90f83c61a8e5d4184aef"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7NCNRe",
+          "commit": {
+            "abbreviatedOid": "ce6eba0"
+          },
+          "author": "momoka0122y",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-11-09T12:25:48Z",
+          "updatedAt": "2025-11-09T12:25:48Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "id": "PR_kwDOOKHo_M6yWtC8",
+      "title": "make text for No A/AAAA record for in-domain NS shorter fix #13",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/21",
+      "state": "MERGED",
+      "author": "momoka0122y",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Stefan Ubbink gave us comment, \r\n\r\n```\r\n# 3.1.  Misconfigurations Causing IP Version Related Name Space Fragmentation\r\nMaybe the sentence for 'No A/AAAA record for in-domain NS' can be cut into smaller sentences to improve readability.\r\n```\r\n\r\nthis PR fixes the length of this sentence.\r\n\r\nissue for this is https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/13",
+      "createdAt": "2025-11-09T07:38:35Z",
+      "updatedAt": "2025-11-09T14:05:11Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "eb364def88203cd4f78220a9ae86a0644e0b45dc",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "make-failure-text-shorter",
+      "headRefOid": "e5802ba69e1e0c9542ef25cf2dace2200d33cfa3",
+      "closedAt": "2025-11-09T14:05:11Z",
+      "mergedAt": "2025-11-09T14:05:11Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "9916cd6c55b2197ad932e868bb6e7b3dd51eeb5b"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7NCwP8",
+          "commit": {
+            "abbreviatedOid": "e5802ba"
+          },
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "lgtm",
+          "createdAt": "2025-11-09T14:05:05Z",
+          "updatedAt": "2025-11-09T14:05:05Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "id": "PR_kwDOOKHo_M6yX839",
+      "title": "change momoka first name to be shown instead of last name",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/22",
+      "state": "MERGED",
+      "author": "momoka0122y",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Instaed of \"M. Yamamoto\" change top to be \"Momoka\"\r\n\r\nI don't know if this will be approved but this is what i like.\r\n\r\n```\r\ndnsop                                                             Momoka\r\nInternet-Draft                                              WIDE Project\r\nObsoletes: 3901 (if approved)                                  T. Fiebig\r\nIntended status: Best Current Practice                           MPI-INF\r\nExpires: 13 May 2026                                     9 November 2025\r\n\r\n\r\n               DNS IPv6 Transport Operational Guidelines\r\n                    draft-ietf-dnsop-3901bis-latest\r\n```",
+      "createdAt": "2025-11-09T12:53:03Z",
+      "updatedAt": "2025-11-09T14:07:35Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "eb364def88203cd4f78220a9ae86a0644e0b45dc",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "momoka-name",
+      "headRefOid": "228efa9e2a65b58be0849f87469957584daeac5d",
+      "closedAt": "2025-11-09T14:07:35Z",
+      "mergedAt": "2025-11-09T14:07:35Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "4aacd6fe62a9219409e8024ac77a14f7c542879e"
+      },
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "lgtm",
+          "createdAt": "2025-11-09T14:07:26Z",
+          "updatedAt": "2025-11-09T14:07:26Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 23,
+      "id": "PR_kwDOOKHo_M6yYWVf",
+      "title": "refrase abstract and remove unneeded 3901 reference",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/23",
+      "state": "MERGED",
+      "author": "momoka0122y",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "this document obsoletes 3901 so 'expand on 3901' is weird to be in abstract",
+      "createdAt": "2025-11-09T14:19:37Z",
+      "updatedAt": "2025-11-11T12:18:49Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "4aacd6fe62a9219409e8024ac77a14f7c542879e",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "obsoletes-3901",
+      "headRefOid": "68d5dd733901ef8d7b24a59a22df0f62fa938ea4",
+      "closedAt": "2025-11-09T18:34:24Z",
+      "mergedAt": "2025-11-09T18:34:24Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "f824e13f6895dd26a158e4e3fbff0b895cca5428"
+      },
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Ah, no, we should leave this in.\r\n\r\nI just had the same discussion in GROW regarding the BCP194 thing; There was also a comment from DIR-review to take the (corresponding) back-ref out, only for the AD to step in and remind us that it is actually required.",
+          "createdAt": "2025-11-09T18:33:12Z",
+          "updatedAt": "2025-11-09T18:33:12Z"
+        },
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hrm, then again... it is still there. Let's leave this for others to decide *merging noises*",
+          "createdAt": "2025-11-09T18:34:21Z",
+          "updatedAt": "2025-11-09T18:34:21Z"
+        },
+        {
+          "author": "momoka0122y",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> I just had the same discussion in GROW regarding the BCP194 thing; There was also a comment from DIR-review to take the (corresponding) back-ref out, only for the AD to step in and remind us that it is actually required.\r\n\r\noh i didn't know that.",
+          "createdAt": "2025-11-11T12:18:49Z",
+          "updatedAt": "2025-11-11T12:18:49Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 24,
+      "id": "PR_kwDOOKHo_M6yYWyL",
+      "title": "nit fix intro",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/24",
+      "state": "MERGED",
+      "author": "momoka0122y",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "add -only suffix to show ipv4-only and ipv6-only network in intro",
+      "createdAt": "2025-11-09T14:21:58Z",
+      "updatedAt": "2025-11-09T18:35:16Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "4aacd6fe62a9219409e8024ac77a14f7c542879e",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "fix-intro",
+      "headRefOid": "92efe756870a239610cbd284aeb9ed663d32d4b5",
+      "closedAt": "2025-11-09T18:35:16Z",
+      "mergedAt": "2025-11-09T18:35:16Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "a063be7c37b7e16e7490c1ebe7f13dc2571039f9"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7NDdbg",
+          "commit": {
+            "abbreviatedOid": "92efe75"
+          },
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "LGTM\r\n",
+          "createdAt": "2025-11-09T18:35:08Z",
+          "updatedAt": "2025-11-09T18:35:08Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "id": "PR_kwDOOKHo_M6y7igt",
+      "title": "Changeset fiebig 2025 11 12 9715 clarification",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/25",
+      "state": "MERGED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Quick merge to stay atop of the discussion.",
+      "createdAt": "2025-11-12T08:51:39Z",
+      "updatedAt": "2025-11-12T08:52:12Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "4cb210b2f5d6d1649e1980d8f8a202bc14e9bb3d",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "changeset_fiebig_2025-11-12_9715_clarification",
+      "headRefOid": "1aad666fa68707dbe7dbcce547beea87557bb637",
+      "closedAt": "2025-11-12T08:52:11Z",
+      "mergedAt": "2025-11-12T08:52:11Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "78458d6a910124cefe215eb429063e51c4071c68"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 27,
+      "id": "PR_kwDOOKHo_M61E-3d",
+      "title": "sentence simplifications and one typo",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/27",
+      "state": "MERGED",
+      "author": "tojens-ietf",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-11-23T22:53:02Z",
+      "updatedAt": "2025-11-24T07:50:57Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "78458d6a910124cefe215eb429063e51c4071c68",
+      "headRepository": "tojens-ietf/draft-ietf-dnsop-3901bis",
+      "headRefName": "patch-1",
+      "headRefOid": "188fa4dedc154e7057412b77beb50841ac8a3881",
+      "closedAt": "2025-11-24T07:50:56Z",
+      "mergedAt": "2025-11-24T07:50:56Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "e8da2c09ef2ebcd2271752cc991f51aed29baeae"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7QioRB",
+          "commit": {
+            "abbreviatedOid": "188fa4d"
+          },
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "LGTM",
+          "createdAt": "2025-11-24T07:50:50Z",
+          "updatedAt": "2025-11-24T07:50:50Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "id": "PR_kwDOOKHo_M61pZzs",
+      "title": "Tf 2025 11 26 comment plexis",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/28",
+      "state": "MERGED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-11-26T13:00:34Z",
+      "updatedAt": "2025-11-26T13:01:22Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "2c78d289e5728b062a74f224aaf656744393d1f1",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "tf_2025-11-26_comment_plexis",
+      "headRefOid": "ae4ca1e81fe53a2edf71b948ca176771e610b880",
+      "closedAt": "2025-11-26T13:01:22Z",
+      "mergedAt": "2025-11-26T13:01:22Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "a2ef8d1f9f263c0ecbe960bad2ad0ec2f7fca07f"
+      },
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "simple editorial comment from the ML.",
+          "createdAt": "2025-11-26T13:01:10Z",
+          "updatedAt": "2025-11-26T13:01:10Z"
+        }
+      ],
+      "reviews": []
+    }
+  ]
+}
