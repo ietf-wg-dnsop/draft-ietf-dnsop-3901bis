@@ -6,7 +6,7 @@ dnsop                                                             Momoka
 Internet-Draft                                              WIDE Project
 Obsoletes: 3901 (if approved)                                  T. Fiebig
 Intended status: Best Current Practice                           MPI-INF
-Expires: 30 May 2026                                    26 November 2025
+Expires: 1 June 2026                                    28 November 2025
 
 
                DNS IPv6 Transport Operational Guidelines
@@ -47,7 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 May 2026.
+   This Internet-Draft will expire on 1 June 2026.
 
 Copyright Notice
 
@@ -269,15 +269,14 @@ Table of Contents
       perform path MTU discovery.
 
    DNS-over-TCP packets requiring fragmentation
-      If DNS resolution over UDP fails, or if a packet exceeds the
-      communicated EDNS(0) size, a resolver should fall back to DNS
-      resolution over TCP.  However, similar to the case of DNS-over-
-      UDP, DNS-over-TCP may encounter MTU blackholes, especially on
-      IPv6, if PMTUD does not work, if the MSS honored by the
-      authoritative DNS server leads to IP packets exceeding the PMTU.
-      In that case, similar to the case of DNS-over-UDP, DNS resolution
-      will time out when the recursive DNS resolver did not receive a
-      response in time.
+      A resolver can for various reasons also initiate connections via
+      TCP for resolution to an authoritative server.  However, similar
+      to the case of DNS-over-UDP, DNS-over-TCP may encounter MTU
+      blackholes, especially on IPv6, if PMTUD does not work, if the MSS
+      honored by the authoritative DNS server leads to IP packets
+      exceeding the PMTU.  In that case, similar to the case of DNS-
+      over-UDP, DNS resolution will time out when the recursive DNS
+      resolver did not receive a response in time.
 
       [RFC9715] does not provide explicit guidance on mitigating this
       issue.  However, transfering the guidance from [RFC9715], setting
@@ -462,7 +461,7 @@ Acknowledgments
    Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E
    Carpenter, Tom Petch, Philipp S.  Tiesel, Mark Andrews, Stefan
    Ubbink, Joey Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti,
-   David Farmer, Pieter Lexis
+   David Farmer, Pieter Lexis, Ralf Weber
 
    Thank you for reading this draft.
 
