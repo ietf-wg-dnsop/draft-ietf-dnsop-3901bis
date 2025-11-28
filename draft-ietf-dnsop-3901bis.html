@@ -1314,8 +1314,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-name-space-fragmentation" class="section-name selfRef">Name Space Fragmentation</a>
       </h2>
 <p id="section-3-1">
-                A resolver that tries to look up a name starts out at the root, and follows referrals until it is referred to a name server that is authoritative for the name.
-                If somewhere down the chain of referrals it is referred to a name server that is, based on the referral, only accessible over a transport which the resolver cannot use, the resolver is unable to continue DNS resolution.<a href="#section-3-1" class="pilcrow">¶</a></p>
+                A resolver that tries to look up a name starts out at the root, and follows referrals until it is referred to a name server set that is authoritative for the name.
+                If it is referred to a name server set that is, based on the referral, only contains name servers that are exclusively reachable via an IP address family the resolver doe snot support, the resolver is unable to continue DNS resolution.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <p id="section-3-2">
                 If this occurs, the DNS has, effectively, fragmented based on the recursive DNS resolver's and authoritative DNS server's mismatching IP version support.<a href="#section-3-2" class="pilcrow">¶</a></p>
 <p id="section-3-3">
@@ -1417,7 +1417,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-3.2-2.4.2">
                             <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span> does not provide explicit guidance on mitigating this issue.
                             However, transfering the guidance from <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span>, setting an MSS of 1388 octets would reduce the impact of this issue.
-                            It is therefore <span class="bcp14">RECOMMENDED</span> that DNS servers set an MSS of no more than 1388 octets for TCP connections.
+                            Hence, DNS servers <span class="bcp14">MAY</span> set an MSS of no more than 1388 octets for TCP connections.
                             Similarly, aligned with the recommendations of the <span>[<a href="#DNSFlagDay2020" class="cite xref">DNSFlagDay2020</a>]</span>, DNS servers <span class="bcp14">MAY</span> ensure that a total packet size of 1280 octets is not exceeded by setting an MSS of 1220 octets.
                             Additionally, DNS servers <span class="bcp14">MAY</span> opt to set IPV6_USE_MIN_MTU=1 from RFC3542 <span>[<a href="#RFC3542" class="cite xref">RFC3542</a>]</span>.<a href="#section-3.2-2.4.2" class="pilcrow">¶</a></p>
 </dd>
@@ -1505,7 +1505,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                             IP fragmentation has been reported to be fragile <span>[<a href="#RFC8900" class="cite xref">RFC8900</a>]</span>.
                             Furthermore, IPv6 transition technologies can introduce unexpected MTU breaks, e.g., when NAT64 is used <span>[<a href="#RFC7269" class="cite xref">RFC7269</a>]</span>.
                             Therefore, IP fragmentation <span class="bcp14">SHOULD</span> be avoided by following guidance on maximum DNS payload sizes <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span> and providing TCP fall-back options <span>[<a href="#RFC7766" class="cite xref">RFC7766</a>]</span>.
-                            Furthermore, similar to the guidance in <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span>, it is <span class="bcp14">RECOMMENDED</span> that authoritative DNS servers sets an MSS of 1220 in TCP sessions carrying DNS responses.<a href="#section-4.1-2.8" class="pilcrow">¶</a>
+                            Furthermore, similar to the guidance in <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span>, authoritative DNS servers <span class="bcp14">MAY</span> set an MSS of either 1388 (analogous to <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span>) or 1220 (analogous to the <span>[<a href="#DNSFlagDay2020" class="cite xref">DNSFlagDay2020</a>]</span> suggestions) in TCP sessions carrying DNS responses.<a href="#section-4.1-2.8" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -1590,7 +1590,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
 <p id="section-7-1">
-                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp S. Tiesel, Mark Andrews, Stefan Ubbink, Joey Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti, David Farmer, Pieter Lexis, Ralf Weber<a href="#section-7-1" class="pilcrow">¶</a></p>
+                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp S. Tiesel, Mark Andrews, Stefan Ubbink, Joey Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti, David Farmer, Pieter Lexis, Ralf Weber, Philip Homburg<a href="#section-7-1" class="pilcrow">¶</a></p>
 <p id="section-7-2">
                 Thank you for reading this draft.<a href="#section-7-2" class="pilcrow">¶</a></p>
 </section>
