@@ -162,8 +162,8 @@ Table of Contents
    A resolver that tries to look up a name starts out at the root, and
    follows referrals until it is referred to a name server set that is
    authoritative for the name.  If it is referred to a name server set
-   that is, based on the referral, only contains name servers that are
-   exclusively reachable via an IP address family the resolver doe snot
+   that is, based on a referral, only contains name servers that are
+   exclusively reachable via an IP address family the resolver does not
    support, the resolver is unable to continue DNS resolution.
 
    If this occurs, the DNS has, effectively, fragmented based on the
