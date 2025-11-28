@@ -305,7 +305,7 @@
                             Consistency:
                     </dt>
                     <dd>
-                            Both IPv4 and IPv6 transports should serve identical DNS data to ensure a consistent resolution experience across different network types.
+                            Both IPv4 and IPv6 transports <bcp14>SHOULD</bcp14> serve identical DNS data to ensure a consistent resolution experience across different network types.
                     </dd>
                     <dt>
                             Avoiding IP Fragmentation:
