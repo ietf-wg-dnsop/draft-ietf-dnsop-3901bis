@@ -473,7 +473,7 @@ Acknowledgments
    Valuable input for this draft was provided by: Bob Harold, Andreas
    Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E
    Carpenter, Tom Petch, Philipp S.  Tiesel, Mark Andrews, Stefan
-   Ubbink, Joey Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti,
+   Ubbink, Joe Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti,
    David Farmer, Pieter Lexis, Ralf Weber, Philip Homburg, Marco Davids
 
    Thank you for reading this draft.
