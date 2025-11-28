@@ -201,10 +201,10 @@ Table of Contents
 
    Missing GLUE:
       If the name from an NS record for a zone is in-domain, i.e., the
-      name is within the zone or below, a parent zone must contain both
-      IPv4 and IPv6 GLUE records.  A parent must serve the corresponding
-      A and AAAA records as ADDITIONAL data when returning the NS
-      record(s) as the referral response [RFC9471].
+      name is within the zone or below, a parent zone needs to contain
+      both IPv4 and IPv6 GLUE records.  A parent needs to serve the
+      corresponding A and AAAA records as ADDITIONAL data when returning
+      the NS record(s) as the referral response [RFC9471].
 
    No A/AAAA record for in-domain NS:
       If the parent provides GLUE records for both IP versions but the
@@ -215,15 +215,15 @@ Table of Contents
 
    Zone of sibling domain NSes not resolving:
       If the name from an NS record for a zone is sibling domain, the
-      corresponding zone must be resolvable via the IP version in
+      corresponding zone needs to be resolvable via the IP version in
       question as well.  It is insufficient if the name pointed to by
       the NS record has an associated A or AAAA record correspondingly.
 
    Parent zone not resolvable via one IP version:
       For a zone to be resolvable via an IP version the parent zones up
-      to the root zone must be resolvable via that IP version as well.
-      Any zone not resolvable via the concerned IP version breaks the
-      delegation chain for all its children.
+      to the root zone needs to be resolvable via that IP version as
+      well.  Any zone not resolvable via the concerned IP version breaks
+      the delegation chain for all its children.
 
    The above misconfigurations are not mutually exclusive.
 
@@ -360,7 +360,7 @@ Table of Contents
       being available.
 
    Consistency:
-      Both IPv4 and IPv6 transports should serve identical DNS data to
+      Both IPv4 and IPv6 transports SHOULD serve identical DNS data to
       ensure a consistent resolution experience across different network
       types.
 

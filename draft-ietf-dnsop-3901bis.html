@@ -1346,8 +1346,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
                         Missing GLUE:
           </dt>
           <dd style="margin-left: 1.5em" id="section-3.1-3.4">
-                        If the name from an NS record for a zone is in-domain, i.e., the name is within the zone or below, a parent zone must contain both IPv4 and IPv6 GLUE records.
-                        A parent must serve the corresponding A and AAAA records as ADDITIONAL data when returning the NS record(s) as the referral response <span>[<a href="#RFC9471" class="cite xref">RFC9471</a>]</span>.<a href="#section-3.1-3.4" class="pilcrow">¶</a>
+                        If the name from an NS record for a zone is in-domain, i.e., the name is within the zone or below, a parent zone needs to contain both IPv4 and IPv6 GLUE records.
+                        A parent needs to serve the corresponding A and AAAA records as ADDITIONAL data when returning the NS record(s) as the referral response <span>[<a href="#RFC9471" class="cite xref">RFC9471</a>]</span>.<a href="#section-3.1-3.4" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-3.1-3.5">
@@ -1361,7 +1361,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                         Zone of sibling domain NSes not resolving:
           </dt>
           <dd style="margin-left: 1.5em" id="section-3.1-3.8">
-                        If the name from an NS record for a zone is sibling domain, the corresponding zone must be resolvable via the IP version in question as well.
+                        If the name from an NS record for a zone is sibling domain, the corresponding zone needs to be resolvable via the IP version in question as well.
                         It is insufficient if the name pointed to by the NS record has an associated A or AAAA record correspondingly.<a href="#section-3.1-3.8" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
@@ -1369,7 +1369,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                         Parent zone not resolvable via one IP version:
           </dt>
           <dd style="margin-left: 1.5em" id="section-3.1-3.10">
-                        For a zone to be resolvable via an IP version the parent zones up to the root zone must be resolvable via that IP version as well.
+                        For a zone to be resolvable via an IP version the parent zones up to the root zone needs to be resolvable via that IP version as well.
                         Any zone not resolvable via the concerned IP version breaks the delegation chain for all its children.<a href="#section-3.1-3.10" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
@@ -1495,7 +1495,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                             Consistency:
           </dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.6">
-                            Both IPv4 and IPv6 transports should serve identical DNS data to ensure a consistent resolution experience across different network types.<a href="#section-4.1-2.6" class="pilcrow">¶</a>
+                            Both IPv4 and IPv6 transports <span class="bcp14">SHOULD</span> serve identical DNS data to ensure a consistent resolution experience across different network types.<a href="#section-4.1-2.6" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-2.7">
