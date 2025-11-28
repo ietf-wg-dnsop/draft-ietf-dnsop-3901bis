@@ -1423,13 +1423,18 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </dd>
           <dd class="break"></dd>
 <dt id="section-3.2-2.5">
-                        Broken IPv6 Connectivity at the Resolver
+                        Broken IP Connectivity at the Resolver
           </dt>
           <dd style="margin-left: 1.5em" id="section-3.2-2.6">
             <p id="section-3.2-2.6.1">
-                            Similar to authoritative servers, (stub) recursive resolvers may face broken IPv6 connectivity, e.g., if a client has been assigned a global unicast IPv6 address, but IPv6 traffic is not routed on the resolver's network.
-                            Furthermore, broken IPv6 connectivity may be encountered when IPv4-IPv6 transition technologies, e.g., NAT64 <span>[<a href="#RFC6146" class="cite xref">RFC6146</a>]</span> on IPv6-mostly networks <span>[<a href="#RFC9313" class="cite xref">RFC9313</a>]</span>, or NAT64 connectivity discovered through PREF64 <span>[<a href="#RFC8781" class="cite xref">RFC8781</a>]</span> or DNS64 <span>[<a href="#RFC7050" class="cite xref">RFC7050</a>]</span> on IPv6-only networks are in use.
-                            There, the synthesized IPv6 addresses used in 464XLAT <span>[<a href="#RFC6877" class="cite xref">RFC6877</a>]</span> encounter additional PMTU fluctuation due to the difference in header size between IPv4 and IPv6.<a href="#section-3.2-2.6.1" class="pilcrow">¶</a></p>
+                            Similar to authoritative servers, (stub) recursive resolvers may face broken IP connectivity for either IPv4 or IPv6:<a href="#section-3.2-2.6.1" class="pilcrow">¶</a></p>
+<p id="section-3.2-2.6.2">
+                            IPv4 connectivity for a DNS resolver may experience issues, e.g., if the resolver is behind a Carrier Grade NAT (CGN) <span>[<a href="#RFC6888" class="cite xref">RFC6888</a>]</span> setup that implements strict timeouts on active sessions, or limits the number of available ports for connections.
+                            Similarly,  <span>[<a href="#RFC1918" class="cite xref">RFC1918</a>]</span> addressing may be in use on the resolver, while address translation is not performed, or, similar to the case for IPv6, when the DNS resolver has a global IPv4 address, but that address is not routed on the resolver's network.<a href="#section-3.2-2.6.2" class="pilcrow">¶</a></p>
+<p id="section-3.2-2.6.3">
+                            IPv6 connectivity for a DNS resolver may experience issues, if, e.g., a client has been assigned a global unicast IPv6 address, but IPv6 traffic is not routed on the resolver's network.
+                            Similarly, IPv6 connectivity can experience issues when IPv4-IPv6 transition technologies, e.g., NAT64 <span>[<a href="#RFC6146" class="cite xref">RFC6146</a>]</span> on IPv6-mostly networks <span>[<a href="#RFC9313" class="cite xref">RFC9313</a>]</span>, or NAT64 connectivity discovered through PREF64 <span>[<a href="#RFC8781" class="cite xref">RFC8781</a>]</span> or DNS64 <span>[<a href="#RFC7050" class="cite xref">RFC7050</a>]</span> on IPv6-only networks are in use.
+                            There, the synthesized IPv6 addresses used in 464XLAT <span>[<a href="#RFC6877" class="cite xref">RFC6877</a>]</span> encounter additional PMTU fluctuation due to the difference in header size between IPv4 and IPv6, possibly impacting DNS resolution.<a href="#section-3.2-2.6.3" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -1590,7 +1595,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
 <p id="section-7-1">
-                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp S. Tiesel, Mark Andrews, Stefan Ubbink, Joey Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti, David Farmer, Pieter Lexis, Ralf Weber, Philip Homburg<a href="#section-7-1" class="pilcrow">¶</a></p>
+                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp S. Tiesel, Mark Andrews, Stefan Ubbink, Joey Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti, David Farmer, Pieter Lexis, Ralf Weber, Philip Homburg, Marco Davids<a href="#section-7-1" class="pilcrow">¶</a></p>
 <p id="section-7-2">
                 Thank you for reading this draft.<a href="#section-7-2" class="pilcrow">¶</a></p>
 </section>
@@ -1652,6 +1657,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt id="RFC6724">[RFC6724]</dt>
         <dd>
 <span class="refAuthor">Thaler, D., Ed.</span>, <span class="refAuthor">Draves, R.</span>, <span class="refAuthor">Matsumoto, A.</span>, and <span class="refAuthor">T. Chown</span>, <span class="refTitle">"Default Address Selection for Internet Protocol Version 6 (IPv6)"</span>, <span class="seriesInfo">RFC 6724</span>, <span class="seriesInfo">DOI 10.17487/RFC6724</span>, <time datetime="2012-09" class="refDate">September 2012</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc6724">https://www.rfc-editor.org/info/rfc6724</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6888">[RFC6888]</dt>
+        <dd>
+<span class="refAuthor">Perreault, S., Ed.</span>, <span class="refAuthor">Yamagata, I.</span>, <span class="refAuthor">Miyakawa, S.</span>, <span class="refAuthor">Nakagawa, A.</span>, and <span class="refAuthor">H. Ashida</span>, <span class="refTitle">"Common Requirements for Carrier-Grade NATs (CGNs)"</span>, <span class="seriesInfo">BCP 127</span>, <span class="seriesInfo">RFC 6888</span>, <span class="seriesInfo">DOI 10.17487/RFC6888</span>, <time datetime="2013-04" class="refDate">April 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc6888">https://www.rfc-editor.org/info/rfc6888</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6891">[RFC6891]</dt>
         <dd>
