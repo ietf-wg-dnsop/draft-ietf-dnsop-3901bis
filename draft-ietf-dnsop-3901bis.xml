@@ -166,8 +166,8 @@
                         Missing GLUE:
                     </dt>
                     <dd>
-                        If the name from an NS record for a zone is in-domain, i.e., the name is within the zone or below, a parent zone must contain both IPv4 and IPv6 GLUE records.
-                        A parent must serve the corresponding A and AAAA records as ADDITIONAL data when returning the NS record(s) as the referral response <xref target="RFC9471"/>.
+                        If the name from an NS record for a zone is in-domain, i.e., the name is within the zone or below, a parent zone needs to contain both IPv4 and IPv6 GLUE records.
+                        A parent needs to serve the corresponding A and AAAA records as ADDITIONAL data when returning the NS record(s) as the referral response <xref target="RFC9471"/>.
                     </dd>
                     <dt>
                         No A/AAAA record for in-domain NS:
@@ -179,14 +179,14 @@
                         Zone of sibling domain NSes not resolving:
                     </dt>
                     <dd>
-                        If the name from an NS record for a zone is sibling domain, the corresponding zone must be resolvable via the IP version in question as well.
+                        If the name from an NS record for a zone is sibling domain, the corresponding zone needs to be resolvable via the IP version in question as well.
                         It is insufficient if the name pointed to by the NS record has an associated A or AAAA record correspondingly.
                     </dd>
                     <dt>
                         Parent zone not resolvable via one IP version:
                     </dt>
                     <dd>
-                        For a zone to be resolvable via an IP version the parent zones up to the root zone must be resolvable via that IP version as well.
+                        For a zone to be resolvable via an IP version the parent zones up to the root zone needs to be resolvable via that IP version as well.
                         Any zone not resolvable via the concerned IP version breaks the delegation chain for all its children.
                     </dd>
                 </dl>
