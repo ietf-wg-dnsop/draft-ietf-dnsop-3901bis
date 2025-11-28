@@ -236,7 +236,7 @@
                         <t>
                             <xref target="RFC9715"/> does not provide explicit guidance on mitigating this issue.
                             However, transfering the guidance from <xref target="RFC9715"/>, setting an MSS of 1388 octets would reduce the impact of this issue.
-                            It is therefore <bcp14>RECOMMENDED</bcp14> that DNS servers set an MSS of no more than 1388 octets for TCP connections.
+                            Hence, DNS servers <bcp14>MAY</bcp14> set an MSS of no more than 1388 octets for TCP connections.
                             Similarly, aligned with the recommendations of the <xref target="DNSFlagDay2020"/>, DNS servers <bcp14>MAY</bcp14> ensure that a total packet size of 1280 octets is not exceeded by setting an MSS of 1220 octets.
                             Additionally, DNS servers <bcp14>MAY</bcp14> opt to set IPV6_USE_MIN_MTU=1 from RFC3542 <xref target="RFC3542"/>.
                         </t>
@@ -314,7 +314,7 @@
                             IP fragmentation has been reported to be fragile <xref target="RFC8900"/>.
                             Furthermore, IPv6 transition technologies can introduce unexpected MTU breaks, e.g., when NAT64 is used <xref target="RFC7269"/>.
                             Therefore, IP fragmentation <bcp14>SHOULD</bcp14> be avoided by following guidance on maximum DNS payload sizes <xref target="RFC9715"/> and providing TCP fall-back options <xref target="RFC7766"/>.
-                            Furthermore, similar to the guidance in <xref target="RFC9715"/>, it is <bcp14>RECOMMENDED</bcp14> that authoritative DNS servers sets an MSS of 1220 in TCP sessions carrying DNS responses.
+                            Furthermore, similar to the guidance in <xref target="RFC9715"/>, authoritative DNS servers <bcp14>MAY</bcp14> set an MSS of either 1388 (analogous to <xref target="RFC9715"/>) or 1220 (analogous to the <xref target="DNSFlagDay2020"/> suggestions) in TCP sessions carrying DNS responses.
                     </dd>
                 </dl>
                 <t>
