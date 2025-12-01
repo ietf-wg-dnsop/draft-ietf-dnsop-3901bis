@@ -1443,8 +1443,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
                     <span>[<a href="#RFC9539" class="cite xref">RFC9539</a>]</span> documents the opportunistic use of several other transport methods between recursive and authoritative DNS severs, including DNS over various encrypted transports.
                     Some of these technologies provide additional mechanisms for preventing the impact of a reduced PMTU or MTU blackholes.
                     Guidance in this document focuses on IP version support, and questions of the underlying transport protocol (TCP or UDP).
-                    If DNS servers use an additional protocol layer, e.g., DNS-over-TLS <span>[<a href="#RFC7858" class="cite xref">RFC7858</a>]</span> or DNS-over-QUIC <span>[<a href="#RFC9250" class="cite xref">RFC9250</a>]</span>, for their communication, and that protocol supports additional measures to prevent fragmentation on the IP layer, these measures <span class="bcp14">SHOULD</span> be used for the connection.
-                    Otherwise, the above guidance for TCP and UDP based connections should be applied analogously.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+                    If DNS servers use an additional protocol layer, e.g., DNS-over-TLS <span>[<a href="#RFC7858" class="cite xref">RFC7858</a>]</span> or DNS-over-QUIC <span>[<a href="#RFC9250" class="cite xref">RFC9250</a>]</span>, for their communication, and that protocol supports additional measures to prevent fragmentation on the IP layer related issues, these measures <span class="bcp14">SHOULD</span> be used for the connection.
+                    Otherwise, if the protocol is not resilient to IP layer fragmentation related issues by default, the above guidance for TCP and UDP based connections <span class="bcp14">SHOULD</span> be applied analogously.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="reasons-for-intentional-ip-version-related-name-space-fragmentation">

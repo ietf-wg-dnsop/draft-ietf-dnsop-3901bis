@@ -324,9 +324,10 @@ Table of Contents
    servers use an additional protocol layer, e.g., DNS-over-TLS
    [RFC7858] or DNS-over-QUIC [RFC9250], for their communication, and
    that protocol supports additional measures to prevent fragmentation
-   on the IP layer, these measures SHOULD be used for the connection.
-   Otherwise, the above guidance for TCP and UDP based connections
-   should be applied analogously.
+   on the IP layer related issues, these measures SHOULD be used for the
+   connection.  Otherwise, if the protocol is not resilient to IP layer
+   fragmentation related issues by default, the above guidance for TCP
+   and UDP based connections SHOULD be applied analogously.
 
 3.3.  Reasons for Intentional IP Version Related Name Space
       Fragmentation
