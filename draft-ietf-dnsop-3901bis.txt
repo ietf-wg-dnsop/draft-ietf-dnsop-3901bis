@@ -6,7 +6,7 @@ dnsop                                                             Momoka
 Internet-Draft                                              WIDE Project
 Obsoletes: 3901 (if approved)                                  T. Fiebig
 Intended status: Best Current Practice                           MPI-INF
-Expires: 1 June 2026                                    28 November 2025
+Expires: 4 June 2026                                     1 December 2025
 
 
                DNS IPv6 Transport Operational Guidelines
@@ -47,7 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 June 2026.
+   This Internet-Draft will expire on 4 June 2026.
 
 Copyright Notice
 
@@ -313,6 +313,21 @@ Table of Contents
       difference in header size between IPv4 and IPv6, possibly
       impacting DNS resolution.
 
+   Note: Please note that this document only explicitly discusses DNS-
+   over-TCP and DNS-over-UDP.  [RFC9539] documents the opportunistic use
+   of several other transport methods between recursive and
+   authoritative DNS severs, including DNS over various encrypted
+   transports.  Some of these technologies provide additional mechanisms
+   for preventing the impact of a reduced PMTU or MTU blackholes.
+   Guidance in this document focuses on IP version support, and
+   questions of the underlying transport protocol (TCP or UDP).  If DNS
+   servers use an additional protocol layer, e.g., DNS-over-TLS
+   [RFC7858] or DNS-over-QUIC [RFC9250], for their communication, and
+   that protocol supports additional measures to prevent fragmentation
+   on the IP layer, these measures SHOULD be used for the connection.
+   Otherwise, the above guidance for TCP and UDP based connections
+   should be applied analogously.
+
 3.3.  Reasons for Intentional IP Version Related Name Space
       Fragmentation
 
@@ -482,13 +497,6 @@ References
 
 Normative References
 
-   [I-D.ietf-dnsop-ns-revalidation]
-              Huque, S., Vixie, P. A., and W. Toorop, "Delegation
-              Revalidation by DNS Resolvers", Work in Progress,
-              Internet-Draft, draft-ietf-dnsop-ns-revalidation-11, 19
-              October 2025, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-dnsop-ns-revalidation-11>.
-
    [RFC1035]  Mockapetris, P., "Domain names - implementation and
               specification", STD 13, RFC 1035, DOI 10.17487/RFC1035,
               November 1987, <https://www.rfc-editor.org/info/rfc1035>.
@@ -555,6 +563,11 @@ Normative References
               Requirements", RFC 7766, DOI 10.17487/RFC7766, March 2016,
               <https://www.rfc-editor.org/info/rfc7766>.
 
+   [RFC7858]  Hu, Z., Zhu, L., Heidemann, J., Mankin, A., Wessels, D.,
+              and P. Hoffman, "Specification for DNS over Transport
+              Layer Security (TLS)", RFC 7858, DOI 10.17487/RFC7858, May
+              2016, <https://www.rfc-editor.org/info/rfc7858>.
+
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
@@ -580,6 +593,11 @@ Normative References
               DOI 10.17487/RFC9210, March 2022,
               <https://www.rfc-editor.org/info/rfc9210>.
 
+   [RFC9250]  Huitema, C., Dickinson, S., and A. Mankin, "DNS over
+              Dedicated QUIC Connections", RFC 9250,
+              DOI 10.17487/RFC9250, May 2022,
+              <https://www.rfc-editor.org/info/rfc9250>.
+
    [RFC9471]  Andrews, M., Huque, S., Wouters, P., and D. Wessels, "DNS
               Glue Requirements in Referral Responses", RFC 9471,
               DOI 10.17487/RFC9471, September 2023,
@@ -589,6 +607,13 @@ Informative References
 
    [DNSFlagDay2020]
               "DNS flag day 2020", <https://dnsflagday.net/2020/>.
+
+   [I-D.ietf-dnsop-ns-revalidation]
+              Huque, S., Vixie, P. A., and W. Toorop, "Delegation
+              Revalidation by DNS Resolvers", Work in Progress,
+              Internet-Draft, draft-ietf-dnsop-ns-revalidation-11, 19
+              October 2025, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-dnsop-ns-revalidation-11>.
 
    [IANANS]   IANA, "Technical requirements for authoritative name
               servers",
@@ -637,6 +662,12 @@ Informative References
    [RFC9499]  Hoffman, P. and K. Fujiwara, "DNS Terminology", BCP 219,
               RFC 9499, DOI 10.17487/RFC9499, March 2024,
               <https://www.rfc-editor.org/info/rfc9499>.
+
+   [RFC9539]  Gillmor, D. K., Ed., Salazar, J., Ed., and P. Hoffman,
+              Ed., "Unilateral Opportunistic Deployment of Encrypted
+              Recursive-to-Authoritative DNS", RFC 9539,
+              DOI 10.17487/RFC9539, February 2024,
+              <https://www.rfc-editor.org/info/rfc9539>.
 
    [RFC9715]  Fujiwara, K. and P. Vixie, "IP Fragmentation Avoidance in
               DNS over UDP", RFC 9715, DOI 10.17487/RFC9715, January

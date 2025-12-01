@@ -1052,11 +1052,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">3901bis</td>
-<td class="right">November 2025</td>
+<td class="right">December 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Momoka &amp; Fiebig</td>
-<td class="center">Expires 1 June 2026</td>
+<td class="center">Expires 4 June 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1072,12 +1072,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="https://www.rfc-editor.org/rfc/rfc3901" class="eref">3901</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-11-28" class="published">28 November 2025</time>
+<time datetime="2025-12-01" class="published">1 December 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Best Current Practice</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-06-01">1 June 2026</time></dd>
+<dd class="expires"><time datetime="2026-06-04">4 June 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1128,7 +1128,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 1 June 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 4 June 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1438,6 +1438,13 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </dd>
         <dd class="break"></dd>
 </dl>
+<p id="section-3.2-3">
+                    Note: Please note that this document only explicitly discusses DNS-over-TCP and DNS-over-UDP.
+                    <span>[<a href="#RFC9539" class="cite xref">RFC9539</a>]</span> documents the opportunistic use of several other transport methods between recursive and authoritative DNS severs, including DNS over various encrypted transports.
+                    Some of these technologies provide additional mechanisms for preventing the impact of a reduced PMTU or MTU blackholes.
+                    Guidance in this document focuses on IP version support, and questions of the underlying transport protocol (TCP or UDP).
+                    If DNS servers use an additional protocol layer, e.g., DNS-over-TLS <span>[<a href="#RFC7858" class="cite xref">RFC7858</a>]</span> or DNS-over-QUIC <span>[<a href="#RFC9250" class="cite xref">RFC9250</a>]</span>, for their communication, and that protocol supports additional measures to prevent fragmentation on the IP layer, these measures <span class="bcp14">SHOULD</span> be used for the connection.
+                    Otherwise, the above guidance for TCP and UDP based connections should be applied analogously.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="reasons-for-intentional-ip-version-related-name-space-fragmentation">
@@ -1610,10 +1617,6 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
-<dt id="I-D.ietf-dnsop-ns-revalidation">[I-D.ietf-dnsop-ns-revalidation]</dt>
-        <dd>
-<span class="refAuthor">Huque, S.</span>, <span class="refAuthor">Vixie, P. A.</span>, and <span class="refAuthor">W. Toorop</span>, <span class="refTitle">"Delegation Revalidation by DNS Resolvers"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-dnsop-ns-revalidation-11</span>, <time datetime="2025-10-19" class="refDate">19 October 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-dnsop-ns-revalidation-11">https://datatracker.ietf.org/doc/html/draft-ietf-dnsop-ns-revalidation-11</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC1035">[RFC1035]</dt>
         <dd>
 <span class="refAuthor">Mockapetris, P.</span>, <span class="refTitle">"Domain names - implementation and specification"</span>, <span class="seriesInfo">STD 13</span>, <span class="seriesInfo">RFC 1035</span>, <span class="seriesInfo">DOI 10.17487/RFC1035</span>, <time datetime="1987-11" class="refDate">November 1987</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc1035">https://www.rfc-editor.org/info/rfc1035</a>&gt;</span>. </dd>
@@ -1670,6 +1673,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <dd>
 <span class="refAuthor">Dickinson, J.</span>, <span class="refAuthor">Dickinson, S.</span>, <span class="refAuthor">Bellis, R.</span>, <span class="refAuthor">Mankin, A.</span>, and <span class="refAuthor">D. Wessels</span>, <span class="refTitle">"DNS Transport over TCP - Implementation Requirements"</span>, <span class="seriesInfo">RFC 7766</span>, <span class="seriesInfo">DOI 10.17487/RFC7766</span>, <time datetime="2016-03" class="refDate">March 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7766">https://www.rfc-editor.org/info/rfc7766</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC7858">[RFC7858]</dt>
+        <dd>
+<span class="refAuthor">Hu, Z.</span>, <span class="refAuthor">Zhu, L.</span>, <span class="refAuthor">Heidemann, J.</span>, <span class="refAuthor">Mankin, A.</span>, <span class="refAuthor">Wessels, D.</span>, and <span class="refAuthor">P. Hoffman</span>, <span class="refTitle">"Specification for DNS over Transport Layer Security (TLS)"</span>, <span class="seriesInfo">RFC 7858</span>, <span class="seriesInfo">DOI 10.17487/RFC7858</span>, <time datetime="2016-05" class="refDate">May 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7858">https://www.rfc-editor.org/info/rfc7858</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
         <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
@@ -1690,6 +1697,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <dd>
 <span class="refAuthor">Kristoff, J.</span> and <span class="refAuthor">D. Wessels</span>, <span class="refTitle">"DNS Transport over TCP - Operational Requirements"</span>, <span class="seriesInfo">BCP 235</span>, <span class="seriesInfo">RFC 9210</span>, <span class="seriesInfo">DOI 10.17487/RFC9210</span>, <time datetime="2022-03" class="refDate">March 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9210">https://www.rfc-editor.org/info/rfc9210</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC9250">[RFC9250]</dt>
+        <dd>
+<span class="refAuthor">Huitema, C.</span>, <span class="refAuthor">Dickinson, S.</span>, and <span class="refAuthor">A. Mankin</span>, <span class="refTitle">"DNS over Dedicated QUIC Connections"</span>, <span class="seriesInfo">RFC 9250</span>, <span class="seriesInfo">DOI 10.17487/RFC9250</span>, <time datetime="2022-05" class="refDate">May 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9250">https://www.rfc-editor.org/info/rfc9250</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC9471">[RFC9471]</dt>
       <dd>
 <span class="refAuthor">Andrews, M.</span>, <span class="refAuthor">Huque, S.</span>, <span class="refAuthor">Wouters, P.</span>, and <span class="refAuthor">D. Wessels</span>, <span class="refTitle">"DNS Glue Requirements in Referral Responses"</span>, <span class="seriesInfo">RFC 9471</span>, <span class="seriesInfo">DOI 10.17487/RFC9471</span>, <time datetime="2023-09" class="refDate">September 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9471">https://www.rfc-editor.org/info/rfc9471</a>&gt;</span>. </dd>
@@ -1706,6 +1717,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt id="DNSFlagDay2020">[DNSFlagDay2020]</dt>
         <dd>
 <span class="refTitle">"DNS flag day 2020"</span>, <span>&lt;<a href="https://dnsflagday.net/2020/">https://dnsflagday.net/2020/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-dnsop-ns-revalidation">[I-D.ietf-dnsop-ns-revalidation]</dt>
+        <dd>
+<span class="refAuthor">Huque, S.</span>, <span class="refAuthor">Vixie, P. A.</span>, and <span class="refAuthor">W. Toorop</span>, <span class="refTitle">"Delegation Revalidation by DNS Resolvers"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-dnsop-ns-revalidation-11</span>, <time datetime="2025-10-19" class="refDate">19 October 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-dnsop-ns-revalidation-11">https://datatracker.ietf.org/doc/html/draft-ietf-dnsop-ns-revalidation-11</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="IANANS">[IANANS]</dt>
         <dd>
@@ -1746,6 +1761,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt id="RFC9499">[RFC9499]</dt>
         <dd>
 <span class="refAuthor">Hoffman, P.</span> and <span class="refAuthor">K. Fujiwara</span>, <span class="refTitle">"DNS Terminology"</span>, <span class="seriesInfo">BCP 219</span>, <span class="seriesInfo">RFC 9499</span>, <span class="seriesInfo">DOI 10.17487/RFC9499</span>, <time datetime="2024-03" class="refDate">March 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9499">https://www.rfc-editor.org/info/rfc9499</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9539">[RFC9539]</dt>
+        <dd>
+<span class="refAuthor">Gillmor, D. K., Ed.</span>, <span class="refAuthor">Salazar, J., Ed.</span>, and <span class="refAuthor">P. Hoffman, Ed.</span>, <span class="refTitle">"Unilateral Opportunistic Deployment of Encrypted Recursive-to-Authoritative DNS"</span>, <span class="seriesInfo">RFC 9539</span>, <span class="seriesInfo">DOI 10.17487/RFC9539</span>, <time datetime="2024-02" class="refDate">February 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9539">https://www.rfc-editor.org/info/rfc9539</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9715">[RFC9715]</dt>
         <dd>
