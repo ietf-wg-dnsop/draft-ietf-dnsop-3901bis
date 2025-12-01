@@ -264,8 +264,8 @@
                     <xref target="RFC9539"/> documents the opportunistic use of several other transport methods between recursive and authoritative DNS severs, including DNS over various encrypted transports.
                     Some of these technologies provide additional mechanisms for preventing the impact of a reduced PMTU or MTU blackholes.
                     Guidance in this document focuses on IP version support, and questions of the underlying transport protocol (TCP or UDP).
-                    If DNS servers use an additional protocol layer, e.g., DNS-over-TLS <xref target="RFC7858"/> or DNS-over-QUIC <xref target="RFC9250"/>, for their communication, and that protocol supports additional measures to prevent fragmentation on the IP layer, these measures <bcp14>SHOULD</bcp14> be used for the connection.
-                    Otherwise, the above guidance for TCP and UDP based connections should be applied analogously.
+                    If DNS servers use an additional protocol layer, e.g., DNS-over-TLS <xref target="RFC7858"/> or DNS-over-QUIC <xref target="RFC9250"/>, for their communication, and that protocol supports additional measures to prevent fragmentation on the IP layer related issues, these measures <bcp14>SHOULD</bcp14> be used for the connection.
+                    Otherwise, if the protocol is not resilient to IP layer fragmentation related issues by default, the above guidance for TCP and UDP based connections <bcp14>SHOULD</bcp14> be applied analogously.
                 </t>
             </section>
             <section anchor="reasons-for-intentional-ip-version-related-name-space-fragmentation">
