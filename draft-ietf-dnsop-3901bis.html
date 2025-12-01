@@ -1416,7 +1416,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                             In that case, similar to the case of DNS-over-UDP, DNS resolution will time out when the recursive DNS resolver did not receive a response in time.<a href="#section-3.2-2.4.1" class="pilcrow">¶</a></p>
 <p id="section-3.2-2.4.2">
                             <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span> does not provide explicit guidance on mitigating this issue.
-                            However, transfering the guidance from <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span>, setting an MSS of 1388 octets would reduce the impact of this issue.
+                            However, transferring the guidance from <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span>, setting an MSS of 1388 octets would reduce the impact of this issue.
                             Hence, DNS servers <span class="bcp14">MAY</span> set an MSS of no more than 1388 octets for TCP connections.
                             Similarly, aligned with the recommendations of the <span>[<a href="#DNSFlagDay2020" class="cite xref">DNSFlagDay2020</a>]</span>, DNS servers <span class="bcp14">MAY</span> ensure that a total packet size of 1280 octets is not exceeded by setting an MSS of 1220 octets.
                             Additionally, DNS servers <span class="bcp14">MAY</span> opt to set IPV6_USE_MIN_MTU=1 from RFC3542 <span>[<a href="#RFC3542" class="cite xref">RFC3542</a>]</span>.<a href="#section-3.2-2.4.2" class="pilcrow">¶</a></p>
