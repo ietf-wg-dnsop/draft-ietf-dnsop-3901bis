@@ -261,7 +261,7 @@
                 </dl>
                 <t>
                     Note: Please note that this document only explicitly discusses DNS-over-TCP and DNS-over-UDP.
-                    <xref target="RFC9539"/> documents the opportunistic use of several other transport methods between recursive and authoritative DNS severs, including DNS over various encrypted transports.
+                    However, several other transport methods between recursive and authoritative DNS severs exit, including DNS over various encrypted transports.
                     Some of these technologies provide additional mechanisms for preventing the impact of a reduced PMTU or MTU blackholes.
                     Guidance in this document focuses on IP version support, and questions of the underlying transport protocol (TCP or UDP).
                     If DNS servers use an additional protocol layer, e.g., DNS-over-TLS <xref target="RFC7858"/> or DNS-over-QUIC <xref target="RFC9250"/>, for their communication, and that protocol supports additional measures to prevent fragmentation on the IP layer related issues, these measures <bcp14>SHOULD</bcp14> be used for the connection.
@@ -449,7 +449,6 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9313.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9386.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9499.xml"/>
-                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9539.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9715.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9872.xml"/>
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-ns-revalidation.xml"/>
