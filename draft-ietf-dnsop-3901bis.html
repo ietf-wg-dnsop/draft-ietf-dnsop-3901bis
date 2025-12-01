@@ -1440,7 +1440,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </dl>
 <p id="section-3.2-3">
                     Note: Please note that this document only explicitly discusses DNS-over-TCP and DNS-over-UDP.
-                    However, several other transport methods between recursive and authoritative DNS severs exit, including DNS over various encrypted transports.
+                    However, several other transport methods between recursive and authoritative DNS severs exist, including DNS over various encrypted transports.
                     Some of these technologies provide additional mechanisms for preventing the impact of a reduced PMTU or MTU blackholes.
                     Guidance in this document focuses on IP version support, and questions of the underlying transport protocol (TCP or UDP).
                     If DNS servers use an additional protocol layer, e.g., DNS-over-TLS <span>[<a href="#RFC7858" class="cite xref">RFC7858</a>]</span> or DNS-over-QUIC <span>[<a href="#RFC9250" class="cite xref">RFC9250</a>]</span>, for their communication, and that protocol supports additional measures to prevent fragmentation on the IP layer related issues, these measures <span class="bcp14">SHOULD</span> be used for the connection.

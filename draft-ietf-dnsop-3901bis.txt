@@ -315,7 +315,7 @@ Table of Contents
 
    Note: Please note that this document only explicitly discusses DNS-
    over-TCP and DNS-over-UDP.  However, several other transport methods
-   between recursive and authoritative DNS severs exit, including DNS
+   between recursive and authoritative DNS severs exist, including DNS
    over various encrypted transports.  Some of these technologies
    provide additional mechanisms for preventing the impact of a reduced
    PMTU or MTU blackholes.  Guidance in this document focuses on IP
