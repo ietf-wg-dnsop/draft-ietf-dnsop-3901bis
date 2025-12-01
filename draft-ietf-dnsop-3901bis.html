@@ -1440,7 +1440,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </dl>
 <p id="section-3.2-3">
                     Note: Please note that this document only explicitly discusses DNS-over-TCP and DNS-over-UDP.
-                    <span>[<a href="#RFC9539" class="cite xref">RFC9539</a>]</span> documents the opportunistic use of several other transport methods between recursive and authoritative DNS severs, including DNS over various encrypted transports.
+                    However, several other transport methods between recursive and authoritative DNS severs exit, including DNS over various encrypted transports.
                     Some of these technologies provide additional mechanisms for preventing the impact of a reduced PMTU or MTU blackholes.
                     Guidance in this document focuses on IP version support, and questions of the underlying transport protocol (TCP or UDP).
                     If DNS servers use an additional protocol layer, e.g., DNS-over-TLS <span>[<a href="#RFC7858" class="cite xref">RFC7858</a>]</span> or DNS-over-QUIC <span>[<a href="#RFC9250" class="cite xref">RFC9250</a>]</span>, for their communication, and that protocol supports additional measures to prevent fragmentation on the IP layer related issues, these measures <span class="bcp14">SHOULD</span> be used for the connection.
@@ -1761,10 +1761,6 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt id="RFC9499">[RFC9499]</dt>
         <dd>
 <span class="refAuthor">Hoffman, P.</span> and <span class="refAuthor">K. Fujiwara</span>, <span class="refTitle">"DNS Terminology"</span>, <span class="seriesInfo">BCP 219</span>, <span class="seriesInfo">RFC 9499</span>, <span class="seriesInfo">DOI 10.17487/RFC9499</span>, <time datetime="2024-03" class="refDate">March 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9499">https://www.rfc-editor.org/info/rfc9499</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC9539">[RFC9539]</dt>
-        <dd>
-<span class="refAuthor">Gillmor, D. K., Ed.</span>, <span class="refAuthor">Salazar, J., Ed.</span>, and <span class="refAuthor">P. Hoffman, Ed.</span>, <span class="refTitle">"Unilateral Opportunistic Deployment of Encrypted Recursive-to-Authoritative DNS"</span>, <span class="seriesInfo">RFC 9539</span>, <span class="seriesInfo">DOI 10.17487/RFC9539</span>, <time datetime="2024-02" class="refDate">February 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9539">https://www.rfc-editor.org/info/rfc9539</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9715">[RFC9715]</dt>
         <dd>

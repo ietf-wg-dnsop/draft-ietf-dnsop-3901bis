@@ -314,20 +314,20 @@ Table of Contents
       impacting DNS resolution.
 
    Note: Please note that this document only explicitly discusses DNS-
-   over-TCP and DNS-over-UDP.  [RFC9539] documents the opportunistic use
-   of several other transport methods between recursive and
-   authoritative DNS severs, including DNS over various encrypted
-   transports.  Some of these technologies provide additional mechanisms
-   for preventing the impact of a reduced PMTU or MTU blackholes.
-   Guidance in this document focuses on IP version support, and
-   questions of the underlying transport protocol (TCP or UDP).  If DNS
-   servers use an additional protocol layer, e.g., DNS-over-TLS
-   [RFC7858] or DNS-over-QUIC [RFC9250], for their communication, and
-   that protocol supports additional measures to prevent fragmentation
-   on the IP layer related issues, these measures SHOULD be used for the
-   connection.  Otherwise, if the protocol is not resilient to IP layer
-   fragmentation related issues by default, the above guidance for TCP
-   and UDP based connections SHOULD be applied analogously.
+   over-TCP and DNS-over-UDP.  However, several other transport methods
+   between recursive and authoritative DNS severs exit, including DNS
+   over various encrypted transports.  Some of these technologies
+   provide additional mechanisms for preventing the impact of a reduced
+   PMTU or MTU blackholes.  Guidance in this document focuses on IP
+   version support, and questions of the underlying transport protocol
+   (TCP or UDP).  If DNS servers use an additional protocol layer, e.g.,
+   DNS-over-TLS [RFC7858] or DNS-over-QUIC [RFC9250], for their
+   communication, and that protocol supports additional measures to
+   prevent fragmentation on the IP layer related issues, these measures
+   SHOULD be used for the connection.  Otherwise, if the protocol is not
+   resilient to IP layer fragmentation related issues by default, the
+   above guidance for TCP and UDP based connections SHOULD be applied
+   analogously.
 
 3.3.  Reasons for Intentional IP Version Related Name Space
       Fragmentation
@@ -663,12 +663,6 @@ Informative References
    [RFC9499]  Hoffman, P. and K. Fujiwara, "DNS Terminology", BCP 219,
               RFC 9499, DOI 10.17487/RFC9499, March 2024,
               <https://www.rfc-editor.org/info/rfc9499>.
-
-   [RFC9539]  Gillmor, D. K., Ed., Salazar, J., Ed., and P. Hoffman,
-              Ed., "Unilateral Opportunistic Deployment of Encrypted
-              Recursive-to-Authoritative DNS", RFC 9539,
-              DOI 10.17487/RFC9539, February 2024,
-              <https://www.rfc-editor.org/info/rfc9539>.
 
    [RFC9715]  Fujiwara, K. and P. Vixie, "IP Fragmentation Avoidance in
               DNS over UDP", RFC 9715, DOI 10.17487/RFC9715, January
