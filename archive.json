@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-12-02T02:03:19.401005+00:00",
+  "timestamp": "2025-12-04T02:03:56.576072+00:00",
   "repo": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
   "labels": [
     {
@@ -1423,6 +1423,34 @@
       "mergedBy": "ichdasich",
       "mergeCommit": {
         "oid": "1900bceaa3a690ffd57b9ae3021a8968dd692827"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 40,
+      "id": "PR_kwDOOKHo_M62qkU2",
+      "title": "Updated misparsing sentence",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/40",
+      "state": "MERGED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-12-02T18:15:30Z",
+      "updatedAt": "2025-12-02T18:15:41Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "1900bceaa3a690ffd57b9ae3021a8968dd692827",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "tf_2025_12_02_grammar",
+      "headRefOid": "51f55ac1e30ab4b02859148dfd5a84c55758f2bb",
+      "closedAt": "2025-12-02T18:15:39Z",
+      "mergedAt": "2025-12-02T18:15:39Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "c1b6435cbea9a788794e64bcdf82709af51b2f25"
       },
       "comments": [],
       "reviews": []
