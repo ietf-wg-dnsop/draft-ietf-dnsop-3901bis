@@ -67,7 +67,7 @@
             <t>
                 <xref target="RFC3901"/> was initially written at a time when IPv6 deployment was not widespread, focusing primarily on maintaining name space continuity within the IPv4 landscape.
                 Two decades later, IPv6 is not only widely deployed but also becoming the de facto standard in many areas (mobile and access networks, data center underlays, etc.).
-                This document seeks to expand the scope of <xref target="RFC3901"/> by recommending IPv6 connectivity for authoritative DNS servers, as well as recursive and stub DNS resolvers.
+                This document expands the scope of <xref target="RFC3901"/> by recommending IPv6 connectivity for authoritative DNS servers, as well as recursive and stub DNS resolvers.
             </t>
             <t>
                 This document provides guidance on:
