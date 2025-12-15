@@ -202,7 +202,7 @@
                 <name>Network Conditions Causing IP Version Related Name Space Fragmentation</name>
                 <t>
                     In addition to explicit misconfigurations in the served DNS zones, network conditions may also influence a resolver's ability to resolve names in a zone.
-                    The most common issue here are packets requiring fragmentation given a reduced path MTU (PMTU) and MTU blackholes, i.e., packets being dropped on-path due to exceeding the MTU of the link to the next-hop without the sender being notified.
+                    The most common issue are packets requiring fragmentation given a reduced path MTU (PMTU) and MTU discards, i.e., packets being dropped on-path due to exceeding the MTU of the link to the next-hop without the sender being notified.
                     This can manifest in the following ways:
                 </t>
                 <dl newline="true" spacing="normal">
