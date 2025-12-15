@@ -57,12 +57,12 @@
             <name>Introduction</name>
             <t>
                 Despite IPv6 being first discussed since the mid-1990s <xref target="RFC2460"/>, consistent deployment throughout the whole Internet has not yet been accomplished <xref target="RFC9386"/>.
-                Hence, the Internet still consists of IPv4-only, dual-stack (networks supporting both IP versions), and IPv6-only networks.
+                Hence, the Internet still consists of IPv4-only, dual-stack (networks supporting both IP address families), and IPv6-only networks.
             </t>
             <t>
                 This creates a complex landscape where authoritative DNS servers might be accessible only via specific network protocols <xref target="V6DNSRDY-23"/>.
                 At the same time, DNS resolvers may only be able to access the Internet via either IPv4 or IPv6.
-                This poses a challenge for such resolvers because they may receive queries for names that have authoritative DNS servers which do not support the same IP version as the resolver.
+                This poses a challenge for such resolvers because they may receive queries for names that have authoritative DNS servers which do not support the same IP address family as the resolver.
             </t>
             <t>
                 <xref target="RFC3901"/> was initially written at a time when IPv6 deployment was not widespread, focusing primarily on maintaining name space continuity within the IPv4 landscape.
@@ -74,7 +74,7 @@
             </t>
             <ul spacing="normal">
                 <li>
-                    <t>IP version related name space fragmentation and best-practices for avoiding it.</t>
+                    <t>IP address family related name space fragmentation and best-practices for avoiding it.</t>
                 </li>
                 <li>
                     <t>Guidelines for configuring authoritative DNS servers for zones.</t>
@@ -137,30 +137,30 @@
                 If it is referred to a name server set that, based on the referral, only contains name servers that are exclusively reachable via an IP address family the resolver does not support, the resolver is unable to continue DNS resolution.
             </t>
             <t>
-                If this occurs, the DNS has, effectively, fragmented based on the recursive DNS resolver's and authoritative DNS server's mismatching IP version support.
+                If this occurs, the DNS has, effectively, fragmented based on the recursive DNS resolver's and authoritative DNS server's mismatching IP address family support.
             </t>
             <t>
                 In a mixed IP Internet, name space fragmentation can occur for different reasons.
                 One reason is that DNS zones are consistently configured to support only either IPv4 or IPv6.
                 Another reason is due to misconfigurations that make a zone unresolvable by either IPv4 or IPv6-only resolvers.
-                The latter cases are often hard to identify, as the impact of misconfigurations for only one IP version (IPv4 or IPv6) may be hidden in a dual-stack setting.
+                The latter cases are often hard to identify, as the impact of misconfigurations for only one IP address family (IPv4 or IPv6) may be hidden in a dual-stack setting.
                 In the worst case, a specific name may only be resolvable via dual-stack enabled resolvers.
             </t>
             <section anchor="misconfigurations-causing-ip-version-related-name-space-fragmentation">
                 <name>Misconfigurations Causing IP Version Related Name Space Fragmentation</name>
                 <t>
-                    Even when an administrator assumes that they have enabled support for a specific IP version on their authoritative DNS server, various misconfigurations may break the DNS delegation chain of a zone for that protocol and prevent any of its records from resolving for clients only supporting that IP version.
-                    These misconfigurations can be kept hidden if most clients can successfully fall back to the other IP version.
+                    Even when an administrator assumes that they have enabled support for a specific IP address family on their authoritative DNS server, various misconfigurations may break the DNS delegation chain of a zone for that protocol and prevent any of its records from resolving for clients only supporting that IP address family.
+                    These misconfigurations can be kept hidden if most clients can successfully fall back to the other IP address family.
                 </t>
                 <t>
-                    The following name related misconfigurations can cause broken delegation for one IP version:
+                    The following name related misconfigurations can cause broken delegation for one IP address family:
                 </t>
                 <dl newline="true" spacing="normal">
                     <dt>
                         No A/AAAA records for NS names:
                     </dt>
                     <dd>
-                        If all of the NS records for a zone in their parent zone have either only A records or only AAAA records, then resolution via the other IP version is not possible.
+                        If all of the NS records for a zone in their parent zone have either only A records or only AAAA records, then resolution via the other IP address family is not possible.
                     </dd>
                     <dt>
                         Missing GLUE:
@@ -173,21 +173,21 @@
                         No A/AAAA record for in-domain NS:
                     </dt>
                     <dd>
-                        If the parent provides GLUE records for both IP versions but the child zone itself lacks corresponding A or AAAA records for its in-domain name server names, resolution via the missing IP version will fail during delegation revalidation <xref target="I-D.ietf-dnsop-ns-revalidation"/>.
+                        If the parent provides GLUE records for both IP address families but the child zone itself lacks corresponding A or AAAA records for its in-domain name server names, resolution via the missing IP address family will fail during delegation revalidation <xref target="I-D.ietf-dnsop-ns-revalidation"/>.
                     </dd>
                     <dt>
                         Zone of sibling domain NSes not resolving:
                     </dt>
                     <dd>
-                        If the name from an NS record for a zone is sibling domain, the corresponding zone needs to be resolvable via the IP version in question as well.
+                        If the name from an NS record for a zone is sibling domain, the corresponding zone needs to be resolvable via the IP address family in question as well.
                         It is insufficient if the name pointed to by the NS record has an associated A or AAAA record correspondingly.
                     </dd>
                     <dt>
-                        Parent zone not resolvable via one IP version:
+                        Parent zone not resolvable via one IP address family:
                     </dt>
                     <dd>
-                        For a zone to be resolvable via an IP version the parent zones up to the root zone needs to be resolvable via that IP version as well.
-                        Any zone not resolvable via the concerned IP version breaks the delegation chain for all its children.
+                        For a zone to be resolvable via an IP address family the parent zones up to the root zone needs to be resolvable via that IP address family as well.
+                        Any zone not resolvable via the concerned IP address family breaks the delegation chain for all its children.
                     </dd>
                 </dl>
 
@@ -195,7 +195,7 @@
                     The above misconfigurations are not mutually exclusive.
                 </t>
                 <t>
-                    Furthermore, any of the misconfigurations above may not only materialize via a missing Resource Record (RR) but also via an RR providing the IP address of a name server that is not configured to answer queries via that IP version <xref target="V6DNSRDY-23"/>.
+                    Furthermore, any of the misconfigurations above may not only materialize via a missing Resource Record (RR) but also via an RR providing the IP address of a name server that is not configured to answer queries via that IP address family <xref target="V6DNSRDY-23"/>.
                 </t>
             </section>
             <section anchor="misconfigurations-causing-network-related-name-space-fragmentation">
@@ -263,7 +263,7 @@
                     Note: Please note that this document only explicitly discusses DNS-over-TCP and DNS-over-UDP.
                     However, several other transport methods between recursive and authoritative DNS severs exist, including DNS over various encrypted transports.
                     Some of these technologies provide additional mechanisms for preventing the impact of a reduced PMTU or MTU blackholes.
-                    Guidance in this document focuses on IP version support, and questions of the underlying transport protocol (TCP or UDP).
+                    Guidance in this document focuses on IP address family support, and questions of the underlying transport protocol (TCP or UDP).
                     If DNS servers use an additional protocol layer, e.g., DNS-over-TLS <xref target="RFC7858"/> or DNS-over-QUIC <xref target="RFC9250"/>, for their communication, and that protocol supports additional measures to prevent fragmentation on the IP layer related issues, these measures <bcp14>SHOULD</bcp14> be used for the connection.
                     Otherwise, if the protocol is not resilient to IP layer fragmentation related issues by default, the above guidance for TCP and UDP based connections <bcp14>SHOULD</bcp14> be applied analogously.
                 </t>
@@ -286,7 +286,7 @@
                 Hence, at the moment, dual stack connectivity is instrumental to be able to resolve zones and avoid name space fragmentation.
             </t>
             <t>
-                Having zones served only by name servers reachable via one IP version would fragment the DNS.
+                Having zones served only by name servers reachable via one IP address family would fragment the DNS.
                 Hence, we need to find a way to avoid this fragmentation.
             </t>
             <t>
