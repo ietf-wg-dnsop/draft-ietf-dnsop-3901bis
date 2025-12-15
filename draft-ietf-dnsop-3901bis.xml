@@ -249,7 +249,7 @@
                             Similar to authoritative servers, (stub) recursive resolvers may face broken IP connectivity for either IPv4 or IPv6:
                         </t>
                         <t>
-                            IPv4 connectivity for a DNS resolver may experience issues, e.g., if the resolver is deployed behind a Carrier Grade NAT (CGN) <xref target="RFC6888"/> that implements strict timeouts on active sessions, or limits the number of available TCP and UDP ports for connections below the number required for recursive DNS resolution.
+                            IPv4 connectivity for a DNS resolver may experience issues, e.g., if the resolver is deployed behind a Carrier Grade NAT (CGN) <xref target="RFC6888"/> that implements strict timeouts on active sessions, or limits the number of available TCP and UDP ports numbers for connections below the number required by the multiple connections necessary during recursive DNS resolution.
                             Similarly,  <xref target="RFC1918"/> addressing may be in use on the resolver, while address translation is not performed, or, similar to the case for IPv6, when the DNS resolver has a global IPv4 address, but that address is not routed on the resolver's network.
                         </t>
                         <t>
