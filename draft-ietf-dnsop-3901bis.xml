@@ -222,7 +222,8 @@
                             Hence, DNS servers <bcp14>MAY</bcp14> opt to set an EDNS(0) size of 1232 octets following <xref target="DNSFlagDay2020"/>.
                         </t>
                         <t>
-                            Additionally, DNS servers <bcp14>MAY</bcp14> opt to explicitly not rely on path MTU discovery <xref target="RFC4821"/> or PLPMTUD <xref target="RFC8899"/>, by instead using IPV6_USE_MIN_MTU=1 from <xref target="RFC3542"/> to avoid the need to perform PMTU discovery.
+                            Additionally, DNS servers <bcp14>MAY</bcp14> opt to explicitly not rely on path MTU discovery <xref target="RFC4821"/> or PLPMTUD <xref target="RFC8899"/>.
+                            It can do so, for example, by setting IPV6_USE_MIN_MTU=1 from <xref target="RFC3542"/> to avoid the need to perform PMTU discovery.
                         </t>
                     </dd>
                     <dt>
@@ -239,7 +240,8 @@
                             However, transferring the guidance from <xref target="RFC9715"/>, setting an MSS of 1388 octets would reduce the impact of this issue.
                             Hence, DNS servers <bcp14>MAY</bcp14> set an MSS of no more than 1388 octets for TCP connections.
                             Similarly, aligned with the recommendations of the <xref target="DNSFlagDay2020"/>, DNS servers <bcp14>MAY</bcp14> ensure that a total packet size of 1280 octets is not exceeded by setting an MSS of 1220 octets.
-                            Additionally, DNS servers <bcp14>MAY</bcp14> opt to set IPV6_USE_MIN_MTU=1 from <xref target="RFC3542"/>.
+                            Additionally, DNS servers <bcp14>MAY</bcp14> opt to not rely on PMTU discovery.
+                            It can do so, for example, by setting IPV6_USE_MIN_MTU=1 from <xref target="RFC3542"/>.
                         </t>
                     </dd>
                     <dt>
@@ -429,7 +431,6 @@
                 <name>Normative References</name>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.1035.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.2119.xml"/>
-                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.3542.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4821.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6724.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6891.xml"/>
@@ -445,6 +446,7 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.1918.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.2131.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.2460.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.3542.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.3901.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4034.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6146.xml"/>
