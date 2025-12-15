@@ -140,9 +140,9 @@
                 If this occurs, the DNS has, effectively, fragmented based on the recursive DNS resolver's and authoritative DNS server's mismatching IP address family support.
             </t>
             <t>
-                In a mixed IP Internet, name space fragmentation can occur for different reasons.
+                With the deployment of both IPv4 and IPv6, name space fragmentation can occur for different reasons.
                 One reason is that DNS zones are consistently configured to support only either IPv4 or IPv6.
-                Another reason is due to misconfigurations that make a zone unresolvable by either IPv4 or IPv6-only resolvers.
+                Another reason is due to misconfigurations that make a zone unresolvable by either IPv4-only or IPv6-only resolvers.
                 The latter cases are often hard to identify, as the impact of misconfigurations for only one IP address family (IPv4 or IPv6) may be hidden in a dual-stack setting.
                 In the worst case, a specific name may only be resolvable via dual-stack enabled resolvers.
             </t>
