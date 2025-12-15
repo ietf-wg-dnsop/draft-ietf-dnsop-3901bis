@@ -144,7 +144,7 @@
                 One reason is that DNS zones are consistently configured to support only either IPv4 or IPv6.
                 Another reason is due to misconfigurations that make a zone unresolvable by either IPv4-only or IPv6-only resolvers.
                 The latter cases are often hard to identify, as the impact of misconfigurations for only one IP address family (IPv4 or IPv6) may be hidden in a dual-stack setting.
-                In the worst case, a specific name may only be resolvable via dual-stack enabled resolvers.
+                In the worst case, i.e., requiring both IP address families to be fully supported by a resolver, a specific name may only be resolvable via dual-stack enabled resolvers.
             </t>
             <section anchor="misconfigurations-causing-ip-version-related-name-space-fragmentation">
                 <name>Misconfigurations Causing IP Version Related Name Space Fragmentation</name>
