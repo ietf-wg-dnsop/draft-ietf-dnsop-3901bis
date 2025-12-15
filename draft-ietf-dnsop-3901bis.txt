@@ -14,16 +14,17 @@ Expires: 18 June 2026                                   15 December 2025
 
 Abstract
 
-   This memo provides guidelines and documents Best Current Practice for
-   operating authoritative DNS servers as well as recursive and stub DNS
-   resolvers, given that queries and responses are carried in a mixed
-   environment of IPv4 and IPv6 networks.  This document recommends that
-   authoritative DNS servers as well as recursive DNS resolvers support
-   both IPv4 and IPv6.  It furthermore provides guidance for how
-   recursive DNS resolvers should select upstream DNS servers, if both
-   native and IPv4-embedded IPv6 addresses are available.
+   This document provides guidelines and documents Best Current Practice
+   for operating authoritative DNS servers as well as recursive and stub
+   DNS resolvers, given that queries and responses are carried in a
+   mixed environment of IPv4 and IPv6 networks.  This document
+   recommends that authoritative DNS servers as well as recursive DNS
+   resolvers support both IPv4 and IPv6.  It furthermore provides
+   guidance for how recursive DNS resolvers should select upstream DNS
+   servers, if both native and IPv4-embedded IPv6 addresses are
+   available.
 
-   This document obsoletes [RFC3901].
+   This document obsoletes RFC 3901.
 
 Discussion Venues
 
@@ -85,7 +86,7 @@ Table of Contents
    References
      Normative References
      Informative References
-   Appendix A.  Changes since RFC3901
+   Appendix A.  Changes Since RFC3901
    Authors' Addresses
 
 1.  Introduction
@@ -130,6 +131,8 @@ Table of Contents
    flexible approach.  This approach allows resolvers to retrieve the
    information they need without requiring intermediary translation or
    encapsulation services which may introduce additional failure cases.
+
+   Refer to Appendix A for an overview of main changes since [RFC3901].
 
 1.1.  Requirements Language
 
@@ -180,9 +183,9 @@ Table of Contents
    either IPv4-only or IPv6-only resolvers.  The latter cases are often
    hard to identify, as the impact of misconfigurations for only one IP
    address family (IPv4 or IPv6) may be hidden in a dual-stack setting.
-   In the worst case, i.e., requiring both IP address families to be
-   fully supported by a resolver, a specific name may only be resolvable
-   via dual-stack enabled resolvers.
+   In the worst case (i.e., requiring both IP address families to be
+   fully supported by a resolver), a specific name may only be
+   resolvable via dual-stack enabled resolvers.
 
 3.1.  Misconfigurations Causing IP Address Family Related Name Space
       Fragmentation
@@ -527,10 +530,6 @@ Normative References
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
-   [RFC2131]  Droms, R., "Dynamic Host Configuration Protocol",
-              RFC 2131, DOI 10.17487/RFC2131, March 1997,
-              <https://www.rfc-editor.org/info/rfc2131>.
-
    [RFC3542]  Stevens, W., Thomas, M., Nordmark, E., and T. Jinmei,
               "Advanced Sockets Application Program Interface (API) for
               IPv6", RFC 3542, DOI 10.17487/RFC3542, May 2003,
@@ -554,11 +553,6 @@ Normative References
               D. Wessels, "DNS Transport over TCP - Implementation
               Requirements", RFC 7766, DOI 10.17487/RFC7766, March 2016,
               <https://www.rfc-editor.org/info/rfc7766>.
-
-   [RFC8106]  Jeong, J., Park, S., Beloeil, L., and S. Madanapalli,
-              "IPv6 Router Advertisement Options for DNS Configuration",
-              RFC 8106, DOI 10.17487/RFC8106, March 2017,
-              <https://www.rfc-editor.org/info/rfc8106>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
@@ -609,6 +603,10 @@ Informative References
               Internets", BCP 5, RFC 1918, DOI 10.17487/RFC1918,
               February 1996, <https://www.rfc-editor.org/info/rfc1918>.
 
+   [RFC2131]  Droms, R., "Dynamic Host Configuration Protocol",
+              RFC 2131, DOI 10.17487/RFC2131, March 1997,
+              <https://www.rfc-editor.org/info/rfc2131>.
+
    [RFC2460]  Deering, S. and R. Hinden, "Internet Protocol, Version 6
               (IPv6) Specification", RFC 2460, DOI 10.17487/RFC2460,
               December 1998, <https://www.rfc-editor.org/info/rfc2460>.
@@ -651,6 +649,11 @@ Informative References
               and P. Hoffman, "Specification for DNS over Transport
               Layer Security (TLS)", RFC 7858, DOI 10.17487/RFC7858, May
               2016, <https://www.rfc-editor.org/info/rfc7858>.
+
+   [RFC8106]  Jeong, J., Park, S., Beloeil, L., and S. Madanapalli,
+              "IPv6 Router Advertisement Options for DNS Configuration",
+              RFC 8106, DOI 10.17487/RFC8106, March 2017,
+              <https://www.rfc-editor.org/info/rfc8106>.
 
    [RFC8415]  Mrugalski, T., Siodelski, M., Volz, B., Yourtchenko, A.,
               Richardson, M., Jiang, S., Lemon, T., and T. Winters,
@@ -708,9 +711,10 @@ Informative References
               <https://link.springer.com/
               chapter/10.1007/978-3-031-28486-1_22>.
 
-Appendix A.  Changes since [RFC3901]
+Appendix A.  Changes Since [RFC3901]
 
-   This memo has the following changes from [RFC3901].
+   The following changes have been made to the guidance published in
+   [RFC3901]:
 
    *  Expanded the terminology section, also taking considerations from
       [RFC9499] into account.

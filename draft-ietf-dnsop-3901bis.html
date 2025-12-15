@@ -9,12 +9,12 @@
 <meta content="Tobias Fiebig" name="author">
 <meta content="
        
-                This memo provides guidelines and documents Best Current Practice for operating authoritative DNS servers as well as recursive and stub DNS resolvers, given that queries and responses are carried in a mixed environment of IPv4 and IPv6 networks.
+                This document provides guidelines and documents Best Current Practice for operating authoritative DNS servers as well as recursive and stub DNS resolvers, given that queries and responses are carried in a mixed environment of IPv4 and IPv6 networks.
                 This document recommends that authoritative DNS servers as well as recursive DNS resolvers support both IPv4 and IPv6.
                 It furthermore provides guidance for how recursive DNS resolvers should select upstream DNS servers, if both native and IPv4-embedded IPv6 addresses are available.
        
        
-                This document obsoletes  .
+                This document obsoletes  RFC 3901.
        
     " name="description">
 <meta content="xml2rfc 3.31.0" name="generator">
@@ -1095,11 +1095,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">
-                This memo provides guidelines and documents Best Current Practice for operating authoritative DNS servers as well as recursive and stub DNS resolvers, given that queries and responses are carried in a mixed environment of IPv4 and IPv6 networks.
+                This document provides guidelines and documents Best Current Practice for operating authoritative DNS servers as well as recursive and stub DNS resolvers, given that queries and responses are carried in a mixed environment of IPv4 and IPv6 networks.
                 This document recommends that authoritative DNS servers as well as recursive DNS resolvers support both IPv4 and IPv6.
                 It furthermore provides guidance for how recursive DNS resolvers should select upstream DNS servers, if both native and IPv4-embedded IPv6 addresses are available.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <p id="section-abstract-2">
-                This document obsoletes <span>[<a href="#RFC3901" class="cite xref">RFC3901</a>]</span>.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+                This document obsoletes  RFC 3901.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-discussion-venues">
@@ -1217,7 +1217,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-changes-since" class="internal xref">Changes since RFC3901</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-changes-since" class="internal xref">Changes Since RFC3901</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
             <p id="section-toc.1-1.10.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
@@ -1261,6 +1261,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-1-6">
                 While transition and co-existence setups may mitigate some of the DNS resolution issues in a mixed IP address family Internet, making DNS data accessible over both IPv4 and IPv6 is the most robust and flexible approach.
                 This approach allows resolvers to retrieve the information they need without requiring intermediary translation or encapsulation services which may introduce additional failure cases.<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-7">Refer to Appendix A for an overview of main changes since <span>[<a href="#RFC3901" class="cite xref">RFC3901</a>]</span>.<a href="#section-1-7" class="pilcrow">¶</a></p>
 <div id="requirements-language">
 <section id="section-1.1">
         <h3 id="name-requirements-language">
@@ -1326,7 +1327,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 One reason is that DNS zones are consistently configured to support only either IPv4 or IPv6.
                 Another reason is due to misconfigurations that make a zone unresolvable by either IPv4-only or IPv6-only resolvers.
                 The latter cases are often hard to identify, as the impact of misconfigurations for only one IP address family (IPv4 or IPv6) may be hidden in a dual-stack setting.
-                In the worst case, i.e., requiring both IP address families to be fully supported by a resolver, a specific name may only be resolvable via dual-stack enabled resolvers.<a href="#section-3-3" class="pilcrow">¶</a></p>
+                In the worst case (i.e., requiring both IP address families to be fully supported by a resolver), a specific name may only be resolvable via dual-stack enabled resolvers.<a href="#section-3-3" class="pilcrow">¶</a></p>
 <div id="misconfigurations-causing-ip-version-related-name-space-fragmentation">
 <section id="section-3.1">
         <h3 id="name-misconfigurations-causing-i">
@@ -1636,10 +1637,6 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC2131">[RFC2131]</dt>
-        <dd>
-<span class="refAuthor">Droms, R.</span>, <span class="refTitle">"Dynamic Host Configuration Protocol"</span>, <span class="seriesInfo">RFC 2131</span>, <span class="seriesInfo">DOI 10.17487/RFC2131</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2131">https://www.rfc-editor.org/info/rfc2131</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC3542">[RFC3542]</dt>
         <dd>
 <span class="refAuthor">Stevens, W.</span>, <span class="refAuthor">Thomas, M.</span>, <span class="refAuthor">Nordmark, E.</span>, and <span class="refAuthor">T. Jinmei</span>, <span class="refTitle">"Advanced Sockets Application Program Interface (API) for IPv6"</span>, <span class="seriesInfo">RFC 3542</span>, <span class="seriesInfo">DOI 10.17487/RFC3542</span>, <time datetime="2003-05" class="refDate">May 2003</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc3542">https://www.rfc-editor.org/info/rfc3542</a>&gt;</span>. </dd>
@@ -1659,10 +1656,6 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt id="RFC7766">[RFC7766]</dt>
         <dd>
 <span class="refAuthor">Dickinson, J.</span>, <span class="refAuthor">Dickinson, S.</span>, <span class="refAuthor">Bellis, R.</span>, <span class="refAuthor">Mankin, A.</span>, and <span class="refAuthor">D. Wessels</span>, <span class="refTitle">"DNS Transport over TCP - Implementation Requirements"</span>, <span class="seriesInfo">RFC 7766</span>, <span class="seriesInfo">DOI 10.17487/RFC7766</span>, <time datetime="2016-03" class="refDate">March 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7766">https://www.rfc-editor.org/info/rfc7766</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC8106">[RFC8106]</dt>
-        <dd>
-<span class="refAuthor">Jeong, J.</span>, <span class="refAuthor">Park, S.</span>, <span class="refAuthor">Beloeil, L.</span>, and <span class="refAuthor">S. Madanapalli</span>, <span class="refTitle">"IPv6 Router Advertisement Options for DNS Configuration"</span>, <span class="seriesInfo">RFC 8106</span>, <span class="seriesInfo">DOI 10.17487/RFC8106</span>, <time datetime="2017-03" class="refDate">March 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8106">https://www.rfc-editor.org/info/rfc8106</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
         <dd>
@@ -1713,6 +1706,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <dd>
 <span class="refAuthor">Rekhter, Y.</span>, <span class="refAuthor">Moskowitz, B.</span>, <span class="refAuthor">Karrenberg, D.</span>, <span class="refAuthor">de Groot, G. J.</span>, and <span class="refAuthor">E. Lear</span>, <span class="refTitle">"Address Allocation for Private Internets"</span>, <span class="seriesInfo">BCP 5</span>, <span class="seriesInfo">RFC 1918</span>, <span class="seriesInfo">DOI 10.17487/RFC1918</span>, <time datetime="1996-02" class="refDate">February 1996</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc1918">https://www.rfc-editor.org/info/rfc1918</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC2131">[RFC2131]</dt>
+        <dd>
+<span class="refAuthor">Droms, R.</span>, <span class="refTitle">"Dynamic Host Configuration Protocol"</span>, <span class="seriesInfo">RFC 2131</span>, <span class="seriesInfo">DOI 10.17487/RFC2131</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2131">https://www.rfc-editor.org/info/rfc2131</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC2460">[RFC2460]</dt>
         <dd>
 <span class="refAuthor">Deering, S.</span> and <span class="refAuthor">R. Hinden</span>, <span class="refTitle">"Internet Protocol, Version 6 (IPv6) Specification"</span>, <span class="seriesInfo">RFC 2460</span>, <span class="seriesInfo">DOI 10.17487/RFC2460</span>, <time datetime="1998-12" class="refDate">December 1998</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2460">https://www.rfc-editor.org/info/rfc2460</a>&gt;</span>. </dd>
@@ -1748,6 +1745,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt id="RFC7858">[RFC7858]</dt>
         <dd>
 <span class="refAuthor">Hu, Z.</span>, <span class="refAuthor">Zhu, L.</span>, <span class="refAuthor">Heidemann, J.</span>, <span class="refAuthor">Mankin, A.</span>, <span class="refAuthor">Wessels, D.</span>, and <span class="refAuthor">P. Hoffman</span>, <span class="refTitle">"Specification for DNS over Transport Layer Security (TLS)"</span>, <span class="seriesInfo">RFC 7858</span>, <span class="seriesInfo">DOI 10.17487/RFC7858</span>, <time datetime="2016-05" class="refDate">May 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7858">https://www.rfc-editor.org/info/rfc7858</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8106">[RFC8106]</dt>
+        <dd>
+<span class="refAuthor">Jeong, J.</span>, <span class="refAuthor">Park, S.</span>, <span class="refAuthor">Beloeil, L.</span>, and <span class="refAuthor">S. Madanapalli</span>, <span class="refTitle">"IPv6 Router Advertisement Options for DNS Configuration"</span>, <span class="seriesInfo">RFC 8106</span>, <span class="seriesInfo">DOI 10.17487/RFC8106</span>, <time datetime="2017-03" class="refDate">March 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8106">https://www.rfc-editor.org/info/rfc8106</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8415">[RFC8415]</dt>
         <dd>
@@ -1800,10 +1801,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <div id="constraints">
 <section id="appendix-A">
       <h2 id="name-changes-since">
-<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-changes-since" class="section-name selfRef">Changes since <span class="cite xref">[RFC3901]</span></a>
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-changes-since" class="section-name selfRef">Changes Since <span class="cite xref">[RFC3901]</span></a>
       </h2>
 <p id="appendix-A-1">
-                This memo has the following changes from <span>[<a href="#RFC3901" class="cite xref">RFC3901</a>]</span>.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+                The following changes have been made to the guidance published in <span>[<a href="#RFC3901" class="cite xref">RFC3901</a>]</span>:<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A-2.1">
           <p id="appendix-A-2.1.1">Expanded the terminology section, also taking considerations from <span>[<a href="#RFC9499" class="cite xref">RFC9499</a>]</span> into account.<a href="#appendix-A-2.1.1" class="pilcrow">¶</a></p>
