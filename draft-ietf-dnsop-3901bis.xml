@@ -250,12 +250,12 @@
                         </t>
                         <t>
                             IPv4 connectivity for a DNS resolver may experience issues, e.g., if the resolver is deployed behind a Carrier Grade NAT (CGN) <xref target="RFC6888"/> that implements strict timeouts on active sessions, or limits the number of available TCP and UDP ports numbers for connections below the number required by the multiple connections necessary during recursive DNS resolution.
-                            Similarly,  <xref target="RFC1918"/> addressing may be in use on the resolver, while address translation is not performed, or, similar to the case for IPv6, when the DNS resolver has a global IPv4 address, but that address is not routed on the resolver's network.
+                            Similarly,  <xref target="RFC1918"/> addressing may be in use on the resolver, while address translation is not performed, or, similar to the case for IPv6, when the DNS resolver has a global IPv4 address, but that address is not forwarded on the resolver's network.
                         </t>
                         <t>
-                            IPv6 connectivity for a DNS resolver may experience issues, if, e.g., a client has been assigned a global unicast IPv6 address, but IPv6 traffic is not routed on the resolver's network.
-                            Similarly, IPv6 connectivity can experience issues when IPv4-IPv6 transition technologies, e.g., NAT64 <xref target="RFC6146"/> on IPv6-mostly networks <xref target="RFC9313"/>, or NAT64 connectivity discovered through PREF64 <xref target="RFC8781"/> or DNS64 <xref target="RFC7050"/> on IPv6-only networks are in use.
-                            There, the synthesized IPv6 addresses used in 464XLAT <xref target="RFC6877"/> encounter additional PMTU fluctuation due to the difference in header size between IPv4 and IPv6, possibly impacting DNS resolution.
+                            IPv6 connectivity for a DNS resolver may experience issues, if, e.g., a client has been assigned a global unicast IPv6 address, but IPv6 traffic is not forwarded on the resolver's network.
+                            Similarly, IPv6 connectivity can experience issues when IPv4-IPv6 transition technologies like NAT64 <xref target="RFC6146"/> on IPv6-mostly networks <xref target="RFC9313"/> are in use, where the use of NAT64 can be, e.g., discovered through PREF64 in router advertisments <xref target="RFC8781"/> or DNS64 <xref target="RFC7050"/>.
+                            There, the synthesized IPv6 addresses used in, e.g., 464XLAT <xref target="RFC6877"/> encounter additional PMTU fluctuation due to the difference in header size between IPv4 and IPv6, possibly impacting DNS resolution.
                         </t>
                     </dd>
                 </dl>
