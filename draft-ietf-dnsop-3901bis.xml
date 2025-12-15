@@ -70,11 +70,11 @@
                 This document expands the scope of <xref target="RFC3901"/> by recommending IPv6 connectivity for authoritative DNS servers, as well as recursive and stub DNS resolvers.
             </t>
             <t>
-                This document provides guidance on:
+                This document provides:
             </t>
             <ul spacing="normal">
                 <li>
-                    <t>IP address family related name space fragmentation and best-practices for avoiding it.</t>
+                    <t>Guidance on IP address family related name space fragmentation and best-practices for avoiding it.</t>
                 </li>
                 <li>
                     <t>Guidelines for configuring authoritative DNS servers for zones.</t>
