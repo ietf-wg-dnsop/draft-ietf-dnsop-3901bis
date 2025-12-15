@@ -37,12 +37,12 @@
         <keyword>IPv6</keyword>
         <abstract>
             <t indent="0" pn="section-abstract-1">
-                This memo provides guidelines and documents Best Current Practice for operating authoritative DNS servers as well as recursive and stub DNS resolvers, given that queries and responses are carried in a mixed environment of IPv4 and IPv6 networks.
+                This document provides guidelines and documents Best Current Practice for operating authoritative DNS servers as well as recursive and stub DNS resolvers, given that queries and responses are carried in a mixed environment of IPv4 and IPv6 networks.
                 This document recommends that authoritative DNS servers as well as recursive DNS resolvers support both IPv4 and IPv6.
                 It furthermore provides guidance for how recursive DNS resolvers should select upstream DNS servers, if both native and IPv4-embedded IPv6 addresses are available.
             </t>
             <t indent="0" pn="section-abstract-2">
-                This document obsoletes <xref target="RFC3901"/>.
+                This document obsoletes  RFC 3901.
             </t>
         </abstract>
         <note removeInRFC="true">
@@ -90,6 +90,8 @@
                 While transition and co-existence setups may mitigate some of the DNS resolution issues in a mixed IP address family Internet, making DNS data accessible over both IPv4 and IPv6 is the most robust and flexible approach.
                 This approach allows resolvers to retrieve the information they need without requiring intermediary translation or encapsulation services which may introduce additional failure cases.
             </t>
+            <t>Refer to Appendix A for an overview of main changes since <xref target="RFC3901"/>.</t>
+            
             <section anchor="requirements-language">
                 <name>Requirements Language</name>
                 <t>
@@ -144,7 +146,7 @@
                 One reason is that DNS zones are consistently configured to support only either IPv4 or IPv6.
                 Another reason is due to misconfigurations that make a zone unresolvable by either IPv4-only or IPv6-only resolvers.
                 The latter cases are often hard to identify, as the impact of misconfigurations for only one IP address family (IPv4 or IPv6) may be hidden in a dual-stack setting.
-                In the worst case, i.e., requiring both IP address families to be fully supported by a resolver, a specific name may only be resolvable via dual-stack enabled resolvers.
+                In the worst case (i.e., requiring both IP address families to be fully supported by a resolver), a specific name may only be resolvable via dual-stack enabled resolvers.
             </t>
             <section anchor="misconfigurations-causing-ip-version-related-name-space-fragmentation">
                 <name>Misconfigurations Causing IP Address Family Related Name Space Fragmentation</name>
@@ -428,13 +430,11 @@
                 <name>Normative References</name>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.1035.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.2119.xml"/>
-                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.2131.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.3542.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4821.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6724.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6891.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7766.xml"/>
-                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8106.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8174.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8200.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8899.xml"/>
@@ -444,6 +444,7 @@
             <references anchor="sec-informative-references">
                 <name>Informative References</name>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.1918.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.2131.xml"/>                
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.2460.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.3901.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4034.xml"/>
@@ -453,6 +454,7 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7050.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7269.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7858.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8106.xml"/>                
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8415.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8781.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8900.xml"/>
@@ -525,9 +527,9 @@
             </references>
         </references>
         <section anchor="constraints" numbered="true" toc="include" removeInRFC="false" pn="section-appendix.a">
-            <name>Changes since <xref target="RFC3901"/></name>
+            <name>Changes Since <xref target="RFC3901"/></name>
             <t>
-                This memo has the following changes from <xref target="RFC3901"/>.
+                The following changes have been made to the guidance published in <xref target="RFC3901"/>:
             </t>
             <ul spacing="normal">
                 <li>
