@@ -520,6 +520,26 @@
             <t>
                 This memo has the following changes from <xref target="RFC3901"/>.
             </t>
+            <ul spacing="normal">
+                <li>
+                    <t>Expanded the terminology section, also taking considerations from <xref target="RFC9499"/> into account.</t>
+                </li>
+                <li>
+                    <t>Expanded namespace fragmentation, independently discussing IP address family related namespace fragmentation, network condition based namespace fragmentation, and intentional namespace fragmentation.</t>
+                </li>
+                <li>
+                    <t>Now recommends the use of IPv4 and IPv6 for authoritative DNS servers, instead of leaving IPv6 optional.</t>
+                </li>
+                <li>
+                    <t>Now recommends testing IPv4 and IPv6 resolvability when delegating zones, instead of only testing IPv4 resolvability.</t>
+                </li>
+                <li>
+                    <t>Added guidance on handling IP layer fragmentation.</t>
+                </li>
+                <li>
+                    <t>Added guidance for IP address family handling for recursive and stub resolvers.</t>
+                </li>
+            </ul>
         </section>
     </back>
 </rfc>
