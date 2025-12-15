@@ -504,5 +504,11 @@
                 </reference>
             </references>
         </references>
+        <section anchor="constraints" numbered="true" toc="include" removeInRFC="false" pn="section-appendix.a">
+            <name>Changes since <xref target="RFC3901"/></name>
+            <t>
+                This memo has the following changes from <xref target="RFC3901"/>.
+            </t>
+        </section>
     </back>
 </rfc>
