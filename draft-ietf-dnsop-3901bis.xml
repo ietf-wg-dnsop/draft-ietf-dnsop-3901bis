@@ -379,7 +379,7 @@
                     However, a stub DNS resolver <bcp14>SHOULD NOT</bcp14> utilize IPv4-embedded IPv6 addresses if it is able to identify them as such, e.g., by having discovered the PREF64 in use for the network <xref target="RFC8781"/>.
                 </t>
                 <t>
-                    When providing multiple DNS servers to stub resolvers, network operators <bcp14>SHOULD</bcp14> consider that various implementations can only configure a small set of possible DNS resolvers, e.g., only up to three for libc, and additional resolvers provided may be ignored by clients.
+                    When providing multiple DNS servers to stub resolvers, network operators <bcp14>SHOULD</bcp14> consider that various implementations can only configure a small set of possible DNS resolvers, e.g., only up to three for libc <xref target="MAN"/>, and additional resolvers provided may be ignored by clients.
                 </t>
             </section>
         </section>
@@ -511,6 +511,15 @@
                         <author>
                             <organization>IANA</organization>
                         </author>
+                    </front>
+                </reference>
+                <reference anchor="MAN" target="https://man7.org/linux/man-pages/man5/resolv.conf.5.html">
+                    <front>
+                        <title>resolv.conf(5) — Linux manual page</title>
+                        <author>
+                            <organization>Linux</organization>
+                        </author>
+                        <date year="2025"/>
                     </front>
                 </reference>
             </references>
