@@ -358,13 +358,13 @@
                 <t>
                     While the zones that IPv6-only recursive DNS resolvers can resolve are growing, they do not yet cover all zones.
                     Hence, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv6-only, if it uses a transition mechanism that allows it to also query IPv4-only authoritative DNS servers, or uses a configuration where it forwards queries failing IPv6-only DNS resolution to a recursive DNS resolver that is able to perform DNS resolution over IPv4.
-                    For example, if a recursive DNS resolver is aware of a PREF64 to use for NAT64 <xref target="RFC6146"/>, either through static configuration or by discovering it <xref target="RFC8781"/>, it <bcp14>MAY</bcp14> synthesize IPv6 addresses for remote authoritative DNS servers.
+                    For example, if a recursive DNS resolver is aware of a PREF64 to use for NAT64 <xref target="RFC6146"/>, either through static configuration or by discovering it (e.g., <xref target="RFC8781"/>), it <bcp14>MAY</bcp14> synthesize IPv6 addresses for remote authoritative DNS servers.
                 </t>
                 <t>
                     Similarly, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv4-only, if it uses a configuration where such resolvers forward queries failing IPv4-only DNS resolution to a recursive DNS resolver that is able to perform DNS resolution over IPv6.
                 </t>
                 <t>
-                    Finally, when responding to recursive queries sent by stub DNS resolvers, a DNS resolver SHOULD follow the above guidance on fragmentation avoidance, see also <xref target="RFC9715"/>, for communication between authoritative DNS servers and recursive DNS resolvers analogously.
+                    Finally, when responding to recursive queries sent by stub DNS resolvers, a DNS resolver SHOULD follow the above guidance on fragmentation avoidance (<xref target="guidelines-for-authoritative-dns-configuration"/>) for communication between authoritative DNS servers and recursive DNS resolvers analogously.
                 </t>
             </section>
             <section anchor="guidelines-for-dns-stub">
