@@ -306,14 +306,14 @@
                     <dd>
                             Every DNS zone <bcp14>SHOULD</bcp14> be served by at least one IPv4-reachable authoritative DNS server to maintain name space continuity.
                             The delegation configuration (Resolution of the parent, resolution of sibling domain names, glue) <bcp14>MUST NOT</bcp14> rely on IPv6 connectivity being available.
-                            As we acknowledge IPv4 scarcity, operators <bcp14>MAY</bcp14> opt not to provide DNS services via IPv4, if they can ensure that all clients expected to resolve this zone do support DNS resolution via IPv6.
+                            Given the IPv4 address scarcity, operators <bcp14>MAY</bcp14> opt not to provide DNS services via IPv4, if they can ensure that all clients expected to resolve this zone do support DNS resolution via IPv6.
                     </dd>
                     <dt>
                             IPv6 adoption:
                     </dt>
                     <dd>
                             Every DNS zone <bcp14>SHOULD</bcp14> be served by at least one IPv6-reachable authoritative DNS server to maintain name space continuity.
-                            To avoid reachability issues, authoritative DNS servers <bcp14>SHOULD</bcp14> use native IPv6 addresses instead of IPv6 addresses synthesized using IPv6 transition technologies for receiving queries.
+                            To avoid reachability issues, authoritative DNS servers <bcp14>SHOULD</bcp14> use native IPv6 addresses instead of IPv4-converted IPv6 addresses for receiving queries.
                             The delegation configuration (Resolution of the parent, resolution of sibling domain names, glue) <bcp14>MUST NOT</bcp14> rely on IPv4 connectivity being available.
                     </dd>
                     <dt>
@@ -327,8 +327,8 @@
                     </dt>
                     <dd>
                             IP fragmentation has been reported to be fragile <xref target="RFC8900"/>.
-                            Furthermore, IPv6 transition technologies can introduce unexpected MTU breaks, e.g., when NAT64 is used <xref target="RFC7269"/>.
-                            Therefore, IP fragmentation <bcp14>SHOULD</bcp14> be avoided by following guidance on maximum DNS payload sizes <xref target="RFC9715"/> and providing TCP fall-back options <xref target="RFC7766"/>.
+                            Furthermore, IPv6 transition technologies can introduce unexpected MTU breaks (e.g., when NAT64 is used (Section 7 of <xref target="RFC7269"/>)).
+                            Therefore, IP fragmentation <bcp14>SHOULD</bcp14> be avoided by following guidance on maximum DNS payload sizes <xref target="RFC9715"/> and providing TCP fall back options <xref target="RFC7766"/>.
                             Furthermore, similar to the guidance in <xref target="RFC9715"/>, authoritative DNS servers <bcp14>MAY</bcp14> set an MSS of either 1388 (analogous to <xref target="RFC9715"/>) or 1220 (analogous to the <xref target="DNSFlagDay2020"/> suggestions) in TCP sessions carrying DNS responses.
                     </dd>
                 </dl>
