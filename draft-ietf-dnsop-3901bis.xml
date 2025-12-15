@@ -408,6 +408,17 @@
             <t>
                 Thank you for reading this draft.
             </t>
+            <t>
+                The authors furthermore express their thanks towards the authors of <xref target="RFC3901"/>, Alain Durand and Johan Ihren, and provide their original acknowledgements verbatim below:
+            </t>
+            <t>
+                This document is the result of many conversations that happened in the DNS community at IETF and elsewhere since 2001.
+                During that period of time, a number of Internet drafts have been published to clarify various aspects of the issues at stake.
+                This document focuses on the conclusion of those discussions.
+            </t>
+            <t>
+                The authors would like to acknowledge the role of Pekka Savola in his thorough review of the document.
+            </t>
         </section>
     </middle>
     <back>
