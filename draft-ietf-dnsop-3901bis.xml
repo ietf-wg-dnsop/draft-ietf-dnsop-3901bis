@@ -42,7 +42,7 @@
                 It furthermore provides guidance for how recursive DNS resolvers should select upstream DNS servers, if both native and IPv4-embedded IPv6 addresses are available.
             </t>
             <t indent="0" pn="section-abstract-2">
-                This document obsoletes RFC 3901.
+                This document obsoletes <xref target="RFC3901"/>.
             </t>
         </abstract>
         <note removeInRFC="true">
@@ -211,17 +211,17 @@
                     </dt>
                     <dd>
                         <t>
-                            When using EDNS(0) to communicate support for DNS messages larger than 512 octets <xref target="RFC6891"/> via traditional DNS-over-UDP transport according to RFC1035 <xref target="RFC1035"/>, an IP packet carrying a DNS response may exceed the PMTU for the path to a resolver.
+                            When using EDNS(0) to communicate support for DNS messages larger than 512 octets <xref target="RFC6891"/> via conventional DNS-over-UDP transport according to <xref target="RFC1035"/>, an IP packet carrying a DNS response may exceed the PMTU for the path to a resolver.
                             If an authoritative DNS server does not follow <xref target="RFC9715"/>, i.e., honors EDNS(0) sizes larger than 1232 octets, it will try to fragment the packet according to the discovered PMTU.
                             Such packets mostly occur for DNSKEY responses with DNSSEC <xref target="RFC4034"/>.
                         </t>
                         <t>
-                            In general, DNS servers <bcp14>SHOULD</bcp14> follow RFC9715 <xref target="RFC9715"/>, which provides additional guidance on preventing fragmentation by ensuring that the maximum DNS/UDP payload size does not exceed 1400 octets.
+                            In general, DNS servers <bcp14>SHOULD</bcp14> follow <xref target="RFC9715"/>, which provides additional guidance on preventing fragmentation by ensuring that the maximum DNS/UDP payload size does not exceed 1400 octets.
                             This can be accomplished by setting a corresponding EDNS(0) size, with most implementations using a lower EDNS(0) size of 1232 octets following <xref target="DNSFlagDay2020"/>, to ensure that generated packets always fit into lower bound of the IPv6 MTU of 1280, as defined in <xref target="RFC8200"/>.
                             Hence, DNS servers <bcp14>MAY</bcp14> opt to set an EDNS(0) size of 1232 octets following <xref target="DNSFlagDay2020"/>.
                         </t>
                         <t>
-                            Additionally, DNS servers <bcp14>MAY</bcp14> opt to explicitly not rely on path MTU discovery <xref target="RFC4821"/> or PLPMTUD <xref target="RFC8899"/>, by instead using IPV6_USE_MIN_MTU=1 from RFC3542 <xref target="RFC3542"/> to avoid the need to perform path MTU discovery.
+                            Additionally, DNS servers <bcp14>MAY</bcp14> opt to explicitly not rely on path MTU discovery <xref target="RFC4821"/> or PLPMTUD <xref target="RFC8899"/>, by instead using IPV6_USE_MIN_MTU=1 from <xref target="RFC3542"/> to avoid the need to perform PMTU discovery.
                         </t>
                     </dd>
                     <dt>
@@ -230,7 +230,7 @@
                     <dd>
                         <t>
                             A resolver can for various reasons also initiate connections via TCP for resolution to an authoritative server.
-                            However, similar to the case of DNS-over-UDP, DNS-over-TCP may encounter MTU blackholes, especially on IPv6, if PMTUD does not work, if the MSS honored by the authoritative DNS server leads to IP packets exceeding the PMTU.
+                            However, similar to the case of DNS-over-UDP, DNS-over-TCP may encounter MTU discards, especially on IPv6, if PMTUD does not work, if the MSS honored by the authoritative DNS server leads to IP packets exceeding the PMTU.
                             In that case, similar to the case of DNS-over-UDP, DNS resolution will time out when the recursive DNS resolver did not receive a response in time.
                         </t>
                         <t>
@@ -238,7 +238,7 @@
                             However, transferring the guidance from <xref target="RFC9715"/>, setting an MSS of 1388 octets would reduce the impact of this issue.
                             Hence, DNS servers <bcp14>MAY</bcp14> set an MSS of no more than 1388 octets for TCP connections.
                             Similarly, aligned with the recommendations of the <xref target="DNSFlagDay2020"/>, DNS servers <bcp14>MAY</bcp14> ensure that a total packet size of 1280 octets is not exceeded by setting an MSS of 1220 octets.
-                            Additionally, DNS servers <bcp14>MAY</bcp14> opt to set IPV6_USE_MIN_MTU=1 from RFC3542 <xref target="RFC3542"/>.
+                            Additionally, DNS servers <bcp14>MAY</bcp14> opt to set IPV6_USE_MIN_MTU=1 from <xref target="RFC3542"/>.
                         </t>
                     </dd>
                     <dt>
@@ -249,7 +249,7 @@
                             Similar to authoritative servers, (stub) recursive resolvers may face broken IP connectivity for either IPv4 or IPv6:
                         </t>
                         <t>
-                            IPv4 connectivity for a DNS resolver may experience issues, e.g., if the resolver is behind a Carrier Grade NAT (CGN) <xref target="RFC6888"/> setup that implements strict timeouts on active sessions, or limits the number of available ports for connections.
+                            IPv4 connectivity for a DNS resolver may experience issues, e.g., if the resolver is deployed behind a Carrier Grade NAT (CGN) <xref target="RFC6888"/> that implements strict timeouts on active sessions, or limits the number of available TCP and UDP ports for connections below the number required for recursive DNS resolution.
                             Similarly,  <xref target="RFC1918"/> addressing may be in use on the resolver, while address translation is not performed, or, similar to the case for IPv6, when the DNS resolver has a global IPv4 address, but that address is not routed on the resolver's network.
                         </t>
                         <t>
