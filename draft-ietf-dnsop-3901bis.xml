@@ -149,7 +149,7 @@
             <section anchor="misconfigurations-causing-ip-version-related-name-space-fragmentation">
                 <name>Misconfigurations Causing IP Version Related Name Space Fragmentation</name>
                 <t>
-                    Even when an administrator assumes that they have enabled support for a specific IP address family on their authoritative DNS server, various misconfigurations may break the DNS delegation chain of a zone for that protocol and prevent any of its records from resolving for clients only supporting that IP address family.
+                    Even when an administrator assumes that they have enabled support for a specific IP address family on their authoritative DNS server, various misconfigurations may break the DNS delegation chain of a zone for that IP address family and prevent any of its records from resolving for clients only supporting that IP address family.
                     These misconfigurations can be kept hidden if most clients can successfully fall back to the other IP address family.
                 </t>
                 <t>
@@ -160,27 +160,27 @@
                         No A/AAAA records for NS names:
                     </dt>
                     <dd>
-                        If all of the NS records for a zone in their parent zone have either only A records or only AAAA records, then resolution via the other IP address family is not possible.
+                        If all of the NS resource records (RR) for a zone in their parent zone have either only A RRs or only AAAA RRs, then resolution via the other IP address family is not possible.
                     </dd>
                     <dt>
-                        Missing GLUE:
+                        Missing glue:
                     </dt>
                     <dd>
-                        If the name from an NS record for a zone is in-domain, i.e., the name is within the zone or below, a parent zone needs to contain both IPv4 and IPv6 GLUE records.
-                        A parent needs to serve the corresponding A and AAAA records as ADDITIONAL data when returning the NS record(s) as the referral response <xref target="RFC9471"/>.
+                        If the name from an NS record for a zone is in-domain (i.e., the name is within the zone or below), a parent zone needs to contain both IPv4 and IPv6 glue records.
+                        A parent needs to serve the corresponding A and AAAA RRs in the additional section when returning the NS RRs as the referral response <xref target="RFC9471"/>.
                     </dd>
                     <dt>
-                        No A/AAAA record for in-domain NS:
+                        No A/AAAA RR for in-domain NS:
                     </dt>
                     <dd>
-                        If the parent provides GLUE records for both IP address families but the child zone itself lacks corresponding A or AAAA records for its in-domain name server names, resolution via the missing IP address family will fail during delegation revalidation <xref target="I-D.ietf-dnsop-ns-revalidation"/>.
+                        If the parent provides glue records for both IP address families but the child zone itself lacks corresponding A or AAAA RRs for its in-domain NS' names, resolution via the missing IP address family will fail during delegation revalidation (see, e.g., <xref target="I-D.ietf-dnsop-ns-revalidation"/>).
                     </dd>
                     <dt>
                         Zone of sibling domain NSes not resolving:
                     </dt>
                     <dd>
-                        If the name from an NS record for a zone is sibling domain, the corresponding zone needs to be resolvable via the IP address family in question as well.
-                        It is insufficient if the name pointed to by the NS record has an associated A or AAAA record correspondingly.
+                        If the name from an NS RR for a zone is sibling domain, the corresponding zone needs to be resolvable via the IP address family in question as well.
+                        It is insufficient if the name pointed to by the NS RR has an associated A or AAAA RR correspondingly.
                     </dd>
                     <dt>
                         Parent zone not resolvable via one IP address family:
@@ -195,7 +195,7 @@
                     The above misconfigurations are not mutually exclusive.
                 </t>
                 <t>
-                    Furthermore, any of the misconfigurations above may not only materialize via a missing Resource Record (RR) but also via an RR providing the IP address of a name server that is not configured to answer queries via that IP address family <xref target="V6DNSRDY-23"/>.
+                    Furthermore, any of the misconfigurations above may not only materialize via a missing RR but also via an RR providing the IP address of a name server that is not configured to answer queries via that IP address family <xref target="V6DNSRDY-23"/>.
                 </t>
             </section>
             <section anchor="misconfigurations-causing-network-related-name-space-fragmentation">
@@ -305,7 +305,7 @@
                     </dt>
                     <dd>
                             Every DNS zone <bcp14>SHOULD</bcp14> be served by at least one IPv4-reachable authoritative DNS server to maintain name space continuity.
-                            The delegation configuration (Resolution of the parent, resolution of sibling domain names, GLUE) <bcp14>MUST NOT</bcp14> rely on IPv6 connectivity being available.
+                            The delegation configuration (Resolution of the parent, resolution of sibling domain names, glue) <bcp14>MUST NOT</bcp14> rely on IPv6 connectivity being available.
                             As we acknowledge IPv4 scarcity, operators <bcp14>MAY</bcp14> opt not to provide DNS services via IPv4, if they can ensure that all clients expected to resolve this zone do support DNS resolution via IPv6.
                     </dd>
                     <dt>
@@ -314,7 +314,7 @@
                     <dd>
                             Every DNS zone <bcp14>SHOULD</bcp14> be served by at least one IPv6-reachable authoritative DNS server to maintain name space continuity.
                             To avoid reachability issues, authoritative DNS servers <bcp14>SHOULD</bcp14> use native IPv6 addresses instead of IPv6 addresses synthesized using IPv6 transition technologies for receiving queries.
-                            The delegation configuration (Resolution of the parent, resolution of sibling domain names, GLUE) <bcp14>MUST NOT</bcp14> rely on IPv4 connectivity being available.
+                            The delegation configuration (Resolution of the parent, resolution of sibling domain names, glue) <bcp14>MUST NOT</bcp14> rely on IPv4 connectivity being available.
                     </dd>
                     <dt>
                             Consistency:
