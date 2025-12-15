@@ -61,7 +61,7 @@
             </t>
             <t>
                 This creates a complex landscape where authoritative DNS servers might be accessible only via specific network protocols <xref target="V6DNSRDY-23"/>.
-                At the same time, DNS resolvers may only be able to access the Internet via either IPv4 or IPv6.
+                At the same time, DNS resolvers may only be able to access the Internet via either IPv4 or IPv6 connectivity.
                 This poses a challenge for such resolvers because they may receive queries for names that have authoritative DNS servers which do not support the same IP address family as the resolver.
             </t>
             <t>
