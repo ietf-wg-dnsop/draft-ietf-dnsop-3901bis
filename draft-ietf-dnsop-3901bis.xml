@@ -260,9 +260,9 @@
                     </dd>
                 </dl>
                 <t>
-                    Note: Please note that this document only explicitly discusses DNS-over-TCP and DNS-over-UDP.
+                    Note: This document only explicitly discusses DNS-over-TCP and DNS-over-UDP.
                     However, several other transport methods between recursive and authoritative DNS severs exist, including DNS over various encrypted transports.
-                    Some of these technologies provide additional mechanisms for preventing the impact of a reduced PMTU or MTU blackholes.
+                    Some of these technologies provide additional mechanisms for preventing the impact of a reduced PMTU or MTU discards.
                     Guidance in this document focuses on IP address family support, and questions of the underlying transport protocol (TCP or UDP).
                     If DNS servers use an additional protocol layer, e.g., DNS-over-TLS <xref target="RFC7858"/> or DNS-over-QUIC <xref target="RFC9250"/>, for their communication, and that protocol supports additional measures to prevent fragmentation on the IP layer related issues, these measures <bcp14>SHOULD</bcp14> be used for the connection.
                     Otherwise, if the protocol is not resilient to IP layer fragmentation related issues by default, the above guidance for TCP and UDP based connections <bcp14>SHOULD</bcp14> be applied analogously.
@@ -272,22 +272,22 @@
                 <name>Reasons for Intentional IP Version Related Name Space Fragmentation</name>
                 <t>
                     Intentional IP related name space fragmentation occurs if an operator consciously decides not to deploy IPv4 or IPv6 for a part of the resolution chain.
-                    Most commonly, this is realized by intentionally not listing A/AAAA records for NS names.
+                    Most commonly, this is realized by intentionally not listing A/AAAA RRs for NS names.
                     At the time of writing, the share of zones not resolvable via IPv4 is negligible, while a little less than 40% of zones are not resolvable via IPv6 <xref target="V6DNSRDY-23"/>.
-                    However, as IPv4 exhaustion progresses, IPv6 adoption will have to increase.
+                    However, as IPv4 address exhaustion progresses, IPv6 adoption is expected to increase.
                 </t>
             </section>
         </section>
         <section anchor="policy-based-avoidance-of-name-space-fragmentation">
             <name>Policy Based Avoidance of Name Space Fragmentation</name>
             <t>
-                With the final exhaustion of IPv4 pools in RIRs, e.g., <xref target="RIPEV4"/>, and the progressing deployment of IPv6, IPv4 and IPv6 have become comparably relevant.
-                Yet, while we now observe the first zones becoming exclusively IPv6 resolvable, we also still see a major portion of zones solely relying on IPv4 <xref target="V6DNSRDY-23"/>.
-                Hence, at the moment, dual stack connectivity is instrumental to be able to resolve zones and avoid name space fragmentation.
+                With the final exhaustion of IPv4 address pools in RIRs, e.g., <xref target="RIPEV4"/>, and the progressing deployment of IPv6, IPv4 and IPv6 have become comparably relevant.
+                Yet, while it is observed that the first zones becoming exclusively IPv6 resolvable, there is still a major portion of zones solely relying on IPv4 <xref target="V6DNSRDY-23"/>.
+                Hence, dual-stack connectivity is still instrumental to be able to resolve zones and avoid name space fragmentation.
             </t>
             <t>
                 Having zones served only by name servers reachable via one IP address family would fragment the DNS.
-                Hence, we need to find a way to avoid this fragmentation.
+                Hence, the need for a way to avoid this fragmentation.
             </t>
             <t>
                 The recommended approach to maintain name space continuity is to use administrative policies, as described in this section.
@@ -296,7 +296,7 @@
                 <name>Guidelines for Authoritative DNS Server Configuration</name>
                 <t>
                     It is usually recommended that DNS zones contain at least two name servers, which are geographically diverse and operate under different routing policies <xref target="IANANS"/>.
-                    To reduce the chance of DNS name space fragmentation, it is <bcp14>RECOMMENDED</bcp14> that at least two name servers for a zone are dual stack name servers.
+                    To reduce the chance of DNS name space fragmentation, it is <bcp14>RECOMMENDED</bcp14> that at least two name servers for a zone are dual-stack name servers.
                     Specifically, this means that the following minimal requirements <bcp14>SHOULD</bcp14> be implemented for a zone:
                 </t>
                 <dl newline="true" spacing="normal">
@@ -353,7 +353,7 @@
             <section anchor="guidelines-for-dns-resolvers">
                 <name>Guidelines for Recursive DNS Resolvers</name>
                 <t>
-                    Every recursive DNS resolver <bcp14>SHOULD</bcp14> be dual stack.
+                    Every recursive DNS resolver <bcp14>SHOULD</bcp14> be dual-stack.
                 </t>
                 <t>
                     While the zones that IPv6-only recursive DNS resolvers can resolve are growing, they do not yet cover all zones.
