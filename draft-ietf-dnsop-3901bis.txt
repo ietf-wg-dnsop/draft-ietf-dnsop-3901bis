@@ -69,12 +69,12 @@ Table of Contents
      1.1.  Requirements Language
    2.  Terminology
    3.  Name Space Fragmentation
-     3.1.  Misconfigurations Causing IP Version Related Name Space
-           Fragmentation
-     3.2.  Network Conditions Causing IP Version Related Name Space
-           Fragmentation
-     3.3.  Reasons for Intentional IP Version Related Name Space
-           Fragmentation
+     3.1.  Misconfigurations Causing IP Address Family Related Name
+           Space Fragmentation
+     3.2.  Network Conditions Causing IP Address Family Related Name
+           Space Fragmentation
+     3.3.  Reasons for Intentional IP Address Family Related Name
+           Space Fragmentation
    4.  Policy Based Avoidance of Name Space Fragmentation
      4.1.  Guidelines for Authoritative DNS Server Configuration
      4.2.  Guidelines for Recursive DNS Resolvers
@@ -184,7 +184,7 @@ Table of Contents
    fully supported by a resolver, a specific name may only be resolvable
    via dual-stack enabled resolvers.
 
-3.1.  Misconfigurations Causing IP Version Related Name Space
+3.1.  Misconfigurations Causing IP Address Family Related Name Space
       Fragmentation
 
    Even when an administrator assumes that they have enabled support for
@@ -238,7 +238,7 @@ Table of Contents
    address of a name server that is not configured to answer queries via
    that IP address family [V6DNSRDY-23].
 
-3.2.  Network Conditions Causing IP Version Related Name Space
+3.2.  Network Conditions Causing IP Address Family Related Name Space
       Fragmentation
 
    In addition to explicit misconfigurations in the served DNS zones,
@@ -337,7 +337,7 @@ Table of Contents
    above guidance for TCP and UDP based connections SHOULD be applied
    analogously.
 
-3.3.  Reasons for Intentional IP Version Related Name Space
+3.3.  Reasons for Intentional IP Address Family Related Name Space
       Fragmentation
 
    Intentional IP related name space fragmentation occurs if an operator
