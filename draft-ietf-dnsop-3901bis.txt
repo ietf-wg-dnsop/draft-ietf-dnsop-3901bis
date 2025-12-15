@@ -273,9 +273,9 @@ Table of Contents
       EDNS(0) size of 1232 octets following [DNSFlagDay2020].
 
       Additionally, DNS servers MAY opt to explicitly not rely on path
-      MTU discovery [RFC4821] or PLPMTUD [RFC8899], by instead using
-      IPV6_USE_MIN_MTU=1 from [RFC3542] to avoid the need to perform
-      PMTU discovery.
+      MTU discovery [RFC4821] or PLPMTUD [RFC8899].  It can do so, for
+      example, by setting IPV6_USE_MIN_MTU=1 from [RFC3542] to avoid the
+      need to perform PMTU discovery.
 
    DNS-over-TCP packets requiring fragmentation
       A resolver can for various reasons also initiate connections via
@@ -294,7 +294,8 @@ Table of Contents
       TCP connections.  Similarly, aligned with the recommendations of
       the [DNSFlagDay2020], DNS servers MAY ensure that a total packet
       size of 1280 octets is not exceeded by setting an MSS of 1220
-      octets.  Additionally, DNS servers MAY opt to set
+      octets.  Additionally, DNS servers MAY opt to not rely on PMTU
+      discovery.  It can do so, for example, by setting
       IPV6_USE_MIN_MTU=1 from [RFC3542].
 
    Broken IP Connectivity at the Resolver
@@ -530,11 +531,6 @@ Normative References
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
-   [RFC3542]  Stevens, W., Thomas, M., Nordmark, E., and T. Jinmei,
-              "Advanced Sockets Application Program Interface (API) for
-              IPv6", RFC 3542, DOI 10.17487/RFC3542, May 2003,
-              <https://www.rfc-editor.org/info/rfc3542>.
-
    [RFC4821]  Mathis, M. and J. Heffner, "Packetization Layer Path MTU
               Discovery", RFC 4821, DOI 10.17487/RFC4821, March 2007,
               <https://www.rfc-editor.org/info/rfc4821>.
@@ -610,6 +606,11 @@ Informative References
    [RFC2460]  Deering, S. and R. Hinden, "Internet Protocol, Version 6
               (IPv6) Specification", RFC 2460, DOI 10.17487/RFC2460,
               December 1998, <https://www.rfc-editor.org/info/rfc2460>.
+
+   [RFC3542]  Stevens, W., Thomas, M., Nordmark, E., and T. Jinmei,
+              "Advanced Sockets Application Program Interface (API) for
+              IPv6", RFC 3542, DOI 10.17487/RFC3542, May 2003,
+              <https://www.rfc-editor.org/info/rfc3542>.
 
    [RFC3901]  Durand, A. and J. Ihren, "DNS IPv6 Transport Operational
               Guidelines", BCP 91, RFC 3901, DOI 10.17487/RFC3901,
