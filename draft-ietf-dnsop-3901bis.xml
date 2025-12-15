@@ -91,7 +91,6 @@
                 This approach allows resolvers to retrieve the information they need without requiring intermediary translation or encapsulation services which may introduce additional failure cases.
             </t>
             <t>Refer to Appendix A for an overview of main changes since <xref target="RFC3901"/>.</t>
-
             <section anchor="requirements-language">
                 <name>Requirements Language</name>
                 <t>
