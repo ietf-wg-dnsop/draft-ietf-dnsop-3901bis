@@ -113,15 +113,15 @@
                     IPv4 name server:
                 </dt>
                 <dd>
-                    A name server providing either authoritative or recrusive DNS services reachable via IPv4.
-                    It does not imply anything about what DNS data is served, but means that the name server receives and answers queries over IPv4.
+                    A name server that provides either authoritative or recursive DNS services and is reachable via IPv4.
+                    This does not imply anything about the DNS data served, but rather that the name server receives and answers queries over IPv4.
                 </dd>
                 <dt>
                     IPv6 name server:
                 </dt>
                 <dd>
-                    A name server providing either authoritative or recursive DNS services reachable via IPv6.
-                    It does not imply anything about what DNS data is served, but means that the name server receives and answers queries over IPv6.
+                    A name server that provides either authoritative or recursive DNS services and is reachable via IPv6.
+                    This does not imply anything about the DNS data served, but rather that the name server receives and answers queries over IPv6.
                 </dd>
                 <dt>
                     Dual-stack name server:
