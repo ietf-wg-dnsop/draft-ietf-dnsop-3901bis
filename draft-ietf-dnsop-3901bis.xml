@@ -37,9 +37,9 @@
         <keyword>IPv6</keyword>
         <abstract>
             <t indent="0" pn="section-abstract-1">
-                This document provides guidelines and documents Best Current Practice for operating authoritative DNS servers as well as recursive and stub DNS resolvers, given that queries and responses are carried in a mixed environment of IPv4 and IPv6 networks.
-                This document recommends that authoritative DNS servers as well as recursive DNS resolvers support both IPv4 and IPv6.
-                It furthermore provides guidance for how recursive DNS resolvers should select upstream DNS servers, if both native and IPv4-embedded IPv6 addresses are available.
+                This document provides guidelines and documents Best Current Practice for operating authoritative DNS servers, recursive resolvers and stub resolvers in a mixed IPv4/IPv6 environment.
+                This document recommends that both authoritative DNS servers and recursive resolvers support IPv4 and IPv6.
+                It also provides guidance on how recursive DNS resolvers should select upstream DNS servers when both native and IPv4-embedded IPv6 addresses are available.
             </t>
             <t indent="0" pn="section-abstract-2">
                 This document obsoletes  RFC 3901.
@@ -62,19 +62,19 @@
             <t>
                 This creates a complex landscape where authoritative DNS servers might be accessible only via specific network protocols <xref target="V6DNSRDY-23"/>.
                 At the same time, DNS resolvers may only be able to access the Internet via either IPv4 or IPv6 connectivity.
-                This poses a challenge for such resolvers because they may receive queries for names that have authoritative DNS servers which do not support the same IP address family as the resolver.
+                This poses a challenge for such resolvers because they may receive queries for names whose authoritative DNS servers do not support the same IP address family as the resolver itself.
             </t>
             <t>
                 <xref target="RFC3901"/> was initially written at a time when IPv6 deployment was not widespread, focusing primarily on maintaining name space continuity within the IPv4 landscape.
-                Two decades later, IPv6 is not only widely deployed but also becoming the de facto standard in many areas (mobile and access networks, data center underlays, etc.).
-                This document expands the scope of <xref target="RFC3901"/> by recommending IPv6 connectivity for authoritative DNS servers, as well as recursive and stub DNS resolvers.
+                Two decades later, not only is IPv6 widely deployed, it is also becoming the de facto standard in many areas, such as mobile and access networks and data center underlays.
+                This document broadens the scope of <xref target="RFC3901"/> recommending IPv6 connectivity for authoritative DNS servers, recursive resolvers, and stub resolvers.
             </t>
             <t>
                 This document provides:
             </t>
             <ul spacing="normal">
                 <li>
-                    <t>Guidance on IP address family related name space fragmentation and best-practices for avoiding it.</t>
+                    <t>Guidance on IP address family-related name space fragmentation and best practices for avoiding it.</t>
                 </li>
                 <li>
                     <t>Guidelines for configuring authoritative DNS servers for zones.</t>
@@ -87,10 +87,10 @@
                 </li>
             </ul>
             <t>
-                While transition and co-existence setups may mitigate some of the DNS resolution issues in a mixed IP address family Internet, making DNS data accessible over both IPv4 and IPv6 is the most robust and flexible approach.
-                This approach allows resolvers to retrieve the information they need without requiring intermediary translation or encapsulation services which may introduce additional failure cases.
+                While transition and coexistence setups may mitigate some of the DNS resolution issues in a mixed IP address family Internet, making DNS data accessible over both IPv4 and IPv6 is the most robust and flexible approach.
+                This approach allows resolvers to retrieve the information they need without requiring intermediary translation or encapsulation services, which may introduce additional failure cases.
             </t>
-            <t>Refer to Appendix A for an overview of main changes since <xref target="RFC3901"/>.</t>
+            <t>Refer to <xref target="constraints"/> for an overview of the main changes since <xref target="RFC3901"/>.</t>
             <section anchor="requirements-language">
                 <name>Requirements Language</name>
                 <t>
@@ -113,15 +113,15 @@
                     IPv4 name server:
                 </dt>
                 <dd>
-                    A name server providing either authoritative or recrusive DNS services reachable via IPv4.
-                    It does not imply anything about what DNS data is served, but means that the name server receives and answers queries over IPv4.
+                    A name server that provides either authoritative or recursive DNS services and is reachable via IPv4.
+                    This does not imply anything about the DNS data served, but rather that the name server receives and answers queries over IPv4.
                 </dd>
                 <dt>
                     IPv6 name server:
                 </dt>
                 <dd>
-                    A name server providing either authoritative or recursive DNS services reachable via IPv6.
-                    It does not imply anything about what DNS data is served, but means that the name server receives and answers queries over IPv6.
+                    A name server that provides either authoritative or recursive DNS services and is reachable via IPv6.
+                    This does not imply anything about the DNS data served, but rather that the name server receives and answers queries over IPv6.
                 </dd>
                 <dt>
                     Dual-stack name server:
@@ -134,27 +134,27 @@
         <section anchor="name-space-fragmentation">
             <name>Name Space Fragmentation</name>
             <t>
-                A resolver that tries to look up a name starts out at the root, and follows referrals until it is referred to a name server set that is authoritative for the name.
-                If it is referred to a name server set that, based on the referral, only contains name servers that are exclusively reachable via an IP address family that the resolver does not support, the resolver is unable to continue DNS resolution.
+                When a resolver looks up a name, it starts at the root and follows referrals until it reaches a name server set that is authoritative for the name.
+                However, if the referrals lead to a name server set that only contains name servers reachable via an IP address family not supported by the resolver, the resolver is unable to continue DNS resolution.
             </t>
             <t>
-                If this occurs, the DNS has, effectively, fragmented based on the recursive DNS resolver's and authoritative DNS server's mismatching IP address family support.
+                If this occurs, the DNS has effectively fragmented due to mismatching IP address family support between the recursive DNS resolver and the authoritative DNS server.
             </t>
             <t>
                 With the deployment of both IPv4 and IPv6, name space fragmentation can occur for different reasons.
                 One reason is that DNS zones are consistently configured to support only either IPv4 or IPv6.
-                Another reason is due to misconfigurations that make a zone unresolvable by either IPv4-only or IPv6-only resolvers.
-                The latter cases are often hard to identify, as the impact of misconfigurations for only one IP address family (IPv4 or IPv6) may be hidden in a dual-stack setting.
-                In the worst case (i.e., requiring both IP address families to be fully supported by a resolver), a specific name may only be resolvable via dual-stack enabled resolvers.
+                Another reason is misconfigurations that make a zone unresolvable by either IPv4-only or IPv6-only resolvers.
+                The latter is often hard to identify because the impact of misconfigurations affecting one IP address family (IPv4 or IPv6) may be hidden in a dual-stack setting.
+                In the worst case, where both IP address families must be fully supported by a resolver, a specific name may only be resolvable via dual-stack enabled resolvers.
             </t>
             <section anchor="misconfigurations-causing-ip-version-related-name-space-fragmentation">
                 <name>Misconfigurations Causing IP Address Family Related Name Space Fragmentation</name>
                 <t>
-                    Even when an administrator assumes that they have enabled support for a specific IP address family on their authoritative DNS server, various misconfigurations may break the DNS delegation chain of a zone for that IP address family and prevent any of its records from resolving for clients only supporting that IP address family.
-                    These misconfigurations can be kept hidden if most clients can successfully fall back to the other IP address family.
+                    Even when an administrator assumes that they have enabled support for a specific IP address family on their authoritative DNS server, various misconfigurations may break the DNS delegation chain of a zone for that IP address family, preventing any of its records from being resolved by clients that only support that IP address family.
+                    Such misconfigurations may remain undetected if most clients can successfully fall back to the other IP address family.
                 </t>
                 <t>
-                    The following name related misconfigurations can cause broken delegation for one IP address family:
+                    The following name-related misconfigurations can cause broken delegation for one IP address family:
                 </t>
                 <dl newline="true" spacing="normal">
                     <dt>
