@@ -134,27 +134,27 @@
         <section anchor="name-space-fragmentation">
             <name>Name Space Fragmentation</name>
             <t>
-                A resolver that tries to look up a name starts out at the root, and follows referrals until it is referred to a name server set that is authoritative for the name.
-                If it is referred to a name server set that, based on the referral, only contains name servers that are exclusively reachable via an IP address family that the resolver does not support, the resolver is unable to continue DNS resolution.
+                When a resolver looks up a name, it starts at the root and follows referrals until it reaches a name server set that is authoritative for the name.
+                However, if the referrals lead to a name server set that only contains name servers reachable via an IP address family not supported by the resolver, the resolver is unable to continue DNS resolution.
             </t>
             <t>
-                If this occurs, the DNS has, effectively, fragmented based on the recursive DNS resolver's and authoritative DNS server's mismatching IP address family support.
+                If this occurs, the DNS has effectively fragmented due to mismatching IP address family support between the recursive DNS resolver and the authoritative DNS server.
             </t>
             <t>
                 With the deployment of both IPv4 and IPv6, name space fragmentation can occur for different reasons.
                 One reason is that DNS zones are consistently configured to support only either IPv4 or IPv6.
-                Another reason is due to misconfigurations that make a zone unresolvable by either IPv4-only or IPv6-only resolvers.
-                The latter cases are often hard to identify, as the impact of misconfigurations for only one IP address family (IPv4 or IPv6) may be hidden in a dual-stack setting.
-                In the worst case (i.e., requiring both IP address families to be fully supported by a resolver), a specific name may only be resolvable via dual-stack enabled resolvers.
+                Another reason is misconfigurations that make a zone unresolvable by either IPv4-only or IPv6-only resolvers.
+                The latter is often hard to identify because the impact of misconfigurations affecting one IP address family (IPv4 or IPv6) may be hidden in a dual-stack setting.
+                In the worst case, where both IP address families must be fully supported by a resolver, a specific name may only be resolvable via dual-stack enabled resolvers.
             </t>
             <section anchor="misconfigurations-causing-ip-version-related-name-space-fragmentation">
                 <name>Misconfigurations Causing IP Address Family Related Name Space Fragmentation</name>
                 <t>
-                    Even when an administrator assumes that they have enabled support for a specific IP address family on their authoritative DNS server, various misconfigurations may break the DNS delegation chain of a zone for that IP address family and prevent any of its records from resolving for clients only supporting that IP address family.
-                    These misconfigurations can be kept hidden if most clients can successfully fall back to the other IP address family.
+                    Even when an administrator assumes that they have enabled support for a specific IP address family on their authoritative DNS server, various misconfigurations may break the DNS delegation chain of a zone for that IP address family, preventing any of its records from being resolved by clients that only support that IP address family.
+                    Such misconfigurations may remain undetected if most clients can successfully fall back to the other IP address family.
                 </t>
                 <t>
-                    The following name related misconfigurations can cause broken delegation for one IP address family:
+                    The following name-related misconfigurations can cause broken delegation for one IP address family:
                 </t>
                 <dl newline="true" spacing="normal">
                     <dt>
