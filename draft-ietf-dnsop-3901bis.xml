@@ -62,19 +62,19 @@
             <t>
                 This creates a complex landscape where authoritative DNS servers might be accessible only via specific network protocols <xref target="V6DNSRDY-23"/>.
                 At the same time, DNS resolvers may only be able to access the Internet via either IPv4 or IPv6 connectivity.
-                This poses a challenge for such resolvers because they may receive queries for names that have authoritative DNS servers which do not support the same IP address family as the resolver.
+                This poses a challenge for such resolvers because they may receive queries for names whose authoritative DNS servers do not support the same IP address family as the resolver itself.
             </t>
             <t>
                 <xref target="RFC3901"/> was initially written at a time when IPv6 deployment was not widespread, focusing primarily on maintaining name space continuity within the IPv4 landscape.
-                Two decades later, IPv6 is not only widely deployed but also becoming the de facto standard in many areas (mobile and access networks, data center underlays, etc.).
-                This document expands the scope of <xref target="RFC3901"/> by recommending IPv6 connectivity for authoritative DNS servers, as well as recursive and stub DNS resolvers.
+                Two decades later, not only is IPv6 widely deployed, it is also becoming the de facto standard in many areas, such as mobile and access networks and data center underlays.
+                This document broadens the scope of <xref target="RFC3901"/> recommending IPv6 connectivity for authoritative DNS servers, recursive resolvers, and stub resolvers.
             </t>
             <t>
                 This document provides:
             </t>
             <ul spacing="normal">
                 <li>
-                    <t>Guidance on IP address family related name space fragmentation and best-practices for avoiding it.</t>
+                    <t>Guidance on IP address family-related name space fragmentation and best practices for avoiding it.</t>
                 </li>
                 <li>
                     <t>Guidelines for configuring authoritative DNS servers for zones.</t>
@@ -87,10 +87,10 @@
                 </li>
             </ul>
             <t>
-                While transition and co-existence setups may mitigate some of the DNS resolution issues in a mixed IP address family Internet, making DNS data accessible over both IPv4 and IPv6 is the most robust and flexible approach.
-                This approach allows resolvers to retrieve the information they need without requiring intermediary translation or encapsulation services which may introduce additional failure cases.
+                While transition and coexistence setups may mitigate some of the DNS resolution issues in a mixed IP address family Internet, making DNS data accessible over both IPv4 and IPv6 is the most robust and flexible approach.
+                This approach allows resolvers to retrieve the information they need without requiring intermediary translation or encapsulation services, which may introduce additional failure cases.
             </t>
-            <t>Refer to Appendix A for an overview of main changes since <xref target="RFC3901"/>.</t>
+            <t>Refer to <xref target="constraints"/> for an overview of the main changes since <xref target="RFC3901"/>.</t>
             <section anchor="requirements-language">
                 <name>Requirements Language</name>
                 <t>
