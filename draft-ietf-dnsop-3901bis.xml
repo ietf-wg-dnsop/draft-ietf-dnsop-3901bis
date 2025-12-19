@@ -114,7 +114,7 @@
                 </dt>
                 <dd>
                     An IPv6 address that is not an IPv4-embedded IPv6 address <xref target="RFC6052"/>.
-                </dd>                
+                </dd>
                 <dt>
                     IPv4 name server:
                 </dt>
@@ -438,7 +438,7 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.1035.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.2119.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4821.xml"/>
-                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6052.xml"/>                
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6052.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6724.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6891.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7766.xml"/>
