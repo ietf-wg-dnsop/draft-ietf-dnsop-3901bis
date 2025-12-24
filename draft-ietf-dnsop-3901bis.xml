@@ -180,7 +180,7 @@
                         Zone of sibling domain NSes not resolving:
                     </dt>
                     <dd>
-                        If the name from an NS RR for a zone is sibling domain, the corresponding zone needs to be resolvable via the IP address family in question as well.
+                        If the name from an NS RR for a zone is in a sibling domain, the corresponding zone needs to be resolvable via the IP address family in question as well.
                         It is insufficient if the name pointed to by the NS RR has an associated A or AAAA RR correspondingly.
                     </dd>
                     <dt>
