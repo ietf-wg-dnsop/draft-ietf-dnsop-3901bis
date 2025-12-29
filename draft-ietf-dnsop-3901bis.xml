@@ -218,8 +218,8 @@
                         </t>
                         <t>
                             In general, DNS servers <bcp14>SHOULD</bcp14> follow <xref target="RFC9715"/>, which provides additional guidance on preventing fragmentation by ensuring that the maximum DNS/UDP payload size does not exceed 1400 octets.
-                            This can be accomplished by setting a corresponding EDNS(0) size, with most implementations using a lower EDNS(0) size of 1232 octets following <xref target="DNSFlagDay2020"/>, to ensure that generated packets always fit into lower bound of the IPv6 MTU of 1280, as defined in <xref target="RFC8200"/>.
-                            Hence, DNS servers <bcp14>MAY</bcp14> opt to set an EDNS(0) size of 1232 octets following <xref target="DNSFlagDay2020"/>.
+                            This can be accomplished by setting a corresponding EDNS(0) size, with most implementations using a lower EDNS(0) size of 1232 octets as per the suggestions made by the <xref target="DNSFlagDay2020"/> initiative, to ensure that generated packets always fit into lower bound of the IPv6 MTU of 1280, as defined in <xref target="RFC8200"/>.
+                            Hence, DNS servers <bcp14>MAY</bcp14> also opt to set an EDNS(0) size of 1232 octets as suggested by the <xref target="DNSFlagDay2020"/> initiative.
                         </t>
                         <t>
                             Additionally, DNS servers <bcp14>MAY</bcp14> opt to explicitly not rely on path MTU discovery <xref target="RFC4821"/> or PLPMTUD <xref target="RFC8899"/>.
@@ -257,7 +257,7 @@
                         </t>
                         <t>
                             IPv6 connectivity for a DNS resolver may experience issues, if, e.g., a client has been assigned a global unicast IPv6 address, but IPv6 traffic is not forwarded on the resolver's network.
-                            Similarly, IPv6 connectivity can experience issues when IPv4-IPv6 transition technologies like NAT64 <xref target="RFC6146"/> on IPv6-mostly networks <xref target="RFC9313"/> are in use, where the use of NAT64 can be, e.g., discovered through PREF64 in router advertisments <xref target="RFC8781"/> or DNS64 <xref target="RFC7050"/>.
+                            Similarly, IPv6 connectivity can experience issues when IPv4-IPv6 transition technologies like NAT64 <xref target="RFC6146"/> on IPv6-mostly networks <xref target="RFC9313"/> are in use, where the use of NAT64 can be, e.g., discovered through PREF64 in router advertisements <xref target="RFC8781"/> or DNS64 <xref target="RFC7050"/>.
                             There, the synthesized IPv6 addresses used in, e.g., 464XLAT <xref target="RFC6877"/> encounter additional PMTU fluctuation due to the difference in header size between IPv4 and IPv6, possibly impacting DNS resolution.
                         </t>
                     </dd>
