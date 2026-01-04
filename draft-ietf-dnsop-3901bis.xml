@@ -315,7 +315,7 @@
                             IPv6 adoption:
                     </dt>
                     <dd>
-                            Every DNS zone <bcp14>SHOULD</bcp14> be served by at least two IPv6-reachable authoritative DNS server to maintain name space continuity.
+                            Every DNS zone <bcp14>SHOULD</bcp14> be served by at least two IPv6-reachable authoritative DNS servers to maintain name space continuity.
                             To avoid reachability issues, authoritative DNS servers <bcp14>SHOULD</bcp14> use native IPv6 addresses instead of IPv4-converted IPv6 addresses for receiving queries.
                             The delegation configuration (Resolution of the parent, resolution of sibling domain names, glue) <bcp14>MUST NOT</bcp14> rely on IPv4 connectivity being available.
                     </dd>
