@@ -390,7 +390,7 @@ Table of Contents
 
    IPv6 adoption:
       Every DNS zone SHOULD be served by at least two IPv6-reachable
-      authoritative DNS server to maintain name space continuity.  To
+      authoritative DNS servers to maintain name space continuity.  To
       avoid reachability issues, authoritative DNS servers SHOULD use
       native IPv6 addresses instead of IPv4-converted IPv6 addresses for
       receiving queries.  The delegation configuration (Resolution of
