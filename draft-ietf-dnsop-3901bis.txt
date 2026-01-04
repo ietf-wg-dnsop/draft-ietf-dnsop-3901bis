@@ -220,7 +220,7 @@ Table of Contents
       [I-D.ietf-dnsop-ns-revalidation]).
 
    Zone of sibling domain NSes not resolving:
-      If the name from an NS RR for a zone is sibling domain, the
+      If the name from an NS RR for a zone is in a sibling domain, the
       corresponding zone needs to be resolvable via the IP address
       family in question as well.  It is insufficient if the name
       pointed to by the NS RR has an associated A or AAAA RR
@@ -501,7 +501,7 @@ Acknowledgments
    Carpenter, Tom Petch, Philipp S.  Tiesel, Mark Andrews, Stefan
    Ubbink, Joe Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti,
    David Farmer, Pieter Lexis, Ralf Weber, Philip Homburg, Marco Davids,
-   Mohamed Boucadair, Thomas Fossati
+   Mohamed Boucadair, Thomas Fossati, Aihua Guo
 
    Thank you for reading this draft.
 
