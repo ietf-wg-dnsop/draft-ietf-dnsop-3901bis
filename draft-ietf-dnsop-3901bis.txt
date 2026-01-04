@@ -6,7 +6,7 @@ dnsop                                                             Momoka
 Internet-Draft                                              WIDE Project
 Obsoletes: 3901 (if approved)                                  T. Fiebig
 Intended status: Best Current Practice                           MPI-INF
-Expires: 21 June 2026                                   18 December 2025
+Expires: 8 July 2026                                      4 January 2026
 
 
                DNS IPv6 Transport Operational Guidelines
@@ -46,11 +46,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 June 2026.
+   This Internet-Draft will expire on 8 July 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -346,7 +346,7 @@ Table of Contents
    Intentional IP related name space fragmentation occurs if an operator
    consciously decides not to deploy IPv4 or IPv6 for a part of the
    resolution chain.  Most commonly, this is realized by intentionally
-   not listing A/AAAA RRs for NS names.  At the time of writing, the
+   not listing A/AAAA RRs for NS names.  Based on a 2023 study, the
    share of zones not resolvable via IPv4 is negligible, while a little
    less than 40% of zones are not resolvable via IPv6 [V6DNSRDY-23].
    However, as IPv4 address exhaustion progresses, IPv6 adoption is
