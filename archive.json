@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-12-30T02:08:55.366703+00:00",
+  "timestamp": "2026-01-04T02:27:38.825701+00:00",
   "repo": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
   "labels": [
     {
@@ -1810,24 +1810,26 @@
       "id": "PR_kwDOOKHo_M653gXz",
       "title": "Change 'at the time of writing' to 'in a 2023 study'",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/58",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "ichdasich",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-12-19T18:04:17Z",
-      "updatedAt": "2025-12-19T18:04:17Z",
+      "updatedAt": "2026-01-04T02:01:00Z",
       "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "baseRefName": "main",
       "baseRefOid": "4da75574a514b22b9d739552dfc65a1f4d553c65",
       "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "headRefName": "tf_2025_12_19_comments_gh_tow",
       "headRefOid": "1bd5017017457a30222d10380c7d9d91bd72ed63",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-01-04T02:01:00Z",
+      "mergedAt": "2026-01-04T02:01:00Z",
+      "mergedBy": "momoka0122y",
+      "mergeCommit": {
+        "oid": "163c08a5ea732a7558b1687b1ab4b691920e3caf"
+      },
       "comments": [],
       "reviews": []
     },
@@ -1843,7 +1845,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2025-12-19T18:19:29Z",
-      "updatedAt": "2025-12-19T18:19:29Z",
+      "updatedAt": "2026-01-04T02:27:38Z",
       "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "baseRefName": "main",
       "baseRefOid": "4da75574a514b22b9d739552dfc65a1f4d553c65",
@@ -1854,7 +1856,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "momoka0122y",
+          "authorAssociation": "COLLABORATOR",
+          "body": "maybe these should be informative references? \r\nBut I'm not so familiar in the difference of the two reference style.",
+          "createdAt": "2026-01-04T02:27:38Z",
+          "updatedAt": "2026-01-04T02:27:38Z"
+        }
+      ],
       "reviews": []
     },
     {
