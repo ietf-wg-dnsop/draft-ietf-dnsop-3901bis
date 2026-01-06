@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-01-04T02:27:38.825701+00:00",
+  "timestamp": "2026-01-06T02:10:42.007587+00:00",
   "repo": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
   "labels": [
     {
@@ -251,16 +251,24 @@
       "id": "I_kwDOOKHo_M7fUaBg",
       "title": "Section 3/Justification (G. Huston, DNSDIR)",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/46",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "1  Section 3 is a treatise on on the pontential fragmentary pressures on a\n   single name space when a transport protocol-based failure to resolve a\n   name may result in different views of the same name space when\n   exclusively using one protocol or another. This section appears to this\n   reviewer to stray from the purpose of a BCP document, namely to provide a\n   description of guidelines, processes, and methods that are considered the\n   best engineering judgment for designing, using, and managing the\n   Internet. Some level of justification such processes and methods, but the\n   material in Section 3 goes further than a brief justification and\n   presents some general descriptions of DNS pathologies and remedial\n   configuration settings for DNS servers and resolvers. Restating at length\n   material from other DNS literature, including RFCs, appears to this\n   reviewer to wander from the intended scope and purpose of this proposed\n   revision to RFC3901.\n",
       "createdAt": "2025-12-19T08:53:21Z",
-      "updatedAt": "2025-12-19T08:53:21Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-01-04T09:29:01Z",
+      "closedAt": "2026-01-04T09:29:01Z",
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Inclusion of this section in its verbatim nature esp. regarding IP layer fragmentation has been the result of extensive discussions on the DNSOP mailinglist. Especially in 2024, prominent voices were notably adamant about including this text.\n\nBeyond that, the section also provides necessary context and background for non-fragmentation related aspects of the document, esp. in the context of NS validation at delegation time, as it also discusses Zone Misconfigurations (3.1) and intentional reasons (3.3) for namespace fragmentation;\n\nWe would hence argue that, also following the extensive WG discussion, changes here are not strictly necessary.",
+          "createdAt": "2026-01-04T09:29:01Z",
+          "updatedAt": "2026-01-04T09:29:01Z"
+        }
+      ]
     },
     {
       "number": 47,
@@ -274,9 +282,17 @@
       "labels": [],
       "body": "2  Section  4.1 \"It is usually recommended that DNS zones contain at least\n   two name servers, which are geographically diverse and operate under\n   different routing policies [IANANS].\" This reference to advice from the\n   IANA is advice that explicitly limits itself to consideration of the root\n   zone, and delegations in the TLDs .int and .arpa, and does not purport to\n   describe  a usual case.  Either the text should be modified toi note the\n   intended limited scope of the IANA advice, or other DNS literature should\n   be cite to justify this claim.\n",
       "createdAt": "2025-12-19T08:53:25Z",
-      "updatedAt": "2025-12-19T08:53:25Z",
+      "updatedAt": "2026-01-04T09:30:24Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "We would address this comment with the following PR:\nhttps://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/59",
+          "createdAt": "2026-01-04T09:30:24Z",
+          "updatedAt": "2026-01-04T09:30:24Z"
+        }
+      ]
     },
     {
       "number": 48,
@@ -290,9 +306,17 @@
       "labels": [],
       "body": "3  Section 4.1: \"RECOMMENDED that at least two name servers for a zone are\n   dual-stack name servers.\" There is no justification for this\n   recommendation, and there are clearly other ways of providing resilience\n   in the DNS for single-stack DNS resolvers. For example, using two\n   nameserve names that are accessible using IPv4-only and a further twp\n   nameserver names that are acessible using IPv6-only meets the same\n   requirement of resilience in both protocols. The reviewer suggests that\n   this recommendation be rewritten to address a requrement for resilience\n   in each protocol familty. \n",
       "createdAt": "2025-12-19T08:53:30Z",
-      "updatedAt": "2025-12-19T08:53:30Z",
+      "updatedAt": "2026-01-04T09:30:42Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "We would address this comment with the following PR:\nhttps://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/60",
+          "createdAt": "2026-01-04T09:30:42Z",
+          "updatedAt": "2026-01-04T09:30:42Z"
+        }
+      ]
     },
     {
       "number": 49,
@@ -306,25 +330,41 @@
       "labels": [],
       "body": "4. Section 4.1: \"IPv4 adoption: Every DNS zone SHOULD be served by at least\n   one IPv4-reachable authoritative DNS server\". It appears that the intent\n   of the RECOMMENDATION in the previous paragragh is that there is a\n   minimum of TWO IPv4-reachable authoritative DNS servers. Which is it?\n",
       "createdAt": "2025-12-19T08:53:33Z",
-      "updatedAt": "2025-12-19T08:53:33Z",
+      "updatedAt": "2026-01-04T09:30:51Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "We would address this comment with the following PR:\nhttps://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/61",
+          "createdAt": "2026-01-04T09:30:51Z",
+          "updatedAt": "2026-01-04T09:30:51Z"
+        }
+      ]
     },
     {
       "number": 50,
       "id": "I_kwDOOKHo_M7fUaQv",
       "title": "Section 4.1/provide DNS services via IPv4 (G. Huston, DNSDIR)",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/50",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "5. Section 4.1: \"Given the IPv4 address scarcity, operators MAY opt not to\n   provide DNS services via IPv4, if they can ensure that all clients\n   expected to resolve this zone do support DNS resolution via IPv6.\" In the\n   context of the public Internet (which is the intended context of RFC3901\n   and presumably the intended context of this draft that proposes updating\n   it), a DNS server is a promiscuous server and SHOULD NOT constraint or\n   limit the clients that query it. The conditional expression in this text\n   relating to ensuring all client c an support DNS resolution via IPv6\n   appears to contradict the context of the public Internet. The review\n   suggests that this sentence has no place in a BCP relating to the DNS on\n   the public internet, and should be removed.\n",
       "createdAt": "2025-12-19T08:53:36Z",
-      "updatedAt": "2025-12-19T08:53:36Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-01-04T09:31:03Z",
+      "closedAt": "2026-01-04T09:31:03Z",
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This author would like to respectfully disagree on this point.\nOperators expressed the need to at least have the option of creating\ndomain specific services, e.g., an ISP who mostly provides IPv6\nconnectivity, that are IPv6 only, if they know that all clients to\nexpect will have IPv6 connectivity.\n\nTo ensure consensus in this point, the document leave the option (BCP14\nMAY) to operators.",
+          "createdAt": "2026-01-04T09:31:03Z",
+          "updatedAt": "2026-01-04T09:31:03Z"
+        }
+      ]
     },
     {
       "number": 51,
@@ -338,89 +378,137 @@
       "labels": [],
       "body": "6. Section 4.1: \"To avoid reachability issues, authoritative DNS servers\n   SHOULD use native IPv6 addresses instead of IPv4-converted IPv6 addresses\n   for receiving queries.\" Perhaps the draft should state that authoritative\n   DNS servers SHOULD NOT use IPv4-Compatible IPv6 Addresses and IPv4-Mapped\n   IPv6 Address [RFC4291]\", as the reviewer dowa not believe that \"native\n   IPv6 addresses\" is a well defined term in the IPv6 address architecture.\n",
       "createdAt": "2025-12-19T08:53:40Z",
-      "updatedAt": "2025-12-19T08:53:40Z",
+      "updatedAt": "2026-01-04T09:31:11Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "\nWe would address this comment with the following PR:\nhttps://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/57/files\n",
+          "createdAt": "2026-01-04T09:31:11Z",
+          "updatedAt": "2026-01-04T09:31:11Z"
+        }
+      ]
     },
     {
       "number": 52,
       "id": "I_kwDOOKHo_M7fUaXS",
       "title": "Section 4.1 vs Section 3 (G. Huston, DNSDIR)",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/52",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "8. Section 4.1 Avoiding IP Fragmentation: This appears to be a more concise\n   treatment of the material in Section 3 in the subsections \"DNS-over-UDP\n   packets requiring fragmentation\" and \"DNS-over-TCP packets requiring\n   fragmentation\". This reviewer suggests that the material in Section 3 can\n   be dropped in favour of this treatment in Section 4.1.   \n\n",
       "createdAt": "2025-12-19T08:53:43Z",
-      "updatedAt": "2025-12-19T08:53:43Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-01-04T09:30:05Z",
+      "closedAt": "2026-01-04T09:30:05Z",
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "See also #46; Also, quality (background as required by prominent voices being adamant about fragmentation) vs. expanded guidance on handling fragmentation in 4.1 (normative).",
+          "createdAt": "2026-01-04T09:30:05Z",
+          "updatedAt": "2026-01-04T09:30:05Z"
+        }
+      ]
     },
     {
       "number": 53,
       "id": "I_kwDOOKHo_M7fUaZy",
       "title": "Section 4.2/DS justification (G. Huston, DNSDIR)",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/53",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "9. Section 4.2: \"Every recursive DNS resolver SHOULD be dual-stack.\" This\n   is not justified in the body of the document, and as such probably\n   deserves further thought. Stub resolvers are encouraged to use a local\n   configuration that has two (or more) recursive resolvers, and in such a\n   scenario the stub resolver has recovery options if one of the configured\n   recursive resolvers is unreachable. Secondly, there still exist many\n   access networks in the public Internet where there is no IPv6 deployment.\n   In such context this recommendation for local recursive resolver to be\n   dual-stacked for its function of responding to the queries from the set\n   of local stub resolvers makes no sense. At the very least this\n   recommendation should be considered in respect to the\n   stub-resolver-facing role of a recursive resolver and the authoritative\n   server-facing role. If autheorativbe servers follow the recommendations\n   on Section  4.1 then it would appear thathere is no generic requirement\n   for all recursive resolvers to be dual-stacked in every instance.\n",
       "createdAt": "2025-12-19T08:53:47Z",
-      "updatedAt": "2025-12-19T08:53:47Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-01-04T09:28:19Z",
+      "closedAt": "2026-01-04T09:28:19Z",
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Especially this section has been extensively discussed in DNSOP, also during 124. There, operators also noted the progressing decline of IPv4 connection quality they observe in practice. \n\nThe WG ultimately converged to the above recommendation, which includes a point on query forwarding, which has not been considered in this comment (see #54 ).\n",
+          "createdAt": "2026-01-04T09:28:19Z",
+          "updatedAt": "2026-01-04T09:28:19Z"
+        }
+      ]
     },
     {
       "number": 54,
       "id": "I_kwDOOKHo_M7fUab1",
       "title": "Section 4.2/query forwarding by recursive resolvers (G. Huston, DNSDIR)",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/54",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "10. Section 4.2:  \"..a configuration where it forwards queries..\" Embedding\n   non-explicit forwarding of queries in the DNS resolution process is not\n   exactly an instance of Best Current Practice. The DNS has no form of \n   query loop detection or excessive resolver query chain detection, and\n   application of this practice in resolver implementations should be avoided\n   as a general behaviour. This reviewer suggests removing all references to\n   query forwarding by recursive resolvers in Section 4.2.\n",
       "createdAt": "2025-12-19T08:53:50Z",
-      "updatedAt": "2025-12-19T08:53:50Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-01-04T09:27:39Z",
+      "closedAt": "2026-01-04T09:27:39Z",
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The suggestion provided here would effectively only cause the issue identified above. The text is clear on leaving transition technologies, including using a dedicated upstream for non AFI resolvable names;\nAlso, the text explicitly notes that the forwarded to system must have capabilities for the concerned AFI resolution.\n\nAs such, we would again respectfully disagree with the reviewer on this issue, and point towards the text resulting from WG discussion instead.\n\nFurthermore, forwarding of queries is a standard practice, e.g., for DNS caches on CPEs.\n",
+          "createdAt": "2026-01-04T09:27:39Z",
+          "updatedAt": "2026-01-04T09:27:39Z"
+        }
+      ]
     },
     {
       "number": 55,
       "id": "I_kwDOOKHo_M7fUaeT",
       "title": "Section 4.2/know that a query has been sent by a stub resolver (G. Huston, DNSDIR)",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/55",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "11. Section4.2: \"when responding to recursive queries sent by stub DNS\". How\n   can a recursive resolver know that a query has been sent by a stub resolver? \n",
       "createdAt": "2025-12-19T08:53:53Z",
-      "updatedAt": "2025-12-19T08:53:53Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-01-04T09:26:37Z",
+      "closedAt": "2026-01-04T09:26:37Z",
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "See #56: We also note that queries that should be recursed should have the 'recursion desired' flag set; A recursive resolver can safely assume that any query received with the flag set is from a DNS server/client that neither acts as a recursive resolver or an authoritative, i.e., for that specific query, as a stub.",
+          "createdAt": "2026-01-04T09:26:37Z",
+          "updatedAt": "2026-01-04T09:26:37Z"
+        }
+      ]
     },
     {
       "number": 56,
       "id": "I_kwDOOKHo_M7fUagf",
       "title": "Section 4.2/Security Considerations (G. Huston, DNSDIR)",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/56",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "12. Section 5. Security Considerations: \"introduce no new security\\\n   considerations into the DNS protocol.\" This reviewr differs with respect\n   to the recommendation that under certain circumstances a recursive\n   resolver may forward a query to another recursive resolver. As already\n   noted, the DNS resolution protocol has no form of query loop detection or\n   excessive resolver query chain detection, and there is the potential for\n   scenarios that can be used to launch a DOS attacks on recursive\n   resolvers. The authors should reconsider this section in the light of the\n   advice relating to resover-to-resolver forwarding in this document.\n",
       "createdAt": "2025-12-19T08:53:57Z",
-      "updatedAt": "2025-12-19T08:53:57Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-01-04T09:26:13Z",
+      "closedAt": "2026-01-04T09:26:13Z",
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The reviewers concern is being heard. However, the text in the document clearly only leads to one(1) forwarding hop (if the necessary AFI is not supported by the recursive resolver first receiving the query).\n\nTheoretically, one could intentionally misconfigure a set of two single stack recursive resolver to allow for an infinite loop of a query if the query was neither resolvable via IPv4 nor IPv6. However, at the moment, it is unclear to this author how such a scenario could be created in practice, i.e., without intent by the operator.\n\nWe also note that queries that should be recursed should have the 'recursion desired' flag set; A recursive resolver can safely assume that any query received with the flag set is from a DNS server/client that neither acts as a recursive resolver or an authoritative, i.e., for that specific query, as a stub.",
+          "createdAt": "2026-01-04T09:26:13Z",
+          "updatedAt": "2026-01-04T09:26:13Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -1791,19 +1879,41 @@
       "labels": [],
       "body": "An attempt to address #51 by formally defining the meaning of \"native IPv6 address\".",
       "createdAt": "2025-12-19T08:58:09Z",
-      "updatedAt": "2025-12-19T09:06:32Z",
+      "updatedAt": "2026-01-04T09:39:45Z",
       "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "baseRefName": "main",
       "baseRefOid": "4da75574a514b22b9d739552dfc65a1f4d553c65",
       "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "headRefName": "boucadair-patch-1",
-      "headRefOid": "a60b4ab39c5f12bfdde5e058c5e2fd2ee768a4e2",
+      "headRefOid": "652b9244b5b2cc6722e1528cbf1891e55375b1f6",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I just adjusted the PR a bit to make explicit that a 'Native IPv6 address' also needs to be globally unique in the context of this document. Otherwise, various LL/ULA prefixes would, technically, also be covered by the definition.",
+          "createdAt": "2026-01-04T09:38:45Z",
+          "updatedAt": "2026-01-04T09:38:45Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7YD8ha",
+          "commit": {
+            "abbreviatedOid": "652b924"
+          },
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Overall LGTM; Made one change to clarify that this refers to GUA.",
+          "createdAt": "2026-01-04T09:39:45Z",
+          "updatedAt": "2026-01-04T09:39:45Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 58,
@@ -1845,7 +1955,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2025-12-19T18:19:29Z",
-      "updatedAt": "2026-01-04T02:27:38Z",
+      "updatedAt": "2026-01-04T09:17:13Z",
       "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "baseRefName": "main",
       "baseRefOid": "4da75574a514b22b9d739552dfc65a1f4d553c65",
@@ -1860,9 +1970,16 @@
         {
           "author": "momoka0122y",
           "authorAssociation": "COLLABORATOR",
-          "body": "maybe these should be informative references? \r\nBut I'm not so familiar in the difference of the two reference style.",
+          "body": "maybe these should be informative references? \r\nBut I'm not so familiar in the difference of the two reference style so i may be wrong.\r\n\r\notherwise LGTM",
           "createdAt": "2026-01-04T02:27:38Z",
-          "updatedAt": "2026-01-04T02:27:38Z"
+          "updatedAt": "2026-01-04T02:28:24Z"
+        },
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "1034 and 2182 should be normative (as they make normative statements about NS count).",
+          "createdAt": "2026-01-04T09:17:12Z",
+          "updatedAt": "2026-01-04T09:17:12Z"
         }
       ],
       "reviews": []
@@ -1879,19 +1996,60 @@
       "labels": [],
       "body": "",
       "createdAt": "2025-12-19T18:23:40Z",
-      "updatedAt": "2025-12-19T18:23:40Z",
+      "updatedAt": "2026-01-04T09:21:02Z",
       "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "baseRefName": "main",
       "baseRefOid": "4da75574a514b22b9d739552dfc65a1f4d553c65",
       "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "headRefName": "tf_2025_12_19_comments_gh_two",
-      "headRefOid": "c9170cbc1e4fee8df8acff5e50cf3b13c665d5a3",
+      "headRefOid": "8194ccd323d9bd20f6670f0afc26cd11eb1fc209",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7YC6Ke",
+          "commit": {
+            "abbreviatedOid": "c9170cb"
+          },
+          "author": "momoka0122y",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "suggestion to add \"-reachable\" to make it \"IPv4/IPv6-reachable name servers\"",
+          "createdAt": "2026-01-04T02:51:17Z",
+          "updatedAt": "2026-01-04T02:52:13Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\n                    To reduce the chance of DNS name space fragmentation, it is <bcp14>RECOMMENDED</bcp14> that at least two IPv4-reachable and two IPv6-reachable name servers are configured for a zone.\r\n                    A single name server that is reachable over both IPv4 and IPv6 counts once per address family.\r\n```",
+              "createdAt": "2026-01-04T02:51:17Z",
+              "updatedAt": "2026-01-04T09:20:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7YD6lt",
+          "commit": {
+            "abbreviatedOid": "c9170cb"
+          },
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-01-04T09:20:47Z",
+          "updatedAt": "2026-01-04T09:20:47Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "Made a small change to the text to avoid a non-BCP14 \"recommendations\".\r\n\r\nOtherwise looks good; Committing to the PR.",
+              "createdAt": "2026-01-04T09:20:47Z",
+              "updatedAt": "2026-01-04T09:20:47Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 61,
@@ -1905,43 +2063,80 @@
       "labels": [],
       "body": "",
       "createdAt": "2025-12-19T18:25:59Z",
-      "updatedAt": "2025-12-19T18:26:00Z",
+      "updatedAt": "2026-01-04T09:18:27Z",
       "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "baseRefName": "main",
       "baseRefOid": "4da75574a514b22b9d739552dfc65a1f4d553c65",
       "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "headRefName": "tf_2025_12_19_comments_gh_twons",
-      "headRefOid": "2b1c33c2d312b10c207c3c300f418c331cdc80f3",
+      "headRefOid": "7cceaf1f28fbb29b449caf1fca97a077c33e5dae",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks, committed to the PR.",
+          "createdAt": "2026-01-04T09:18:27Z",
+          "updatedAt": "2026-01-04T09:18:27Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7YC5U0",
+          "commit": {
+            "abbreviatedOid": "2b1c33c"
+          },
+          "author": "momoka0122y",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "nit fix needed for pluralization.",
+          "createdAt": "2026-01-04T02:36:04Z",
+          "updatedAt": "2026-01-04T02:37:21Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n                            Every DNS zone <bcp14>SHOULD</bcp14> be served by at least two IPv4-reachable authoritative DNS servers to maintain name space continuity.\r\n```",
+              "createdAt": "2026-01-04T02:36:04Z",
+              "updatedAt": "2026-01-04T02:37:21Z"
+            },
+            {
+              "originalPosition": 14,
+              "body": "```suggestion\r\n                            Every DNS zone <bcp14>SHOULD</bcp14> be served by at least two IPv6-reachable authoritative DNS servers to maintain name space continuity.\r\n```",
+              "createdAt": "2026-01-04T02:36:52Z",
+              "updatedAt": "2026-01-04T02:37:21Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 62,
       "id": "PR_kwDOOKHo_M66d3hk",
       "title": "Tf 2025 12 24 nits",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/62",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "ichdasich",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Addresses nit from the ops dir review.",
       "createdAt": "2025-12-24T11:15:49Z",
-      "updatedAt": "2025-12-24T11:15:50Z",
+      "updatedAt": "2026-01-04T02:39:11Z",
       "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "baseRefName": "main",
       "baseRefOid": "4da75574a514b22b9d739552dfc65a1f4d553c65",
       "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "headRefName": "tf_2025_12_24_nits",
       "headRefOid": "0dacf4fa55d4002321be6ffc54d955ddcb9f3dbc",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-01-04T02:39:11Z",
+      "mergedAt": "2026-01-04T02:39:11Z",
+      "mergedBy": "momoka0122y",
+      "mergeCommit": {
+        "oid": "7b1c5986eb5c6178ebddb60f8985380cf3dd1fcf"
+      },
       "comments": [],
       "reviews": []
     },
