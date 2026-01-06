@@ -400,7 +400,7 @@
         <section anchor="iana-considerations">
             <name>IANA Considerations</name>
             <t>
-                This document requests IANA to update its technical requirements for authoritative DNS servers to require both IPv4 and IPv6 addresses for each authoritative server <xref target="IANANS"/>.
+                This document requests IANA consider updating its technical requirements for authoritative DNS servers to require both IPv4 and IPv6 addresses for each authoritative server <xref target="IANANS"/>, in accordance with its processes for reviewing and revising these procedures.
             </t>
         </section>
         <section numbered="false" anchor="acknowledgments">
