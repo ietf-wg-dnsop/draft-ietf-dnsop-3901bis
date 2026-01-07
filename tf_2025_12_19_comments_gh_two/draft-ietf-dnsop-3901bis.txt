@@ -6,7 +6,7 @@ dnsop                                                             Momoka
 Internet-Draft                                              WIDE Project
 Obsoletes: 3901 (if approved)                                  T. Fiebig
 Intended status: Best Current Practice                           MPI-INF
-Expires: 8 July 2026                                      4 January 2026
+Expires: 11 July 2026                                     7 January 2026
 
 
                DNS IPv6 Transport Operational Guidelines
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 July 2026.
+   This Internet-Draft will expire on 11 July 2026.
 
 Copyright Notice
 
@@ -146,6 +146,10 @@ Table of Contents
    This document uses DNS terminology as described in [RFC9499].
    Furthermore, the following terms are used with a defined meaning:
 
+   Native IPv6 address:
+      A Globally Unique IPv6 address [RFC5375] that is not an
+      IPv4-embedded IPv6 address [RFC6052].
+
    IPv4 name server:
       A name server that provides either authoritative or recursive DNS
       services and is reachable via IPv4.  This does not imply anything
@@ -220,7 +224,7 @@ Table of Contents
       [I-D.ietf-dnsop-ns-revalidation]).
 
    Zone of sibling domain NSes not resolving:
-      If the name from an NS RR for a zone is sibling domain, the
+      If the name from an NS RR for a zone is in a sibling domain, the
       corresponding zone needs to be resolvable via the IP address
       family in question as well.  It is insufficient if the name
       pointed to by the NS RR has an associated A or AAAA RR
@@ -346,7 +350,7 @@ Table of Contents
    Intentional IP related name space fragmentation occurs if an operator
    consciously decides not to deploy IPv4 or IPv6 for a part of the
    resolution chain.  Most commonly, this is realized by intentionally
-   not listing A/AAAA RRs for NS names.  At the time of writing, the
+   not listing A/AAAA RRs for NS names.  Based on a 2023 study, the
    share of zones not resolvable via IPv4 is negligible, while a little
    less than 40% of zones are not resolvable via IPv6 [V6DNSRDY-23].
    However, as IPv4 address exhaustion progresses, IPv6 adoption is
@@ -372,13 +376,15 @@ Table of Contents
 4.1.  Guidelines for Authoritative DNS Server Configuration
 
    It is usually recommended that DNS zones contain at least two name
-   servers, which are geographically diverse and operate under different
-   routing policies [IANANS].  To reduce the chance of DNS name space
-   fragmentation, it is RECOMMENDED that at least two IPv4-reachable and
-   two IPv6-reachable name servers are configured for a zone.  A single
-   name server that is reachable over both IPv4 and IPv6 counts once per
-   address family.  Specifically, this means that the following minimal
-   requirements SHOULD be implemented for a zone:
+   servers (Section 4.1 of [RFC1034]).  Typically, these servers are
+   geographically diverse and operate under different routing policies
+   [RFC2182], as also mirrored by, e.g., the IANA requirements for TLD
+   authoritative name servers [IANANS].  To reduce the chance of DNS
+   name space fragmentation, it is RECOMMENDED that at least two
+   IPv4-reachable and two IPv6-reachable name servers are configured for
+   a zone.  A single name server that is reachable over both IPv4 and
+   IPv6 counts once per address family.  Specifically, this means that
+   the following minimal requirements SHOULD be implemented for a zone:
 
    IPv4 adoption:
       Every DNS zone SHOULD be served by at least one IPv4-reachable
@@ -503,7 +509,7 @@ Acknowledgments
    Carpenter, Tom Petch, Philipp S.  Tiesel, Mark Andrews, Stefan
    Ubbink, Joe Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti,
    David Farmer, Pieter Lexis, Ralf Weber, Philip Homburg, Marco Davids,
-   Mohamed Boucadair, Thomas Fossati
+   Mohamed Boucadair, Thomas Fossati, Aihua Guo
 
    Thank you for reading this draft.
 
@@ -524,6 +530,10 @@ References
 
 Normative References
 
+   [RFC1034]  Mockapetris, P., "Domain names - concepts and facilities",
+              STD 13, RFC 1034, DOI 10.17487/RFC1034, November 1987,
+              <https://www.rfc-editor.org/info/rfc1034>.
+
    [RFC1035]  Mockapetris, P., "Domain names - implementation and
               specification", STD 13, RFC 1035, DOI 10.17487/RFC1035,
               November 1987, <https://www.rfc-editor.org/info/rfc1035>.
@@ -536,6 +546,11 @@ Normative References
    [RFC4821]  Mathis, M. and J. Heffner, "Packetization Layer Path MTU
               Discovery", RFC 4821, DOI 10.17487/RFC4821, March 2007,
               <https://www.rfc-editor.org/info/rfc4821>.
+
+   [RFC6052]  Bao, C., Huitema, C., Bagnulo, M., Boucadair, M., and X.
+              Li, "IPv6 Addressing of IPv4/IPv6 Translators", RFC 6052,
+              DOI 10.17487/RFC6052, October 2010,
+              <https://www.rfc-editor.org/info/rfc6052>.
 
    [RFC6724]  Thaler, D., Ed., Draves, R., Matsumoto, A., and T. Chown,
               "Default Address Selection for Internet Protocol Version 6
@@ -605,6 +620,11 @@ Informative References
               RFC 2131, DOI 10.17487/RFC2131, March 1997,
               <https://www.rfc-editor.org/info/rfc2131>.
 
+   [RFC2182]  Elz, R., Bush, R., Bradner, S., and M. Patton, "Selection
+              and Operation of Secondary DNS Servers", BCP 16, RFC 2182,
+              DOI 10.17487/RFC2182, July 1997,
+              <https://www.rfc-editor.org/info/rfc2182>.
+
    [RFC2460]  Deering, S. and R. Hinden, "Internet Protocol, Version 6
               (IPv6) Specification", RFC 2460, DOI 10.17487/RFC2460,
               December 1998, <https://www.rfc-editor.org/info/rfc2460>.
@@ -622,6 +642,11 @@ Informative References
               Rose, "Resource Records for the DNS Security Extensions",
               RFC 4034, DOI 10.17487/RFC4034, March 2005,
               <https://www.rfc-editor.org/info/rfc4034>.
+
+   [RFC5375]  Van de Velde, G., Popoviciu, C., Chown, T., Bonness, O.,
+              and C. Hahn, "IPv6 Unicast Address Assignment
+              Considerations", RFC 5375, DOI 10.17487/RFC5375, December
+              2008, <https://www.rfc-editor.org/info/rfc5375>.
 
    [RFC6146]  Bagnulo, M., Matthews, P., and I. van Beijnum, "Stateful
               NAT64: Network Address and Protocol Translation from IPv6
