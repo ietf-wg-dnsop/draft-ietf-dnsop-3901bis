@@ -380,10 +380,11 @@ Table of Contents
    geographically diverse and operate under different routing policies
    [RFC2182], as also mirrored by, e.g., the IANA requirements for TLD
    authoritative name servers [IANANS].  To reduce the chance of DNS
-   name space fragmentation, it is RECOMMENDED that at least two name
-   servers for a zone are dual-stack name servers.  Specifically, this
-   means that the following minimal requirements SHOULD be implemented
-   for a zone:
+   name space fragmentation, it is RECOMMENDED that at least two
+   IPv4-reachable and two IPv6-reachable name servers are configured for
+   a zone.  A single name server that is reachable over both IPv4 and
+   IPv6 counts once per address family.  Specifically, this means that
+   the following minimal requirements SHOULD be implemented for a zone:
 
    IPv4 adoption:
       Every DNS zone SHOULD be served by at least one IPv4-reachable
