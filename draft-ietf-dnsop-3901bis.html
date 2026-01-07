@@ -1504,7 +1504,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                             IPv4 adoption:
           </dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.2">
-                            Every DNS zone <span class="bcp14">SHOULD</span> be served by at least one IPv4-reachable authoritative DNS server to maintain name space continuity.
+                            Every DNS zone <span class="bcp14">SHOULD</span> be served by at least two IPv4-reachable authoritative DNS servers to maintain name space continuity.
                             The delegation configuration (Resolution of the parent, resolution of sibling domain names, glue) <span class="bcp14">MUST NOT</span> rely on IPv6 connectivity being available.
                             Given the IPv4 address scarcity, operators <span class="bcp14">MAY</span> opt not to provide DNS services via IPv4, if they can ensure that all clients expected to resolve this zone do support DNS resolution via IPv6.<a href="#section-4.1-2.2" class="pilcrow">¶</a>
 </dd>
@@ -1513,7 +1513,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                             IPv6 adoption:
           </dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.4">
-                            Every DNS zone <span class="bcp14">SHOULD</span> be served by at least one IPv6-reachable authoritative DNS server to maintain name space continuity.
+                            Every DNS zone <span class="bcp14">SHOULD</span> be served by at least two IPv6-reachable authoritative DNS servers to maintain name space continuity.
                             To avoid reachability issues, authoritative DNS servers <span class="bcp14">SHOULD</span> use native IPv6 addresses instead of IPv4-converted IPv6 addresses for receiving queries.
                             The delegation configuration (Resolution of the parent, resolution of sibling domain names, glue) <span class="bcp14">MUST NOT</span> rely on IPv4 connectivity being available.<a href="#section-4.1-2.4" class="pilcrow">¶</a>
 </dd>

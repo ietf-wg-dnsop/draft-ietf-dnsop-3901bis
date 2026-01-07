@@ -387,8 +387,8 @@ Table of Contents
    the following minimal requirements SHOULD be implemented for a zone:
 
    IPv4 adoption:
-      Every DNS zone SHOULD be served by at least one IPv4-reachable
-      authoritative DNS server to maintain name space continuity.  The
+      Every DNS zone SHOULD be served by at least two IPv4-reachable
+      authoritative DNS servers to maintain name space continuity.  The
       delegation configuration (Resolution of the parent, resolution of
       sibling domain names, glue) MUST NOT rely on IPv6 connectivity
       being available.  Given the IPv4 address scarcity, operators MAY
@@ -397,8 +397,8 @@ Table of Contents
       resolution via IPv6.
 
    IPv6 adoption:
-      Every DNS zone SHOULD be served by at least one IPv6-reachable
-      authoritative DNS server to maintain name space continuity.  To
+      Every DNS zone SHOULD be served by at least two IPv6-reachable
+      authoritative DNS servers to maintain name space continuity.  To
       avoid reachability issues, authoritative DNS servers SHOULD use
       native IPv6 addresses instead of IPv4-converted IPv6 addresses for
       receiving queries.  The delegation configuration (Resolution of
