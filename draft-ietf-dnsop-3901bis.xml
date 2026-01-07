@@ -67,6 +67,7 @@
             <t>
                 <xref target="RFC3901"/> was initially written at a time when IPv6 deployment was not widespread, focusing primarily on maintaining name space continuity within the IPv4 landscape.
                 Two decades later, not only is IPv6 widely deployed, it is also becoming the de facto standard in many areas, such as mobile and access networks and data center underlays.
+                Furthermore, since 2012, IPv6 support being required for all IP-capable nodes has been established as a best current practice <xref target="RFC6540"/>.
                 This document broadens the scope of <xref target="RFC3901"/> recommending IPv6 connectivity for authoritative DNS servers, recursive resolvers, and stub resolvers.
             </t>
             <t>
@@ -432,6 +433,7 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.1035.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.2119.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4821.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6540.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6724.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6891.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7766.xml"/>
