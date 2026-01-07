@@ -538,11 +538,6 @@ Normative References
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
-   [RFC2182]  Elz, R., Bush, R., Bradner, S., and M. Patton, "Selection
-              and Operation of Secondary DNS Servers", BCP 16, RFC 2182,
-              DOI 10.17487/RFC2182, July 1997,
-              <https://www.rfc-editor.org/info/rfc2182>.
-
    [RFC4821]  Mathis, M. and J. Heffner, "Packetization Layer Path MTU
               Discovery", RFC 4821, DOI 10.17487/RFC4821, March 2007,
               <https://www.rfc-editor.org/info/rfc4821>.
@@ -614,6 +609,11 @@ Informative References
    [RFC2131]  Droms, R., "Dynamic Host Configuration Protocol",
               RFC 2131, DOI 10.17487/RFC2131, March 1997,
               <https://www.rfc-editor.org/info/rfc2131>.
+
+   [RFC2182]  Elz, R., Bush, R., Bradner, S., and M. Patton, "Selection
+              and Operation of Secondary DNS Servers", BCP 16, RFC 2182,
+              DOI 10.17487/RFC2182, July 1997,
+              <https://www.rfc-editor.org/info/rfc2182>.
 
    [RFC2460]  Deering, S. and R. Hinden, "Internet Protocol, Version 6
               (IPv6) Specification", RFC 2460, DOI 10.17487/RFC2460,
