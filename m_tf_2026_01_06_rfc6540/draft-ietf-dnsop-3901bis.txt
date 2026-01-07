@@ -537,11 +537,6 @@ Normative References
               Discovery", RFC 4821, DOI 10.17487/RFC4821, March 2007,
               <https://www.rfc-editor.org/info/rfc4821>.
 
-   [RFC6540]  George, W., Donley, C., Liljenstolpe, C., and L. Howard,
-              "IPv6 Support Required for All IP-Capable Nodes", BCP 177,
-              RFC 6540, DOI 10.17487/RFC6540, April 2012,
-              <https://www.rfc-editor.org/info/rfc6540>.
-
    [RFC6724]  Thaler, D., Ed., Draves, R., Matsumoto, A., and T. Chown,
               "Default Address Selection for Internet Protocol Version 6
               (IPv6)", RFC 6724, DOI 10.17487/RFC6724, September 2012,
@@ -632,6 +627,11 @@ Informative References
               NAT64: Network Address and Protocol Translation from IPv6
               Clients to IPv4 Servers", RFC 6146, DOI 10.17487/RFC6146,
               April 2011, <https://www.rfc-editor.org/info/rfc6146>.
+
+   [RFC6540]  George, W., Donley, C., Liljenstolpe, C., and L. Howard,
+              "IPv6 Support Required for All IP-Capable Nodes", BCP 177,
+              RFC 6540, DOI 10.17487/RFC6540, April 2012,
+              <https://www.rfc-editor.org/info/rfc6540>.
 
    [RFC6877]  Mawatari, M., Kawashima, M., and C. Byrne, "464XLAT:
               Combination of Stateful and Stateless Translation",
