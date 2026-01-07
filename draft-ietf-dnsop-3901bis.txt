@@ -376,11 +376,14 @@ Table of Contents
 4.1.  Guidelines for Authoritative DNS Server Configuration
 
    It is usually recommended that DNS zones contain at least two name
-   servers, which are geographically diverse and operate under different
-   routing policies [IANANS].  To reduce the chance of DNS name space
-   fragmentation, it is RECOMMENDED that at least two name servers for a
-   zone are dual-stack name servers.  Specifically, this means that the
-   following minimal requirements SHOULD be implemented for a zone:
+   servers (Section 4.1 of [RFC1034]).  Typically, these servers are
+   geographically diverse and operate under different routing policies
+   [RFC2182], as also mirrored by, e.g., the IANA requirements for TLD
+   authoritative name servers [IANANS].  To reduce the chance of DNS
+   name space fragmentation, it is RECOMMENDED that at least two name
+   servers for a zone are dual-stack name servers.  Specifically, this
+   means that the following minimal requirements SHOULD be implemented
+   for a zone:
 
    IPv4 adoption:
       Every DNS zone SHOULD be served by at least one IPv4-reachable
@@ -526,6 +529,10 @@ References
 
 Normative References
 
+   [RFC1034]  Mockapetris, P., "Domain names - concepts and facilities",
+              STD 13, RFC 1034, DOI 10.17487/RFC1034, November 1987,
+              <https://www.rfc-editor.org/info/rfc1034>.
+
    [RFC1035]  Mockapetris, P., "Domain names - implementation and
               specification", STD 13, RFC 1035, DOI 10.17487/RFC1035,
               November 1987, <https://www.rfc-editor.org/info/rfc1035>.
@@ -611,6 +618,11 @@ Informative References
    [RFC2131]  Droms, R., "Dynamic Host Configuration Protocol",
               RFC 2131, DOI 10.17487/RFC2131, March 1997,
               <https://www.rfc-editor.org/info/rfc2131>.
+
+   [RFC2182]  Elz, R., Bush, R., Bradner, S., and M. Patton, "Selection
+              and Operation of Secondary DNS Servers", BCP 16, RFC 2182,
+              DOI 10.17487/RFC2182, July 1997,
+              <https://www.rfc-editor.org/info/rfc2182>.
 
    [RFC2460]  Deering, S. and R. Hinden, "Internet Protocol, Version 6
               (IPv6) Specification", RFC 2460, DOI 10.17487/RFC2460,
