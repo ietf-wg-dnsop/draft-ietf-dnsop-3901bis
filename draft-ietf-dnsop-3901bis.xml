@@ -110,6 +110,12 @@
             </t>
             <dl newline="true" spacing="normal">
                 <dt>
+                    Native IPv6 address:
+                </dt>
+                <dd>
+                    A Globally Unique IPv6 address <xref target="RFC5375"/> that is not an IPv4-embedded IPv6 address <xref target="RFC6052"/>.
+                </dd>
+                <dt>
                     IPv4 name server:
                 </dt>
                 <dd>
@@ -180,7 +186,7 @@
                         Zone of sibling domain NSes not resolving:
                     </dt>
                     <dd>
-                        If the name from an NS RR for a zone is sibling domain, the corresponding zone needs to be resolvable via the IP address family in question as well.
+                        If the name from an NS RR for a zone is in a sibling domain, the corresponding zone needs to be resolvable via the IP address family in question as well.
                         It is insufficient if the name pointed to by the NS RR has an associated A or AAAA RR correspondingly.
                     </dd>
                     <dt>
@@ -276,7 +282,7 @@
                 <t>
                     Intentional IP related name space fragmentation occurs if an operator consciously decides not to deploy IPv4 or IPv6 for a part of the resolution chain.
                     Most commonly, this is realized by intentionally not listing A/AAAA RRs for NS names.
-                    At the time of writing, the share of zones not resolvable via IPv4 is negligible, while a little less than 40% of zones are not resolvable via IPv6 <xref target="V6DNSRDY-23"/>.
+                    Based on a 2023 study, the share of zones not resolvable via IPv4 is negligible, while a little less than 40% of zones are not resolvable via IPv6 <xref target="V6DNSRDY-23"/>.
                     However, as IPv4 address exhaustion progresses, IPv6 adoption is expected to increase.
                 </t>
             </section>
@@ -298,7 +304,8 @@
             <section anchor="guidelines-for-authoritative-dns-configuration">
                 <name>Guidelines for Authoritative DNS Server Configuration</name>
                 <t>
-                    It is usually recommended that DNS zones contain at least two name servers, which are geographically diverse and operate under different routing policies <xref target="IANANS"/>.
+                    It is usually recommended that DNS zones contain at least two name servers (Section 4.1 of <xref target="RFC1034"/>).
+                    Typically, these servers are geographically diverse and operate under different routing policies <xref target="RFC2182"/>, as also mirrored by, e.g., the IANA requirements for TLD authoritative name servers <xref target="IANANS"/>.
                     To reduce the chance of DNS name space fragmentation, it is <bcp14>RECOMMENDED</bcp14> that at least two IPv4-reachable and two IPv6-reachable name servers are configured for a zone.
                     A single name server that is reachable over both IPv4 and IPv6 counts once per address family.
                     Specifically, this means that the following minimal requirements <bcp14>SHOULD</bcp14> be implemented for a zone:
@@ -407,7 +414,7 @@
         <section numbered="false" anchor="acknowledgments">
             <name>Acknowledgments</name>
             <t>
-                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp S. Tiesel, Mark Andrews, Stefan Ubbink, Joe Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti, David Farmer, Pieter Lexis, Ralf Weber, Philip Homburg, Marco Davids, Mohamed Boucadair, Thomas Fossati
+                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp S. Tiesel, Mark Andrews, Stefan Ubbink, Joe Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti, David Farmer, Pieter Lexis, Ralf Weber, Philip Homburg, Marco Davids, Mohamed Boucadair, Thomas Fossati, Aihua Guo
             </t>
             <t>
                 Thank you for reading this draft.
@@ -430,9 +437,11 @@
             <name>References</name>
             <references anchor="sec-normative-references">
                 <name>Normative References</name>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.1034.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.1035.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.2119.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4821.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6052.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6724.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6891.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7766.xml"/>
@@ -446,10 +455,12 @@
                 <name>Informative References</name>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.1918.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.2131.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.2182.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.2460.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.3542.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.3901.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4034.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.5375.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6146.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6877.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6888.xml"/>
