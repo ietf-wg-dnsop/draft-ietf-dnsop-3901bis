@@ -6,7 +6,7 @@ dnsop                                                             Momoka
 Internet-Draft                                              WIDE Project
 Obsoletes: 3901 (if approved)                                  T. Fiebig
 Intended status: Best Current Practice                           MPI-INF
-Expires: 2 July 2026                                    29 December 2025
+Expires: 11 July 2026                                     7 January 2026
 
 
                DNS IPv6 Transport Operational Guidelines
@@ -46,11 +46,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 July 2026.
+   This Internet-Draft will expire on 11 July 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -268,9 +268,9 @@ Table of Contents
       with most implementations using a lower EDNS(0) size of 1232
       octets as per the suggestions made by the [DNSFlagDay2020]
       initiative, to ensure that generated packets always fit into lower
-      bound of the IPv6 MTU of 1280, as defined in [RFC8200].  Hence,
-      DNS servers MAY also opt to set an EDNS(0) size of 1232 octets as
-      suggested by the [DNSFlagDay2020] initiative.
+      bound of the IPv6 MTU of 1280 octets, as defined in [RFC8200].
+      Hence, DNS servers MAY also opt to set an EDNS(0) size of 1232
+      octets as suggested by the [DNSFlagDay2020] initiative.
 
       Additionally, DNS servers MAY opt to explicitly not rely on path
       MTU discovery [RFC4821] or PLPMTUD [RFC8899].  It can do so, for
