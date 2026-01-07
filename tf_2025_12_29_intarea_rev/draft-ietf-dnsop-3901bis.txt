@@ -319,11 +319,11 @@ Table of Contents
       Similarly, IPv6 connectivity can experience issues when IPv4-IPv6
       transition technologies like NAT64 [RFC6146] on IPv6-mostly
       networks [RFC9313] are in use, where the use of NAT64 can be,
-      e.g., discovered through PREF64 in router advertisements [RFC8781]
-      or DNS64 [RFC7050].  There, the synthesized IPv6 addresses used
-      in, e.g., 464XLAT [RFC6877] encounter additional PMTU fluctuation
-      due to the difference in header size between IPv4 and IPv6,
-      possibly impacting DNS resolution.
+      e.g., discovered through PREF64 in Router Advertisements (RAs)
+      [RFC8781] or DNS64 [RFC7050].  There, the synthesized IPv6
+      addresses used in, e.g., 464XLAT [RFC6877] encounter additional
+      PMTU fluctuation due to the difference in header size between IPv4
+      and IPv6, possibly impacting DNS resolution.
 
    Note: This document only explicitly discusses DNS-over-TCP and DNS-
    over-UDP.  However, several other transport methods between recursive
