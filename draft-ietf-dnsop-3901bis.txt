@@ -270,10 +270,11 @@ Table of Contents
       the maximum DNS/UDP payload size does not exceed 1400 octets.
       This can be accomplished by setting a corresponding EDNS(0) size,
       with most implementations using a lower EDNS(0) size of 1232
-      octets following [DNSFlagDay2020], to ensure that generated
-      packets always fit into lower bound of the IPv6 MTU of 1280, as
-      defined in [RFC8200].  Hence, DNS servers MAY opt to set an
-      EDNS(0) size of 1232 octets following [DNSFlagDay2020].
+      octets as per the suggestions made by the [DNSFlagDay2020]
+      initiative, to ensure that generated packets always fit into lower
+      bound of the IPv6 MTU of 1280 octets, as defined in [RFC8200].
+      Hence, DNS servers MAY also opt to set an EDNS(0) size of 1232
+      octets as suggested by the [DNSFlagDay2020] initiative.
 
       Additionally, DNS servers MAY opt to explicitly not rely on path
       MTU discovery [RFC4821] or PLPMTUD [RFC8899].  It can do so, for
@@ -322,11 +323,11 @@ Table of Contents
       Similarly, IPv6 connectivity can experience issues when IPv4-IPv6
       transition technologies like NAT64 [RFC6146] on IPv6-mostly
       networks [RFC9313] are in use, where the use of NAT64 can be,
-      e.g., discovered through PREF64 in router advertisments [RFC8781]
-      or DNS64 [RFC7050].  There, the synthesized IPv6 addresses used
-      in, e.g., 464XLAT [RFC6877] encounter additional PMTU fluctuation
-      due to the difference in header size between IPv4 and IPv6,
-      possibly impacting DNS resolution.
+      e.g., discovered through PREF64 in Router Advertisements (RAs)
+      [RFC8781] or DNS64 [RFC7050].  There, the synthesized IPv6
+      addresses used in, e.g., 464XLAT [RFC6877] encounter additional
+      PMTU fluctuation due to the difference in header size between IPv4
+      and IPv6, possibly impacting DNS resolution.
 
    Note: This document only explicitly discusses DNS-over-TCP and DNS-
    over-UDP.  However, several other transport methods between recursive
@@ -509,7 +510,7 @@ Acknowledgments
    Carpenter, Tom Petch, Philipp S.  Tiesel, Mark Andrews, Stefan
    Ubbink, Joe Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti,
    David Farmer, Pieter Lexis, Ralf Weber, Philip Homburg, Marco Davids,
-   Mohamed Boucadair, Thomas Fossati, Aihua Guo
+   Mohamed Boucadair, Thomas Fossati, Aihua Guo, Bernie Volz
 
    Thank you for reading this draft.
 
