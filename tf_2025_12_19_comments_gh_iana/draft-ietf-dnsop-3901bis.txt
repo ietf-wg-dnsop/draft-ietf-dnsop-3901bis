@@ -6,7 +6,7 @@ dnsop                                                             Momoka
 Internet-Draft                                              WIDE Project
 Obsoletes: 3901 (if approved)                                  T. Fiebig
 Intended status: Best Current Practice                           MPI-INF
-Expires: 22 June 2026                                   19 December 2025
+Expires: 11 July 2026                                     7 January 2026
 
 
                DNS IPv6 Transport Operational Guidelines
@@ -46,11 +46,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 June 2026.
+   This Internet-Draft will expire on 11 July 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -372,13 +372,14 @@ Table of Contents
 4.1.  Guidelines for Authoritative DNS Server Configuration
 
    It is usually recommended that DNS zones contain at least two name
-   servers [RFC1034], which are geographically diverse and operate under
-   different routing policies [RFC2182], as also mirrored by, e.g., the
-   IANA requirements for TLD authoritative name servers [IANANS].  To
-   reduce the chance of DNS name space fragmentation, it is RECOMMENDED
-   that at least two name servers for a zone are dual-stack name
-   servers.  Specifically, this means that the following minimal
-   requirements SHOULD be implemented for a zone:
+   servers (Section 4.1 of [RFC1034]).  Typically, these servers are
+   geographically diverse and operate under different routing policies
+   [RFC2182], as also mirrored by, e.g., the IANA requirements for TLD
+   authoritative name servers [IANANS].  To reduce the chance of DNS
+   name space fragmentation, it is RECOMMENDED that at least two name
+   servers for a zone are dual-stack name servers.  Specifically, this
+   means that the following minimal requirements SHOULD be implemented
+   for a zone:
 
    IPv4 adoption:
       Every DNS zone SHOULD be served by at least one IPv4-reachable
