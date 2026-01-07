@@ -298,7 +298,7 @@
             <section anchor="guidelines-for-authoritative-dns-configuration">
                 <name>Guidelines for Authoritative DNS Server Configuration</name>
                 <t>
-                    It is usually recommended that DNS zones contain at least two name servers <xref target="RFC1034"/>, which are geographically diverse and operate under different routing policies <xref target="RFC2182"/>, as also mirrored by, e.g., the IANA requirements for TLD authoritative name servers <xref target="IANANS"/>.
+                    It is usually recommended that DNS zones contain at least two name servers (Section 4.1 of <xref target="RFC1034"/>). Typically, these servers are geographically diverse and operate under different routing policies <xref target="RFC2182"/>, as also mirrored by, e.g., the IANA requirements for TLD authoritative name servers <xref target="IANANS"/>.
                     To reduce the chance of DNS name space fragmentation, it is <bcp14>RECOMMENDED</bcp14> that at least two name servers for a zone are dual-stack name servers.
                     Specifically, this means that the following minimal requirements <bcp14>SHOULD</bcp14> be implemented for a zone:
                 </t>
