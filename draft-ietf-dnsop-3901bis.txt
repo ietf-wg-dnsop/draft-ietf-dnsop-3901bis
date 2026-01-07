@@ -108,7 +108,9 @@ Table of Contents
    continuity within the IPv4 landscape.  Two decades later, not only is
    IPv6 widely deployed, it is also becoming the de facto standard in
    many areas, such as mobile and access networks and data center
-   underlays.  This document broadens the scope of [RFC3901]
+   underlays.  Furthermore, since 2012, IPv6 support being required for
+   all IP-capable nodes has been established as a best current practice
+   [RFC6540].  This document broadens the scope of [RFC3901]
    recommending IPv6 connectivity for authoritative DNS servers,
    recursive resolvers, and stub resolvers.
 
@@ -654,6 +656,11 @@ Informative References
               NAT64: Network Address and Protocol Translation from IPv6
               Clients to IPv4 Servers", RFC 6146, DOI 10.17487/RFC6146,
               April 2011, <https://www.rfc-editor.org/info/rfc6146>.
+
+   [RFC6540]  George, W., Donley, C., Liljenstolpe, C., and L. Howard,
+              "IPv6 Support Required for All IP-Capable Nodes", BCP 177,
+              RFC 6540, DOI 10.17487/RFC6540, April 2012,
+              <https://www.rfc-editor.org/info/rfc6540>.
 
    [RFC6877]  Mawatari, M., Kawashima, M., and C. Byrne, "464XLAT:
               Combination of Stateful and Stateless Translation",
