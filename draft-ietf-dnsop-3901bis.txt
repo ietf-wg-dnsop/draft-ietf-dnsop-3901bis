@@ -6,7 +6,7 @@ dnsop                                                             Momoka
 Internet-Draft                                              WIDE Project
 Obsoletes: 3901 (if approved)                                  T. Fiebig
 Intended status: Best Current Practice                           MPI-INF
-Expires: 8 July 2026                                      4 January 2026
+Expires: 11 July 2026                                     7 January 2026
 
 
                DNS IPv6 Transport Operational Guidelines
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 July 2026.
+   This Internet-Draft will expire on 11 July 2026.
 
 Copyright Notice
 
@@ -145,6 +145,10 @@ Table of Contents
 
    This document uses DNS terminology as described in [RFC9499].
    Furthermore, the following terms are used with a defined meaning:
+
+   Native IPv6 address:
+      A Globally Unique IPv6 address [RFC5375] that is not an
+      IPv4-embedded IPv6 address [RFC6052].
 
    IPv4 name server:
       A name server that provides either authoritative or recursive DNS
@@ -535,6 +539,11 @@ Normative References
               Discovery", RFC 4821, DOI 10.17487/RFC4821, March 2007,
               <https://www.rfc-editor.org/info/rfc4821>.
 
+   [RFC6052]  Bao, C., Huitema, C., Bagnulo, M., Boucadair, M., and X.
+              Li, "IPv6 Addressing of IPv4/IPv6 Translators", RFC 6052,
+              DOI 10.17487/RFC6052, October 2010,
+              <https://www.rfc-editor.org/info/rfc6052>.
+
    [RFC6724]  Thaler, D., Ed., Draves, R., Matsumoto, A., and T. Chown,
               "Default Address Selection for Internet Protocol Version 6
               (IPv6)", RFC 6724, DOI 10.17487/RFC6724, September 2012,
@@ -620,6 +629,11 @@ Informative References
               Rose, "Resource Records for the DNS Security Extensions",
               RFC 4034, DOI 10.17487/RFC4034, March 2005,
               <https://www.rfc-editor.org/info/rfc4034>.
+
+   [RFC5375]  Van de Velde, G., Popoviciu, C., Chown, T., Bonness, O.,
+              and C. Hahn, "IPv6 Unicast Address Assignment
+              Considerations", RFC 5375, DOI 10.17487/RFC5375, December
+              2008, <https://www.rfc-editor.org/info/rfc5375>.
 
    [RFC6146]  Bagnulo, M., Matthews, P., and I. van Beijnum, "Stateful
               NAT64: Network Address and Protocol Translation from IPv6
