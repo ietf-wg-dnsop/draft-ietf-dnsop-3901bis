@@ -499,9 +499,10 @@ Table of Contents
 
 6.  IANA Considerations
 
-   This document requests IANA to update its technical requirements for
-   authoritative DNS servers to require both IPv4 and IPv6 addresses for
-   each authoritative server [IANANS].
+   This document requests IANA consider updating its technical
+   requirements for authoritative DNS servers to require both IPv4 and
+   IPv6 addresses for each authoritative server [IANANS], in accordance
+   with its processes for reviewing and revising these procedures.
 
 Acknowledgments
 
@@ -510,7 +511,7 @@ Acknowledgments
    Carpenter, Tom Petch, Philipp S.  Tiesel, Mark Andrews, Stefan
    Ubbink, Joe Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti,
    David Farmer, Pieter Lexis, Ralf Weber, Philip Homburg, Marco Davids,
-   Mohamed Boucadair, Thomas Fossati, Aihua Guo, Bernie Volz
+   Mohamed Boucadair, Thomas Fossati, Aihua Guo, Bernie Volz, David Dong
 
    Thank you for reading this draft.
 
