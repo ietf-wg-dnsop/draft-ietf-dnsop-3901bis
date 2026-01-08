@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-01-06T02:10:42.007587+00:00",
+  "timestamp": "2026-01-08T02:10:26.738000+00:00",
   "repo": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
   "labels": [
     {
@@ -275,15 +275,15 @@
       "id": "I_kwDOOKHo_M7fUaER",
       "title": "Section 4.1/Scope (G. Huston, DNSDIR)",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/47",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "2  Section  4.1 \"It is usually recommended that DNS zones contain at least\n   two name servers, which are geographically diverse and operate under\n   different routing policies [IANANS].\" This reference to advice from the\n   IANA is advice that explicitly limits itself to consideration of the root\n   zone, and delegations in the TLDs .int and .arpa, and does not purport to\n   describe  a usual case.  Either the text should be modified toi note the\n   intended limited scope of the IANA advice, or other DNS literature should\n   be cite to justify this claim.\n",
       "createdAt": "2025-12-19T08:53:25Z",
-      "updatedAt": "2026-01-04T09:30:24Z",
-      "closedAt": null,
+      "updatedAt": "2026-01-07T11:00:40Z",
+      "closedAt": "2026-01-07T11:00:40Z",
       "comments": [
         {
           "author": "ichdasich",
@@ -299,15 +299,15 @@
       "id": "I_kwDOOKHo_M7fUaHQ",
       "title": "Section 4.1/resilience (G. Huston, DNSDIR)",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/48",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "3  Section 4.1: \"RECOMMENDED that at least two name servers for a zone are\n   dual-stack name servers.\" There is no justification for this\n   recommendation, and there are clearly other ways of providing resilience\n   in the DNS for single-stack DNS resolvers. For example, using two\n   nameserve names that are accessible using IPv4-only and a further twp\n   nameserver names that are acessible using IPv6-only meets the same\n   requirement of resilience in both protocols. The reviewer suggests that\n   this recommendation be rewritten to address a requrement for resilience\n   in each protocol familty. \n",
       "createdAt": "2025-12-19T08:53:30Z",
-      "updatedAt": "2026-01-04T09:30:42Z",
-      "closedAt": null,
+      "updatedAt": "2026-01-07T11:04:12Z",
+      "closedAt": "2026-01-07T11:04:12Z",
       "comments": [
         {
           "author": "ichdasich",
@@ -323,15 +323,15 @@
       "id": "I_kwDOOKHo_M7fUaOY",
       "title": "Section 4.1/ambiguity (G. Huston, DNSDIR)",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/49",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "4. Section 4.1: \"IPv4 adoption: Every DNS zone SHOULD be served by at least\n   one IPv4-reachable authoritative DNS server\". It appears that the intent\n   of the RECOMMENDATION in the previous paragragh is that there is a\n   minimum of TWO IPv4-reachable authoritative DNS servers. Which is it?\n",
       "createdAt": "2025-12-19T08:53:33Z",
-      "updatedAt": "2026-01-04T09:30:51Z",
-      "closedAt": null,
+      "updatedAt": "2026-01-07T11:04:29Z",
+      "closedAt": "2026-01-07T11:04:29Z",
       "comments": [
         {
           "author": "ichdasich",
@@ -371,15 +371,15 @@
       "id": "I_kwDOOKHo_M7fUaVC",
       "title": "Section 4.1/native IPv6 addresses (G. Huston, DNSDIR)",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/51",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "6. Section 4.1: \"To avoid reachability issues, authoritative DNS servers\n   SHOULD use native IPv6 addresses instead of IPv4-converted IPv6 addresses\n   for receiving queries.\" Perhaps the draft should state that authoritative\n   DNS servers SHOULD NOT use IPv4-Compatible IPv6 Addresses and IPv4-Mapped\n   IPv6 Address [RFC4291]\", as the reviewer dowa not believe that \"native\n   IPv6 addresses\" is a well defined term in the IPv6 address architecture.\n",
       "createdAt": "2025-12-19T08:53:40Z",
-      "updatedAt": "2026-01-04T09:31:11Z",
-      "closedAt": null,
+      "updatedAt": "2026-01-07T10:59:55Z",
+      "closedAt": "2026-01-07T10:59:55Z",
       "comments": [
         {
           "author": "ichdasich",
@@ -1872,24 +1872,26 @@
       "id": "PR_kwDOOKHo_M65x74W",
       "title": "define native IPv6 address",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/57",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "An attempt to address #51 by formally defining the meaning of \"native IPv6 address\".",
       "createdAt": "2025-12-19T08:58:09Z",
-      "updatedAt": "2026-01-04T09:39:45Z",
+      "updatedAt": "2026-01-07T11:00:31Z",
       "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "baseRefName": "main",
       "baseRefOid": "4da75574a514b22b9d739552dfc65a1f4d553c65",
       "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "headRefName": "boucadair-patch-1",
       "headRefOid": "652b9244b5b2cc6722e1528cbf1891e55375b1f6",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-01-07T10:59:54Z",
+      "mergedAt": "2026-01-07T10:59:54Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "2301983a238243783ac048992875cbaf6b600b7f"
+      },
       "comments": [
         {
           "author": "ichdasich",
@@ -1948,24 +1950,26 @@
       "id": "PR_kwDOOKHo_M653p4g",
       "title": "clarified comment",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/59",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "ichdasich",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-12-19T18:19:29Z",
-      "updatedAt": "2026-01-04T09:17:13Z",
+      "updatedAt": "2026-01-07T11:00:39Z",
       "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "baseRefName": "main",
       "baseRefOid": "4da75574a514b22b9d739552dfc65a1f4d553c65",
       "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "headRefName": "tf_2025_12_19_comments_gh_iana",
-      "headRefOid": "1c3dee30c14f0dcb4eb2d0e6f9b162c868668ee9",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "53b712b0355bb428ef9aa1cb9c4e17c1df9f4b55",
+      "closedAt": "2026-01-07T11:00:39Z",
+      "mergedAt": "2026-01-07T11:00:39Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "40edcc42c42d5abcf7aa75be97613dfc239e75e2"
+      },
       "comments": [
         {
           "author": "momoka0122y",
@@ -1982,31 +1986,80 @@
           "updatedAt": "2026-01-04T09:17:12Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7YnId2",
+          "commit": {
+            "abbreviatedOid": "1c3dee3"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2026-01-07T10:00:29Z",
+          "updatedAt": "2026-01-07T10:01:16Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n                    It is usually recommended that DNS zones contain at least two name servers (Section 4.1 of <xref target=\"RFC1034\"/>). Typically, these servers are geographically diverse and operate under different routing policies <xref target=\"RFC2182\"/>, as also mirrored by, e.g., the IANA requirements for TLD authoritative name servers <xref target=\"IANANS\"/>.\r\n```",
+              "createdAt": "2026-01-07T10:00:29Z",
+              "updatedAt": "2026-01-07T10:01:16Z"
+            },
+            {
+              "originalPosition": 16,
+              "body": "Please move 2182 to be listed as informative. The main redundancy req is covered in 1034",
+              "createdAt": "2026-01-07T10:01:10Z",
+              "updatedAt": "2026-01-07T10:01:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7Yn92O",
+          "commit": {
+            "abbreviatedOid": "1c3dee3"
+          },
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-01-07T11:00:03Z",
+          "updatedAt": "2026-01-07T11:00:03Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "Done",
+              "createdAt": "2026-01-07T11:00:03Z",
+              "updatedAt": "2026-01-07T11:00:04Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 60,
       "id": "PR_kwDOOKHo_M653swz",
       "title": "addressed comment on NS nature (DS vs. multiple single stack)",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/60",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "ichdasich",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-12-19T18:23:40Z",
-      "updatedAt": "2026-01-04T09:21:02Z",
+      "updatedAt": "2026-01-07T11:04:14Z",
       "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "baseRefName": "main",
-      "baseRefOid": "4da75574a514b22b9d739552dfc65a1f4d553c65",
+      "baseRefOid": "40edcc42c42d5abcf7aa75be97613dfc239e75e2",
       "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "headRefName": "tf_2025_12_19_comments_gh_two",
-      "headRefOid": "8194ccd323d9bd20f6670f0afc26cd11eb1fc209",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "2e444b044493f0e00413ab04900fa5b64e46f1df",
+      "closedAt": "2026-01-07T11:04:11Z",
+      "mergedAt": "2026-01-07T11:04:11Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "550eba438258b767ffe48fee0a7f60d4517eae9a"
+      },
       "comments": [],
       "reviews": [
         {
@@ -2048,6 +2101,19 @@
               "updatedAt": "2026-01-04T09:20:47Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7YnL5A",
+          "commit": {
+            "abbreviatedOid": "8194ccd"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-01-07T10:03:13Z",
+          "updatedAt": "2026-01-07T10:03:13Z",
+          "comments": []
         }
       ]
     },
@@ -2056,24 +2122,26 @@
       "id": "PR_kwDOOKHo_M653t8D",
       "title": "change number of minimally required NS",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/61",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "ichdasich",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-12-19T18:25:59Z",
-      "updatedAt": "2026-01-04T09:18:27Z",
+      "updatedAt": "2026-01-07T11:04:32Z",
       "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "baseRefName": "main",
       "baseRefOid": "4da75574a514b22b9d739552dfc65a1f4d553c65",
       "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "headRefName": "tf_2025_12_19_comments_gh_twons",
       "headRefOid": "7cceaf1f28fbb29b449caf1fca97a077c33e5dae",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-01-07T11:04:28Z",
+      "mergedAt": "2026-01-07T11:04:28Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "4da241f31453080aa1b8ccc042dbac64b00a4cc4"
+      },
       "comments": [
         {
           "author": "ichdasich",
@@ -2109,6 +2177,19 @@
               "updatedAt": "2026-01-04T02:37:21Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7YnMbG",
+          "commit": {
+            "abbreviatedOid": "7cceaf1"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-01-07T10:03:43Z",
+          "updatedAt": "2026-01-07T10:03:43Z",
+          "comments": []
         }
       ]
     },
@@ -2145,26 +2226,187 @@
       "id": "PR_kwDOOKHo_M661ifh",
       "title": "Tf 2025 12 29 intarea rev",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/63",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "ichdasich",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-12-29T14:57:53Z",
-      "updatedAt": "2025-12-29T14:57:54Z",
+      "updatedAt": "2026-01-07T11:05:32Z",
       "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "baseRefName": "main",
-      "baseRefOid": "4da75574a514b22b9d739552dfc65a1f4d553c65",
+      "baseRefOid": "4da241f31453080aa1b8ccc042dbac64b00a4cc4",
       "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "headRefName": "tf_2025_12_29_intarea_rev",
-      "headRefOid": "5a36f53c59224d6a8207266f2f5107fa4d37e951",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "118c1fb3eb4b3ca6db863dbee37569f4801cf79f",
+      "closedAt": "2026-01-07T11:05:29Z",
+      "mergedAt": "2026-01-07T11:05:29Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "79e94fdaf79ddc8b8ab99bba8eade5132b068cbe"
+      },
+      "comments": [
+        {
+          "author": "momoka0122y",
+          "authorAssociation": "COLLABORATOR",
+          "body": "~Maybe we can reference RFC9293 instead for MSS 1220~\r\n\r\n~For MSS 1220~\r\n~https://datatracker.ietf.org/doc/html/rfc9293~\r\n\r\n\r\n\r\n~> TCP implementations SHOULD send an MSS Option in every SYN segment when its receive MSS differs from the default 536 for IPv4 or 1220 for IPv6 (SHLD-5), and MAY send it always (MAY-3).~\r\n\r\n\r\n~I'm making this comment because i can't find the 1220 recommendation from the dnsFlagDay cite with a quick search.~\r\n\r\n\r\n",
+          "createdAt": "2026-01-06T23:24:34Z",
+          "updatedAt": "2026-01-07T00:53:14Z"
+        },
+        {
+          "author": "momoka0122y",
+          "authorAssociation": "COLLABORATOR",
+          "body": "~Also for EDNS(0) 1232~\r\n\r\n~the first sentence cites RFC9725~\r\n\r\n~> If an authoritative~\r\n~>       DNS server does not follow [RFC9715], i.e., honors EDNS(0) sizes~\r\n~>       larger than 1232 octets, it will try to fragment the packet~\r\n~>       according to the discovered PMTU.~\r\n\r\n~But the second part cites DNSFlagDay~\r\n\r\n~> This can be accomplished by setting a corresponding EDNS(0) size,~\r\n~>       with most implementations using a lower EDNS(0) size of 1232~\r\n~>       octets following [DNSFlagDay2020], to ensure that generated~\r\n~>       packets always fit into lower bound of the IPv6 MTU of 1280, as~\r\n~>       defined in [RFC8200].  Hence, DNS servers MAY opt to set an~\r\n~>       EDNS(0) size of 1232 octets following [DNSFlagDay2020].~\r\n\r\n\r\n~RFC9725 cites DNSFlagDay so here maybe we can just refer to RFC9725?~",
+          "createdAt": "2026-01-06T23:28:29Z",
+          "updatedAt": "2026-01-07T00:53:23Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7YYUeq",
+          "commit": {
+            "abbreviatedOid": "5a36f53"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-01-06T09:54:28Z",
+          "updatedAt": "2026-01-06T09:55:06Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\n                            This can be accomplished by setting a corresponding EDNS(0) size, with most implementations using a lower EDNS(0) size of 1232 octets as per the suggestions made by the <xref target=\"DNSFlagDay2020\"/> initiative, to ensure that generated packets always fit into lower bound of the IPv6 MTU of 1280 octets, as defined in <xref target=\"RFC8200\"/>.\r\n```",
+              "createdAt": "2026-01-06T09:54:28Z",
+              "updatedAt": "2026-01-06T09:55:06Z"
+            },
+            {
+              "originalPosition": 16,
+              "body": "```suggestion\r\n                            Similarly, IPv6 connectivity can experience issues when IPv4-IPv6 transition technologies like NAT64 <xref target=\"RFC6146\"/> on IPv6-mostly networks <xref target=\"RFC9313\"/> are in use, where the use of NAT64 can be, e.g., discovered through PREF64 in Router Advertisements (RAs) <xref target=\"RFC8781\"/> or DNS64 <xref target=\"RFC7050\"/>.\r\n```",
+              "createdAt": "2026-01-06T09:54:59Z",
+              "updatedAt": "2026-01-06T09:55:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7YnNcT",
+          "commit": {
+            "abbreviatedOid": "b504dd5"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-01-07T10:04:37Z",
+          "updatedAt": "2026-01-07T10:04:37Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 64,
+      "id": "PR_kwDOOKHo_M67ru_O",
+      "title": "Tf 2026 01 06 iana considerations",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/64",
+      "state": "MERGED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Addressing comments from the IANA review.",
+      "createdAt": "2026-01-06T09:24:53Z",
+      "updatedAt": "2026-01-07T11:06:23Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "79e94fdaf79ddc8b8ab99bba8eade5132b068cbe",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "tf_2026_01_06_iana_considerations",
+      "headRefOid": "5c601877e1170b301e5042b78af243fa78453d32",
+      "closedAt": "2026-01-07T11:06:20Z",
+      "mergedAt": "2026-01-07T11:06:20Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "2399a623431b9390adfbaaa99837795dc70504db"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7YYVS-",
+          "commit": {
+            "abbreviatedOid": "8d8538d"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-01-06T09:55:23Z",
+          "updatedAt": "2026-01-06T09:55:23Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7YiTY9",
+          "commit": {
+            "abbreviatedOid": "8d8538d"
+          },
+          "author": "momoka0122y",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-01-06T23:48:03Z",
+          "updatedAt": "2026-01-06T23:48:03Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 65,
+      "id": "PR_kwDOOKHo_M670G5o",
+      "title": "clarified relationship of this document to rfc6540 / BCP 177",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/65",
+      "state": "MERGED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR clarifies a concern voiced about the draft's nature as a BCP.",
+      "createdAt": "2026-01-07T00:22:28Z",
+      "updatedAt": "2026-01-07T11:07:55Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "7b1c5986eb5c6178ebddb60f8985380cf3dd1fcf",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "m_tf_2026_01_06_rfc6540",
+      "headRefOid": "29aa775053f8b56c56e850ad6acf10d29c2caa6d",
+      "closedAt": "2026-01-07T11:07:44Z",
+      "mergedAt": "2026-01-07T11:07:44Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "a3d914f98406e6fb454e73cf729b27b45355cdad"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7YnOs4",
+          "commit": {
+            "abbreviatedOid": "0edb6af"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-01-07T10:05:43Z",
+          "updatedAt": "2026-01-07T10:05:43Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "This should be listed as informative",
+              "createdAt": "2026-01-07T10:05:43Z",
+              "updatedAt": "2026-01-07T10:05:43Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
