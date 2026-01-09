@@ -406,6 +406,7 @@
             <ul spacing="normal">
                 <li>
                     <t>Two resolvers handle queries for a set of clients, each of these resolvers support one and only one address family that is distinct from the address family supported by the other resolver;</t>
+                </li>
                 <li>
                     <t>Both resolvers are configured to forward queries requiring DNS resolution via the IP address family they do not support to the other; and</t>
                 </li>
