@@ -369,11 +369,11 @@
                 </t>
                 <t>
                     While the zones that IPv6-only recursive DNS resolvers can resolve are growing, they do not yet cover all zones.
-                    Hence, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv6-only, if it uses a transition mechanism that allows it to also query IPv4-only authoritative DNS servers, or uses a configuration where it forwards queries failing IPv6-only DNS resolution to a dual-stack recursive DNS resolver, i.e., one that is also able to perform DNS resolution over IPv4.
+                    Hence, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv6-only, if it uses a transition mechanism that allows it to also query IPv4-only authoritative DNS servers or uses a configuration where it forwards queries failing IPv6-only DNS resolution to a dual-stack recursive DNS resolver (i.e., a resolver that is also able to perform DNS resolution over IPv4).
                     If a recursive DNS resolver is aware of a PREF64 to use for NAT64 <xref target="RFC6146"/>, either through static configuration or by discovering it (e.g., <xref target="RFC8781"/>), it <bcp14>MAY</bcp14> synthesize IPv6 addresses for remote authoritative DNS servers.
                 </t>
                 <t>
-                    Similarly, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv4-only, if it uses a configuration where such resolvers forward queries failing IPv4-only DNS resolution to a dual-stack recursive DNS resolver, i.e., one that is also able to perform DNS resolution over IPv6.
+                    Similarly, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv4-only, if it uses a configuration where such resolvers forward queries failing IPv4-only DNS resolution to a dual-stack recursive DNS resolver (i.e., a resolver that is also able to perform DNS resolution over IPv6).
                 </t>
                 <t>
                     Finally, when responding to recursive queries sent by stub DNS resolvers, a DNS resolver SHOULD follow the above guidance on fragmentation avoidance (<xref target="guidelines-for-authoritative-dns-configuration"/>) for communication between authoritative DNS servers and recursive DNS resolvers analogously.
@@ -401,31 +401,24 @@
                 The guidelines described in this memo introduce no new security considerations into the DNS protocol itself.
             </t>
             <t>
-                Nevertheless, corner cases exist where forwarding queries requiring an IP address family for resolution that is not supported by the initial resolver lead to an endless loop, when:
+                Nevertheless, corner cases exist where forwarding queries requiring an IP address family for resolution that is not supported by the initial resolver lead to an infinite forwarding loop, under the following conditions:
             </t>
             <ul spacing="normal">
                 <li>
-                    <t>Two resolvers handle queries for a set of clients, and,</t>
-                </li>
+                    <t>Two resolvers handle queries for a set of clients, each of these resolvers support one and only one address family that is distinct from the address family supported by the other resolver;</t>
                 <li>
-                    <t>One of the resolvers only supports DNS resolution via IPv4, and,</t>
-                </li>
-                <li>
-                    <t>The other resolver only supports DNS reslution via IPv6, and,</t>
-                </li>
-                <li>
-                    <t>Both resolvers are configured to forward queries requiring DNS resolution via the IP address family they do not support to the other, and,</t>
+                    <t>Both resolvers are configured to forward queries requiring DNS resolution via the IP address family they do not support to the other; and</t>
                 </li>
                 <li>
                     <t>A query for a zone that is not resolvable via IPv4 and not resolvable via IPv6 is received.</t>
                 </li>
             </ul>
             <t>
-                In that case, a query for the non-resolvable zone would be endlessly forwarded between the resolvers.
+                In such a case, a query for the non-resolvable zone would be endlessly forwarded between these resolvers.
             </t>
             <t>
-                To prevent this, single stack recrusive DNS resolvers <bcp14>SHOULD</bcp14> only be configured to forward queries they cannot resolve due to lacking support for one address family to dual-stack recursive DNS resolvers.
-                Furthermore, recursive DNS resolvers <bcp14>MUST NOT</bcp14> be configured to forward queries to DNS resolvers that are configured to forward queries to them in the first place, i.e., the above cornercase <bcp14>MUST</bcp14> be avoided.
+                To prevent such cases, single-stack recursive DNS resolvers <bcp14>SHOULD</bcp14> be configured to forward queries they cannot resolve due to lacking support for one address family to dual-stack recursive DNS resolvers.
+                Furthermore, recursive DNS resolvers <bcp14>MUST NOT</bcp14> be configured to forward queries to DNS resolvers that are configured to forward queries to them in the first place.
             </t>
             <t>
                 Recommendations for recursive and stub resolvers rely on a correctly discovered PREF64.
