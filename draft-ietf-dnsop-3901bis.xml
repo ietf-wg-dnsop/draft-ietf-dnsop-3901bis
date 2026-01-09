@@ -39,7 +39,7 @@
             <t indent="0" pn="section-abstract-1">
                 This document provides guidelines and documents Best Current Practice for operating authoritative DNS servers, recursive resolvers and stub resolvers in a mixed IPv4/IPv6 environment.
                 This document recommends that both authoritative DNS servers and recursive resolvers support IPv4 and IPv6.
-                It also provides guidance on how recursive DNS resolvers should select upstream DNS servers when both native and IPv4-embedded IPv6 addresses are available.
+                It also provides guidance on how recursive DNS resolvers should select upstream DNS servers when both native, as well as IPv4-compatible or IPv4-mapped IPv6 addresses are available.
             </t>
             <t indent="0" pn="section-abstract-2">
                 This document obsoletes  RFC 3901.
@@ -325,7 +325,7 @@
                     </dt>
                     <dd>
                             Every DNS zone <bcp14>SHOULD</bcp14> be served by at least two IPv6-reachable authoritative DNS servers to maintain name space continuity.
-                            To avoid reachability issues, authoritative DNS servers <bcp14>SHOULD</bcp14> use native IPv6 addresses instead of IPv4-converted IPv6 addresses for receiving queries.
+                            To avoid reachability issues, authoritative DNS servers <bcp14>SHOULD NOT</bcp14> use IPv4-Embedded <xref target="RFC6052"/>, IPv4-Compatible, or IPv4-Mapped IPv6 Addresses <xref target="RFC4291"/> for receiving queries.
                             The delegation configuration (Resolution of the parent, resolution of sibling domain names, glue) <bcp14>MUST NOT</bcp14> rely on IPv4 connectivity being available.
                     </dd>
                     <dt>
@@ -441,6 +441,7 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.1034.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.1035.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.2119.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4291.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4821.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6052.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6724.xml"/>
