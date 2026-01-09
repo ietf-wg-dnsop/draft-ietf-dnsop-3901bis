@@ -403,11 +403,11 @@ Table of Contents
       Every DNS zone SHOULD be served by at least two IPv6-reachable
       authoritative DNS servers to maintain name space continuity.  To
       avoid reachability issues, authoritative DNS servers SHOULD NOT
-      use IPv4-Embedded [RFC6052], IPv4-Compatible, or IPv4-Mapped IPv6
-      Addresses [RFC4291] for receiving queries.  The delegation
-      configuration (Resolution of the parent, resolution of sibling
-      domain names, glue) MUST NOT rely on IPv4 connectivity being
-      available.
+      use IPv4-embedded addresses [RFC6052] (including IPv4-Mapped IPv6
+      addresses and deprecated IPv4-Compatible addresses [RFC4291]) for
+      receiving queries.  The delegation configuration (Resolution of
+      the parent, resolution of sibling domain names, glue) MUST NOT
+      rely on IPv4 connectivity being available.
 
    Consistency:
       Both IPv4 and IPv6 transports SHOULD serve identical DNS data to

@@ -1515,7 +1515,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
           </dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.4">
                             Every DNS zone <span class="bcp14">SHOULD</span> be served by at least two IPv6-reachable authoritative DNS servers to maintain name space continuity.
-                            To avoid reachability issues, authoritative DNS servers <span class="bcp14">SHOULD NOT</span> use IPv4-Embedded <span>[<a href="#RFC6052" class="cite xref">RFC6052</a>]</span>, IPv4-Compatible, or IPv4-Mapped IPv6 Addresses <span>[<a href="#RFC4291" class="cite xref">RFC4291</a>]</span> for receiving queries.
+                            To avoid reachability issues, authoritative DNS servers <span class="bcp14">SHOULD NOT</span> use IPv4-embedded addresses <span>[<a href="#RFC6052" class="cite xref">RFC6052</a>]</span> (including IPv4-Mapped IPv6 addresses and deprecated IPv4-Compatible addresses <span>[<a href="#RFC4291" class="cite xref">RFC4291</a>]</span>) for receiving queries.
                             The delegation configuration (Resolution of the parent, resolution of sibling domain names, glue) <span class="bcp14">MUST NOT</span> rely on IPv4 connectivity being available.<a href="#section-4.1-2.4" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
