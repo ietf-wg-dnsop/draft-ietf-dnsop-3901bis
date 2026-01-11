@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-01-08T02:10:26.738000+00:00",
+  "timestamp": "2026-01-11T02:27:31.413479+00:00",
   "repo": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
   "labels": [
     {
@@ -2403,6 +2403,277 @@
               "body": "This should be listed as informative",
               "createdAt": "2026-01-07T10:05:43Z",
               "updatedAt": "2026-01-07T10:05:43Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 66,
+      "id": "PR_kwDOOKHo_M68SbBh",
+      "title": "Address telechat DNSDIR comment 1",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/66",
+      "state": "OPEN",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Addresses the following DNSDIR comment:\r\n\r\n> 2. Section 4.1. \"IPv6 adoption\": \"Authoritative DNS servers SHOULD\r\n> use native IPv6 addresses instead of IPv4-converted IPv6 addresses\r\n> for receiving queries.\" Neither RFC4291, nor RFC 6052 define a\r\n> \"IPv4-converted IPv6 address.\" The draft should state that:\r\n> \"Authoritative DNS servers SHOULD NOT use IPv4-Compatible IPv6\r\n> Addresses and IPv4-Mapped IPv6 Address [RFC4291]\".",
+      "createdAt": "2026-01-09T09:11:41Z",
+      "updatedAt": "2026-01-09T14:14:12Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "a3d914f98406e6fb454e73cf729b27b45355cdad",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "tf_2026_01_09_dnsdir_telechat_1",
+      "headRefOid": "76d9aab5ca48fd8d4dcb3ff0fd9fcbd9db63c4d7",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7ZKy2S",
+          "commit": {
+            "abbreviatedOid": "73728a4"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-01-09T11:14:02Z",
+          "updatedAt": "2026-01-09T11:16:39Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "IPv4-compatible or IPv4-mapped are specific variants of embedded addresses. I interpreted the initial guidance as a call to prefer native connectivity and avoid any translation, including NAT64, etc. NAT64 does not use compatible/mapped addresses.",
+              "createdAt": "2026-01-09T11:14:02Z",
+              "updatedAt": "2026-01-09T11:16:39Z"
+            },
+            {
+              "originalPosition": 14,
+              "body": "```suggestion\r\n                            To avoid reachability issues, authoritative DNS servers <bcp14>SHOULD NOT</bcp14> use IPv4-embedded addresses <xref target=\"RFC6052\"/> (including IPv4-Mapped IPv6 addresses and deprecated IPv4-Compatible addresses <xref target=\"RFC4291\"/>) for receiving queries.\r\n```",
+              "createdAt": "2026-01-09T11:14:51Z",
+              "updatedAt": "2026-01-09T12:30:57Z"
+            },
+            {
+              "originalPosition": 14,
+              "body": "IPv4-Compatible and IPv4-Mapped are special flavors of IPv4-embedded addresses. Listing them in the same level is redundant. As a reminder RFC4291 says: \r\n\r\n[2.5.5.2](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.5.5.2).  IPv4-Mapped IPv6 Address\r\n\r\n   A second type of IPv6 address that holds an embedded IPv4 address is\r\n   defined.  This address type is used to represent the addresses of\r\n   IPv4 nodes as IPv6 addresses.  The format of the \"IPv4-mapped IPv6\r\n   address\" is as follows:\r\n\r\nAlso note that RFC4291 says:\r\n\r\n   **The \"IPv4-Compatible IPv6 address\" is now deprecated** because the\r\n   current IPv6 transition mechanisms no longer use these addresses.\r\n   New or updated implementations are not required to support this\r\n   address type.",
+              "createdAt": "2026-01-09T11:16:33Z",
+              "updatedAt": "2026-01-09T11:16:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7ZNGpa",
+          "commit": {
+            "abbreviatedOid": "73728a4"
+          },
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-01-09T14:11:52Z",
+          "updatedAt": "2026-01-09T14:11:52Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "OK, will revert this change then and stick with IPv4-embedded.",
+              "createdAt": "2026-01-09T14:11:52Z",
+              "updatedAt": "2026-01-09T14:11:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7ZNG9e",
+          "commit": {
+            "abbreviatedOid": "73728a4"
+          },
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-01-09T14:12:09Z",
+          "updatedAt": "2026-01-09T14:12:10Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "Thanks; Looks good, merging.",
+              "createdAt": "2026-01-09T14:12:10Z",
+              "updatedAt": "2026-01-09T14:12:10Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 67,
+      "id": "PR_kwDOOKHo_M68SdMX",
+      "title": "Address comment from DNSDIR telechat review",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/67",
+      "state": "OPEN",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This addresses the following comment:\r\n\r\n> 4. Section 4.2: \"when responding to recursive queries sent by stub\r\n> DNS\". How can a recursive resolver know that a query has been sent by\r\n> a stub resolver?\r\n",
+      "createdAt": "2026-01-09T09:14:08Z",
+      "updatedAt": "2026-01-09T09:14:09Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "a3d914f98406e6fb454e73cf729b27b45355cdad",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "tf_2026_01_09_dnsdir_telechat_2",
+      "headRefOid": "6ead1edd9aa57fac72262cd7d38a3498c6a0612d",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 68,
+      "id": "PR_kwDOOKHo_M68SrOA",
+      "title": "address security concern from DNSDIR review",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/68",
+      "state": "OPEN",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Addresses the following comment from the DNSDIR telechat review\r\n\r\n> 5. Section 5. Security Considerations: \"introduce no new security\r\n> considerations into the DNS protocol.\" This reviewer differs with\r\n> respect to the recommendation that under certain circumstances a\r\n> recursive resolver may forward a query to another recursive resolver.\r\n> As already noted, the DNS resolution protocol has no form of query\r\n> loop detection or excessive resolver query chain detection, and there\r\n> is the potential for scenarios that can be used to launch a DOS\r\n> attacks on recursive resolvers. The authors should reconsider this\r\n> section in the light of the existing advice relating to\r\n> resover-to-resolver forwarding in this document.",
+      "createdAt": "2026-01-09T09:32:08Z",
+      "updatedAt": "2026-01-09T14:17:27Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "a3d914f98406e6fb454e73cf729b27b45355cdad",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "tf_2026_01_09_dnsdir_telechat_3",
+      "headRefOid": "759eecd2e5df37da1332f103c76fb9c721f8f7d2",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks, the suggestions look good to me; Added them to the PR.",
+          "createdAt": "2026-01-09T14:09:35Z",
+          "updatedAt": "2026-01-09T14:09:35Z"
+        },
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "There was a closing tag missing which i re-added with the last commit.",
+          "createdAt": "2026-01-09T14:17:27Z",
+          "updatedAt": "2026-01-09T14:17:27Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7ZLxPQ",
+          "commit": {
+            "abbreviatedOid": "778731b"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-01-09T12:33:54Z",
+          "updatedAt": "2026-01-09T12:48:05Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n                    Hence, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv6-only, if it uses a transition mechanism that allows it to also query IPv4-only authoritative DNS servers or uses a configuration where it forwards queries failing IPv6-only DNS resolution to a dual-stack recursive DNS resolver (i.e., a resolver that is also able to perform DNS resolution over IPv4).\r\n```",
+              "createdAt": "2026-01-09T12:33:54Z",
+              "updatedAt": "2026-01-09T12:48:05Z"
+            },
+            {
+              "originalPosition": 10,
+              "body": "```suggestion\r\n                    Similarly, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv4-only, if it uses a configuration where such resolvers forward queries failing IPv4-only DNS resolution to a dual-stack recursive DNS resolver (i.e., a resolver that is also able to perform DNS resolution over IPv6).\r\n```",
+              "createdAt": "2026-01-09T12:34:36Z",
+              "updatedAt": "2026-01-09T12:48:05Z"
+            },
+            {
+              "originalPosition": 22,
+              "body": "```suggestion\r\n                Nevertheless, corner cases exist where forwarding queries requiring an IP address family for resolution that is not supported by the initial resolver lead to an infinite forwarding loop, under the following conditions:\r\n```",
+              "createdAt": "2026-01-09T12:35:16Z",
+              "updatedAt": "2026-01-09T12:48:05Z"
+            },
+            {
+              "originalPosition": 42,
+              "body": "```suggestion\r\n                In such a case, a query for the non-resolvable zone would be endlessly forwarded between these resolvers.\r\n```",
+              "createdAt": "2026-01-09T12:36:27Z",
+              "updatedAt": "2026-01-09T12:48:05Z"
+            },
+            {
+              "originalPosition": 45,
+              "body": "```suggestion\r\n                To prevent such cases, single-stack recursive DNS resolvers <bcp14>SHOULD</bcp14> be configured to forward queries they cannot resolve due to lacking support for one address family to dual-stack recursive DNS resolvers.\r\n```",
+              "createdAt": "2026-01-09T12:38:04Z",
+              "updatedAt": "2026-01-09T12:48:06Z"
+            },
+            {
+              "originalPosition": 46,
+              "body": "```suggestion\r\n                Furthermore, recursive DNS resolvers <bcp14>MUST NOT</bcp14> be configured to forward queries to DNS resolvers that are configured to forward queries to them in the first place.\r\n```",
+              "createdAt": "2026-01-09T12:38:36Z",
+              "updatedAt": "2026-01-09T12:48:06Z"
+            },
+            {
+              "originalPosition": 26,
+              "body": "```suggestion\r\n                    <t>Two resolvers handle queries for a set of clients, each of these resolvers support one and only one address family that is distinct from the address family supported by the other resolver;</t>\r\n```",
+              "createdAt": "2026-01-09T12:42:50Z",
+              "updatedAt": "2026-01-09T12:48:06Z"
+            },
+            {
+              "originalPosition": 29,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2026-01-09T12:42:59Z",
+              "updatedAt": "2026-01-09T12:48:06Z"
+            },
+            {
+              "originalPosition": 32,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2026-01-09T12:43:07Z",
+              "updatedAt": "2026-01-09T12:48:06Z"
+            },
+            {
+              "originalPosition": 33,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2026-01-09T12:43:17Z",
+              "updatedAt": "2026-01-09T12:48:06Z"
+            },
+            {
+              "originalPosition": 31,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2026-01-09T12:43:28Z",
+              "updatedAt": "2026-01-09T12:48:06Z"
+            },
+            {
+              "originalPosition": 30,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2026-01-09T12:43:34Z",
+              "updatedAt": "2026-01-09T12:48:06Z"
+            },
+            {
+              "originalPosition": 28,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2026-01-09T12:43:43Z",
+              "updatedAt": "2026-01-09T12:48:06Z"
+            },
+            {
+              "originalPosition": 27,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2026-01-09T12:43:50Z",
+              "updatedAt": "2026-01-09T12:48:06Z"
+            },
+            {
+              "originalPosition": 35,
+              "body": "```suggestion\r\n                    <t>Both resolvers are configured to forward queries requiring DNS resolution via the IP address family they do not support to the other; and</t>\r\n```",
+              "createdAt": "2026-01-09T12:45:41Z",
+              "updatedAt": "2026-01-09T12:48:06Z"
             }
           ]
         }
