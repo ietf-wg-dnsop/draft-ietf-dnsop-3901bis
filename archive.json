@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-01-11T02:27:31.413479+00:00",
+  "timestamp": "2026-01-15T02:10:18.501579+00:00",
   "repo": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
   "labels": [
     {
@@ -2420,7 +2420,7 @@
       "labels": [],
       "body": "Addresses the following DNSDIR comment:\r\n\r\n> 2. Section 4.1. \"IPv6 adoption\": \"Authoritative DNS servers SHOULD\r\n> use native IPv6 addresses instead of IPv4-converted IPv6 addresses\r\n> for receiving queries.\" Neither RFC4291, nor RFC 6052 define a\r\n> \"IPv4-converted IPv6 address.\" The draft should state that:\r\n> \"Authoritative DNS servers SHOULD NOT use IPv4-Compatible IPv6\r\n> Addresses and IPv4-Mapped IPv6 Address [RFC4291]\".",
       "createdAt": "2026-01-09T09:11:41Z",
-      "updatedAt": "2026-01-09T14:14:12Z",
+      "updatedAt": "2026-01-13T07:55:10Z",
       "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "baseRefName": "main",
       "baseRefOid": "a3d914f98406e6fb454e73cf729b27b45355cdad",
@@ -2504,6 +2504,19 @@
               "updatedAt": "2026-01-09T14:12:10Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7Z0RzS",
+          "commit": {
+            "abbreviatedOid": "76d9aab"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-01-13T07:55:10Z",
+          "updatedAt": "2026-01-13T07:55:10Z",
+          "comments": []
         }
       ]
     },
@@ -2519,7 +2532,7 @@
       "labels": [],
       "body": "This addresses the following comment:\r\n\r\n> 4. Section 4.2: \"when responding to recursive queries sent by stub\r\n> DNS\". How can a recursive resolver know that a query has been sent by\r\n> a stub resolver?\r\n",
       "createdAt": "2026-01-09T09:14:08Z",
-      "updatedAt": "2026-01-09T09:14:09Z",
+      "updatedAt": "2026-01-13T07:55:44Z",
       "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "baseRefName": "main",
       "baseRefOid": "a3d914f98406e6fb454e73cf729b27b45355cdad",
@@ -2531,7 +2544,21 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7Z0SYz",
+          "commit": {
+            "abbreviatedOid": "6ead1ed"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-01-13T07:55:44Z",
+          "updatedAt": "2026-01-13T07:55:44Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 68,
@@ -2545,7 +2572,7 @@
       "labels": [],
       "body": "Addresses the following comment from the DNSDIR telechat review\r\n\r\n> 5. Section 5. Security Considerations: \"introduce no new security\r\n> considerations into the DNS protocol.\" This reviewer differs with\r\n> respect to the recommendation that under certain circumstances a\r\n> recursive resolver may forward a query to another recursive resolver.\r\n> As already noted, the DNS resolution protocol has no form of query\r\n> loop detection or excessive resolver query chain detection, and there\r\n> is the potential for scenarios that can be used to launch a DOS\r\n> attacks on recursive resolvers. The authors should reconsider this\r\n> section in the light of the existing advice relating to\r\n> resover-to-resolver forwarding in this document.",
       "createdAt": "2026-01-09T09:32:08Z",
-      "updatedAt": "2026-01-09T14:17:27Z",
+      "updatedAt": "2026-01-13T07:57:23Z",
       "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "baseRefName": "main",
       "baseRefOid": "a3d914f98406e6fb454e73cf729b27b45355cdad",
@@ -2676,6 +2703,19 @@
               "updatedAt": "2026-01-09T12:48:06Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7Z0T8f",
+          "commit": {
+            "abbreviatedOid": "759eecd"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-01-13T07:57:23Z",
+          "updatedAt": "2026-01-13T07:57:23Z",
+          "comments": []
         }
       ]
     }
