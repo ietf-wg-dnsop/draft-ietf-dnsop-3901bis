@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-01-15T02:10:18.501579+00:00",
+  "timestamp": "2026-01-20T02:13:38.970132+00:00",
   "repo": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
   "labels": [
     {
@@ -509,6 +509,38 @@
           "updatedAt": "2026-01-04T09:26:13Z"
         }
       ]
+    },
+    {
+      "number": 69,
+      "id": "I_kwDOOKHo_M7kLkmw",
+      "title": "MTU Discovery (Martin Duke TSV Review)",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/69",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Sec 3.2 says that a DNS server MAY choose to explicitly use MTU path discovery. The example suggests setting the MTU to the minimum MTU. But this is the only way, correct? With anything larger, one must use discovery, no? It's not an example, it's the only case.\n",
+      "createdAt": "2026-01-19T06:40:10Z",
+      "updatedAt": "2026-01-19T06:40:10Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 70,
+      "id": "I_kwDOOKHo_M7kLlat",
+      "title": "DoT and DoQ / fragmentation avoidance (Martin Duke TSV Review)",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/70",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The end of Sec 3.2 provides DoT and DoQ as examples of alternative transports, and implies that they have other means of fragmentation avoidance.\nIn the case of QUIC, this is just PLPMTUD!! Just as with TCP, this is not something the DNS layer needs to worry about if the transport is competently implemented. But the level of service there is exactly the same as TCP modulo some security properties -- there is no additional magic in these protocols.",
+      "createdAt": "2026-01-19T06:41:23Z",
+      "updatedAt": "2026-01-19T06:41:23Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
