@@ -6,7 +6,7 @@ dnsop                                                             Momoka
 Internet-Draft                                              WIDE Project
 Obsoletes: 3901 (if approved)                                  T. Fiebig
 Intended status: Best Current Practice                           MPI-INF
-Expires: 11 July 2026                                     7 January 2026
+Expires: 25 July 2026                                    21 January 2026
 
 
                DNS IPv6 Transport Operational Guidelines
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 July 2026.
+   This Internet-Draft will expire on 25 July 2026.
 
 Copyright Notice
 
@@ -402,8 +402,9 @@ Table of Contents
    IPv6 adoption:
       Every DNS zone SHOULD be served by at least two IPv6-reachable
       authoritative DNS servers to maintain name space continuity.  To
-      avoid reachability issues, authoritative DNS servers SHOULD use
-      native IPv6 addresses instead of IPv4-converted IPv6 addresses for
+      avoid reachability issues, authoritative DNS servers SHOULD NOT
+      use IPv4-embedded addresses [RFC6052] (including IPv4-Mapped IPv6
+      addresses and deprecated IPv4-Compatible addresses [RFC4291]) for
       receiving queries.  The delegation configuration (Resolution of
       the parent, resolution of sibling domain names, glue) MUST NOT
       rely on IPv4 connectivity being available.
@@ -546,6 +547,10 @@ Normative References
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
+
+   [RFC4291]  Hinden, R. and S. Deering, "IP Version 6 Addressing
+              Architecture", RFC 4291, DOI 10.17487/RFC4291, February
+              2006, <https://www.rfc-editor.org/info/rfc4291>.
 
    [RFC4821]  Mathis, M. and J. Heffner, "Packetization Layer Path MTU
               Discovery", RFC 4821, DOI 10.17487/RFC4821, March 2007,
