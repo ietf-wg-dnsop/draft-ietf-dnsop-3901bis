@@ -6,7 +6,7 @@ dnsop                                                             Momoka
 Internet-Draft                                              WIDE Project
 Obsoletes: 3901 (if approved)                                  T. Fiebig
 Intended status: Best Current Practice                           MPI-INF
-Expires: 23 July 2026                                    19 January 2026
+Expires: 25 July 2026                                    21 January 2026
 
 
                DNS IPv6 Transport Operational Guidelines
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 July 2026.
+   This Internet-Draft will expire on 25 July 2026.
 
 Copyright Notice
 
@@ -393,16 +393,14 @@ Table of Contents
       authoritative DNS servers to maintain name space continuity.  The
       delegation configuration (Resolution of the parent, resolution of
       sibling domain names, glue) MUST NOT rely on IPv6 connectivity
-      being available.  Given the IPv4 address scarcity, operators MAY
-      opt not to provide DNS services via IPv4, if they can ensure that
-      all clients expected to resolve this zone do support DNS
-      resolution via IPv6.
+      being available.
 
    IPv6 adoption:
       Every DNS zone SHOULD be served by at least two IPv6-reachable
       authoritative DNS servers to maintain name space continuity.  To
-      avoid reachability issues, authoritative DNS servers SHOULD use
-      native IPv6 addresses instead of IPv4-converted IPv6 addresses for
+      avoid reachability issues, authoritative DNS servers SHOULD NOT
+      use IPv4-embedded addresses [RFC6052] (including IPv4-Mapped IPv6
+      addresses and deprecated IPv4-Compatible addresses [RFC4291]) for
       receiving queries.  The delegation configuration (Resolution of
       the parent, resolution of sibling domain names, glue) MUST NOT
       rely on IPv4 connectivity being available.
@@ -447,22 +445,23 @@ Table of Contents
    While the zones that IPv6-only recursive DNS resolvers can resolve
    are growing, they do not yet cover all zones.  Hence, a recursive DNS
    resolver MAY be IPv6-only, if it uses a transition mechanism that
-   allows it to also query IPv4-only authoritative DNS servers, or uses
-   a configuration where it forwards queries failing IPv6-only DNS
-   resolution to a recursive DNS resolver that is able to perform DNS
-   resolution over IPv4.  If a recursive DNS resolver is aware of a
-   PREF64 to use for NAT64 [RFC6146], either through static
-   configuration or by discovering it (e.g., [RFC8781]), it MAY
-   synthesize IPv6 addresses for remote authoritative DNS servers.
+   allows it to also query IPv4-only authoritative DNS servers or uses a
+   configuration where it forwards queries failing IPv6-only DNS
+   resolution to a dual-stack recursive DNS resolver (i.e., a resolver
+   that is also able to perform DNS resolution over IPv4).  If a
+   recursive DNS resolver is aware of a PREF64 to use for NAT64
+   [RFC6146], either through static configuration or by discovering it
+   (e.g., [RFC8781]), it MAY synthesize IPv6 addresses for remote
+   authoritative DNS servers.
 
    Similarly, a recursive DNS resolver MAY be IPv4-only, if it uses a
    configuration where such resolvers forward queries failing IPv4-only
-   DNS resolution to a recursive DNS resolver that is able to perform
-   DNS resolution over IPv6.
+   DNS resolution to a dual-stack recursive DNS resolver (i.e., a
+   resolver that is also able to perform DNS resolution over IPv6).
 
-   Finally, when responding to recursive queries sent by stub DNS
-   resolvers, a DNS resolver SHOULD follow the above guidance on
-   fragmentation avoidance (Section 4.1) for communication between
+   Finally, when responding to recursive queries, i.e., a query with the
+   RD bit set [RFC1035], a DNS resolver SHOULD follow the above guidance
+   on fragmentation avoidance (Section 4.1) for communication between
    authoritative DNS servers and recursive DNS resolvers analogously.
 
 4.3.  Guidelines for DNS Stub Resolvers
@@ -491,7 +490,33 @@ Table of Contents
 5.  Security Considerations
 
    The guidelines described in this memo introduce no new security
-   considerations into the DNS protocol.
+   considerations into the DNS protocol itself.
+
+   Nevertheless, corner cases exist where forwarding queries requiring
+   an IP address family for resolution that is not supported by the
+   initial resolver lead to an infinite forwarding loop, under the
+   following conditions:
+
+   *  Two resolvers handle queries for a set of clients, each of these
+      resolvers support one and only one address family that is distinct
+      from the address family supported by the other resolver;
+
+   *  Both resolvers are configured to forward queries requiring DNS
+      resolution via the IP address family they do not support to the
+      other; and
+
+   *  A query for a zone that is not resolvable via IPv4 and not
+      resolvable via IPv6 is received.
+
+   In such a case, a query for the non-resolvable zone would be
+   endlessly forwarded between these resolvers.
+
+   To prevent such cases, single-stack recursive DNS resolvers SHOULD be
+   configured to forward queries they cannot resolve due to lacking
+   support for one address family to dual-stack recursive DNS resolvers.
+   Furthermore, recursive DNS resolvers MUST NOT be configured to
+   forward queries to DNS resolvers that are configured to forward
+   queries to them in the first place.
 
    Recommendations for recursive and stub resolvers rely on a correctly
    discovered PREF64.  Security issues may materialize if an incorrect
@@ -513,7 +538,7 @@ Acknowledgments
    Ubbink, Joe Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti,
    David Farmer, Pieter Lexis, Ralf Weber, Philip Homburg, Marco Davids,
    Mohamed Boucadair, Thomas Fossati, Aihua Guo, Bernie Volz, David
-   Dong, Martin Duke
+   Dong, Martin Duke, Roman Danyliw
 
    Thank you for reading this draft.
 
@@ -546,6 +571,10 @@ Normative References
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
+
+   [RFC4291]  Hinden, R. and S. Deering, "IP Version 6 Addressing
+              Architecture", RFC 4291, DOI 10.17487/RFC4291, February
+              2006, <https://www.rfc-editor.org/info/rfc4291>.
 
    [RFC4821]  Mathis, M. and J. Heffner, "Packetization Layer Path MTU
               Discovery", RFC 4821, DOI 10.17487/RFC4821, March 2007,
