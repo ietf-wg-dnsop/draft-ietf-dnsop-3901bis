@@ -462,9 +462,9 @@ Table of Contents
    DNS resolution to a recursive DNS resolver that is able to perform
    DNS resolution over IPv6.
 
-   Finally, when responding to recursive queries sent by stub DNS
-   resolvers, a DNS resolver SHOULD follow the above guidance on
-   fragmentation avoidance (Section 4.1) for communication between
+   Finally, when responding to recursive queries, i.e., a query with the
+   RD bit set [RFC1035], a DNS resolver SHOULD follow the above guidance
+   on fragmentation avoidance (Section 4.1) for communication between
    authoritative DNS servers and recursive DNS resolvers analogously.
 
 4.3.  Guidelines for DNS Stub Resolvers
