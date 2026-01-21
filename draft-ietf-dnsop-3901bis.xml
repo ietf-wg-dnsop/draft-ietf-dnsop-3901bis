@@ -317,7 +317,7 @@
                     </dt>
                     <dd>
                             Every DNS zone <bcp14>SHOULD</bcp14> be served by at least two IPv4-reachable authoritative DNS servers to maintain name space continuity.
-                            The delegation configuration (Resolution of the parent, resolution of sibling domain names, glue) <bcp14>MUST NOT</bcp14> rely on IPv6 connectivity being available.
+                            To count as IPv4-reachable, the delegation configuration of an NS (Resolution of the parent, resolution of sibling domain names, glue) <bcp14>MUST NOT</bcp14> rely on IPv6 connectivity being available.
                     </dd>
                     <dt>
                             IPv6 adoption:
@@ -325,7 +325,7 @@
                     <dd>
                             Every DNS zone <bcp14>SHOULD</bcp14> be served by at least two IPv6-reachable authoritative DNS servers to maintain name space continuity.
                             To avoid reachability issues, authoritative DNS servers <bcp14>SHOULD NOT</bcp14> use IPv4-embedded addresses <xref target="RFC6052"/> (including IPv4-Mapped IPv6 addresses and deprecated IPv4-Compatible addresses <xref target="RFC4291"/>) for receiving queries.
-                            The delegation configuration (Resolution of the parent, resolution of sibling domain names, glue) <bcp14>MUST NOT</bcp14> rely on IPv4 connectivity being available.
+                            To count as IPv6-reachable, the delegation configuration of an NS (Resolution of the parent, resolution of sibling domain names, glue) <bcp14>MUST NOT</bcp14> rely on IPv4 connectivity being available.
                     </dd>
                     <dt>
                             Consistency:
