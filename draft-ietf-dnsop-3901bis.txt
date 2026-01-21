@@ -391,10 +391,10 @@ Table of Contents
 
    IPv4 adoption:
       Every DNS zone SHOULD be served by at least two IPv4-reachable
-      authoritative DNS servers to maintain name space continuity.  The
-      delegation configuration (Resolution of the parent, resolution of
-      sibling domain names, glue) MUST NOT rely on IPv6 connectivity
-      being available.
+      authoritative DNS servers to maintain name space continuity.  To
+      count as IPv4-reachable, the delegation configuration of an NS
+      (Resolution of the parent, resolution of sibling domain names,
+      glue) MUST NOT rely on IPv6 connectivity being available.
 
    IPv6 adoption:
       Every DNS zone SHOULD be served by at least two IPv6-reachable
@@ -402,9 +402,10 @@ Table of Contents
       avoid reachability issues, authoritative DNS servers SHOULD NOT
       use IPv4-embedded addresses [RFC6052] (including IPv4-Mapped IPv6
       addresses and deprecated IPv4-Compatible addresses [RFC4291]) for
-      receiving queries.  The delegation configuration (Resolution of
-      the parent, resolution of sibling domain names, glue) MUST NOT
-      rely on IPv4 connectivity being available.
+      receiving queries.  To count as IPv6-reachable, the delegation
+      configuration of an NS (Resolution of the parent, resolution of
+      sibling domain names, glue) MUST NOT rely on IPv4 connectivity
+      being available.
 
    Consistency:
       Both IPv4 and IPv6 transports SHOULD serve identical DNS data to
