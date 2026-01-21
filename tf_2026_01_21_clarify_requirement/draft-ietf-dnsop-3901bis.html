@@ -1506,8 +1506,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
           </dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.2">
                             Every DNS zone <span class="bcp14">SHOULD</span> be served by at least two IPv4-reachable authoritative DNS servers to maintain name space continuity.
-                            To count as IPv4-reachable, the delegation configuration of an NS (Resolution of the parent, resolution of sibling domain names, glue) <span class="bcp14">MUST NOT</span> rely on IPv6 connectivity being available.
-                            Given the IPv4 address scarcity, operators <span class="bcp14">MAY</span> opt not to provide DNS services via IPv4, if they can ensure that all clients expected to resolve this zone do support DNS resolution via IPv6.<a href="#section-4.1-2.2" class="pilcrow">¶</a>
+                            To count as IPv4-reachable, the delegation configuration of an NS (Resolution of the parent, resolution of sibling domain names, glue) <span class="bcp14">MUST NOT</span> rely on IPv6 connectivity being available.<a href="#section-4.1-2.2" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-2.3">
@@ -1515,7 +1514,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
           </dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.4">
                             Every DNS zone <span class="bcp14">SHOULD</span> be served by at least two IPv6-reachable authoritative DNS servers to maintain name space continuity.
-                            To avoid reachability issues, authoritative DNS servers <span class="bcp14">SHOULD</span> use native IPv6 addresses instead of IPv4-converted IPv6 addresses for receiving queries.
+                            To avoid reachability issues, authoritative DNS servers <span class="bcp14">SHOULD NOT</span> use IPv4-embedded addresses <span>[<a href="#RFC6052" class="cite xref">RFC6052</a>]</span> (including IPv4-Mapped IPv6 addresses and deprecated IPv4-Compatible addresses <span>[<a href="#RFC4291" class="cite xref">RFC4291</a>]</span>) for receiving queries.
                             To count as IPv6-reachable, the delegation configuration of an NS (Resolution of the parent, resolution of sibling domain names, glue) <span class="bcp14">MUST NOT</span> rely on IPv4 connectivity being available.<a href="#section-4.1-2.4" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
@@ -1564,12 +1563,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
                     Every recursive DNS resolver <span class="bcp14">SHOULD</span> be dual-stack.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
 <p id="section-4.2-2">
                     While the zones that IPv6-only recursive DNS resolvers can resolve are growing, they do not yet cover all zones.
-                    Hence, a recursive DNS resolver <span class="bcp14">MAY</span> be IPv6-only, if it uses a transition mechanism that allows it to also query IPv4-only authoritative DNS servers, or uses a configuration where it forwards queries failing IPv6-only DNS resolution to a recursive DNS resolver that is able to perform DNS resolution over IPv4.
+                    Hence, a recursive DNS resolver <span class="bcp14">MAY</span> be IPv6-only, if it uses a transition mechanism that allows it to also query IPv4-only authoritative DNS servers or uses a configuration where it forwards queries failing IPv6-only DNS resolution to a dual-stack recursive DNS resolver (i.e., a resolver that is also able to perform DNS resolution over IPv4).
                     If a recursive DNS resolver is aware of a PREF64 to use for NAT64 <span>[<a href="#RFC6146" class="cite xref">RFC6146</a>]</span>, either through static configuration or by discovering it (e.g., <span>[<a href="#RFC8781" class="cite xref">RFC8781</a>]</span>), it <span class="bcp14">MAY</span> synthesize IPv6 addresses for remote authoritative DNS servers.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
 <p id="section-4.2-3">
-                    Similarly, a recursive DNS resolver <span class="bcp14">MAY</span> be IPv4-only, if it uses a configuration where such resolvers forward queries failing IPv4-only DNS resolution to a recursive DNS resolver that is able to perform DNS resolution over IPv6.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
+                    Similarly, a recursive DNS resolver <span class="bcp14">MAY</span> be IPv4-only, if it uses a configuration where such resolvers forward queries failing IPv4-only DNS resolution to a dual-stack recursive DNS resolver (i.e., a resolver that is also able to perform DNS resolution over IPv6).<a href="#section-4.2-3" class="pilcrow">¶</a></p>
 <p id="section-4.2-4">
-                    Finally, when responding to recursive queries sent by stub DNS resolvers, a DNS resolver SHOULD follow the above guidance on fragmentation avoidance (<a href="#guidelines-for-authoritative-dns-configuration" class="auto internal xref">Section 4.1</a>) for communication between authoritative DNS servers and recursive DNS resolvers analogously.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
+                    Finally, when responding to recursive queries, i.e., a query with the RD bit set <span>[<a href="#RFC1035" class="cite xref">RFC1035</a>]</span>, a DNS resolver SHOULD follow the above guidance on fragmentation avoidance (<a href="#guidelines-for-authoritative-dns-configuration" class="auto internal xref">Section 4.1</a>) for communication between authoritative DNS servers and recursive DNS resolvers analogously.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="guidelines-for-dns-stub">
@@ -1596,11 +1595,29 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
 <p id="section-5-1">
-                The guidelines described in this memo introduce no new security considerations into the DNS protocol.<a href="#section-5-1" class="pilcrow">¶</a></p>
+                The guidelines described in this memo introduce no new security considerations into the DNS protocol itself.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <p id="section-5-2">
+                Nevertheless, corner cases exist where forwarding queries requiring an IP address family for resolution that is not supported by the initial resolver lead to an infinite forwarding loop, under the following conditions:<a href="#section-5-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5-3.1">
+          <p id="section-5-3.1.1">Two resolvers handle queries for a set of clients, each of these resolvers support one and only one address family that is distinct from the address family supported by the other resolver;<a href="#section-5-3.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-3.2">
+          <p id="section-5-3.2.1">Both resolvers are configured to forward queries requiring DNS resolution via the IP address family they do not support to the other; and<a href="#section-5-3.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-3.3">
+          <p id="section-5-3.3.1">A query for a zone that is not resolvable via IPv4 and not resolvable via IPv6 is received.<a href="#section-5-3.3.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-5-4">
+                In such a case, a query for the non-resolvable zone would be endlessly forwarded between these resolvers.<a href="#section-5-4" class="pilcrow">¶</a></p>
+<p id="section-5-5">
+                To prevent such cases, single-stack recursive DNS resolvers <span class="bcp14">SHOULD</span> be configured to forward queries they cannot resolve due to lacking support for one address family to dual-stack recursive DNS resolvers.
+                Furthermore, recursive DNS resolvers <span class="bcp14">MUST NOT</span> be configured to forward queries to DNS resolvers that are configured to forward queries to them in the first place.<a href="#section-5-5" class="pilcrow">¶</a></p>
+<p id="section-5-6">
                 Recommendations for recursive and stub resolvers rely on a correctly discovered PREF64.
                 Security issues may materialize if an incorrect PREF64 is used.
-                Hence, guidance from <span>[<a href="#RFC9872" class="cite xref">RFC9872</a>]</span> on securely discovering PREF64 <span class="bcp14">SHOULD</span> be followed.<a href="#section-5-2" class="pilcrow">¶</a></p>
+                Hence, guidance from <span>[<a href="#RFC9872" class="cite xref">RFC9872</a>]</span> on securely discovering PREF64 <span class="bcp14">SHOULD</span> be followed.<a href="#section-5-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
@@ -1618,7 +1635,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
 <p id="section-7-1">
-                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp S. Tiesel, Mark Andrews, Stefan Ubbink, Joe Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti, David Farmer, Pieter Lexis, Ralf Weber, Philip Homburg, Marco Davids, Mohamed Boucadair, Thomas Fossati, Aihua Guo, Bernie Volz, David Dong<a href="#section-7-1" class="pilcrow">¶</a></p>
+                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp S. Tiesel, Mark Andrews, Stefan Ubbink, Joe Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti, David Farmer, Pieter Lexis, Ralf Weber, Philip Homburg, Marco Davids, Mohamed Boucadair, Thomas Fossati, Aihua Guo, Bernie Volz, David Dong, Roman Danyliw<a href="#section-7-1" class="pilcrow">¶</a></p>
 <p id="section-7-2">
                 Thank you for reading this draft.<a href="#section-7-2" class="pilcrow">¶</a></p>
 <p id="section-7-3">
@@ -1652,6 +1669,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4291">[RFC4291]</dt>
+        <dd>
+<span class="refAuthor">Hinden, R.</span> and <span class="refAuthor">S. Deering</span>, <span class="refTitle">"IP Version 6 Addressing Architecture"</span>, <span class="seriesInfo">RFC 4291</span>, <span class="seriesInfo">DOI 10.17487/RFC4291</span>, <time datetime="2006-02" class="refDate">February 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc4291">https://www.rfc-editor.org/info/rfc4291</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC4821">[RFC4821]</dt>
         <dd>
