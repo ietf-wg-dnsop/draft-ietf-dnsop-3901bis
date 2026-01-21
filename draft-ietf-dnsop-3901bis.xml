@@ -318,14 +318,13 @@
                     <dd>
                             Every DNS zone <bcp14>SHOULD</bcp14> be served by at least two IPv4-reachable authoritative DNS servers to maintain name space continuity.
                             To count as IPv4-reachable, the delegation configuration of an NS (Resolution of the parent, resolution of sibling domain names, glue) <bcp14>MUST NOT</bcp14> rely on IPv6 connectivity being available.
-                            Given the IPv4 address scarcity, operators <bcp14>MAY</bcp14> opt not to provide DNS services via IPv4, if they can ensure that all clients expected to resolve this zone do support DNS resolution via IPv6.
                     </dd>
                     <dt>
                             IPv6 adoption:
                     </dt>
                     <dd>
                             Every DNS zone <bcp14>SHOULD</bcp14> be served by at least two IPv6-reachable authoritative DNS servers to maintain name space continuity.
-                            To avoid reachability issues, authoritative DNS servers <bcp14>SHOULD</bcp14> use native IPv6 addresses instead of IPv4-converted IPv6 addresses for receiving queries.
+                            To avoid reachability issues, authoritative DNS servers <bcp14>SHOULD NOT</bcp14> use IPv4-embedded addresses <xref target="RFC6052"/> (including IPv4-Mapped IPv6 addresses and deprecated IPv4-Compatible addresses <xref target="RFC4291"/>) for receiving queries.
                             To count as IPv6-reachable, the delegation configuration of an NS (Resolution of the parent, resolution of sibling domain names, glue) <bcp14>MUST NOT</bcp14> rely on IPv4 connectivity being available.
                     </dd>
                     <dt>
@@ -369,14 +368,14 @@
                 </t>
                 <t>
                     While the zones that IPv6-only recursive DNS resolvers can resolve are growing, they do not yet cover all zones.
-                    Hence, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv6-only, if it uses a transition mechanism that allows it to also query IPv4-only authoritative DNS servers, or uses a configuration where it forwards queries failing IPv6-only DNS resolution to a recursive DNS resolver that is able to perform DNS resolution over IPv4.
+                    Hence, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv6-only, if it uses a transition mechanism that allows it to also query IPv4-only authoritative DNS servers or uses a configuration where it forwards queries failing IPv6-only DNS resolution to a dual-stack recursive DNS resolver (i.e., a resolver that is also able to perform DNS resolution over IPv4).
                     If a recursive DNS resolver is aware of a PREF64 to use for NAT64 <xref target="RFC6146"/>, either through static configuration or by discovering it (e.g., <xref target="RFC8781"/>), it <bcp14>MAY</bcp14> synthesize IPv6 addresses for remote authoritative DNS servers.
                 </t>
                 <t>
-                    Similarly, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv4-only, if it uses a configuration where such resolvers forward queries failing IPv4-only DNS resolution to a recursive DNS resolver that is able to perform DNS resolution over IPv6.
+                    Similarly, a recursive DNS resolver <bcp14>MAY</bcp14> be IPv4-only, if it uses a configuration where such resolvers forward queries failing IPv4-only DNS resolution to a dual-stack recursive DNS resolver (i.e., a resolver that is also able to perform DNS resolution over IPv6).
                 </t>
                 <t>
-                    Finally, when responding to recursive queries sent by stub DNS resolvers, a DNS resolver SHOULD follow the above guidance on fragmentation avoidance (<xref target="guidelines-for-authoritative-dns-configuration"/>) for communication between authoritative DNS servers and recursive DNS resolvers analogously.
+                    Finally, when responding to recursive queries, i.e., a query with the RD bit set <xref target="RFC1035"/>, a DNS resolver SHOULD follow the above guidance on fragmentation avoidance (<xref target="guidelines-for-authoritative-dns-configuration"/>) for communication between authoritative DNS servers and recursive DNS resolvers analogously.
                 </t>
             </section>
             <section anchor="guidelines-for-dns-stub">
@@ -398,7 +397,28 @@
         <section anchor="security-considerations">
             <name>Security Considerations</name>
             <t>
-                The guidelines described in this memo introduce no new security considerations into the DNS protocol.
+                The guidelines described in this memo introduce no new security considerations into the DNS protocol itself.
+            </t>
+            <t>
+                Nevertheless, corner cases exist where forwarding queries requiring an IP address family for resolution that is not supported by the initial resolver lead to an infinite forwarding loop, under the following conditions:
+            </t>
+            <ul spacing="normal">
+                <li>
+                    <t>Two resolvers handle queries for a set of clients, each of these resolvers support one and only one address family that is distinct from the address family supported by the other resolver;</t>
+                </li>
+                <li>
+                    <t>Both resolvers are configured to forward queries requiring DNS resolution via the IP address family they do not support to the other; and</t>
+                </li>
+                <li>
+                    <t>A query for a zone that is not resolvable via IPv4 and not resolvable via IPv6 is received.</t>
+                </li>
+            </ul>
+            <t>
+                In such a case, a query for the non-resolvable zone would be endlessly forwarded between these resolvers.
+            </t>
+            <t>
+                To prevent such cases, single-stack recursive DNS resolvers <bcp14>SHOULD</bcp14> be configured to forward queries they cannot resolve due to lacking support for one address family to dual-stack recursive DNS resolvers.
+                Furthermore, recursive DNS resolvers <bcp14>MUST NOT</bcp14> be configured to forward queries to DNS resolvers that are configured to forward queries to them in the first place.
             </t>
             <t>
                 Recommendations for recursive and stub resolvers rely on a correctly discovered PREF64.
@@ -415,7 +435,7 @@
         <section numbered="false" anchor="acknowledgments">
             <name>Acknowledgments</name>
             <t>
-                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp S. Tiesel, Mark Andrews, Stefan Ubbink, Joe Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti, David Farmer, Pieter Lexis, Ralf Weber, Philip Homburg, Marco Davids, Mohamed Boucadair, Thomas Fossati, Aihua Guo, Bernie Volz, David Dong
+                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp S. Tiesel, Mark Andrews, Stefan Ubbink, Joe Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti, David Farmer, Pieter Lexis, Ralf Weber, Philip Homburg, Marco Davids, Mohamed Boucadair, Thomas Fossati, Aihua Guo, Bernie Volz, David Dong, Roman Danyliw
             </t>
             <t>
                 Thank you for reading this draft.
@@ -441,6 +461,7 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.1034.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.1035.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.2119.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4291.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4821.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6052.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6724.xml"/>
