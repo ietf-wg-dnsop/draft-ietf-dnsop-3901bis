@@ -19,7 +19,7 @@ Abstract
    resolvers in a mixed IPv4/IPv6 environment.  This document recommends
    that both authoritative DNS servers and recursive resolvers support
    IPv4 and IPv6.  It also provides guidance on how recursive DNS
-   resolvers should select upstream DNS servers when both native and
+   resolvers should select upstream DNS servers, including when
    IPv4-embedded IPv6 addresses are available.
 
    This document obsoletes RFC 3901.
@@ -147,10 +147,6 @@ Table of Contents
 
    This document uses DNS terminology as described in [RFC9499].
    Furthermore, the following terms are used with a defined meaning:
-
-   Native IPv6 address:
-      A Globally Unique IPv6 address (Section 2.5.4 of [RFC4291]) that
-      is not an IPv4-embedded IPv6 address [RFC6052].
 
    IPv4 name server:
       A name server that provides either authoritative or recursive DNS

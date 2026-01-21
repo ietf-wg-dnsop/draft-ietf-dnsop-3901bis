@@ -11,7 +11,7 @@
        
                 This document provides guidelines and documents Best Current Practice for operating authoritative DNS servers, recursive resolvers and stub resolvers in a mixed IPv4/IPv6 environment.
                 This document recommends that both authoritative DNS servers and recursive resolvers support IPv4 and IPv6.
-                It also provides guidance on how recursive DNS resolvers should select upstream DNS servers when both native and IPv4-embedded IPv6 addresses are available.
+                It also provides guidance on how recursive DNS resolvers should select upstream DNS servers, including when IPv4-embedded IPv6 addresses are available.
        
        
                 This document obsoletes  RFC 3901.
@@ -1097,7 +1097,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-abstract-1">
                 This document provides guidelines and documents Best Current Practice for operating authoritative DNS servers, recursive resolvers and stub resolvers in a mixed IPv4/IPv6 environment.
                 This document recommends that both authoritative DNS servers and recursive resolvers support IPv4 and IPv6.
-                It also provides guidance on how recursive DNS resolvers should select upstream DNS servers when both native and IPv4-embedded IPv6 addresses are available.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+                It also provides guidance on how recursive DNS resolvers should select upstream DNS servers, including when IPv4-embedded IPv6 addresses are available.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <p id="section-abstract-2">
                 This document obsoletes  RFC 3901.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
@@ -1288,33 +1288,26 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 Furthermore, the following terms are used with a defined meaning:<a href="#section-2-1" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlNewline" id="section-2-2">
         <dt id="section-2-2.1">
-                    Native IPv6 address:
+                    IPv4 name server:
         </dt>
         <dd style="margin-left: 1.5em" id="section-2-2.2">
-                    A Globally Unique IPv6 address (Section 2.5.4 of <span>[<a href="#RFC4291" class="cite xref">RFC4291</a>]</span>) that is not an IPv4-embedded IPv6 address <span>[<a href="#RFC6052" class="cite xref">RFC6052</a>]</span>.<a href="#section-2-2.2" class="pilcrow">¶</a>
+                    A name server that provides either authoritative or recursive DNS services and is reachable via IPv4.
+                    This does not imply anything about the DNS data served, but rather that the name server receives and answers queries over IPv4.<a href="#section-2-2.2" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-2.3">
-                    IPv4 name server:
+                    IPv6 name server:
         </dt>
         <dd style="margin-left: 1.5em" id="section-2-2.4">
-                    A name server that provides either authoritative or recursive DNS services and is reachable via IPv4.
-                    This does not imply anything about the DNS data served, but rather that the name server receives and answers queries over IPv4.<a href="#section-2-2.4" class="pilcrow">¶</a>
+                    A name server that provides either authoritative or recursive DNS services and is reachable via IPv6.
+                    This does not imply anything about the DNS data served, but rather that the name server receives and answers queries over IPv6.<a href="#section-2-2.4" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-2.5">
-                    IPv6 name server:
-        </dt>
-        <dd style="margin-left: 1.5em" id="section-2-2.6">
-                    A name server that provides either authoritative or recursive DNS services and is reachable via IPv6.
-                    This does not imply anything about the DNS data served, but rather that the name server receives and answers queries over IPv6.<a href="#section-2-2.6" class="pilcrow">¶</a>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-2.7">
                     Dual-stack name server:
         </dt>
-        <dd style="margin-left: 1.5em" id="section-2-2.8">
-                    A name server that is both an "IPv4 name server" and an "IPv6 name server".<a href="#section-2-2.8" class="pilcrow">¶</a>
+        <dd style="margin-left: 1.5em" id="section-2-2.6">
+                    A name server that is both an "IPv4 name server" and an "IPv6 name server".<a href="#section-2-2.6" class="pilcrow">¶</a>
 </dd>
       <dd class="break"></dd>
 </dl>
