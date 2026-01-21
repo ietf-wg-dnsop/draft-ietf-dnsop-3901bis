@@ -114,7 +114,7 @@
                     Native IPv6 address:
                 </dt>
                 <dd>
-                    A Globally Unique IPv6 address <xref target="RFC5375"/> that is not an IPv4-embedded IPv6 address <xref target="RFC6052"/>.
+                    A Globally Unique IPv6 address (Section 2.5.4 of <xref target="RFC4291"/>) that is not an IPv4-embedded IPv6 address <xref target="RFC6052"/>.
                 </dd>
                 <dt>
                     IPv4 name server:
@@ -482,7 +482,6 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.3542.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.3901.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4034.xml"/>
-                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.5375.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6146.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6540.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6877.xml"/>
