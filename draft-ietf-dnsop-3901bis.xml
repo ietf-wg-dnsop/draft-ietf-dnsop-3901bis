@@ -39,7 +39,7 @@
             <t indent="0" pn="section-abstract-1">
                 This document provides guidelines and documents Best Current Practice for operating authoritative DNS servers, recursive resolvers and stub resolvers in a mixed IPv4/IPv6 environment.
                 This document recommends that both authoritative DNS servers and recursive resolvers support IPv4 and IPv6.
-                It also provides guidance on how recursive DNS resolvers should select upstream DNS servers when both native and IPv4-embedded IPv6 addresses are available.
+                It also provides guidance on how recursive DNS resolvers should select upstream DNS servers, including when IPv4-embedded IPv6 addresses are available.
             </t>
             <t indent="0" pn="section-abstract-2">
                 This document obsoletes  RFC 3901.
@@ -110,12 +110,6 @@
                 Furthermore, the following terms are used with a defined meaning:
             </t>
             <dl newline="true" spacing="normal">
-                <dt>
-                    Native IPv6 address:
-                </dt>
-                <dd>
-                    A Globally Unique IPv6 address (Section 2.5.4 of <xref target="RFC4291"/>) that is not an IPv4-embedded IPv6 address <xref target="RFC6052"/>.
-                </dd>
                 <dt>
                     IPv4 name server:
                 </dt>
