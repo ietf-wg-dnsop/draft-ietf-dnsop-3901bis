@@ -394,10 +394,7 @@ Table of Contents
       authoritative DNS servers to maintain name space continuity.  The
       delegation configuration (Resolution of the parent, resolution of
       sibling domain names, glue) MUST NOT rely on IPv6 connectivity
-      being available.  Given the IPv4 address scarcity, operators MAY
-      opt not to provide DNS services via IPv4, if they can ensure that
-      all clients expected to resolve this zone do support DNS
-      resolution via IPv6.
+      being available.
 
    IPv6 adoption:
       Every DNS zone SHOULD be served by at least two IPv6-reachable
@@ -541,7 +538,8 @@ Acknowledgments
    Carpenter, Tom Petch, Philipp S.  Tiesel, Mark Andrews, Stefan
    Ubbink, Joe Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti,
    David Farmer, Pieter Lexis, Ralf Weber, Philip Homburg, Marco Davids,
-   Mohamed Boucadair, Thomas Fossati, Aihua Guo, Bernie Volz, David Dong
+   Mohamed Boucadair, Thomas Fossati, Aihua Guo, Bernie Volz, David
+   Dong, Roman Danyliw
 
    Thank you for reading this draft.
 
