@@ -6,7 +6,7 @@ dnsop                                                             Momoka
 Internet-Draft                                              WIDE Project
 Obsoletes: 3901 (if approved)                                  T. Fiebig
 Intended status: Best Current Practice                           MPI-INF
-Expires: 25 July 2026                                    21 January 2026
+Expires: 26 July 2026                                    22 January 2026
 
 
                DNS IPv6 Transport Operational Guidelines
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 July 2026.
+   This Internet-Draft will expire on 26 July 2026.
 
 Copyright Notice
 
@@ -626,6 +626,10 @@ Normative References
               DOI 10.17487/RFC9471, September 2023,
               <https://www.rfc-editor.org/info/rfc9471>.
 
+   [RFC9715]  Fujiwara, K. and P. Vixie, "IP Fragmentation Avoidance in
+              DNS over UDP", RFC 9715, DOI 10.17487/RFC9715, January
+              2025, <https://www.rfc-editor.org/info/rfc9715>.
+
 Informative References
 
    [DNSFlagDay2020]
@@ -757,10 +761,6 @@ Informative References
    [RFC9499]  Hoffman, P. and K. Fujiwara, "DNS Terminology", BCP 219,
               RFC 9499, DOI 10.17487/RFC9499, March 2024,
               <https://www.rfc-editor.org/info/rfc9499>.
-
-   [RFC9715]  Fujiwara, K. and P. Vixie, "IP Fragmentation Avoidance in
-              DNS over UDP", RFC 9715, DOI 10.17487/RFC9715, January
-              2025, <https://www.rfc-editor.org/info/rfc9715>.
 
    [RFC9872]  Buraglio, N., Jensen, T., and J. Linkova, "Recommendations
               for Discovering IPv6 Prefix Used for IPv6 Address
