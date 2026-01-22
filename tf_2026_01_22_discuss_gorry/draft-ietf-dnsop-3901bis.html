@@ -1418,7 +1418,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
           <dd style="margin-left: 1.5em" id="section-3.2-2.4">
             <p id="section-3.2-2.4.1">
                             A resolver can for various reasons also initiate connections via TCP for resolution to an authoritative server.
-                            However, similar to the case of DNS-over-UDP, DNS-over-TCP may encounter MTU discards, if PMTUD does not work, and hence the MSS honored by the authoritative DNS server leads to IP packets exceeding the actual PMTU of the path taken by responses.
+                            However, similar to the case of DNS-over-UDP, DNS-over-TCP may encounter MTU discards if PMTUD does not work and, thus, the MSS honored by the authoritative DNS server leads to IP packets exceeding the actual PMTU of the path taken by responses.
                             In that case, similar to the case of DNS-over-UDP, DNS resolution will time out when the recursive DNS resolver did not receive a response in time.<a href="#section-3.2-2.4.1" class="pilcrow">¶</a></p>
 <p id="section-3.2-2.4.2">
                             <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span> does not provide explicit guidance on mitigating this issue.
