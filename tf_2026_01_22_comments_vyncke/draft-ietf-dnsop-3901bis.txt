@@ -242,9 +242,9 @@ Table of Contents
    address of a name server that is not configured to answer queries via
    that IP address family [V6DNSRDY-23].
 
-   Finally, At the time of this writing, addresses (A or AAAA records)
-   for a delegation's authoritative name servers are the only type of
-   glue defined for the DNS.  In the future, alternative, yet related,
+   Finally, at the time of this writing, addresses (A or AAAA RRs) for a
+   delegation's authoritative name servers are the only type of glue
+   defined for the DNS.  In the future, alternative, yet related,
    delegation system may be available, where other considerations apply.
 
 3.2.  Network Conditions Causing IP Address Family Related Name Space
