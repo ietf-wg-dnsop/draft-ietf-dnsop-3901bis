@@ -223,8 +223,8 @@
                         </t>
                         <t>
                             In general, DNS servers <bcp14>SHOULD</bcp14> follow <xref target="RFC9715"/>, which provides additional guidance on preventing fragmentation by ensuring that the maximum DNS/UDP payload size does not exceed 1400 octets.
-                            This can be accomplished by setting a corresponding EDNS(0) size, with most implementations using a lower EDNS(0) size of 1232 octets as per the suggestions made by the <xref target="DNSFlagDay2020"/> initiative, to ensure that generated packets always fit into lower bound of the IPv6 MTU of 1280 octets, as defined in <xref target="RFC8200"/>.
-                            Hence, DNS servers <bcp14>MAY</bcp14> also opt to set an EDNS(0) size of 1232 octets as suggested by the <xref target="DNSFlagDay2020"/> initiative.
+                            This can be accomplished by setting an upper bound for received EDNS(0) sizes, with most implementations using an upper bound EDNS(0) size of 1232 octets as per the suggestions made by the <xref target="DNSFlagDay2020"/> initiative, to ensure that generated packets always fit into lower bound of the IPv6 MTU of 1280 octets, as defined in <xref target="RFC8200"/>.
+                            Hence, DNS servers <bcp14>MAY</bcp14> also opt to set an EDNS(0) size of 1232 octets as suggested by the <xref target="DNSFlagDay2020"/> initiative, instead of using the larger value of 1400 octets suggested by <xref target="RFC9715"/>.
                         </t>
                         <t>
                             Additionally, DNS servers <bcp14>MAY</bcp14> opt to explicitly not rely on path MTU discovery <xref target="RFC4821"/> or PLPMTUD <xref target="RFC8899"/>.
