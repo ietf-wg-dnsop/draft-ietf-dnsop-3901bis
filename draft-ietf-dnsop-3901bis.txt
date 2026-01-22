@@ -300,12 +300,12 @@ Table of Contents
       [RFC9715] does not provide explicit guidance on mitigating this
       issue.  However, transferring the guidance from [RFC9715], setting
       an MSS of 1388 octets would reduce the impact of this issue.
-      Hence, DNS servers MAY set an MSS of no more than 1388 octets for
-      TCP connections.  Similarly, aligned with the recommendations of
-      the [DNSFlagDay2020], DNS servers MAY ensure that a total packet
-      size of 1280 octets is not exceeded by setting an MSS of 1220
-      octets.  Additionally, DNS servers MAY opt to not rely on PMTU
-      discovery.  It can do so, for example, by setting
+      Hence, it is RECOMMENDED that DNS servers set an MSS of no more
+      than 1388 octets for TCP connections.  Similarly, aligned with the
+      recommendations of the [DNSFlagDay2020], DNS servers MAY ensure
+      that a total packet size of 1280 octets is not exceeded by setting
+      an MSS of 1220 octets.  Additionally, DNS servers MAY opt to not
+      rely on PMTU discovery.  It can do so, for example, by setting
       IPV6_USE_MIN_MTU=1 from [RFC3542].
 
    Broken IP Connectivity at the Resolver
@@ -448,7 +448,10 @@ Table of Contents
 
 4.2.  Guidelines for Recursive DNS Resolvers
 
-   Every recursive DNS resolver SHOULD be dual-stack.
+   To ensure robust DNS resolution even when facing namespace
+   fragmentation, every recursive DNS resolver SHOULD be dual-stack.
+   Exceptions apply if one of the below methods to prevent namespace
+   fragmentation are in place.
 
    While the zones that IPv6-only recursive DNS resolvers can resolve
    are growing, they do not yet cover all zones.  Hence, a recursive DNS
@@ -467,10 +470,11 @@ Table of Contents
    DNS resolution to a dual-stack recursive DNS resolver (i.e., a
    resolver that is also able to perform DNS resolution over IPv6).
 
-   Finally, when responding to recursive queries, i.e., a query with the
-   RD bit set [RFC1035], a DNS resolver SHOULD follow the above guidance
-   on fragmentation avoidance (Section 4.1) for communication between
-   authoritative DNS servers and recursive DNS resolvers analogously.
+   Finally, when responding to recursive queries (i.e., a query with the
+   RD bit set [RFC1035]), a DNS resolver SHOULD follow the above
+   guidance on fragmentation avoidance (Section 4.1) for communication
+   between authoritative DNS servers and recursive DNS resolvers
+   analogously.
 
 4.3.  Guidelines for DNS Stub Resolvers
 
