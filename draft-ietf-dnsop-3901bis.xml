@@ -201,7 +201,7 @@
                 </t>
                 <t>
                     Finally, at the time of this writing, addresses (A or AAAA RRs) for a delegation's authoritative name servers are the only type of glue defined for the DNS.
-                    In the future, alternative, yet related, delegation system may be available, where other considerations apply.
+                    In the future, alternative, yet related, delegation systems may be available, where other considerations apply.
                 </t>
             </section>
             <section anchor="misconfigurations-causing-network-related-name-space-fragmentation">
