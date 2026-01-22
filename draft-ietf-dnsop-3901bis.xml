@@ -10,7 +10,7 @@
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude" ipr="trust200902" consensus="true" docName="draft-ietf-dnsop-3901bis-latest" category="bcp" submissionType="IETF" tocInclude="true" obsoletes="3901" sortRefs="true" symRefs="true" version="3">
     <!-- xml2rfc v2v3 conversion 3.18.2 -->
     <front>
-        <title abbrev="3901bis">DNS IPv6 Transport Operational Guidelines</title>
+        <title abbrev="3901bis">Operational Guidelines for DNS Transport in Mixed IPv4/IPv6 Environments</title>
         <seriesInfo name="Internet-Draft" status="standard" value="draft-ietf-dnsop-3901bis-latest"/>
         <author fullname="Momoka Yamamoto" initials="" surname="Momoka">
             <organization>WIDE Project</organization>
@@ -199,6 +199,10 @@
                 <t>
                     Furthermore, any of the misconfigurations above may not only materialize via a missing RR but also via an RR providing the IP address of a name server that is not configured to answer queries via that IP address family <xref target="V6DNSRDY-23"/>.
                 </t>
+                <t>
+                    Finally, at the time of this writing, addresses (A or AAAA RRs) for a delegation's authoritative name servers are the only type of glue defined for the DNS.
+                    In the future, alternative, yet related, delegation systems may be available, where other considerations apply.
+                </t>
             </section>
             <section anchor="misconfigurations-causing-network-related-name-space-fragmentation">
                 <name>Network Conditions Causing IP Address Family Related Name Space Fragmentation</name>
@@ -219,8 +223,8 @@
                         </t>
                         <t>
                             In general, DNS servers <bcp14>SHOULD</bcp14> follow <xref target="RFC9715"/>, which provides additional guidance on preventing fragmentation by ensuring that the maximum DNS/UDP payload size does not exceed 1400 octets.
-                            This can be accomplished by setting a corresponding EDNS(0) size, with most implementations using a lower EDNS(0) size of 1232 octets as per the suggestions made by the <xref target="DNSFlagDay2020"/> initiative, to ensure that generated packets always fit into lower bound of the IPv6 MTU of 1280 octets, as defined in <xref target="RFC8200"/>.
-                            Hence, DNS servers <bcp14>MAY</bcp14> also opt to set an EDNS(0) size of 1232 octets as suggested by the <xref target="DNSFlagDay2020"/> initiative.
+                            This can be accomplished by setting an upper bound for received EDNS(0) sizes, with most implementations using an upper bound EDNS(0) size of 1232 octets as per the suggestions made by the <xref target="DNSFlagDay2020"/> initiative, to ensure that generated packets always fit into lower bound of the IPv6 MTU of 1280 octets, as defined in <xref target="RFC8200"/>.
+                            Hence, DNS servers <bcp14>MAY</bcp14> also opt to set an EDNS(0) size of 1232 octets as suggested by the <xref target="DNSFlagDay2020"/> initiative, instead of using the larger value of 1400 octets suggested by <xref target="RFC9715"/>.
                         </t>
                         <t>
                             Additionally, DNS servers <bcp14>MAY</bcp14> opt to explicitly not rely on path MTU discovery <xref target="RFC4821"/> or PLPMTUD <xref target="RFC8899"/>.
@@ -258,6 +262,7 @@
                         </t>
                         <t>
                             IPv6 connectivity for a DNS resolver may experience issues, if, e.g., a client has been assigned a global unicast IPv6 address, but IPv6 traffic is not forwarded on the resolver's network.
+                            Also, a resolver may only have received an <xref target="RFC4193"/> unique local IPv6 unicast address (ULA), which does not allow it to reach global addresses without translation.
                             Similarly, IPv6 connectivity can experience issues when IPv4-IPv6 transition technologies like NAT64 <xref target="RFC6146"/> on IPv6-mostly networks <xref target="RFC9313"/> are in use, where the use of NAT64 can be, e.g., discovered through PREF64 in Router Advertisements (RAs) <xref target="RFC8781"/> or DNS64 <xref target="RFC7050"/>.
                             There, the synthesized IPv6 addresses used in, e.g., 464XLAT <xref target="RFC6877"/> encounter additional PMTU fluctuation due to the difference in header size between IPv4 and IPv6, possibly impacting DNS resolution.
                         </t>
@@ -429,7 +434,7 @@
         <section numbered="false" anchor="acknowledgments">
             <name>Acknowledgments</name>
             <t>
-                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp S. Tiesel, Mark Andrews, Stefan Ubbink, Joe Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti, David Farmer, Pieter Lexis, Ralf Weber, Philip Homburg, Marco Davids, Mohamed Boucadair, Thomas Fossati, Aihua Guo, Bernie Volz, David Dong, Roman Danyliw
+                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp S. Tiesel, Mark Andrews, Stefan Ubbink, Joe Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti, David Farmer, Pieter Lexis, Ralf Weber, Philip Homburg, Marco Davids, Mohamed Boucadair, Thomas Fossati, Aihua Guo, Bernie Volz, David Dong, Roman Danyliw, Éric Vyncke
             </t>
             <t>
                 Thank you for reading this draft.
@@ -477,6 +482,7 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.3542.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.3901.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4034.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4193.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6146.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6540.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6877.xml"/>
