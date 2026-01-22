@@ -233,7 +233,7 @@
                     <dd>
                         <t>
                             A resolver can for various reasons also initiate connections via TCP for resolution to an authoritative server.
-                            However, similar to the case of DNS-over-UDP, DNS-over-TCP may encounter MTU discards, especially on IPv6, if PMTUD does not work, if the MSS honored by the authoritative DNS server leads to IP packets exceeding the PMTU.
+                            However, similar to the case of DNS-over-UDP, DNS-over-TCP may encounter MTU discards, if PMTUD does not work, and hence the MSS honored by the authoritative DNS server leads to IP packets exceeding the actual PMTU of the path taken by responses.
                             In that case, similar to the case of DNS-over-UDP, DNS resolution will time out when the recursive DNS resolver did not receive a response in time.
                         </t>
                         <t>
