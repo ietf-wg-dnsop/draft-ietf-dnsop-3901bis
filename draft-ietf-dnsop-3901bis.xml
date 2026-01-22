@@ -363,7 +363,8 @@
             <section anchor="guidelines-for-dns-resolvers">
                 <name>Guidelines for Recursive DNS Resolvers</name>
                 <t>
-                    Every recursive DNS resolver <bcp14>SHOULD</bcp14> be dual-stack.
+                    To ensure robust DNS resolution even when facing namespace fragmentation, every recursive DNS resolver <bcp14>SHOULD</bcp14> be dual-stack.
+                    Exceptions apply if one of the below methods to prevent namespace fragmentation are in place.
                 </t>
                 <t>
                     While the zones that IPv6-only recursive DNS resolvers can resolve are growing, they do not yet cover all zones.
