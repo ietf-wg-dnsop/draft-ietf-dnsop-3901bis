@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-01-20T02:13:38.970132+00:00",
+  "timestamp": "2026-01-22T02:22:39.049191+00:00",
   "repo": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
   "labels": [
     {
@@ -539,6 +539,22 @@
       "body": "The end of Sec 3.2 provides DoT and DoQ as examples of alternative transports, and implies that they have other means of fragmentation avoidance.\nIn the case of QUIC, this is just PLPMTUD!! Just as with TCP, this is not something the DNS layer needs to worry about if the transport is competently implemented. But the level of service there is exactly the same as TCP modulo some security properties -- there is no additional magic in these protocols.",
       "createdAt": "2026-01-19T06:41:23Z",
       "updatedAt": "2026-01-19T06:41:23Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 76,
+      "id": "I_kwDOOKHo_M7k3IQX",
+      "title": "Use of \"Name Space Fragmentation\"",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/76",
+      "state": "OPEN",
+      "author": "moonshiner",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "I kept finding the wording a bit clunky, especially when you also talking about IP Fragmentation \n\nPerhaps \"Address Space Fragmentation\" or \"IP Address Space Fragmentation\" would be more appropriate?  \n\n\"name space fragmentation\" to this DNS person gets me thinking of domains, zones, etc.  \n\nJust a thought",
+      "createdAt": "2026-01-21T19:12:20Z",
+      "updatedAt": "2026-01-21T19:12:20Z",
       "closedAt": null,
       "comments": []
     }
@@ -2445,24 +2461,26 @@
       "id": "PR_kwDOOKHo_M68SbBh",
       "title": "Address telechat DNSDIR comment 1",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/66",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "ichdasich",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Addresses the following DNSDIR comment:\r\n\r\n> 2. Section 4.1. \"IPv6 adoption\": \"Authoritative DNS servers SHOULD\r\n> use native IPv6 addresses instead of IPv4-converted IPv6 addresses\r\n> for receiving queries.\" Neither RFC4291, nor RFC 6052 define a\r\n> \"IPv4-converted IPv6 address.\" The draft should state that:\r\n> \"Authoritative DNS servers SHOULD NOT use IPv4-Compatible IPv6\r\n> Addresses and IPv4-Mapped IPv6 Address [RFC4291]\".",
       "createdAt": "2026-01-09T09:11:41Z",
-      "updatedAt": "2026-01-13T07:55:10Z",
+      "updatedAt": "2026-01-21T09:56:02Z",
       "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "baseRefName": "main",
       "baseRefOid": "a3d914f98406e6fb454e73cf729b27b45355cdad",
       "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "headRefName": "tf_2026_01_09_dnsdir_telechat_1",
       "headRefOid": "76d9aab5ca48fd8d4dcb3ff0fd9fcbd9db63c4d7",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-01-21T09:55:59Z",
+      "mergedAt": "2026-01-21T09:55:59Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "1b9fbf9eed73e6b9b354a91b389de6c38543d507"
+      },
       "comments": [],
       "reviews": [
         {
@@ -2557,24 +2575,26 @@
       "id": "PR_kwDOOKHo_M68SdMX",
       "title": "Address comment from DNSDIR telechat review",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/67",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "ichdasich",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "This addresses the following comment:\r\n\r\n> 4. Section 4.2: \"when responding to recursive queries sent by stub\r\n> DNS\". How can a recursive resolver know that a query has been sent by\r\n> a stub resolver?\r\n",
       "createdAt": "2026-01-09T09:14:08Z",
-      "updatedAt": "2026-01-13T07:55:44Z",
+      "updatedAt": "2026-01-21T09:56:24Z",
       "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "baseRefName": "main",
       "baseRefOid": "a3d914f98406e6fb454e73cf729b27b45355cdad",
       "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "headRefName": "tf_2026_01_09_dnsdir_telechat_2",
       "headRefOid": "6ead1edd9aa57fac72262cd7d38a3498c6a0612d",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-01-21T09:56:21Z",
+      "mergedAt": "2026-01-21T09:56:21Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "f20fb6ef46809cad02d732b93cb5e2a58fc8f109"
+      },
       "comments": [],
       "reviews": [
         {
@@ -2597,24 +2617,26 @@
       "id": "PR_kwDOOKHo_M68SrOA",
       "title": "address security concern from DNSDIR review",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/68",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "ichdasich",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Addresses the following comment from the DNSDIR telechat review\r\n\r\n> 5. Section 5. Security Considerations: \"introduce no new security\r\n> considerations into the DNS protocol.\" This reviewer differs with\r\n> respect to the recommendation that under certain circumstances a\r\n> recursive resolver may forward a query to another recursive resolver.\r\n> As already noted, the DNS resolution protocol has no form of query\r\n> loop detection or excessive resolver query chain detection, and there\r\n> is the potential for scenarios that can be used to launch a DOS\r\n> attacks on recursive resolvers. The authors should reconsider this\r\n> section in the light of the existing advice relating to\r\n> resover-to-resolver forwarding in this document.",
       "createdAt": "2026-01-09T09:32:08Z",
-      "updatedAt": "2026-01-13T07:57:23Z",
+      "updatedAt": "2026-01-21T09:56:49Z",
       "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "baseRefName": "main",
       "baseRefOid": "a3d914f98406e6fb454e73cf729b27b45355cdad",
       "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "headRefName": "tf_2026_01_09_dnsdir_telechat_3",
       "headRefOid": "759eecd2e5df37da1332f103c76fb9c721f8f7d2",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-01-21T09:56:45Z",
+      "mergedAt": "2026-01-21T09:56:45Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "b7085fa55ef9141b63c52be8e6206d2cd471ce42"
+      },
       "comments": [
         {
           "author": "ichdasich",
@@ -2750,6 +2772,243 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 71,
+      "id": "PR_kwDOOKHo_M6-aH1a",
+      "title": "Removed MAY v6-only NS.",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/71",
+      "state": "MERGED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Removed option v6only NS",
+      "createdAt": "2026-01-21T09:47:47Z",
+      "updatedAt": "2026-01-21T09:58:56Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "a3d914f98406e6fb454e73cf729b27b45355cdad",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "tf_2026_01_21_may_v6_only",
+      "headRefOid": "cd3efb2608076f1fe4138723312461fda4f52353",
+      "closedAt": "2026-01-21T09:58:54Z",
+      "mergedAt": "2026-01-21T09:58:53Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "fe65cef872a552705cc2e143f90a1653d9233491"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7buMCc",
+          "commit": {
+            "abbreviatedOid": "cd3efb2"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-01-21T09:56:12Z",
+          "updatedAt": "2026-01-21T09:56:12Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 72,
+      "id": "PR_kwDOOKHo_M6-aIVu",
+      "title": "Clarified MUST role in delegation requirement",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/72",
+      "state": "MERGED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Clarify MUST nature of delegation requirements.",
+      "createdAt": "2026-01-21T09:48:21Z",
+      "updatedAt": "2026-01-21T10:06:04Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "fe65cef872a552705cc2e143f90a1653d9233491",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "tf_2026_01_21_clarify_requirement",
+      "headRefOid": "923dcb357ccac7ddee0af1cc08df2380c6bd7541",
+      "closedAt": "2026-01-21T10:05:59Z",
+      "mergedAt": "2026-01-21T10:05:58Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "88cd6734421d632ddfc83a692edfb767786cba7a"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7buVsK",
+          "commit": {
+            "abbreviatedOid": "4e1dac1"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-01-21T10:02:34Z",
+          "updatedAt": "2026-01-21T10:02:34Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 73,
+      "id": "PR_kwDOOKHo_M6-aJnU",
+      "title": "Tf 2026 01 19 transport pmtud",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/73",
+      "state": "CLOSED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Clarified PMTUD formulation.",
+      "createdAt": "2026-01-21T09:49:38Z",
+      "updatedAt": "2026-01-21T10:10:46Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "fe65cef872a552705cc2e143f90a1653d9233491",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "tf_2026_01_19_transport_pmtud",
+      "headRefOid": "5e9d3a8338f3c2e3577418f401952f1020bd26d7",
+      "closedAt": "2026-01-21T10:10:46Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closed after discussion.",
+          "createdAt": "2026-01-21T10:10:46Z",
+          "updatedAt": "2026-01-21T10:10:46Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7buSkr",
+          "commit": {
+            "abbreviatedOid": "3cb6085"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-01-21T09:59:59Z",
+          "updatedAt": "2026-01-21T10:00:25Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "\"for example\" was on purpose as how its is instructed to do so is internal to an implem. Other API may be used if available.\r\n\r\nAlso, RFC3542 is informational and I'd like to add a donwref.",
+              "createdAt": "2026-01-21T09:59:59Z",
+              "updatedAt": "2026-01-21T10:00:25Z"
+            },
+            {
+              "originalPosition": 16,
+              "body": "Idem as above.",
+              "createdAt": "2026-01-21T10:00:18Z",
+              "updatedAt": "2026-01-21T10:00:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7buYaF",
+          "commit": {
+            "abbreviatedOid": "3cb6085"
+          },
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-01-21T10:05:19Z",
+          "updatedAt": "2026-01-21T10:05:19Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "Cannot really parse the feedback here; So, essentially, you suggesten is skipping the PR and keeping the text as before?",
+              "createdAt": "2026-01-21T10:05:19Z",
+              "updatedAt": "2026-01-21T10:05:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7buZoH",
+          "commit": {
+            "abbreviatedOid": "5e9d3a8"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-01-21T10:06:35Z",
+          "updatedAt": "2026-01-21T10:06:35Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "Yes.",
+              "createdAt": "2026-01-21T10:06:35Z",
+              "updatedAt": "2026-01-21T10:06:35Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 74,
+      "id": "PR_kwDOOKHo_M6-fj24",
+      "title": "native address again",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/74",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "to address a comment from \u00c9ric.",
+      "createdAt": "2026-01-21T16:29:29Z",
+      "updatedAt": "2026-01-21T16:58:09Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "88cd6734421d632ddfc83a692edfb767786cba7a",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "boucadair-patch-1",
+      "headRefOid": "1d56e85fcb2b9a9d143753da71a7dafae8f90623",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 75,
+      "id": "PR_kwDOOKHo_M6-f6M7",
+      "title": "RFC9715 is normative",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/75",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "\u00c9ric has a valid point here.",
+      "createdAt": "2026-01-21T16:53:24Z",
+      "updatedAt": "2026-01-21T16:53:25Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "88cd6734421d632ddfc83a692edfb767786cba7a",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "boucadair-patch-2",
+      "headRefOid": "cc0f21b9b31300e98edaa5892387e3cd94c3d0de",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
