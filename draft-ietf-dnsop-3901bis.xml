@@ -301,31 +301,31 @@
                 <t>
                     It is usually recommended that DNS zones contain at least two name servers (Section 4.1 of <xref target="RFC1034"/>).
                     Typically, these servers are geographically diverse and operate under different routing policies <xref target="RFC2182"/>, as also mirrored by, e.g., the IANA requirements for TLD authoritative name servers <xref target="IANANS"/>.
-                    To reduce the chance of DNS name space fragmentation, it is <bcp14>RECOMMENDED</bcp14> that at least two IPv4-reachable and two IPv6-reachable name servers are configured for a zone.
+                    To prevent DNS name space fragmentation, at least two IPv4-reachable and two IPv6-reachable name servers <bcp14>MUST</bcp14> be configured for a zone.
                     A single name server that is reachable over both IPv4 and IPv6 counts once per address family.
-                    Specifically, this means that the following minimal requirements <bcp14>SHOULD</bcp14> be implemented for a zone:
+                    Specifically, key requirements for a zone are:
                 </t>
                 <dl newline="true" spacing="normal">
                     <dt>
                             IPv4 adoption:
                     </dt>
                     <dd>
-                            Every DNS zone <bcp14>SHOULD</bcp14> be served by at least two IPv4-reachable authoritative DNS servers to maintain name space continuity.
-                            To count as IPv4-reachable, the delegation configuration of an NS (Resolution of the parent, resolution of sibling domain names, glue) <bcp14>MUST NOT</bcp14> rely on IPv6 connectivity being available.
+                            To maintain name space continuity, every DNS zone <bcp14>MUST</bcp14> be served by at least two authoritative DNS servers providing services via IPv4.
+                            Furthermore, the delegation configuration of an NS (Resolution of the parent, resolution of sibling domain names, glue) <bcp14>MUST NOT</bcp14> rely on IPv6 connectivity being available.
                     </dd>
                     <dt>
                             IPv6 adoption:
                     </dt>
                     <dd>
-                            Every DNS zone <bcp14>SHOULD</bcp14> be served by at least two IPv6-reachable authoritative DNS servers to maintain name space continuity.
-                            To avoid reachability issues, authoritative DNS servers <bcp14>SHOULD NOT</bcp14> use IPv4-embedded addresses <xref target="RFC6052"/> (including IPv4-Mapped IPv6 addresses and deprecated IPv4-Compatible addresses <xref target="RFC4291"/>) for receiving queries.
-                            To count as IPv6-reachable, the delegation configuration of an NS (Resolution of the parent, resolution of sibling domain names, glue) <bcp14>MUST NOT</bcp14> rely on IPv4 connectivity being available.
+                            To maintain name space continuity, every DNS zone <bcp14>MUST</bcp14> be served by at least two authoritative DNS servers providing services via IPv6.
+                            To avoid reachability issues, authoritative DNS servers <bcp14>MUST NOT</bcp14> use IPv4-embedded addresses <xref target="RFC6052"/> (including IPv4-Mapped IPv6 addresses and deprecated IPv4-Compatible addresses <xref target="RFC4291"/>) for receiving queries.
+                            Furthermore, the delegation configuration of an NS (Resolution of the parent, resolution of sibling domain names, glue) <bcp14>MUST NOT</bcp14> rely on IPv4 connectivity being available.
                     </dd>
                     <dt>
                             Consistency:
                     </dt>
                     <dd>
-                            Both IPv4 and IPv6 transports <bcp14>SHOULD</bcp14> serve identical DNS data to ensure a consistent resolution experience across different network types.
+                            Both IPv4 and IPv6 transports <bcp14>MUST</bcp14> serve identical DNS data to ensure a consistent resolution experience across different network types.
                     </dd>
                     <dt>
                             Avoiding IP Fragmentation:
@@ -334,7 +334,7 @@
                             IP fragmentation has been reported to be fragile <xref target="RFC8900"/>.
                             Furthermore, IPv6 transition technologies can introduce unexpected MTU breaks (e.g., when NAT64 is used (Section 7 of <xref target="RFC7269"/>)).
                             Therefore, IP fragmentation <bcp14>SHOULD</bcp14> be avoided by following guidance on maximum DNS payload sizes <xref target="RFC9715"/> and providing TCP fall back options <xref target="RFC7766"/>.
-                            Furthermore, similar to the guidance in <xref target="RFC9715"/>, authoritative DNS servers <bcp14>MAY</bcp14> set an MSS of either 1388 (analogous to <xref target="RFC9715"/>) or 1220 (analogous to the <xref target="DNSFlagDay2020"/> suggestions) in TCP sessions carrying DNS responses.
+                            Similar to the guidance in <xref target="RFC9715"/>, authoritative DNS servers <bcp14>MAY</bcp14> set an MSS of either 1388 (analogous to <xref target="RFC9715"/>) or 1220 (analogous to the <xref target="DNSFlagDay2020"/> suggestions) in TCP sessions carrying DNS responses.
                     </dd>
                 </dl>
                 <t>
@@ -342,7 +342,7 @@
                 </t>
                 <ul spacing="normal">
                     <li>
-                        <t>There is at least one IPv4 address record and one IPv6 address record available for the name servers of any child delegation within the zone.</t>
+                        <t>There are at least two IPv4 address records and two IPv6 address records available for the name servers of any child delegation within the zone.</t>
                     </li>
                     <li>
                         <t>The zone's authoritative servers follow <xref target="RFC9715"/> for avoiding fragmentation on DNS-over-UDP.</t>
