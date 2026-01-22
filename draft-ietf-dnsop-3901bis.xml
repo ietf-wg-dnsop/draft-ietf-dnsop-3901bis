@@ -303,7 +303,7 @@
                     Typically, these servers are geographically diverse and operate under different routing policies <xref target="RFC2182"/>, as also mirrored by, e.g., the IANA requirements for TLD authoritative name servers <xref target="IANANS"/>.
                     To reduce the chance of DNS name space fragmentation, it is <bcp14>RECOMMENDED</bcp14> that at least two IPv4-reachable and two IPv6-reachable name servers are configured for a zone.
                     A single name server that is reachable over both IPv4 and IPv6 counts once per address family.
-                    Specifically, the minimal requirements for a zone are:
+                    Specifically, key requirements for a zone are:
                 </t>
                 <dl newline="true" spacing="normal">
                     <dt>
