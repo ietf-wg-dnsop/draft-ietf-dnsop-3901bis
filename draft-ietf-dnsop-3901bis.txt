@@ -9,7 +9,7 @@ Intended status: Best Current Practice                           MPI-INF
 Expires: 26 July 2026                                    22 January 2026
 
 
-               DNS IPv6 Transport Operational Guidelines
+Operational Guidelines for DNS Transport in Mixed IPv4/IPv6 Environments
                     draft-ietf-dnsop-3901bis-latest
 
 Abstract
@@ -19,7 +19,7 @@ Abstract
    resolvers in a mixed IPv4/IPv6 environment.  This document recommends
    that both authoritative DNS servers and recursive resolvers support
    IPv4 and IPv6.  It also provides guidance on how recursive DNS
-   resolvers should select upstream DNS servers when both native and
+   resolvers should select upstream DNS servers, including when
    IPv4-embedded IPv6 addresses are available.
 
    This document obsoletes RFC 3901.
@@ -148,10 +148,6 @@ Table of Contents
    This document uses DNS terminology as described in [RFC9499].
    Furthermore, the following terms are used with a defined meaning:
 
-   Native IPv6 address:
-      A Globally Unique IPv6 address [RFC5375] that is not an
-      IPv4-embedded IPv6 address [RFC6052].
-
    IPv4 name server:
       A name server that provides either authoritative or recursive DNS
       services and is reachable via IPv4.  This does not imply anything
@@ -246,6 +242,12 @@ Table of Contents
    address of a name server that is not configured to answer queries via
    that IP address family [V6DNSRDY-23].
 
+   Finally, at the time of this writing, addresses (A or AAAA RRs) for a
+   delegation's authoritative name servers are the only type of glue
+   defined for the DNS.  In the future, alternative, yet related,
+   delegation systems may be available, where other considerations
+   apply.
+
 3.2.  Network Conditions Causing IP Address Family Related Name Space
       Fragmentation
 
@@ -270,13 +272,15 @@ Table of Contents
       In general, DNS servers SHOULD follow [RFC9715], which provides
       additional guidance on preventing fragmentation by ensuring that
       the maximum DNS/UDP payload size does not exceed 1400 octets.
-      This can be accomplished by setting a corresponding EDNS(0) size,
-      with most implementations using a lower EDNS(0) size of 1232
-      octets as per the suggestions made by the [DNSFlagDay2020]
-      initiative, to ensure that generated packets always fit into lower
-      bound of the IPv6 MTU of 1280 octets, as defined in [RFC8200].
-      Hence, DNS servers MAY also opt to set an EDNS(0) size of 1232
-      octets as suggested by the [DNSFlagDay2020] initiative.
+      This can be accomplished by setting an upper bound for received
+      EDNS(0) sizes, with most implementations using an upper bound
+      EDNS(0) size of 1232 octets as per the suggestions made by the
+      [DNSFlagDay2020] initiative, to ensure that generated packets
+      always fit into lower bound of the IPv6 MTU of 1280 octets, as
+      defined in [RFC8200].  Hence, DNS servers MAY also opt to set an
+      EDNS(0) size of 1232 octets as suggested by the [DNSFlagDay2020]
+      initiative, instead of using the larger value of 1400 octets
+      suggested by [RFC9715].
 
       Additionally, DNS servers MAY opt to explicitly not rely on path
       MTU discovery [RFC4821] or PLPMTUD [RFC8899].  It can do so, for
@@ -322,14 +326,17 @@ Table of Contents
       IPv6 connectivity for a DNS resolver may experience issues, if,
       e.g., a client has been assigned a global unicast IPv6 address,
       but IPv6 traffic is not forwarded on the resolver's network.
-      Similarly, IPv6 connectivity can experience issues when IPv4-IPv6
-      transition technologies like NAT64 [RFC6146] on IPv6-mostly
-      networks [RFC9313] are in use, where the use of NAT64 can be,
-      e.g., discovered through PREF64 in Router Advertisements (RAs)
-      [RFC8781] or DNS64 [RFC7050].  There, the synthesized IPv6
-      addresses used in, e.g., 464XLAT [RFC6877] encounter additional
-      PMTU fluctuation due to the difference in header size between IPv4
-      and IPv6, possibly impacting DNS resolution.
+      Also, a resolver may only have received an [RFC4193] unique local
+      IPv6 unicast address (ULA), which does not allow it to reach
+      global addresses without translation.  Similarly, IPv6
+      connectivity can experience issues when IPv4-IPv6 transition
+      technologies like NAT64 [RFC6146] on IPv6-mostly networks
+      [RFC9313] are in use, where the use of NAT64 can be, e.g.,
+      discovered through PREF64 in Router Advertisements (RAs) [RFC8781]
+      or DNS64 [RFC7050].  There, the synthesized IPv6 addresses used
+      in, e.g., 464XLAT [RFC6877] encounter additional PMTU fluctuation
+      due to the difference in header size between IPv4 and IPv6,
+      possibly impacting DNS resolution.
 
    Note: This document only explicitly discusses DNS-over-TCP and DNS-
    over-UDP.  However, several other transport methods between recursive
@@ -382,33 +389,32 @@ Table of Contents
    servers (Section 4.1 of [RFC1034]).  Typically, these servers are
    geographically diverse and operate under different routing policies
    [RFC2182], as also mirrored by, e.g., the IANA requirements for TLD
-   authoritative name servers [IANANS].  To reduce the chance of DNS
-   name space fragmentation, it is RECOMMENDED that at least two
-   IPv4-reachable and two IPv6-reachable name servers are configured for
-   a zone.  A single name server that is reachable over both IPv4 and
-   IPv6 counts once per address family.  Specifically, this means that
-   the following minimal requirements SHOULD be implemented for a zone:
+   authoritative name servers [IANANS].  To prevent DNS name space
+   fragmentation, at least two IPv4-reachable and two IPv6-reachable
+   name servers MUST be configured for a zone.  A single name server
+   that is reachable over both IPv4 and IPv6 counts once per address
+   family.  Specifically, key requirements for a zone are:
 
    IPv4 adoption:
-      Every DNS zone SHOULD be served by at least two IPv4-reachable
-      authoritative DNS servers to maintain name space continuity.  To
-      count as IPv4-reachable, the delegation configuration of an NS
+      To maintain name space continuity, every DNS zone MUST be served
+      by at least two authoritative DNS servers providing services via
+      IPv4.  Furthermore, the delegation configuration of an NS
       (Resolution of the parent, resolution of sibling domain names,
       glue) MUST NOT rely on IPv6 connectivity being available.
 
    IPv6 adoption:
-      Every DNS zone SHOULD be served by at least two IPv6-reachable
-      authoritative DNS servers to maintain name space continuity.  To
-      avoid reachability issues, authoritative DNS servers SHOULD NOT
-      use IPv4-embedded addresses [RFC6052] (including IPv4-Mapped IPv6
-      addresses and deprecated IPv4-Compatible addresses [RFC4291]) for
-      receiving queries.  To count as IPv6-reachable, the delegation
-      configuration of an NS (Resolution of the parent, resolution of
-      sibling domain names, glue) MUST NOT rely on IPv4 connectivity
-      being available.
+      To maintain name space continuity, every DNS zone MUST be served
+      by at least two authoritative DNS servers providing services via
+      IPv6.  To avoid reachability issues, authoritative DNS servers
+      MUST NOT use IPv4-embedded addresses [RFC6052] (including
+      IPv4-Mapped IPv6 addresses and deprecated IPv4-Compatible
+      addresses [RFC4291]) for receiving queries.  Furthermore, the
+      delegation configuration of an NS (Resolution of the parent,
+      resolution of sibling domain names, glue) MUST NOT rely on IPv4
+      connectivity being available.
 
    Consistency:
-      Both IPv4 and IPv6 transports SHOULD serve identical DNS data to
+      Both IPv4 and IPv6 transports MUST serve identical DNS data to
       ensure a consistent resolution experience across different network
       types.
 
@@ -418,17 +424,17 @@ Table of Contents
       MTU breaks (e.g., when NAT64 is used (Section 7 of [RFC7269])).
       Therefore, IP fragmentation SHOULD be avoided by following
       guidance on maximum DNS payload sizes [RFC9715] and providing TCP
-      fall back options [RFC7766].  Furthermore, similar to the guidance
-      in [RFC9715], authoritative DNS servers MAY set an MSS of either
-      1388 (analogous to [RFC9715]) or 1220 (analogous to the
+      fall back options [RFC7766].  Similar to the guidance in
+      [RFC9715], authoritative DNS servers MAY set an MSS of either 1388
+      (analogous to [RFC9715]) or 1220 (analogous to the
       [DNSFlagDay2020] suggestions) in TCP sessions carrying DNS
       responses.
 
    To prevent name space fragmentation, zone validation processes SHOULD
    ensure that:
 
-   *  There is at least one IPv4 address record and one IPv6 address
-      record available for the name servers of any child delegation
+   *  There are at least two IPv4 address records and two IPv6 address
+      records available for the name servers of any child delegation
       within the zone.
 
    *  The zone's authoritative servers follow [RFC9715] for avoiding
@@ -540,7 +546,7 @@ Acknowledgments
    Ubbink, Joe Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti,
    David Farmer, Pieter Lexis, Ralf Weber, Philip Homburg, Marco Davids,
    Mohamed Boucadair, Thomas Fossati, Aihua Guo, Bernie Volz, David
-   Dong, Roman Danyliw
+   Dong, Roman Danyliw, Éric Vyncke
 
    Thank you for reading this draft.
 
@@ -682,10 +688,9 @@ Informative References
               RFC 4034, DOI 10.17487/RFC4034, March 2005,
               <https://www.rfc-editor.org/info/rfc4034>.
 
-   [RFC5375]  Van de Velde, G., Popoviciu, C., Chown, T., Bonness, O.,
-              and C. Hahn, "IPv6 Unicast Address Assignment
-              Considerations", RFC 5375, DOI 10.17487/RFC5375, December
-              2008, <https://www.rfc-editor.org/info/rfc5375>.
+   [RFC4193]  Hinden, R. and B. Haberman, "Unique Local IPv6 Unicast
+              Addresses", RFC 4193, DOI 10.17487/RFC4193, October 2005,
+              <https://www.rfc-editor.org/info/rfc4193>.
 
    [RFC6146]  Bagnulo, M., Matthews, P., and I. van Beijnum, "Stateful
               NAT64: Network Address and Protocol Translation from IPv6
