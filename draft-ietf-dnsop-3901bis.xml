@@ -10,7 +10,7 @@
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude" ipr="trust200902" consensus="true" docName="draft-ietf-dnsop-3901bis-latest" category="bcp" submissionType="IETF" tocInclude="true" obsoletes="3901" sortRefs="true" symRefs="true" version="3">
     <!-- xml2rfc v2v3 conversion 3.18.2 -->
     <front>
-        <title abbrev="3901bis">Operational Guidelines for IP- and Application-Layer DNS Transport in Mixed IPv4/IPv6 Environments</title>
+        <title abbrev="3901bis">Operational Guidelines for DNS Transport in Mixed IPv4/IPv6 Environments</title>
         <seriesInfo name="Internet-Draft" status="standard" value="draft-ietf-dnsop-3901bis-latest"/>
         <author fullname="Momoka Yamamoto" initials="" surname="Momoka">
             <organization>WIDE Project</organization>
