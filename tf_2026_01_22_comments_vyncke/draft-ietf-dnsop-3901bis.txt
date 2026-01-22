@@ -9,8 +9,7 @@ Intended status: Best Current Practice                           MPI-INF
 Expires: 26 July 2026                                    22 January 2026
 
 
- Operational Guidelines for IP- and Application-Layer DNS Transport in
-                      Mixed IPv4/IPv6 Environments
+Operational Guidelines for DNS Transport in Mixed IPv4/IPv6 Environments
                     draft-ietf-dnsop-3901bis-latest
 
 Abstract
