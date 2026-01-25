@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-01-22T02:22:39.049191+00:00",
+  "timestamp": "2026-01-25T02:29:44.283871+00:00",
   "repo": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
   "labels": [
     {
@@ -554,9 +554,17 @@
       "labels": [],
       "body": "I kept finding the wording a bit clunky, especially when you also talking about IP Fragmentation \n\nPerhaps \"Address Space Fragmentation\" or \"IP Address Space Fragmentation\" would be more appropriate?  \n\n\"name space fragmentation\" to this DNS person gets me thinking of domains, zones, etc.  \n\nJust a thought",
       "createdAt": "2026-01-21T19:12:20Z",
-      "updatedAt": "2026-01-21T19:12:20Z",
+      "updatedAt": "2026-01-22T10:03:46Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The thing is that this is actually about name space fragmentation, i.e., zones that are resolvable via IPv4 and zones resolvable via IPv6.\n\nThese two sets should be equal. However, if address space support is split, we end up with two name spaces; The one for IPv4 resolvable zones and the one for IPv6 resolvable zones, which intersect, but do not map 1:1",
+          "createdAt": "2026-01-22T10:03:46Z",
+          "updatedAt": "2026-01-22T10:03:46Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -2963,24 +2971,26 @@
       "id": "PR_kwDOOKHo_M6-fj24",
       "title": "native address again",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/74",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "to address a comment from \u00c9ric.",
       "createdAt": "2026-01-21T16:29:29Z",
-      "updatedAt": "2026-01-21T16:58:09Z",
+      "updatedAt": "2026-01-22T08:44:54Z",
       "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "baseRefName": "main",
       "baseRefOid": "88cd6734421d632ddfc83a692edfb767786cba7a",
       "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "headRefName": "boucadair-patch-1",
       "headRefOid": "1d56e85fcb2b9a9d143753da71a7dafae8f90623",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-01-22T08:44:51Z",
+      "mergedAt": "2026-01-22T08:44:51Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "30e1145ab86ccf61a8506899a7c6b21e087cd7f5"
+      },
       "comments": [],
       "reviews": []
     },
@@ -2989,26 +2999,362 @@
       "id": "PR_kwDOOKHo_M6-f6M7",
       "title": "RFC9715 is normative",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/75",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "\u00c9ric has a valid point here.",
       "createdAt": "2026-01-21T16:53:24Z",
-      "updatedAt": "2026-01-21T16:53:25Z",
+      "updatedAt": "2026-01-22T08:44:43Z",
       "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "baseRefName": "main",
       "baseRefOid": "88cd6734421d632ddfc83a692edfb767786cba7a",
       "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "headRefName": "boucadair-patch-2",
       "headRefOid": "cc0f21b9b31300e98edaa5892387e3cd94c3d0de",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-01-22T08:44:39Z",
+      "mergedAt": "2026-01-22T08:44:39Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "48797d992522be6ceb42096726e0d26f07752452"
+      },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 77,
+      "id": "PR_kwDOOKHo_M6-pNyR",
+      "title": "editorial clarification pass on language in zone requirements",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/77",
+      "state": "MERGED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Clarifies language and removes the top-bullet SHOULD, while also already moving to somewhat stricter BCP14 language as suggested by eric.",
+      "createdAt": "2026-01-22T08:54:34Z",
+      "updatedAt": "2026-01-22T10:01:26Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "30e1145ab86ccf61a8506899a7c6b21e087cd7f5",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "tf_2026_01_22_roman_edit",
+      "headRefOid": "ce7427d1895546a8cb21376c36bf9b44b4906bd1",
+      "closedAt": "2026-01-22T10:01:22Z",
+      "mergedAt": "2026-01-22T10:01:22Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "745fac9beacce76ebb961715ce789299b3faa48e"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7cBRGv",
+          "commit": {
+            "abbreviatedOid": "f90b718"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-01-22T08:57:50Z",
+          "updatedAt": "2026-01-22T09:11:04Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n                    Specifically, key requirements for a zone are:\r\n```\r\n\r\nI remember that Roman asked what is meant by \"minimal requirements\". ",
+              "createdAt": "2026-01-22T08:57:50Z",
+              "updatedAt": "2026-01-22T09:11:04Z"
+            },
+            {
+              "originalPosition": 24,
+              "body": "Maybe I'm missing something, but this MUST change (and similar for IPv6) conflicts with RECOMMENDED in: \r\n\r\n\"To reduce the chance of DNS\r\n   name space fragmentation, it is RECOMMENDED that at least two\r\n   IPv4-reachable and two IPv6-reachable name servers are configured for\"",
+              "createdAt": "2026-01-22T09:10:51Z",
+              "updatedAt": "2026-01-22T09:11:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7cBuMa",
+          "commit": {
+            "abbreviatedOid": "f90b718"
+          },
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-01-22T09:21:57Z",
+          "updatedAt": "2026-01-22T09:21:57Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "Yes. The must changes are there as Eric brought them up (and i find them sensible); I figured that doing this in two steps would have a lot more overhead (and merge conflicts). I adjusted the RECOMMENDED. Thoughts?",
+              "createdAt": "2026-01-22T09:21:57Z",
+              "updatedAt": "2026-01-22T09:21:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7cB1mn",
+          "commit": {
+            "abbreviatedOid": "ce7427d"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-01-22T09:28:24Z",
+          "updatedAt": "2026-01-22T09:28:24Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "The updated text is consistent. Thanks.",
+              "createdAt": "2026-01-22T09:28:24Z",
+              "updatedAt": "2026-01-22T09:28:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7cB2dT",
+          "commit": {
+            "abbreviatedOid": "ce7427d"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-01-22T09:29:16Z",
+          "updatedAt": "2026-01-22T09:29:16Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 78,
+      "id": "PR_kwDOOKHo_M6-rjvh",
+      "title": "Tf 2026 01 22 comments vyncke",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/78",
+      "state": "MERGED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Addressed comments Eric; Unclear about the RFC9715 wording, i.e., if this is still an issue given changes from the PR addressing Roman's comments and having 9715 moved to normative.",
+      "createdAt": "2026-01-22T12:00:43Z",
+      "updatedAt": "2026-01-22T13:35:20Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "745fac9beacce76ebb961715ce789299b3faa48e",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "tf_2026_01_22_comments_vyncke",
+      "headRefOid": "822b57dc485c470deca4665e72319682d9e3a0cc",
+      "closedAt": "2026-01-22T13:35:12Z",
+      "mergedAt": "2026-01-22T13:35:12Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "6e7b4bde5ac87ea93f0bf0e12f355b77d0d65a23"
+      },
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> Unclear about the RFC9715 wording\r\n\r\nWe can leave RFC9715 citations as they are. I have already moved RFC9715 to be normative in one of the PRs. I think that we are OK for that one. \r\n\r\nI will ask to add RFC9715 to downref registry. ",
+          "createdAt": "2026-01-22T12:54:00Z",
+          "updatedAt": "2026-01-22T12:54:00Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7cE9Db",
+          "commit": {
+            "abbreviatedOid": "28973e2"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-01-22T12:47:35Z",
+          "updatedAt": "2026-01-22T12:50:14Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n        <title abbrev=\"3901bis\">Operational Guidelines for DNS Transport in Mixed IPv4/IPv6 Environments</title>\r\n```\r\n\r\n\"IP- and Application-Layer\" vs \"Transport\" do not parse. ",
+              "createdAt": "2026-01-22T12:47:35Z",
+              "updatedAt": "2026-01-22T12:50:14Z"
+            },
+            {
+              "originalPosition": 14,
+              "body": "```suggestion\r\n                    Finally, at the time of this writing, addresses (A or AAAA RRs) for a delegation's authoritative name servers are the only type of glue defined for the DNS.\r\n```",
+              "createdAt": "2026-01-22T12:48:11Z",
+              "updatedAt": "2026-01-22T12:50:14Z"
+            },
+            {
+              "originalPosition": 15,
+              "body": "```suggestion\r\n                    In the future, alternative, yet related, delegation systems may be available, where other considerations apply.\r\n```\r\n\r\nDo we really need to have this?",
+              "createdAt": "2026-01-22T12:48:50Z",
+              "updatedAt": "2026-01-22T12:50:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7cFZ-H",
+          "commit": {
+            "abbreviatedOid": "28973e2"
+          },
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-01-22T13:16:08Z",
+          "updatedAt": "2026-01-22T13:16:08Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "I would personally like to make the implication of the preceding sentence explicit. It might be somewhat redundant, but without it the text flow feels a bit abrupt to me.",
+              "createdAt": "2026-01-22T13:16:08Z",
+              "updatedAt": "2026-01-22T13:16:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7cFmCd",
+          "commit": {
+            "abbreviatedOid": "822b57d"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-01-22T13:27:33Z",
+          "updatedAt": "2026-01-22T13:27:33Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 79,
+      "id": "PR_kwDOOKHo_M6-roGv",
+      "title": "Clarrified comment from Gorry.",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/79",
+      "state": "MERGED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Addressing DISCUSS point from Gorry.",
+      "createdAt": "2026-01-22T12:06:42Z",
+      "updatedAt": "2026-01-22T13:35:36Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "745fac9beacce76ebb961715ce789299b3faa48e",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "tf_2026_01_22_discuss_gorry",
+      "headRefOid": "c658a99642b65372622ffe837b11ac9398da3d5b",
+      "closedAt": "2026-01-22T13:35:33Z",
+      "mergedAt": "2026-01-22T13:35:33Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "2efb8493981f738fed601656b1b3b98bdbc3d7e3"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7cFBim",
+          "commit": {
+            "abbreviatedOid": "82cf067"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-01-22T12:52:01Z",
+          "updatedAt": "2026-01-22T12:52:02Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n                            However, similar to the case of DNS-over-UDP, DNS-over-TCP may encounter MTU discards if PMTUD does not work and, thus, the MSS honored by the authoritative DNS server leads to IP packets exceeding the actual PMTU of the path taken by responses.\r\n```",
+              "createdAt": "2026-01-22T12:52:01Z",
+              "updatedAt": "2026-01-22T12:52:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7cFmfC",
+          "commit": {
+            "abbreviatedOid": "c658a99"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-01-22T13:27:58Z",
+          "updatedAt": "2026-01-22T13:27:58Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 80,
+      "id": "PR_kwDOOKHo_M6-s7io",
+      "title": "Tf 2026 01 22 comments vyncke ii",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/80",
+      "state": "MERGED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Follow up with Eric.",
+      "createdAt": "2026-01-22T13:45:58Z",
+      "updatedAt": "2026-01-22T14:00:10Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "2efb8493981f738fed601656b1b3b98bdbc3d7e3",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "tf_2026_01_22_comments_vyncke_ii",
+      "headRefOid": "eef9b1638e54b7e3d40c5ab327cb4cf862d1e80d",
+      "closedAt": "2026-01-22T14:00:06Z",
+      "mergedAt": "2026-01-22T14:00:06Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "41ac0126c8b31ff0c43b191d8cc2a6a6b997073d"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7cF9aK",
+          "commit": {
+            "abbreviatedOid": "e836178"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-01-22T13:49:01Z",
+          "updatedAt": "2026-01-22T13:49:01Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "```suggestion\r\n                    Finally, when responding to recursive queries (i.e., a query with the RD bit set <xref target=\"RFC1035\"/>), a DNS resolver <bcp14>SHOULD</bcp14> follow the above guidance on fragmentation avoidance (<xref target=\"guidelines-for-authoritative-dns-configuration\"/>) for communication between authoritative DNS servers and recursive DNS resolvers analogously.\r\n```",
+              "createdAt": "2026-01-22T13:49:01Z",
+              "updatedAt": "2026-01-22T13:49:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7cF91l",
+          "commit": {
+            "abbreviatedOid": "e836178"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-01-22T13:49:26Z",
+          "updatedAt": "2026-01-22T13:49:26Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
