@@ -364,7 +364,7 @@
                     </dt>
                     <dd>
                             IP fragmentation has been reported to be fragile <xref target="RFC8900"/>.
-                            Furthermore, IPv6 transition technologies can introduce unexpected MTU breaks (e.g., when NAT64 is used (Section 7 of <xref target="RFC7269"/>)).
+                            Furthermore, IPv6 transition technologies can introduce unexpected reductions in the effective PMTU (e.g., when NAT64 is used (Section 7 of <xref target="RFC7269"/>)).
                             Therefore, IP fragmentation <bcp14>SHOULD</bcp14> be avoided by following guidance on maximum DNS payload sizes <xref target="RFC9715"/> and providing TCP fall back options <xref target="RFC7766"/>.
                             Similar to the guidance in <xref target="RFC9715"/>, authoritative DNS servers <bcp14>MAY</bcp14> set an MSS of either 1388 (analogous to <xref target="RFC9715"/>) or 1220 (analogous to the <xref target="DNSFlagDay2020"/> suggestions) in TCP sessions carrying DNS responses.
                     </dd>
@@ -451,6 +451,10 @@
                 Recommendations for recursive and stub resolvers rely on a correctly discovered PREF64.
                 Security issues may materialize if an incorrect PREF64 is used.
                 Hence, guidance from <xref target="RFC9872"/> on securely discovering PREF64 <bcp14>SHOULD</bcp14> be followed.
+            </t>
+            <t>
+                Preventing fragmentation according to the guidance in this document may increase load on DNS servers, as more TCP fallbacks might be required.
+                While measurements have shown this to be in the range of 3-5% of connections <xref target="DNSv6MTU"/>, operators <bcp14>SHOULD</bcp14> monitor the actual impact on their servers when implementing guidance from this document to detect unexpected load increases early on.
             </t>
         </section>
         <section anchor="iana-considerations">
