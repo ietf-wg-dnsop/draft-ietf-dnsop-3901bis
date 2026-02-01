@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-01-25T02:29:44.283871+00:00",
+  "timestamp": "2026-02-01T03:14:54.983719+00:00",
   "repo": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
   "labels": [
     {
@@ -3355,6 +3355,32 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 81,
+      "id": "PR_kwDOOKHo_M7AlouW",
+      "title": "Tf 2026 01 31 comments gorry edns0",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/81",
+      "state": "OPEN",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This commit implements changes in response to Gorry's DISCUSS",
+      "createdAt": "2026-01-31T17:08:31Z",
+      "updatedAt": "2026-01-31T17:08:32Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "41ac0126c8b31ff0c43b191d8cc2a6a6b997073d",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "tf_2026_01_31_comments_gorry_edns0",
+      "headRefOid": "d9a9a3293fabb9e2bb86095a7335fdd239881b50",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
