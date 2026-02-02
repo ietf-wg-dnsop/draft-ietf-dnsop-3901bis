@@ -1450,7 +1450,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-3.2-2.4.6">
                             Therefore, it is <span class="bcp14">RECOMMENDED</span> that DNS servers set an MSS of no more than 1388 octets for TCP connections.
                             Similarly, aligned with the recommendations of the <span>[<a href="#DNSFlagDay2020" class="cite xref">DNSFlagDay2020</a>]</span> initiative, DNS servers <span class="bcp14">MAY</span> ensure that a total packet size of 1280 octets is not exceeded by setting an MSS of 1220 octets.
-                            Please note that, for TCP, the resulting packet's size may be further enlarged by additional fields in the TCP header being in use, and these MSS values assume a minimal TCP header.<a href="#section-3.2-2.4.6" class="pilcrow">¶</a></p>
+                          Note that the resulting packet's size for TCP may be further enlarged by additional fields in the TCP header being in use, and these MSS values assume a minimal TCP header.<a href="#section-3.2-2.4.6" class="pilcrow">¶</a></p>
 <p id="section-3.2-2.4.7">
                             Additionally, DNS servers <span class="bcp14">MAY</span> accomplish the same effect by opting to not rely on PMTU discovery, which will also implicitly set a corresponding MSS for outgoing packets.
                             It can do so, for example, by setting IPV6_USE_MIN_MTU=1 from <span>[<a href="#RFC3542" class="cite xref">RFC3542</a>]</span>.<a href="#section-3.2-2.4.7" class="pilcrow">¶</a></p>

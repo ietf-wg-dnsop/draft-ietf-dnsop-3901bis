@@ -340,8 +340,8 @@ Table of Contents
       more than 1388 octets for TCP connections.  Similarly, aligned
       with the recommendations of the [DNSFlagDay2020] initiative, DNS
       servers MAY ensure that a total packet size of 1280 octets is not
-      exceeded by setting an MSS of 1220 octets.  Please note that, for
-      TCP, the resulting packet's size may be further enlarged by
+      exceeded by setting an MSS of 1220 octets.  Note that the
+      resulting packet's size for TCP may be further enlarged by
       additional fields in the TCP header being in use, and these MSS
       values assume a minimal TCP header.
 
