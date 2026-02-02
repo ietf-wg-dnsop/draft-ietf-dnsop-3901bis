@@ -6,7 +6,7 @@ dnsop                                                             Momoka
 Internet-Draft                                              WIDE Project
 Obsoletes: 3901 (if approved)                                  T. Fiebig
 Intended status: Best Current Practice                           MPI-INF
-Expires: 4 August 2026                                   31 January 2026
+Expires: 6 August 2026                                   2 February 2026
 
 
 Operational Guidelines for DNS Transport in Mixed IPv4/IPv6 Environments
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 August 2026.
+   This Internet-Draft will expire on 6 August 2026.
 
 Copyright Notice
 
@@ -300,10 +300,10 @@ Table of Contents
       TCP for resolution to an authoritative server.  However, similar
       to the case of DNS-over-UDP, DNS-over-TCP may encounter MTU
       discards if PMTUD is not possible on a given path.  This can
-      occur, for example, if PMTUD related messages are dropped, i.e.,
-      cannot be returned to the sender, or if the size communicated in
-      these messages is incorrect, i.e., a middle-box alters packet size
-      on-path.  Under these conditions, the MSS honored by the
+      occur, for example, if PMTUD related messages are dropped (i.e.,
+      cannot be returned to the sender) or if the size communicated in
+      these messages is incorrect (i.e., an on-path device alters
+      packets' size).  Under these conditions, the MSS honored by the
       authoritative DNS server leads to IP packets exceeding the
       effective PMTU of the path taken by responses.  In that case,
       similar to the case of DNS-over-UDP, DNS resolution will time out
