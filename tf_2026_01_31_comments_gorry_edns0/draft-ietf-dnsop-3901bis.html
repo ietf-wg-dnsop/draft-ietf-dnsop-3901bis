@@ -1443,7 +1443,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-3.2-2.4.4">
                             However, DNS is highly time-constraint, and performing PMTU (or PLPMTUD <span>[<a href="#RFC8201" class="cite xref">RFC8201</a>]</span> or Datagram PLPMTUD <span>[<a href="#RFC4821" class="cite xref">RFC4821</a>]</span> <span>[<a href="#RFC8899" class="cite xref">RFC8899</a>]</span>) may lead to DNS requests timing out before the effective PMTU can be established by the server.
                             Furthermore, most DNS messages fit into less than 1280 octets <span>[<a href="#DNSv6MTU" class="cite xref">DNSv6MTU</a>]</span>, which means that the benefits of being able to leverage a larger effective PMTU only effect corner cases, e.g., requests for DNSKEY RRs.
-                            In turn, though, due to the constraint time budget of DNS servers, this may prevent resolution for these comparatively rare, yet critical, cases all together.<a href="#section-3.2-2.4.4" class="pilcrow">¶</a></p>
+                            In turn, though, due to the constraint time budget of DNS servers, this may prevent resolution for these cases all together.<a href="#section-3.2-2.4.4" class="pilcrow">¶</a></p>
 <p id="section-3.2-2.4.5">
                             Hence, DNS servers <span class="bcp14">SHOULD</span> configure the maximum response size to avoid fragmentation or on-path discarding of packets larger than the effective PMTU.
                             For TCP, this can be accomplished by restricting the used maximum segment size (MSS), either by the host limiting the MSS on its own, or by rewriting the MSS field in packets during a TCP handshake.<a href="#section-3.2-2.4.5" class="pilcrow">¶</a></p>

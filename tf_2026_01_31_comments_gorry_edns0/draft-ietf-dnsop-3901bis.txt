@@ -327,8 +327,7 @@ Table of Contents
       benefits of being able to leverage a larger effective PMTU only
       effect corner cases, e.g., requests for DNSKEY RRs.  In turn,
       though, due to the constraint time budget of DNS servers, this may
-      prevent resolution for these comparatively rare, yet critical,
-      cases all together.
+      prevent resolution for these cases all together.
 
       Hence, DNS servers SHOULD configure the maximum response size to
       avoid fragmentation or on-path discarding of packets larger than
