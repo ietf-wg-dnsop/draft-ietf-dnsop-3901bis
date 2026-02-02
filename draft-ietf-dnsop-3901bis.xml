@@ -272,7 +272,7 @@
                           Note that the resulting packet's size for TCP may be further enlarged by additional fields in the TCP header being in use, and these MSS values assume a minimal TCP header.
                         </t>
                         <t>
-                            Additionally, DNS servers <bcp14>MAY</bcp14> accomplish the same effect by opting to not rely on PMTU discovery, which will also implicitly set a corresponding MSS for outgoing packets.
+                            Additionally, DNS servers <bcp14>MAY</bcp14> accomplish the same effect by opting to not rely on PMTU Discovery, which will also implicitly set a corresponding MSS for outgoing packets.
                             It can do so, for example, by setting IPV6_USE_MIN_MTU=1 from <xref target="RFC3542"/>.
                         </t>
                     </dd>
