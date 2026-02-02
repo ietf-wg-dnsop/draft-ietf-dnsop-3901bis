@@ -130,6 +130,12 @@
                 <dd>
                     A name server that is both an "IPv4 name server" and an "IPv6 name server".
                 </dd>
+                <dt>
+                    Effective PMTU
+                </dt>
+                <dd>
+                    The effective Path Maximum Transmission Unit (PMTU) is the largest IP packet size (in octets) that can successfully traverse a network path from source to destination without requiring fragmentation.
+                </dd>
             </dl>
         </section>
         <section anchor="name-space-fragmentation">
@@ -222,12 +228,14 @@
                             Such packets mostly occur for DNSKEY responses with DNSSEC <xref target="RFC4034"/>.
                         </t>
                         <t>
-                            In general, DNS servers <bcp14>SHOULD</bcp14> follow <xref target="RFC9715"/>, which provides additional guidance on preventing fragmentation by ensuring that the maximum DNS/UDP payload size does not exceed 1400 octets.
-                            This can be accomplished by setting an upper bound for received EDNS(0) sizes, with most implementations using an upper bound EDNS(0) size of 1232 octets as per the suggestions made by the <xref target="DNSFlagDay2020"/> initiative, to ensure that generated packets always fit into lower bound of the IPv6 MTU of 1280 octets, as defined in <xref target="RFC8200"/>.
-                            Hence, DNS servers <bcp14>MAY</bcp14> also opt to set an EDNS(0) size of 1232 octets as suggested by the <xref target="DNSFlagDay2020"/> initiative, instead of using the larger value of 1400 octets suggested by <xref target="RFC9715"/>.
+                            In general, DNS servers <bcp14>SHOULD</bcp14> follow <xref target="RFC9715"/>, which provides additional guidance on preventing fragmentation.
+                            <xref target="RFC9715"/> suggests setting an upper bound for received EDNS(0) sizes of 1400 octets to avoid the need for fragmentation.
+                            However, the <xref target="DNSFlagDay2020"/> initiative suggests using an upper bound EDNS(0) size of only 1232 octets, which is also adopted by most implementations.
+                            Setting the upper bound at 1232 octets ensures that generated packets do not exceed 1280 octets, i.e., the minimum MTU for IPv6 <xref target="RFC8200"/> which avoids IPv6 host fragmentation by the server.
+                            Hence, for clarity, the present document specifically notes that clients <bcp14>MAY</bcp14> use an EDNS(0) size of 1232 octets as well.
                         </t>
                         <t>
-                            Additionally, DNS servers <bcp14>MAY</bcp14> opt to explicitly not rely on path MTU discovery <xref target="RFC4821"/> or PLPMTUD <xref target="RFC8899"/>.
+                            Additionally, e.g., as an additional precaution or because the DNS implementation in use does not support limiting the effective EDNS(0) size, DNS servers <bcp14>MAY</bcp14> opt to explicitly not rely on path MTU discovery <xref target="RFC4821"/> or PLPMTUD <xref target="RFC8899"/>.
                             It can do so, for example, by setting IPV6_USE_MIN_MTU=1 from <xref target="RFC3542"/> to avoid the need to perform PMTU discovery.
                         </t>
                     </dd>
@@ -237,15 +245,34 @@
                     <dd>
                         <t>
                             A resolver can for various reasons also initiate connections via TCP for resolution to an authoritative server.
-                            However, similar to the case of DNS-over-UDP, DNS-over-TCP may encounter MTU discards if PMTUD does not work and, thus, the MSS honored by the authoritative DNS server leads to IP packets exceeding the actual PMTU of the path taken by responses.
+                            However, similar to the case of DNS-over-UDP, DNS-over-TCP may encounter MTU discards if PMTUD is not possible on a given path.
+                            This can occur, for example, if PMTUD related messages are dropped (i.e., cannot be returned to the sender) or if the size communicated in these messages is incorrect (i.e., an on-path device alters packets' size).
+                            Under these conditions, the MSS honored by the authoritative DNS server leads to IP packets exceeding the effective PMTU of the path taken by responses.
                             In that case, similar to the case of DNS-over-UDP, DNS resolution will time out when the recursive DNS resolver did not receive a response in time.
                         </t>
                         <t>
                             <xref target="RFC9715"/> does not provide explicit guidance on mitigating this issue.
-                            However, transferring the guidance from <xref target="RFC9715"/>, setting an MSS of 1388 octets would reduce the impact of this issue.
-                            Hence, it is <bcp14>RECOMMENDED</bcp14> that DNS servers set an MSS of no more than 1388 octets for TCP connections.
-                            Similarly, aligned with the recommendations of the <xref target="DNSFlagDay2020"/>, DNS servers <bcp14>MAY</bcp14> ensure that a total packet size of 1280 octets is not exceeded by setting an MSS of 1220 octets.
-                            Additionally, DNS servers <bcp14>MAY</bcp14> opt to not rely on PMTU discovery.
+                        </t>
+                        <t>
+                            <xref target="RFC8200"/> recommends that IPv6 nodes implement Path MTU Discovery in order to discover and take advantage of path MTUs greater than 1280 octets.
+                            Usually, when a transport protocol can use PMTU (or PLPMTUD <xref target="RFC8201"/> or Datagram PLPMTUD <xref target="RFC4821"/> <xref target="RFC8899"/>) this <bcp14>SHOULD</bcp14> be used to determine an effective PMTU.
+                        </t>
+                        <t>
+                            However, DNS is highly time-constraint, and performing PMTU (or PLPMTUD <xref target="RFC8201"/> or Datagram PLPMTUD <xref target="RFC4821"/> <xref target="RFC8899"/>) may lead to DNS requests timing out before the effective PMTU can be established by the server.
+                            Furthermore, most DNS messages fit into less than 1280 octets <xref target="DNSv6MTU"/>, which means that the benefits of being able to leverage a larger effective PMTU only effect corner cases, e.g., requests for DNSKEY RRs.
+                            In turn, though, due to the constraint time budget of DNS servers, this may prevent resolution for these cases all together.
+                        </t>
+                        <t>
+                            Hence, DNS servers <bcp14>SHOULD</bcp14> configure the maximum response size to avoid fragmentation or on-path discarding of packets larger than the effective PMTU.
+                            For TCP, this can be accomplished by restricting the used maximum segment size (MSS), either by the host limiting the MSS on its own, or by rewriting the MSS field in packets during a TCP handshake.
+                        </t>
+                        <t>
+                            Therefore, it is <bcp14>RECOMMENDED</bcp14> that DNS servers set an MSS of no more than 1388 octets for TCP connections.
+                            Similarly, aligned with the recommendations of the <xref target="DNSFlagDay2020"/> initiative, DNS servers <bcp14>MAY</bcp14> ensure that a total packet size of 1280 octets is not exceeded by setting an MSS of 1220 octets.
+                          Note that the resulting packet's size for TCP may be further enlarged by additional fields in the TCP header being in use, and these MSS values assume a minimal TCP header.
+                        </t>
+                        <t>
+                            Additionally, DNS servers <bcp14>MAY</bcp14> accomplish the same effect by opting to not rely on PMTU Discovery, which will also implicitly set a corresponding MSS for outgoing packets.
                             It can do so, for example, by setting IPV6_USE_MIN_MTU=1 from <xref target="RFC3542"/>.
                         </t>
                     </dd>
@@ -337,7 +364,7 @@
                     </dt>
                     <dd>
                             IP fragmentation has been reported to be fragile <xref target="RFC8900"/>.
-                            Furthermore, IPv6 transition technologies can introduce unexpected MTU breaks (e.g., when NAT64 is used (Section 7 of <xref target="RFC7269"/>)).
+                            Furthermore, IPv6 transition technologies can introduce unexpected reductions in the effective PMTU (e.g., when NAT64 is used (Section 7 of <xref target="RFC7269"/>)).
                             Therefore, IP fragmentation <bcp14>SHOULD</bcp14> be avoided by following guidance on maximum DNS payload sizes <xref target="RFC9715"/> and providing TCP fall back options <xref target="RFC7766"/>.
                             Similar to the guidance in <xref target="RFC9715"/>, authoritative DNS servers <bcp14>MAY</bcp14> set an MSS of either 1388 (analogous to <xref target="RFC9715"/>) or 1220 (analogous to the <xref target="DNSFlagDay2020"/> suggestions) in TCP sessions carrying DNS responses.
                     </dd>
@@ -425,6 +452,10 @@
                 Security issues may materialize if an incorrect PREF64 is used.
                 Hence, guidance from <xref target="RFC9872"/> on securely discovering PREF64 <bcp14>SHOULD</bcp14> be followed.
             </t>
+            <t>
+                Preventing fragmentation according to the guidance in this document may increase load on DNS servers, as more TCP fallbacks might be required.
+                While measurements have shown this to be in the range of 3-5% of connections <xref target="DNSv6MTU"/>, operators <bcp14>SHOULD</bcp14> monitor the actual impact on their servers when implementing guidance from this document to detect unexpected load increases early on.
+            </t>
         </section>
         <section anchor="iana-considerations">
             <name>IANA Considerations</name>
@@ -492,6 +523,7 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7269.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7858.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8106.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8201.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8415.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8781.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8900.xml"/>
@@ -523,6 +555,18 @@
                             <organization/>
                         </author>
                         <date month="March" year="2023"/>
+                    </front>
+                </reference>
+                <reference anchor="DNSv6MTU" target="https://doi.org/10.1145/3730567.3764439">
+                    <front>
+                        <title>'How I learned to stop worrying and love IPv6': Measuring the Internet's Readiness for DNS over IPv6</title>
+                        <author initials="T" surname="Fiebig" fullname="Tobias">
+                            <organization/>
+                        </author>
+                        <author initials="A" surname="Feldmann" fullname="Anja">
+                            <organization/>
+                        </author>
+                        <date month="October" year="2025"/>
                     </front>
                 </reference>
                 <reference anchor="DNSFlagDay2020" target="https://dnsflagday.net/2020/" quoteTitle="true" derivedAnchor="DNSFlagDay2020">
