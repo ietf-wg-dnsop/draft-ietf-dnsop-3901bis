@@ -313,11 +313,11 @@ Table of Contents
       [RFC9715] does not provide explicit guidance on mitigating this
       issue.
 
-      [RFC8200] strongly recommended that IPv6 nodes implement Path MTU
-      Discovery”, in order to discover and take advantage of path MTUs
-      greater than 1280 octets.  Usually, when a transport protocol can
-      use PMTU (or PLPMTUD [RFC8201] or Datagram PLPMTUD [RFC4821]
-      [RFC8899]) this SHOULD be used to determine an effective PMTU.
+      [RFC8200] recommends that IPv6 nodes implement Path MTU Discovery
+      in order to discover and take advantage of path MTUs greater than
+      1280 octets.  Usually, when a transport protocol can use PMTU (or
+      PLPMTUD [RFC8201] or Datagram PLPMTUD [RFC4821] [RFC8899]) this
+      SHOULD be used to determine an effective PMTU.
 
       However, DNS is highly time-constraint, and performing PMTU (or
       PLPMTUD [RFC8201] or Datagram PLPMTUD [RFC4821] [RFC8899]) may

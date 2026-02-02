@@ -1438,7 +1438,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-3.2-2.4.2">
                             <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span> does not provide explicit guidance on mitigating this issue.<a href="#section-3.2-2.4.2" class="pilcrow">¶</a></p>
 <p id="section-3.2-2.4.3">
-                            <span>[<a href="#RFC8200" class="cite xref">RFC8200</a>]</span> strongly recommended that IPv6 nodes implement Path MTU Discovery”, in order to discover and take advantage of path MTUs greater than 1280 octets.
+                            <span>[<a href="#RFC8200" class="cite xref">RFC8200</a>]</span> recommends that IPv6 nodes implement Path MTU Discovery in order to discover and take advantage of path MTUs greater than 1280 octets.
                             Usually, when a transport protocol can use PMTU (or PLPMTUD <span>[<a href="#RFC8201" class="cite xref">RFC8201</a>]</span> or Datagram PLPMTUD <span>[<a href="#RFC4821" class="cite xref">RFC4821</a>]</span> <span>[<a href="#RFC8899" class="cite xref">RFC8899</a>]</span>) this <span class="bcp14">SHOULD</span> be used to determine an effective PMTU.<a href="#section-3.2-2.4.3" class="pilcrow">¶</a></p>
 <p id="section-3.2-2.4.4">
                             However, DNS is highly time-constraint, and performing PMTU (or PLPMTUD <span>[<a href="#RFC8201" class="cite xref">RFC8201</a>]</span> or Datagram PLPMTUD <span>[<a href="#RFC4821" class="cite xref">RFC4821</a>]</span> <span>[<a href="#RFC8899" class="cite xref">RFC8899</a>]</span>) may lead to DNS requests timing out before the effective PMTU can be established by the server.
