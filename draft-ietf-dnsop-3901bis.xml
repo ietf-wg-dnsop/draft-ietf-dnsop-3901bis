@@ -254,7 +254,7 @@
                             <xref target="RFC9715"/> does not provide explicit guidance on mitigating this issue.
                         </t>
                         <t>
-                            <xref target="RFC8200"/> strongly recommended that IPv6 nodes implement Path MTU Discovery”, in order to discover and take advantage of path MTUs greater than 1280 octets.
+                            <xref target="RFC8200"/> recommends that IPv6 nodes implement Path MTU Discovery in order to discover and take advantage of path MTUs greater than 1280 octets.
                             Usually, when a transport protocol can use PMTU (or PLPMTUD <xref target="RFC8201"/> or Datagram PLPMTUD <xref target="RFC4821"/> <xref target="RFC8899"/>) this <bcp14>SHOULD</bcp14> be used to determine an effective PMTU.
                         </t>
                         <t>
