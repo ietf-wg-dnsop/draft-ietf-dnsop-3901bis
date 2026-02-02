@@ -260,7 +260,7 @@
                         <t>
                             However, DNS is highly time-constraint, and performing PMTU (or PLPMTUD <xref target="RFC8201"/> or Datagram PLPMTUD <xref target="RFC4821"/> <xref target="RFC8899"/>) may lead to DNS requests timing out before the effective PMTU can be established by the server.
                             Furthermore, most DNS messages fit into less than 1280 octets <xref target="DNSv6MTU"/>, which means that the benefits of being able to leverage a larger effective PMTU only effect corner cases, e.g., requests for DNSKEY RRs.
-                            In turn, though, due to the constraint time budget of DNS servers, this may prevent resolution for these comparatively rare, yet critical, cases all together.
+                            In turn, though, due to the constraint time budget of DNS servers, this may prevent resolution for these cases all together.
                         </t>
                         <t>
                             Hence, DNS servers <bcp14>SHOULD</bcp14> configure the maximum response size to avoid fragmentation or on-path discarding of packets larger than the effective PMTU.
