@@ -346,7 +346,7 @@ Table of Contents
       values assume a minimal TCP header.
 
       Additionally, DNS servers MAY accomplish the same effect by opting
-      to not rely on PMTU discovery, which will also implicitly set a
+      to not rely on PMTU Discovery, which will also implicitly set a
       corresponding MSS for outgoing packets.  It can do so, for
       example, by setting IPV6_USE_MIN_MTU=1 from [RFC3542].
 
