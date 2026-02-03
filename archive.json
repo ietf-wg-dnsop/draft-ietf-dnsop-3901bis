@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-02-01T03:14:54.983719+00:00",
+  "timestamp": "2026-02-03T02:44:21.567693+00:00",
   "repo": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
   "labels": [
     {
@@ -3361,26 +3361,127 @@
       "id": "PR_kwDOOKHo_M7AlouW",
       "title": "Tf 2026 01 31 comments gorry edns0",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/81",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "ichdasich",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "This commit implements changes in response to Gorry's DISCUSS",
       "createdAt": "2026-01-31T17:08:31Z",
-      "updatedAt": "2026-01-31T17:08:32Z",
+      "updatedAt": "2026-02-02T12:24:47Z",
       "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "baseRefName": "main",
       "baseRefOid": "41ac0126c8b31ff0c43b191d8cc2a6a6b997073d",
       "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "headRefName": "tf_2026_01_31_comments_gorry_edns0",
-      "headRefOid": "d9a9a3293fabb9e2bb86095a7335fdd239881b50",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "headRefOid": "fba0faef1fdcef7946fed30fd87fe3a2573d1134",
+      "closedAt": "2026-02-02T12:24:44Z",
+      "mergedAt": "2026-02-02T12:24:44Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "b0b43bf97941cad694f8ff840426c49eb02491d7"
+      },
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Ok, with all resolved, will merge this. Will try to have another PR addressing the follow-up points shared on-list, and then submit a new rev before next week.",
+          "createdAt": "2026-02-02T12:24:33Z",
+          "updatedAt": "2026-02-02T12:24:33Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7exn1X",
+          "commit": {
+            "abbreviatedOid": "d9a9a32"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2026-02-02T06:32:14Z",
+          "updatedAt": "2026-02-02T06:45:22Z",
+          "comments": [
+            {
+              "originalPosition": 38,
+              "body": "```suggestion\n                            This can occur, for example, if PMTUD related messages are dropped (i.e., cannot be returned to the sender) or if the size communicated in these messages is incorrect (i.e., an on-path device alters packets' size).\n```",
+              "createdAt": "2026-02-02T06:36:48Z",
+              "updatedAt": "2026-02-02T06:45:22Z"
+            },
+            {
+              "originalPosition": 50,
+              "body": "```suggestion\n                            <xref target=\"RFC8200\"/> recommends that IPv6 nodes implement Path MTU Discovery in order to discover and take advantage of path MTUs greater than 1280 octets.\n```",
+              "createdAt": "2026-02-02T06:39:00Z",
+              "updatedAt": "2026-02-02T06:45:22Z"
+            },
+            {
+              "originalPosition": 56,
+              "body": "```suggestion\n                            In turn, though, due to the constraint time budget of DNS servers, this may prevent resolution for these cases all together.\n```",
+              "createdAt": "2026-02-02T06:40:47Z",
+              "updatedAt": "2026-02-02T06:45:22Z"
+            },
+            {
+              "originalPosition": 65,
+              "body": "```suggestion\n                          Note that the resulting packet's size for TCP may be further enlarged by additional fields in the TCP header being in use, and these MSS values assume a minimal TCP header.\n```",
+              "createdAt": "2026-02-02T06:42:06Z",
+              "updatedAt": "2026-02-02T06:45:22Z"
+            },
+            {
+              "originalPosition": 68,
+              "body": "```suggestion\n                            Additionally, DNS servers <bcp14>MAY</bcp14> accomplish the same effect by opting to not rely on PMTU Discovery, which will also implicitly set a corresponding MSS for outgoing packets.\n```",
+              "createdAt": "2026-02-02T06:42:32Z",
+              "updatedAt": "2026-02-02T06:45:22Z"
+            },
+            {
+              "originalPosition": 8,
+              "body": "Do we need this definition?\n\nIsn't this what PMTU is about after all?",
+              "createdAt": "2026-02-02T06:45:11Z",
+              "updatedAt": "2026-02-02T06:45:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7ezwIE",
+          "commit": {
+            "abbreviatedOid": "d9a9a32"
+          },
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-02-02T08:58:22Z",
+          "updatedAt": "2026-02-02T08:58:23Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "Gorry explicitly requested this, and the text there is from him. I personally think that we do not need this definition. However, I also don't think that it hurts to have it in.",
+              "createdAt": "2026-02-02T08:58:22Z",
+              "updatedAt": "2026-02-02T08:58:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7ez1Zw",
+          "commit": {
+            "abbreviatedOid": "fba0fae"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-02-02T09:02:42Z",
+          "updatedAt": "2026-02-02T09:02:42Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "Ok",
+              "createdAt": "2026-02-02T09:02:42Z",
+              "updatedAt": "2026-02-02T09:02:42Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
