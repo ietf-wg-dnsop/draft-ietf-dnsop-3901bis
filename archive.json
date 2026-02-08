@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-02-03T02:44:21.567693+00:00",
+  "timestamp": "2026-02-08T03:20:10.346287+00:00",
   "repo": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
   "labels": [
     {
@@ -3368,7 +3368,7 @@
       "labels": [],
       "body": "This commit implements changes in response to Gorry's DISCUSS",
       "createdAt": "2026-01-31T17:08:31Z",
-      "updatedAt": "2026-02-02T12:24:47Z",
+      "updatedAt": "2026-02-06T07:31:09Z",
       "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
       "baseRefName": "main",
       "baseRefOid": "41ac0126c8b31ff0c43b191d8cc2a6a6b997073d",
@@ -3388,6 +3388,13 @@
           "body": "Ok, with all resolved, will merge this. Will try to have another PR addressing the follow-up points shared on-list, and then submit a new rev before next week.",
           "createdAt": "2026-02-02T12:24:33Z",
           "updatedAt": "2026-02-02T12:24:33Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> Ok, with all resolved, will merge this. Will try to have another PR addressing the follow-up points shared on-list, and then submit a new rev before next week.\r\n\r\nACK. Looking forward the new version. Thanks.",
+          "createdAt": "2026-02-06T07:31:09Z",
+          "updatedAt": "2026-02-06T07:31:09Z"
         }
       ],
       "reviews": [
