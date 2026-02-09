@@ -1057,7 +1057,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Momoka &amp; Fiebig</td>
-<td class="center">Expires 6 August 2026</td>
+<td class="center">Expires 13 August 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1073,12 +1073,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="https://www.rfc-editor.org/rfc/rfc3901" class="eref">3901</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-02-02" class="published">2 February 2026</time>
+<time datetime="2026-02-09" class="published">9 February 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Best Current Practice</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-08-06">6 August 2026</time></dd>
+<dd class="expires"><time datetime="2026-08-13">13 August 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1129,7 +1129,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 6 August 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 13 August 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1432,7 +1432,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-3.2-2.4.1">
                             A resolver can for various reasons also initiate connections via TCP for resolution to an authoritative server.
                             However, similar to the case of DNS-over-UDP, DNS-over-TCP may encounter MTU discards if PMTUD is not possible on a given path.
-                            This can occur, for example, if PMTUD related messages are dropped (i.e., cannot be returned to the sender) or if the size communicated in these messages is incorrect (i.e., an on-path device alters packets' size).
+                            This can occur, for example, if PMTUD related ICMP/ICMPv6 messages are dropped (i.e., cannot be returned to the sender) or if the size communicated in these messages is incorrect (i.e., an on-path device alters packets' size).
                             Under these conditions, the MSS honored by the authoritative DNS server leads to IP packets exceeding the effective PMTU of the path taken by responses.
                             In that case, similar to the case of DNS-over-UDP, DNS resolution will time out when the recursive DNS resolver did not receive a response in time.<a href="#section-3.2-2.4.1" class="pilcrow">¶</a></p>
 <p id="section-3.2-2.4.2">
@@ -1441,18 +1441,19 @@ svg :is([fill="white"], [fill^="#fff"]) {
                             <span>[<a href="#RFC8200" class="cite xref">RFC8200</a>]</span> recommends that IPv6 nodes implement Path MTU Discovery in order to discover and take advantage of path MTUs greater than 1280 octets.
                             Usually, when a transport protocol can use PMTU (or PLPMTUD <span>[<a href="#RFC8201" class="cite xref">RFC8201</a>]</span> or Datagram PLPMTUD <span>[<a href="#RFC4821" class="cite xref">RFC4821</a>]</span> <span>[<a href="#RFC8899" class="cite xref">RFC8899</a>]</span>) this <span class="bcp14">SHOULD</span> be used to determine an effective PMTU.<a href="#section-3.2-2.4.3" class="pilcrow">¶</a></p>
 <p id="section-3.2-2.4.4">
-                            However, DNS is highly time-constraint, and performing PMTU (or PLPMTUD <span>[<a href="#RFC8201" class="cite xref">RFC8201</a>]</span> or Datagram PLPMTUD <span>[<a href="#RFC4821" class="cite xref">RFC4821</a>]</span> <span>[<a href="#RFC8899" class="cite xref">RFC8899</a>]</span>) may lead to DNS requests timing out before the effective PMTU can be established by the server.
-                            Furthermore, most DNS messages fit into less than 1280 octets <span>[<a href="#DNSv6MTU" class="cite xref">DNSv6MTU</a>]</span>, which means that the benefits of being able to leverage a larger effective PMTU only effect corner cases, e.g., requests for DNSKEY RRs.
-                            In turn, though, due to the constraint time budget of DNS servers, this may prevent resolution for these cases all together.<a href="#section-3.2-2.4.4" class="pilcrow">¶</a></p>
+                            However, as DNS benefits from low latency, and performing PMTU (or PLPMTUD <span>[<a href="#RFC8201" class="cite xref">RFC8201</a>]</span> or Datagram PLPMTUD <span>[<a href="#RFC4821" class="cite xref">RFC4821</a>]</span> <span>[<a href="#RFC8899" class="cite xref">RFC8899</a>]</span>) could lead to DNS requests timing out before the effective PMTU can be established by the server.
+                            Furthermore, at the time of writing most DNS messages fit into less than 1280 octets <span>[<a href="#DNSv6MTU" class="cite xref">DNSv6MTU</a>]</span>, which means that the benefits of being able to leverage a larger effective PMTU only effect corner cases, e.g., requests for DNSKEY RRs.
+                            Additionally, not having to rely on PMTUD benefits DNS' time budget, as the time needed for PMTUD could already exceed the timeout budget for DNS resolution, i.e., could prevent resolution for cases where PMTUD is needed all together.<a href="#section-3.2-2.4.4" class="pilcrow">¶</a></p>
 <p id="section-3.2-2.4.5">
                             Hence, DNS servers <span class="bcp14">SHOULD</span> configure the maximum response size to avoid fragmentation or on-path discarding of packets larger than the effective PMTU.
                             For TCP, this can be accomplished by restricting the used maximum segment size (MSS), either by the host limiting the MSS on its own, or by rewriting the MSS field in packets during a TCP handshake.<a href="#section-3.2-2.4.5" class="pilcrow">¶</a></p>
 <p id="section-3.2-2.4.6">
                             Therefore, it is <span class="bcp14">RECOMMENDED</span> that DNS servers set an MSS of no more than 1388 octets for TCP connections.
-                            Similarly, aligned with the recommendations of the <span>[<a href="#DNSFlagDay2020" class="cite xref">DNSFlagDay2020</a>]</span> initiative, DNS servers <span class="bcp14">MAY</span> ensure that a total packet size of 1280 octets is not exceeded by setting an MSS of 1220 octets.
-                          Note that the resulting packet's size for TCP may be further enlarged by additional fields in the TCP header being in use, and these MSS values assume a minimal TCP header.<a href="#section-3.2-2.4.6" class="pilcrow">¶</a></p>
+ Setting this MSS ensures that packets do not exceed a size of 1448 octets, i.e., the same packet size recommended to avoid fragmentation for DNS-over-UDP packets in <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span>.
+                            Furthermore, to provide additional clarity similar to the above guidance on UDP, DNS servers <span class="bcp14">MAY</span> ensure that a total packet size of 1280 octets is not exceeded by setting an MSS of 1220 octets, as suggested by the <span>[<a href="#DNSFlagDay2020" class="cite xref">DNSFlagDay2020</a>]</span> initiative.
+                            Note that the resulting packet's size for TCP may be further enlarged by additional fields in the TCP header being in use <span>[<a href="#RFC9293" class="cite xref">RFC9293</a>]</span>, and these MSS values assume a minimal TCP header.<a href="#section-3.2-2.4.6" class="pilcrow">¶</a></p>
 <p id="section-3.2-2.4.7">
-                            Additionally, DNS servers <span class="bcp14">MAY</span> accomplish the same effect by opting to not rely on PMTU Discovery, which will also implicitly set a corresponding MSS for outgoing packets.
+                            Additionally, e.g., as an additional precaution or because the DNS implementation in use does not support limiting the effective MSS size, DNS servers <span class="bcp14">MAY</span> opt to explicitly not rely on path MTU discovery <span>[<a href="#RFC4821" class="cite xref">RFC4821</a>]</span> or PLPMTUD <span>[<a href="#RFC8899" class="cite xref">RFC8899</a>]</span>.
                             It can do so, for example, by setting IPV6_USE_MIN_MTU=1 from <span>[<a href="#RFC3542" class="cite xref">RFC3542</a>]</span>.<a href="#section-3.2-2.4.7" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
@@ -1734,6 +1735,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt id="RFC9210">[RFC9210]</dt>
         <dd>
 <span class="refAuthor">Kristoff, J.</span> and <span class="refAuthor">D. Wessels</span>, <span class="refTitle">"DNS Transport over TCP - Operational Requirements"</span>, <span class="seriesInfo">BCP 235</span>, <span class="seriesInfo">RFC 9210</span>, <span class="seriesInfo">DOI 10.17487/RFC9210</span>, <time datetime="2022-03" class="refDate">March 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9210">https://www.rfc-editor.org/info/rfc9210</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9293">[RFC9293]</dt>
+        <dd>
+<span class="refAuthor">Eddy, W., Ed.</span>, <span class="refTitle">"Transmission Control Protocol (TCP)"</span>, <span class="seriesInfo">STD 7</span>, <span class="seriesInfo">RFC 9293</span>, <span class="seriesInfo">DOI 10.17487/RFC9293</span>, <time datetime="2022-08" class="refDate">August 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9293">https://www.rfc-editor.org/info/rfc9293</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9471">[RFC9471]</dt>
         <dd>

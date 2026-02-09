@@ -6,7 +6,7 @@ dnsop                                                             Momoka
 Internet-Draft                                              WIDE Project
 Obsoletes: 3901 (if approved)                                  T. Fiebig
 Intended status: Best Current Practice                           MPI-INF
-Expires: 6 August 2026                                   2 February 2026
+Expires: 13 August 2026                                  9 February 2026
 
 
 Operational Guidelines for DNS Transport in Mixed IPv4/IPv6 Environments
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 August 2026.
+   This Internet-Draft will expire on 13 August 2026.
 
 Copyright Notice
 
@@ -300,15 +300,15 @@ Table of Contents
       TCP for resolution to an authoritative server.  However, similar
       to the case of DNS-over-UDP, DNS-over-TCP may encounter MTU
       discards if PMTUD is not possible on a given path.  This can
-      occur, for example, if PMTUD related messages are dropped (i.e.,
-      cannot be returned to the sender) or if the size communicated in
-      these messages is incorrect (i.e., an on-path device alters
-      packets' size).  Under these conditions, the MSS honored by the
-      authoritative DNS server leads to IP packets exceeding the
-      effective PMTU of the path taken by responses.  In that case,
-      similar to the case of DNS-over-UDP, DNS resolution will time out
-      when the recursive DNS resolver did not receive a response in
-      time.
+      occur, for example, if PMTUD related ICMP/ICMPv6 messages are
+      dropped (i.e., cannot be returned to the sender) or if the size
+      communicated in these messages is incorrect (i.e., an on-path
+      device alters packets' size).  Under these conditions, the MSS
+      honored by the authoritative DNS server leads to IP packets
+      exceeding the effective PMTU of the path taken by responses.  In
+      that case, similar to the case of DNS-over-UDP, DNS resolution
+      will time out when the recursive DNS resolver did not receive a
+      response in time.
 
       [RFC9715] does not provide explicit guidance on mitigating this
       issue.
@@ -319,15 +319,17 @@ Table of Contents
       PLPMTUD [RFC8201] or Datagram PLPMTUD [RFC4821] [RFC8899]) this
       SHOULD be used to determine an effective PMTU.
 
-      However, DNS is highly time-constraint, and performing PMTU (or
-      PLPMTUD [RFC8201] or Datagram PLPMTUD [RFC4821] [RFC8899]) may
+      However, as DNS benefits from low latency, and performing PMTU (or
+      PLPMTUD [RFC8201] or Datagram PLPMTUD [RFC4821] [RFC8899]) could
       lead to DNS requests timing out before the effective PMTU can be
-      established by the server.  Furthermore, most DNS messages fit
-      into less than 1280 octets [DNSv6MTU], which means that the
-      benefits of being able to leverage a larger effective PMTU only
-      effect corner cases, e.g., requests for DNSKEY RRs.  In turn,
-      though, due to the constraint time budget of DNS servers, this may
-      prevent resolution for these cases all together.
+      established by the server.  Furthermore, at the time of writing
+      most DNS messages fit into less than 1280 octets [DNSv6MTU], which
+      means that the benefits of being able to leverage a larger
+      effective PMTU only effect corner cases, e.g., requests for DNSKEY
+      RRs.  Additionally, not having to rely on PMTUD benefits DNS' time
+      budget, as the time needed for PMTUD could already exceed the
+      timeout budget for DNS resolution, i.e., could prevent resolution
+      for cases where PMTUD is needed all together.
 
       Hence, DNS servers SHOULD configure the maximum response size to
       avoid fragmentation or on-path discarding of packets larger than
@@ -337,17 +339,22 @@ Table of Contents
       packets during a TCP handshake.
 
       Therefore, it is RECOMMENDED that DNS servers set an MSS of no
-      more than 1388 octets for TCP connections.  Similarly, aligned
-      with the recommendations of the [DNSFlagDay2020] initiative, DNS
-      servers MAY ensure that a total packet size of 1280 octets is not
-      exceeded by setting an MSS of 1220 octets.  Note that the
-      resulting packet's size for TCP may be further enlarged by
-      additional fields in the TCP header being in use, and these MSS
-      values assume a minimal TCP header.
+      more than 1388 octets for TCP connections.  Setting this MSS
+      ensures that packets do not exceed a size of 1448 octets, i.e.,
+      the same packet size recommended to avoid fragmentation for DNS-
+      over-UDP packets in [RFC9715].  Furthermore, to provide additional
+      clarity similar to the above guidance on UDP, DNS servers MAY
+      ensure that a total packet size of 1280 octets is not exceeded by
+      setting an MSS of 1220 octets, as suggested by the
+      [DNSFlagDay2020] initiative.  Note that the resulting packet's
+      size for TCP may be further enlarged by additional fields in the
+      TCP header being in use [RFC9293], and these MSS values assume a
+      minimal TCP header.
 
-      Additionally, DNS servers MAY accomplish the same effect by opting
-      to not rely on PMTU Discovery, which will also implicitly set a
-      corresponding MSS for outgoing packets.  It can do so, for
+      Additionally, e.g., as an additional precaution or because the DNS
+      implementation in use does not support limiting the effective MSS
+      size, DNS servers MAY opt to explicitly not rely on path MTU
+      discovery [RFC4821] or PLPMTUD [RFC8899].  It can do so, for
       example, by setting IPV6_USE_MIN_MTU=1 from [RFC3542].
 
    Broken IP Connectivity at the Resolver
@@ -679,6 +686,10 @@ Normative References
               Operational Requirements", BCP 235, RFC 9210,
               DOI 10.17487/RFC9210, March 2022,
               <https://www.rfc-editor.org/info/rfc9210>.
+
+   [RFC9293]  Eddy, W., Ed., "Transmission Control Protocol (TCP)",
+              STD 7, RFC 9293, DOI 10.17487/RFC9293, August 2022,
+              <https://www.rfc-editor.org/info/rfc9293>.
 
    [RFC9471]  Andrews, M., Huque, S., Wouters, P., and D. Wessels, "DNS
               Glue Requirements in Referral Responses", RFC 9471,
