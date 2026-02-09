@@ -246,7 +246,7 @@
                         <t>
                             A resolver can for various reasons also initiate connections via TCP for resolution to an authoritative server.
                             However, similar to the case of DNS-over-UDP, DNS-over-TCP may encounter MTU discards if PMTUD is not possible on a given path.
-                            This can occur, for example, if PMTUD related messages are dropped (i.e., cannot be returned to the sender) or if the size communicated in these messages is incorrect (i.e., an on-path device alters packets' size).
+                            This can occur, for example, if PMTUD related ICMP/ICMPv6 messages are dropped (i.e., cannot be returned to the sender) or if the size communicated in these messages is incorrect (i.e., an on-path device alters packets' size).
                             Under these conditions, the MSS honored by the authoritative DNS server leads to IP packets exceeding the effective PMTU of the path taken by responses.
                             In that case, similar to the case of DNS-over-UDP, DNS resolution will time out when the recursive DNS resolver did not receive a response in time.
                         </t>
@@ -258,9 +258,9 @@
                             Usually, when a transport protocol can use PMTU (or PLPMTUD <xref target="RFC8201"/> or Datagram PLPMTUD <xref target="RFC4821"/> <xref target="RFC8899"/>) this <bcp14>SHOULD</bcp14> be used to determine an effective PMTU.
                         </t>
                         <t>
-                            However, DNS is highly time-constraint, and performing PMTU (or PLPMTUD <xref target="RFC8201"/> or Datagram PLPMTUD <xref target="RFC4821"/> <xref target="RFC8899"/>) may lead to DNS requests timing out before the effective PMTU can be established by the server.
-                            Furthermore, most DNS messages fit into less than 1280 octets <xref target="DNSv6MTU"/>, which means that the benefits of being able to leverage a larger effective PMTU only effect corner cases, e.g., requests for DNSKEY RRs.
-                            In turn, though, due to the constraint time budget of DNS servers, this may prevent resolution for these cases all together.
+                            However, as DNS benefits from low latency, and performing PMTU (or PLPMTUD <xref target="RFC8201"/> or Datagram PLPMTUD <xref target="RFC4821"/> <xref target="RFC8899"/>) could lead to DNS requests timing out before the effective PMTU can be established by the server.
+                            Furthermore, at the time of writing most DNS messages fit into less than 1280 octets <xref target="DNSv6MTU"/>, which means that the benefits of being able to leverage a larger effective PMTU only effect corner cases, e.g., requests for DNSKEY RRs.
+                            Additionally, not having to rely on PMTUD benefits DNS' time budget, as the time needed for PMTUD could already exceed the timeout budget for DNS resolution, i.e., could prevent resolution for cases where PMTUD is needed all together.
                         </t>
                         <t>
                             Hence, DNS servers <bcp14>SHOULD</bcp14> configure the maximum response size to avoid fragmentation or on-path discarding of packets larger than the effective PMTU.
@@ -268,11 +268,12 @@
                         </t>
                         <t>
                             Therefore, it is <bcp14>RECOMMENDED</bcp14> that DNS servers set an MSS of no more than 1388 octets for TCP connections.
-                            Similarly, aligned with the recommendations of the <xref target="DNSFlagDay2020"/> initiative, DNS servers <bcp14>MAY</bcp14> ensure that a total packet size of 1280 octets is not exceeded by setting an MSS of 1220 octets.
-                          Note that the resulting packet's size for TCP may be further enlarged by additional fields in the TCP header being in use, and these MSS values assume a minimal TCP header.
+							Setting this MSS ensures that packets do not exceed a size of 1448 octets, i.e., the same packet size recommended to avoid fragmentation for DNS-over-UDP packets in <xref target="RFC9715"/>.
+                            Furthermore, to provide additional clarity similar to the above guidance on UDP, DNS servers <bcp14>MAY</bcp14> ensure that a total packet size of 1280 octets is not exceeded by setting an MSS of 1220 octets, as suggested by the <xref target="DNSFlagDay2020"/> initiative.
+                            Note that the resulting packet's size for TCP may be further enlarged by additional fields in the TCP header being in use <xref target="RFC9293"/>, and these MSS values assume a minimal TCP header.
                         </t>
                         <t>
-                            Additionally, DNS servers <bcp14>MAY</bcp14> accomplish the same effect by opting to not rely on PMTU Discovery, which will also implicitly set a corresponding MSS for outgoing packets.
+                            Additionally, e.g., as an additional precaution or because the DNS implementation in use does not support limiting the effective MSS size, DNS servers <bcp14>MAY</bcp14> opt to explicitly not rely on path MTU discovery <xref target="RFC4821"/> or PLPMTUD <xref target="RFC8899"/>.
                             It can do so, for example, by setting IPV6_USE_MIN_MTU=1 from <xref target="RFC3542"/>.
                         </t>
                     </dd>
@@ -502,6 +503,7 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8200.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8899.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9210.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9293.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9471.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9715.xml"/>
             </references>
