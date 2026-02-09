@@ -1449,8 +1449,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
                             For TCP, this can be accomplished by restricting the used maximum segment size (MSS), either by the host limiting the MSS on its own, or by rewriting the MSS field in packets during a TCP handshake.<a href="#section-3.2-2.4.5" class="pilcrow">¶</a></p>
 <p id="section-3.2-2.4.6">
                             Therefore, it is <span class="bcp14">RECOMMENDED</span> that DNS servers set an MSS of no more than 1388 octets for TCP connections.
- Setting this MSS ensures that packets do not exceed a size of 1448 octets, i.e., the same packet size recommended to avoid fragmentation for DNS-over-UDP packets in <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span>.
-                            Furthermore, to provide additional clarity similar to the above guidance on UDP, DNS servers <span class="bcp14">MAY</span> ensure that a total packet size of 1280 octets is not exceeded by setting an MSS of 1220 octets, as suggested by the <span>[<a href="#DNSFlagDay2020" class="cite xref">DNSFlagDay2020</a>]</span> initiative.
+                            Setting this MSS ensures that packets do not exceed a size of 1448 octets, i.e., the same packet size recommended to avoid fragmentation for DNS-over-UDP packets in <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span>.
+                            Furthermore, to provide additional clarity similar to the above guidance on UDP, DNS servers <span class="bcp14">MAY</span> ensure that a total packet size of 1280 octets is not exceeded by setting the Sender MSS (MMS_S) to 1220 octets, as suggested by the <span>[<a href="#DNSFlagDay2020" class="cite xref">DNSFlagDay2020</a>]</span> initiative, see Section 3.7.1 of <span>[<a href="#RFC9293" class="cite xref">RFC9293</a>]</span>.
                             Note that the resulting packet's size for TCP may be further enlarged by additional fields in the TCP header being in use <span>[<a href="#RFC9293" class="cite xref">RFC9293</a>]</span>, and these MSS values assume a minimal TCP header.<a href="#section-3.2-2.4.6" class="pilcrow">¶</a></p>
 <p id="section-3.2-2.4.7">
                             Additionally, e.g., as an additional precaution or because the DNS implementation in use does not support limiting the effective MSS size, DNS servers <span class="bcp14">MAY</span> opt to explicitly not rely on path MTU discovery <span>[<a href="#RFC4821" class="cite xref">RFC4821</a>]</span> or PLPMTUD <span>[<a href="#RFC8899" class="cite xref">RFC8899</a>]</span>.
@@ -1643,7 +1643,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 Hence, guidance from <span>[<a href="#RFC9872" class="cite xref">RFC9872</a>]</span> on securely discovering PREF64 <span class="bcp14">SHOULD</span> be followed.<a href="#section-5-6" class="pilcrow">¶</a></p>
 <p id="section-5-7">
                 Preventing fragmentation according to the guidance in this document may increase load on DNS servers, as more TCP fallbacks might be required.
-                While measurements have shown this to be in the range of 3-5% of connections <span>[<a href="#DNSv6MTU" class="cite xref">DNSv6MTU</a>]</span>, operators <span class="bcp14">SHOULD</span> monitor the actual impact on their servers when implementing guidance from this document to detect unexpected load increases early on.<a href="#section-5-7" class="pilcrow">¶</a></p>
+                While measurements have shown this to currently be in the range of 3-5% of connections <span>[<a href="#DNSv6MTU" class="cite xref">DNSv6MTU</a>]</span>, operators <span class="bcp14">SHOULD</span> monitor the actual impact on their servers when implementing guidance from this document to detect unexpected load increases early on.<a href="#section-5-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">

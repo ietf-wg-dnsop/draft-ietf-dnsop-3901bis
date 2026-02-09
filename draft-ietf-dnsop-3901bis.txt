@@ -345,11 +345,11 @@ Table of Contents
       over-UDP packets in [RFC9715].  Furthermore, to provide additional
       clarity similar to the above guidance on UDP, DNS servers MAY
       ensure that a total packet size of 1280 octets is not exceeded by
-      setting an MSS of 1220 octets, as suggested by the
-      [DNSFlagDay2020] initiative.  Note that the resulting packet's
-      size for TCP may be further enlarged by additional fields in the
-      TCP header being in use [RFC9293], and these MSS values assume a
-      minimal TCP header.
+      setting the Sender MSS (MMS_S) to 1220 octets, as suggested by the
+      [DNSFlagDay2020] initiative, see Section 3.7.1 of [RFC9293].  Note
+      that the resulting packet's size for TCP may be further enlarged
+      by additional fields in the TCP header being in use [RFC9293], and
+      these MSS values assume a minimal TCP header.
 
       Additionally, e.g., as an additional precaution or because the DNS
       implementation in use does not support limiting the effective MSS
@@ -586,10 +586,10 @@ Table of Contents
 
    Preventing fragmentation according to the guidance in this document
    may increase load on DNS servers, as more TCP fallbacks might be
-   required.  While measurements have shown this to be in the range of
-   3-5% of connections [DNSv6MTU], operators SHOULD monitor the actual
-   impact on their servers when implementing guidance from this document
-   to detect unexpected load increases early on.
+   required.  While measurements have shown this to currently be in the
+   range of 3-5% of connections [DNSv6MTU], operators SHOULD monitor the
+   actual impact on their servers when implementing guidance from this
+   document to detect unexpected load increases early on.
 
 6.  IANA Considerations
 
