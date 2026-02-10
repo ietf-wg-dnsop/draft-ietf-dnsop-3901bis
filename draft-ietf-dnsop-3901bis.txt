@@ -6,7 +6,7 @@ dnsop                                                             Momoka
 Internet-Draft                                              WIDE Project
 Obsoletes: 3901 (if approved)                                  T. Fiebig
 Intended status: Best Current Practice                           MPI-INF
-Expires: 13 August 2026                                  9 February 2026
+Expires: 14 August 2026                                 10 February 2026
 
 
 Operational Guidelines for DNS Transport in Mixed IPv4/IPv6 Environments
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 August 2026.
+   This Internet-Draft will expire on 14 August 2026.
 
 Copyright Notice
 
@@ -584,10 +584,11 @@ Table of Contents
 
    Preventing fragmentation according to the guidance in this document
    may increase load on DNS servers, as more TCP fallbacks might be
-   required.  While measurements have shown this to currently be in the
-   range of 3-5% of connections [DNSv6MTU], operators SHOULD monitor the
-   actual impact on their servers when implementing guidance from this
-   document to detect unexpected load increases early on.
+   required.  While measurements have shown this to be (at the time of
+   writing) in the range of 3-5% of connections [DNSv6MTU], operators
+   SHOULD monitor the actual impact on their servers when implementing
+   guidance from this document to detect unexpected load increases early
+   on.
 
 6.  IANA Considerations
 
