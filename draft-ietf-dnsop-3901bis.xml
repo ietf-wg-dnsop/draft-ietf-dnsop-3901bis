@@ -454,7 +454,7 @@
             </t>
             <t>
                 Preventing fragmentation according to the guidance in this document may increase load on DNS servers, as more TCP fallbacks might be required.
-                While measurements have shown this to currently be in the range of 3-5% of connections <xref target="DNSv6MTU"/>, operators <bcp14>SHOULD</bcp14> monitor the actual impact on their servers when implementing guidance from this document to detect unexpected load increases early on.
+                While measurements have shown this to be (at the time of writing) in the range of 3-5% of connections <xref target="DNSv6MTU"/>, operators <bcp14>SHOULD</bcp14> monitor the actual impact on their servers when implementing guidance from this document to detect unexpected load increases early on.
             </t>
         </section>
         <section anchor="iana-considerations">
