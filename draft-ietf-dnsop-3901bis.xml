@@ -366,7 +366,7 @@
                             IP fragmentation has been reported to be fragile <xref target="RFC8900"/>.
                             Furthermore, IPv6 transition technologies can introduce unexpected reductions in the effective PMTU (e.g., when NAT64 is used (Section 7 of <xref target="RFC7269"/>)).
                             Therefore, IP fragmentation <bcp14>SHOULD</bcp14> be avoided by following guidance on maximum DNS payload sizes <xref target="RFC9715"/>.
-                            Furthermore, as per Section 5 of <xref target="RFC7766"/>, DNS-over-TCP service <bcp14>MUST</bcp14> be available as a fall-back option, instead of relying on fragmented UDP packets.
+                            Furthermore, as per Section 5 of <xref target="RFC7766"/>, DNS-over-TCP <bcp14>MUST</bcp14> be available as a fall-back option, instead of relying on fragmented UDP packets.
                             Similar to the guidance in <xref target="RFC9715"/>, authoritative DNS servers <bcp14>MAY</bcp14> set an MSS of either 1388 (analogous to <xref target="RFC9715"/>) or 1220 (analogous to the <xref target="DNSFlagDay2020"/> suggestions) in TCP sessions carrying DNS responses.
                     </dd>
                 </dl>
