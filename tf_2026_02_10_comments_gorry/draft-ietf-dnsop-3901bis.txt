@@ -542,18 +542,17 @@ Table of Contents
    for the network [RFC8781].
 
    When providing multiple DNS servers to stub resolvers, network
-   operators have to consider that various implementations can only
-   configure a small set of possible DNS resolvers, e.g., only up to
-   three for libc [MAN], and additional resolvers provided may be
-   ignored by clients.  Hence, when providing more than three DNS
-   servers to stub resolvers, operators SHOULD ensure that any random
-   subset of three DNS resolvers from the provided list contains at
-   least one recursive DNS server supporting DNS resolution via IPv4 and
-   one DNS server supporting DNS resolution via IPv6.  A single
-   recursive DNS server supporting dual-stack DNS resolution counts
-   towards both requirements.  If this is not done, a client might
-   select a subset of recursive DNS servers that leads to address family
-   based namespace fragmentation.
+   operators have to consider that, at the time of writing, various
+   implementations can only configure a small set of possible DNS
+   resolvers, e.g., only up to three for libc [MAN], and additional
+   resolvers provided may be ignored by clients.  Hence, when providing
+   more than three DNS servers to stub resolvers, operators SHOULD
+   ensure that no more than two recursive DNS servers supplied to
+   clients are unable to perform dual-stack DNS resolution, and at least
+   one of the supplied recursive DNS servers is able to perform dual-
+   stack DNS resolution.  If this is not done, a client might select a
+   subset of recursive DNS servers that leads to address family based
+   namespace fragmentation.
 
 5.  Security Considerations
 
