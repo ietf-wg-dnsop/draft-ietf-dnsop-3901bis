@@ -6,10 +6,10 @@ dnsop                                                             Momoka
 Internet-Draft                                              WIDE Project
 Obsoletes: 3901 (if approved)                                  T. Fiebig
 Intended status: Best Current Practice                           MPI-INF
-Expires: 25 July 2026                                    21 January 2026
+Expires: 14 August 2026                                 10 February 2026
 
 
-               DNS IPv6 Transport Operational Guidelines
+Operational Guidelines for DNS Transport in Mixed IPv4/IPv6 Environments
                     draft-ietf-dnsop-3901bis-latest
 
 Abstract
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 July 2026.
+   This Internet-Draft will expire on 14 August 2026.
 
 Copyright Notice
 
@@ -164,6 +164,12 @@ Table of Contents
       A name server that is both an "IPv4 name server" and an "IPv6 name
       server".
 
+   Effective PMTU
+      The effective Path Maximum Transmission Unit (PMTU) is the largest
+      IP packet size (in octets) that can successfully traverse a
+      network path from source to destination without requiring
+      fragmentation.
+
 3.  Name Space Fragmentation
 
    When a resolver looks up a name, it starts at the root and follows
@@ -242,6 +248,12 @@ Table of Contents
    address of a name server that is not configured to answer queries via
    that IP address family [V6DNSRDY-23].
 
+   Finally, at the time of this writing, addresses (A or AAAA RRs) for a
+   delegation's authoritative name servers are the only type of glue
+   defined for the DNS.  In the future, alternative, yet related,
+   delegation systems may be available, where other considerations
+   apply.
+
 3.2.  Network Conditions Causing IP Address Family Related Name Space
       Fragmentation
 
@@ -264,17 +276,21 @@ Table of Contents
       DNSKEY responses with DNSSEC [RFC4034].
 
       In general, DNS servers SHOULD follow [RFC9715], which provides
-      additional guidance on preventing fragmentation by ensuring that
-      the maximum DNS/UDP payload size does not exceed 1400 octets.
-      This can be accomplished by setting a corresponding EDNS(0) size,
-      with most implementations using a lower EDNS(0) size of 1232
-      octets as per the suggestions made by the [DNSFlagDay2020]
-      initiative, to ensure that generated packets always fit into lower
-      bound of the IPv6 MTU of 1280 octets, as defined in [RFC8200].
-      Hence, DNS servers MAY also opt to set an EDNS(0) size of 1232
-      octets as suggested by the [DNSFlagDay2020] initiative.
+      additional guidance on preventing fragmentation.  [RFC9715]
+      suggests setting an upper bound for received EDNS(0) sizes of 1400
+      octets to avoid the need for fragmentation.  However, the
+      [DNSFlagDay2020] initiative suggests using an upper bound EDNS(0)
+      size of only 1232 octets, which is also adopted by most
+      implementations.  Setting the upper bound at 1232 octets ensures
+      that generated packets do not exceed 1280 octets, i.e., the
+      minimum MTU for IPv6 [RFC8200] which avoids IPv6 host
+      fragmentation by the server.  Hence, for clarity, the present
+      document specifically notes that clients MAY use an EDNS(0) size
+      of 1232 octets as well.
 
-      Additionally, DNS servers MAY opt to explicitly not rely on path
+      Additionally, e.g., as an additional precaution or because the DNS
+      implementation in use does not support limiting the effective
+      EDNS(0) size, DNS servers MAY opt to explicitly not rely on path
       MTU discovery [RFC4821] or PLPMTUD [RFC8899].  It can do so, for
       example, by setting IPV6_USE_MIN_MTU=1 from [RFC3542] to avoid the
       need to perform PMTU discovery.
@@ -283,22 +299,61 @@ Table of Contents
       A resolver can for various reasons also initiate connections via
       TCP for resolution to an authoritative server.  However, similar
       to the case of DNS-over-UDP, DNS-over-TCP may encounter MTU
-      discards, especially on IPv6, if PMTUD does not work, if the MSS
+      discards if PMTUD is not possible on a given path.  This can
+      occur, for example, if PMTUD related ICMP/ICMPv6 messages are
+      dropped (i.e., cannot be returned to the sender) or if the size
+      communicated in these messages is incorrect (i.e., an on-path
+      device alters packets' size).  Under these conditions, the MSS
       honored by the authoritative DNS server leads to IP packets
-      exceeding the PMTU.  In that case, similar to the case of DNS-
-      over-UDP, DNS resolution will time out when the recursive DNS
-      resolver did not receive a response in time.
+      exceeding the effective PMTU of the path taken by responses.  In
+      that case, similar to the case of DNS-over-UDP, DNS resolution
+      will time out when the recursive DNS resolver did not receive a
+      response in time.
 
       [RFC9715] does not provide explicit guidance on mitigating this
-      issue.  However, transferring the guidance from [RFC9715], setting
-      an MSS of 1388 octets would reduce the impact of this issue.
-      Hence, DNS servers MAY set an MSS of no more than 1388 octets for
-      TCP connections.  Similarly, aligned with the recommendations of
-      the [DNSFlagDay2020], DNS servers MAY ensure that a total packet
-      size of 1280 octets is not exceeded by setting an MSS of 1220
-      octets.  Additionally, DNS servers MAY opt to not rely on PMTU
-      discovery.  It can do so, for example, by setting
-      IPV6_USE_MIN_MTU=1 from [RFC3542].
+      issue.
+
+      [RFC8200] recommends that IPv6 nodes implement Path MTU Discovery
+      in order to discover and take advantage of path MTUs greater than
+      1280 octets.  Usually, when a transport protocol can use PMTU (or
+      PLPMTUD [RFC8201] or Datagram PLPMTUD [RFC4821] [RFC8899]) this
+      SHOULD be used to determine an effective PMTU.
+
+      However, as DNS benefits from low latency, and performing PMTU (or
+      PLPMTUD [RFC8201] or Datagram PLPMTUD [RFC4821] [RFC8899]) could
+      lead to DNS requests timing out before the effective PMTU can be
+      established by the server.  Furthermore, at the time of writing
+      most DNS messages fit into less than 1280 octets [DNSv6MTU], which
+      means that the benefits of being able to leverage a larger
+      effective PMTU only effect corner cases, e.g., requests for DNSKEY
+      RRs.  Additionally, not having to rely on PMTUD benefits DNS' time
+      budget, as the time needed for PMTUD could already exceed the
+      timeout budget for DNS resolution, i.e., could prevent resolution
+      for cases where PMTUD is needed all together.
+
+      Hence, DNS servers SHOULD configure the maximum response size to
+      avoid fragmentation or on-path discarding of packets larger than
+      the effective PMTU.  For TCP, this can be accomplished by
+      restricting the used maximum segment size (MSS), either by the
+      host limiting the MSS on its own, or by rewriting the MSS field in
+      packets during a TCP handshake.
+
+      Therefore, it is RECOMMENDED that DNS servers set a Sender MSS
+      (MSS_S) of no more than 1388 octets for TCP connections.  Setting
+      this MSS ensures that packets do not exceed a size of 1448 octets,
+      i.e., the same packet size recommended to avoid fragmentation for
+      DNS-over-UDP packets in [RFC9715].  Furthermore, to provide
+      additional clarity similar to the above guidance on UDP, DNS
+      servers MAY ensure that a total packet size of 1280 octets is not
+      exceeded by setting the Sender MSS (MMS_S) to 1220 octets, as
+      suggested by the [DNSFlagDay2020] initiative, see Section 3.7.1 of
+      [RFC9293].
+
+      Additionally, e.g., as an additional precaution or because the DNS
+      implementation in use does not support limiting the effective MSS
+      size, DNS servers MAY opt to explicitly not rely on path MTU
+      discovery [RFC4821] or PLPMTUD [RFC8899].  It can do so, for
+      example, by setting IPV6_USE_MIN_MTU=1 from [RFC3542].
 
    Broken IP Connectivity at the Resolver
       Similar to authoritative servers, (stub) recursive resolvers may
@@ -318,14 +373,17 @@ Table of Contents
       IPv6 connectivity for a DNS resolver may experience issues, if,
       e.g., a client has been assigned a global unicast IPv6 address,
       but IPv6 traffic is not forwarded on the resolver's network.
-      Similarly, IPv6 connectivity can experience issues when IPv4-IPv6
-      transition technologies like NAT64 [RFC6146] on IPv6-mostly
-      networks [RFC9313] are in use, where the use of NAT64 can be,
-      e.g., discovered through PREF64 in Router Advertisements (RAs)
-      [RFC8781] or DNS64 [RFC7050].  There, the synthesized IPv6
-      addresses used in, e.g., 464XLAT [RFC6877] encounter additional
-      PMTU fluctuation due to the difference in header size between IPv4
-      and IPv6, possibly impacting DNS resolution.
+      Also, a resolver may only have received an [RFC4193] unique local
+      IPv6 unicast address (ULA), which does not allow it to reach
+      global addresses without translation.  Similarly, IPv6
+      connectivity can experience issues when IPv4-IPv6 transition
+      technologies like NAT64 [RFC6146] on IPv6-mostly networks
+      [RFC9313] are in use, where the use of NAT64 can be, e.g.,
+      discovered through PREF64 in Router Advertisements (RAs) [RFC8781]
+      or DNS64 [RFC7050].  There, the synthesized IPv6 addresses used
+      in, e.g., 464XLAT [RFC6877] encounter additional PMTU fluctuation
+      due to the difference in header size between IPv4 and IPv6,
+      possibly impacting DNS resolution.
 
    Note: This document only explicitly discusses DNS-over-TCP and DNS-
    over-UDP.  However, several other transport methods between recursive
@@ -378,53 +436,52 @@ Table of Contents
    servers (Section 4.1 of [RFC1034]).  Typically, these servers are
    geographically diverse and operate under different routing policies
    [RFC2182], as also mirrored by, e.g., the IANA requirements for TLD
-   authoritative name servers [IANANS].  To reduce the chance of DNS
-   name space fragmentation, it is RECOMMENDED that at least two
-   IPv4-reachable and two IPv6-reachable name servers are configured for
-   a zone.  A single name server that is reachable over both IPv4 and
-   IPv6 counts once per address family.  Specifically, this means that
-   the following minimal requirements SHOULD be implemented for a zone:
+   authoritative name servers [IANANS].  To prevent DNS name space
+   fragmentation, at least two IPv4-reachable and two IPv6-reachable
+   name servers MUST be configured for a zone.  A single name server
+   that is reachable over both IPv4 and IPv6 counts once per address
+   family.  Specifically, key requirements for a zone are:
 
    IPv4 adoption:
-      Every DNS zone SHOULD be served by at least two IPv4-reachable
-      authoritative DNS servers to maintain name space continuity.  To
-      count as IPv4-reachable, the delegation configuration of an NS
+      To maintain name space continuity, every DNS zone MUST be served
+      by at least two authoritative DNS servers providing services via
+      IPv4.  Furthermore, the delegation configuration of an NS
       (Resolution of the parent, resolution of sibling domain names,
       glue) MUST NOT rely on IPv6 connectivity being available.
 
    IPv6 adoption:
-      Every DNS zone SHOULD be served by at least two IPv6-reachable
-      authoritative DNS servers to maintain name space continuity.  To
-      avoid reachability issues, authoritative DNS servers SHOULD NOT
-      use IPv4-embedded addresses [RFC6052] (including IPv4-Mapped IPv6
-      addresses and deprecated IPv4-Compatible addresses [RFC4291]) for
-      receiving queries.  To count as IPv6-reachable, the delegation
-      configuration of an NS (Resolution of the parent, resolution of
-      sibling domain names, glue) MUST NOT rely on IPv4 connectivity
-      being available.
+      To maintain name space continuity, every DNS zone MUST be served
+      by at least two authoritative DNS servers providing services via
+      IPv6.  To avoid reachability issues, authoritative DNS servers
+      MUST NOT use IPv4-embedded addresses [RFC6052] (including
+      IPv4-Mapped IPv6 addresses and deprecated IPv4-Compatible
+      addresses [RFC4291]) for receiving queries.  Furthermore, the
+      delegation configuration of an NS (Resolution of the parent,
+      resolution of sibling domain names, glue) MUST NOT rely on IPv4
+      connectivity being available.
 
    Consistency:
-      Both IPv4 and IPv6 transports SHOULD serve identical DNS data to
+      Both IPv4 and IPv6 transports MUST serve identical DNS data to
       ensure a consistent resolution experience across different network
       types.
 
    Avoiding IP Fragmentation:
       IP fragmentation has been reported to be fragile [RFC8900].
       Furthermore, IPv6 transition technologies can introduce unexpected
-      MTU breaks (e.g., when NAT64 is used (Section 7 of [RFC7269])).
-      Therefore, IP fragmentation SHOULD be avoided by following
-      guidance on maximum DNS payload sizes [RFC9715] and providing TCP
-      fall back options [RFC7766].  Furthermore, similar to the guidance
-      in [RFC9715], authoritative DNS servers MAY set an MSS of either
-      1388 (analogous to [RFC9715]) or 1220 (analogous to the
-      [DNSFlagDay2020] suggestions) in TCP sessions carrying DNS
+      reductions in the effective PMTU (e.g., when NAT64 is used
+      (Section 7 of [RFC7269])).  Therefore, IP fragmentation SHOULD be
+      avoided by following guidance on maximum DNS payload sizes
+      [RFC9715] and providing TCP fall back options [RFC7766].  Similar
+      to the guidance in [RFC9715], authoritative DNS servers MAY set an
+      MSS of either 1388 (analogous to [RFC9715]) or 1220 (analogous to
+      the [DNSFlagDay2020] suggestions) in TCP sessions carrying DNS
       responses.
 
    To prevent name space fragmentation, zone validation processes SHOULD
    ensure that:
 
-   *  There is at least one IPv4 address record and one IPv6 address
-      record available for the name servers of any child delegation
+   *  There are at least two IPv4 address records and two IPv6 address
+      records available for the name servers of any child delegation
       within the zone.
 
    *  The zone's authoritative servers follow [RFC9715] for avoiding
@@ -438,7 +495,10 @@ Table of Contents
 
 4.2.  Guidelines for Recursive DNS Resolvers
 
-   Every recursive DNS resolver SHOULD be dual-stack.
+   To ensure robust DNS resolution even when facing namespace
+   fragmentation, every recursive DNS resolver SHOULD be dual-stack.
+   Exceptions apply if one of the below methods to prevent namespace
+   fragmentation are in place.
 
    While the zones that IPv6-only recursive DNS resolvers can resolve
    are growing, they do not yet cover all zones.  Hence, a recursive DNS
@@ -457,10 +517,11 @@ Table of Contents
    DNS resolution to a dual-stack recursive DNS resolver (i.e., a
    resolver that is also able to perform DNS resolution over IPv6).
 
-   Finally, when responding to recursive queries, i.e., a query with the
-   RD bit set [RFC1035], a DNS resolver SHOULD follow the above guidance
-   on fragmentation avoidance (Section 4.1) for communication between
-   authoritative DNS servers and recursive DNS resolvers analogously.
+   Finally, when responding to recursive queries (i.e., a query with the
+   RD bit set [RFC1035]), a DNS resolver SHOULD follow the above
+   guidance on fragmentation avoidance (Section 4.1) for communication
+   between authoritative DNS servers and recursive DNS resolvers
+   analogously.
 
 4.3.  Guidelines for DNS Stub Resolvers
 
@@ -521,6 +582,14 @@ Table of Contents
    PREF64 is used.  Hence, guidance from [RFC9872] on securely
    discovering PREF64 SHOULD be followed.
 
+   Preventing fragmentation according to the guidance in this document
+   may increase load on DNS servers, as more TCP fallbacks might be
+   required.  While measurements have shown this to be (at the time of
+   writing) in the range of 3-5% of connections [DNSv6MTU], operators
+   SHOULD monitor the actual impact on their servers when implementing
+   guidance from this document to detect unexpected load increases early
+   on.
+
 6.  IANA Considerations
 
    This document requests IANA consider updating its technical
@@ -536,7 +605,7 @@ Acknowledgments
    Ubbink, Joe Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti,
    David Farmer, Pieter Lexis, Ralf Weber, Philip Homburg, Marco Davids,
    Mohamed Boucadair, Thomas Fossati, Aihua Guo, Bernie Volz, David
-   Dong, Roman Danyliw
+   Dong, Roman Danyliw, Éric Vyncke
 
    Thank you for reading this draft.
 
@@ -617,15 +686,28 @@ Normative References
               DOI 10.17487/RFC9210, March 2022,
               <https://www.rfc-editor.org/info/rfc9210>.
 
+   [RFC9293]  Eddy, W., Ed., "Transmission Control Protocol (TCP)",
+              STD 7, RFC 9293, DOI 10.17487/RFC9293, August 2022,
+              <https://www.rfc-editor.org/info/rfc9293>.
+
    [RFC9471]  Andrews, M., Huque, S., Wouters, P., and D. Wessels, "DNS
               Glue Requirements in Referral Responses", RFC 9471,
               DOI 10.17487/RFC9471, September 2023,
               <https://www.rfc-editor.org/info/rfc9471>.
 
+   [RFC9715]  Fujiwara, K. and P. Vixie, "IP Fragmentation Avoidance in
+              DNS over UDP", RFC 9715, DOI 10.17487/RFC9715, January
+              2025, <https://www.rfc-editor.org/info/rfc9715>.
+
 Informative References
 
    [DNSFlagDay2020]
               "DNS flag day 2020", <https://dnsflagday.net/2020/>.
+
+   [DNSv6MTU] Fiebig, T. and A. Feldmann, "'How I learned to stop
+              worrying and love IPv6': Measuring the Internet's
+              Readiness for DNS over IPv6", October 2025,
+              <https://doi.org/10.1145/3730567.3764439>.
 
    [I-D.ietf-dnsop-ns-revalidation]
               Huque, S., Vixie, P. A., and W. Toorop, "Delegation
@@ -674,6 +756,10 @@ Informative References
               RFC 4034, DOI 10.17487/RFC4034, March 2005,
               <https://www.rfc-editor.org/info/rfc4034>.
 
+   [RFC4193]  Hinden, R. and B. Haberman, "Unique Local IPv6 Unicast
+              Addresses", RFC 4193, DOI 10.17487/RFC4193, October 2005,
+              <https://www.rfc-editor.org/info/rfc4193>.
+
    [RFC6146]  Bagnulo, M., Matthews, P., and I. van Beijnum, "Stateful
               NAT64: Network Address and Protocol Translation from IPv6
               Clients to IPv4 Servers", RFC 6146, DOI 10.17487/RFC6146,
@@ -714,6 +800,11 @@ Informative References
               RFC 8106, DOI 10.17487/RFC8106, March 2017,
               <https://www.rfc-editor.org/info/rfc8106>.
 
+   [RFC8201]  McCann, J., Deering, S., Mogul, J., and R. Hinden, Ed.,
+              "Path MTU Discovery for IP version 6", STD 87, RFC 8201,
+              DOI 10.17487/RFC8201, July 2017,
+              <https://www.rfc-editor.org/info/rfc8201>.
+
    [RFC8415]  Mrugalski, T., Siodelski, M., Volz, B., Yourtchenko, A.,
               Richardson, M., Jiang, S., Lemon, T., and T. Winters,
               "Dynamic Host Configuration Protocol for IPv6 (DHCPv6)",
@@ -748,10 +839,6 @@ Informative References
    [RFC9499]  Hoffman, P. and K. Fujiwara, "DNS Terminology", BCP 219,
               RFC 9499, DOI 10.17487/RFC9499, March 2024,
               <https://www.rfc-editor.org/info/rfc9499>.
-
-   [RFC9715]  Fujiwara, K. and P. Vixie, "IP Fragmentation Avoidance in
-              DNS over UDP", RFC 9715, DOI 10.17487/RFC9715, January
-              2025, <https://www.rfc-editor.org/info/rfc9715>.
 
    [RFC9872]  Buraglio, N., Jensen, T., and J. Linkova, "Recommendations
               for Discovering IPv6 Prefix Used for IPv6 Address

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>DNS IPv6 Transport Operational Guidelines</title>
+<title>Operational Guidelines for DNS Transport in Mixed IPv4/IPv6 Environments</title>
 <meta content="Momoka Yamamoto" name="author">
 <meta content="Tobias Fiebig" name="author">
 <meta content="
@@ -33,7 +33,7 @@
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.32.5
-    wcwidth 0.2.14
+    wcwidth 0.3.0
 -->
 <link href="draft-ietf-dnsop-3901bis.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -574,6 +574,7 @@ aside, blockquote {
 }
 blockquote {
   margin: 1em 0;
+  border-left: 2px var(--pilcrow-strong) solid;
 }
 cite {
   display: block;
@@ -644,7 +645,7 @@ a.pilcrow {
   }
 }
 @media not print {
-  :hover > a.pilcrow {
+  :hover > a.pilcrow, a.pilcrow:focus {
     opacity: 1;
   }
   a.pilcrow[href]:hover {
@@ -1052,11 +1053,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">3901bis</td>
-<td class="right">January 2026</td>
+<td class="right">February 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Momoka &amp; Fiebig</td>
-<td class="center">Expires 25 July 2026</td>
+<td class="center">Expires 14 August 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1072,12 +1073,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="https://www.rfc-editor.org/rfc/rfc3901" class="eref">3901</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-01-21" class="published">21 January 2026</time>
+<time datetime="2026-02-10" class="published">10 February 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Best Current Practice</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-07-25">25 July 2026</time></dd>
+<dd class="expires"><time datetime="2026-08-14">14 August 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1091,7 +1092,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </dd>
 </dl>
 </div>
-<h1 id="title">DNS IPv6 Transport Operational Guidelines</h1>
+<h1 id="title">Operational Guidelines for DNS Transport in Mixed IPv4/IPv6 Environments</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">
@@ -1128,7 +1129,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 25 July 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 14 August 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1309,6 +1310,13 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <dd style="margin-left: 1.5em" id="section-2-2.6">
                     A name server that is both an "IPv4 name server" and an "IPv6 name server".<a href="#section-2-2.6" class="pilcrow">¶</a>
 </dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.7">
+                    Effective PMTU
+        </dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.8">
+                    The effective Path Maximum Transmission Unit (PMTU) is the largest IP packet size (in octets) that can successfully traverse a network path from source to destination without requiring fragmentation.<a href="#section-2-2.8" class="pilcrow">¶</a>
+</dd>
       <dd class="break"></dd>
 </dl>
 </section>
@@ -1383,6 +1391,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
                     The above misconfigurations are not mutually exclusive.<a href="#section-3.1-4" class="pilcrow">¶</a></p>
 <p id="section-3.1-5">
                     Furthermore, any of the misconfigurations above may not only materialize via a missing RR but also via an RR providing the IP address of a name server that is not configured to answer queries via that IP address family <span>[<a href="#V6DNSRDY-23" class="cite xref">V6DNSRDY-23</a>]</span>.<a href="#section-3.1-5" class="pilcrow">¶</a></p>
+<p id="section-3.1-6">
+                    Finally, at the time of this writing, addresses (A or AAAA RRs) for a delegation's authoritative name servers are the only type of glue defined for the DNS.
+                    In the future, alternative, yet related, delegation systems may be available, where other considerations apply.<a href="#section-3.1-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="misconfigurations-causing-network-related-name-space-fragmentation">
@@ -1404,11 +1415,13 @@ svg :is([fill="white"], [fill^="#fff"]) {
                             If an authoritative DNS server does not follow <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span>, i.e., honors EDNS(0) sizes larger than 1232 octets, it will try to fragment the packet according to the discovered PMTU.
                             Such packets mostly occur for DNSKEY responses with DNSSEC <span>[<a href="#RFC4034" class="cite xref">RFC4034</a>]</span>.<a href="#section-3.2-2.2.1" class="pilcrow">¶</a></p>
 <p id="section-3.2-2.2.2">
-                            In general, DNS servers <span class="bcp14">SHOULD</span> follow <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span>, which provides additional guidance on preventing fragmentation by ensuring that the maximum DNS/UDP payload size does not exceed 1400 octets.
-                            This can be accomplished by setting a corresponding EDNS(0) size, with most implementations using a lower EDNS(0) size of 1232 octets as per the suggestions made by the <span>[<a href="#DNSFlagDay2020" class="cite xref">DNSFlagDay2020</a>]</span> initiative, to ensure that generated packets always fit into lower bound of the IPv6 MTU of 1280 octets, as defined in <span>[<a href="#RFC8200" class="cite xref">RFC8200</a>]</span>.
-                            Hence, DNS servers <span class="bcp14">MAY</span> also opt to set an EDNS(0) size of 1232 octets as suggested by the <span>[<a href="#DNSFlagDay2020" class="cite xref">DNSFlagDay2020</a>]</span> initiative.<a href="#section-3.2-2.2.2" class="pilcrow">¶</a></p>
+                            In general, DNS servers <span class="bcp14">SHOULD</span> follow <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span>, which provides additional guidance on preventing fragmentation.
+                            <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span> suggests setting an upper bound for received EDNS(0) sizes of 1400 octets to avoid the need for fragmentation.
+                            However, the <span>[<a href="#DNSFlagDay2020" class="cite xref">DNSFlagDay2020</a>]</span> initiative suggests using an upper bound EDNS(0) size of only 1232 octets, which is also adopted by most implementations.
+                            Setting the upper bound at 1232 octets ensures that generated packets do not exceed 1280 octets, i.e., the minimum MTU for IPv6 <span>[<a href="#RFC8200" class="cite xref">RFC8200</a>]</span> which avoids IPv6 host fragmentation by the server.
+                            Hence, for clarity, the present document specifically notes that clients <span class="bcp14">MAY</span> use an EDNS(0) size of 1232 octets as well.<a href="#section-3.2-2.2.2" class="pilcrow">¶</a></p>
 <p id="section-3.2-2.2.3">
-                            Additionally, DNS servers <span class="bcp14">MAY</span> opt to explicitly not rely on path MTU discovery <span>[<a href="#RFC4821" class="cite xref">RFC4821</a>]</span> or PLPMTUD <span>[<a href="#RFC8899" class="cite xref">RFC8899</a>]</span>.
+                            Additionally, e.g., as an additional precaution or because the DNS implementation in use does not support limiting the effective EDNS(0) size, DNS servers <span class="bcp14">MAY</span> opt to explicitly not rely on path MTU discovery <span>[<a href="#RFC4821" class="cite xref">RFC4821</a>]</span> or PLPMTUD <span>[<a href="#RFC8899" class="cite xref">RFC8899</a>]</span>.
                             It can do so, for example, by setting IPV6_USE_MIN_MTU=1 from <span>[<a href="#RFC3542" class="cite xref">RFC3542</a>]</span> to avoid the need to perform PMTU discovery.<a href="#section-3.2-2.2.3" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
@@ -1418,15 +1431,29 @@ svg :is([fill="white"], [fill^="#fff"]) {
           <dd style="margin-left: 1.5em" id="section-3.2-2.4">
             <p id="section-3.2-2.4.1">
                             A resolver can for various reasons also initiate connections via TCP for resolution to an authoritative server.
-                            However, similar to the case of DNS-over-UDP, DNS-over-TCP may encounter MTU discards, especially on IPv6, if PMTUD does not work, if the MSS honored by the authoritative DNS server leads to IP packets exceeding the PMTU.
+                            However, similar to the case of DNS-over-UDP, DNS-over-TCP may encounter MTU discards if PMTUD is not possible on a given path.
+                            This can occur, for example, if PMTUD related ICMP/ICMPv6 messages are dropped (i.e., cannot be returned to the sender) or if the size communicated in these messages is incorrect (i.e., an on-path device alters packets' size).
+                            Under these conditions, the MSS honored by the authoritative DNS server leads to IP packets exceeding the effective PMTU of the path taken by responses.
                             In that case, similar to the case of DNS-over-UDP, DNS resolution will time out when the recursive DNS resolver did not receive a response in time.<a href="#section-3.2-2.4.1" class="pilcrow">¶</a></p>
 <p id="section-3.2-2.4.2">
-                            <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span> does not provide explicit guidance on mitigating this issue.
-                            However, transferring the guidance from <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span>, setting an MSS of 1388 octets would reduce the impact of this issue.
-                            Hence, DNS servers <span class="bcp14">MAY</span> set an MSS of no more than 1388 octets for TCP connections.
-                            Similarly, aligned with the recommendations of the <span>[<a href="#DNSFlagDay2020" class="cite xref">DNSFlagDay2020</a>]</span>, DNS servers <span class="bcp14">MAY</span> ensure that a total packet size of 1280 octets is not exceeded by setting an MSS of 1220 octets.
-                            Additionally, DNS servers <span class="bcp14">MAY</span> opt to not rely on PMTU discovery.
-                            It can do so, for example, by setting IPV6_USE_MIN_MTU=1 from <span>[<a href="#RFC3542" class="cite xref">RFC3542</a>]</span>.<a href="#section-3.2-2.4.2" class="pilcrow">¶</a></p>
+                            <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span> does not provide explicit guidance on mitigating this issue.<a href="#section-3.2-2.4.2" class="pilcrow">¶</a></p>
+<p id="section-3.2-2.4.3">
+                            <span>[<a href="#RFC8200" class="cite xref">RFC8200</a>]</span> recommends that IPv6 nodes implement Path MTU Discovery in order to discover and take advantage of path MTUs greater than 1280 octets.
+                            Usually, when a transport protocol can use PMTU (or PLPMTUD <span>[<a href="#RFC8201" class="cite xref">RFC8201</a>]</span> or Datagram PLPMTUD <span>[<a href="#RFC4821" class="cite xref">RFC4821</a>]</span> <span>[<a href="#RFC8899" class="cite xref">RFC8899</a>]</span>) this <span class="bcp14">SHOULD</span> be used to determine an effective PMTU.<a href="#section-3.2-2.4.3" class="pilcrow">¶</a></p>
+<p id="section-3.2-2.4.4">
+                            However, as DNS benefits from low latency, and performing PMTU (or PLPMTUD <span>[<a href="#RFC8201" class="cite xref">RFC8201</a>]</span> or Datagram PLPMTUD <span>[<a href="#RFC4821" class="cite xref">RFC4821</a>]</span> <span>[<a href="#RFC8899" class="cite xref">RFC8899</a>]</span>) could lead to DNS requests timing out before the effective PMTU can be established by the server.
+                            Furthermore, at the time of writing most DNS messages fit into less than 1280 octets <span>[<a href="#DNSv6MTU" class="cite xref">DNSv6MTU</a>]</span>, which means that the benefits of being able to leverage a larger effective PMTU only effect corner cases, e.g., requests for DNSKEY RRs.
+                            Additionally, not having to rely on PMTUD benefits DNS' time budget, as the time needed for PMTUD could already exceed the timeout budget for DNS resolution, i.e., could prevent resolution for cases where PMTUD is needed all together.<a href="#section-3.2-2.4.4" class="pilcrow">¶</a></p>
+<p id="section-3.2-2.4.5">
+                            Hence, DNS servers <span class="bcp14">SHOULD</span> configure the maximum response size to avoid fragmentation or on-path discarding of packets larger than the effective PMTU.
+                            For TCP, this can be accomplished by restricting the used maximum segment size (MSS), either by the host limiting the MSS on its own, or by rewriting the MSS field in packets during a TCP handshake.<a href="#section-3.2-2.4.5" class="pilcrow">¶</a></p>
+<p id="section-3.2-2.4.6">
+                            Therefore, it is <span class="bcp14">RECOMMENDED</span> that DNS servers set a Sender MSS (MSS_S) of no more than 1388 octets for TCP connections.
+                            Setting this MSS ensures that packets do not exceed a size of 1448 octets, i.e., the same packet size recommended to avoid fragmentation for DNS-over-UDP packets in <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span>.
+                            Furthermore, to provide additional clarity similar to the above guidance on UDP, DNS servers <span class="bcp14">MAY</span> ensure that a total packet size of 1280 octets is not exceeded by setting the Sender MSS (MMS_S) to 1220 octets, as suggested by the <span>[<a href="#DNSFlagDay2020" class="cite xref">DNSFlagDay2020</a>]</span> initiative, see Section 3.7.1 of <span>[<a href="#RFC9293" class="cite xref">RFC9293</a>]</span>.<a href="#section-3.2-2.4.6" class="pilcrow">¶</a></p>
+<p id="section-3.2-2.4.7">
+                            Additionally, e.g., as an additional precaution or because the DNS implementation in use does not support limiting the effective MSS size, DNS servers <span class="bcp14">MAY</span> opt to explicitly not rely on path MTU discovery <span>[<a href="#RFC4821" class="cite xref">RFC4821</a>]</span> or PLPMTUD <span>[<a href="#RFC8899" class="cite xref">RFC8899</a>]</span>.
+                            It can do so, for example, by setting IPV6_USE_MIN_MTU=1 from <span>[<a href="#RFC3542" class="cite xref">RFC3542</a>]</span>.<a href="#section-3.2-2.4.7" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-3.2-2.5">
@@ -1440,6 +1467,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                             Similarly,  <span>[<a href="#RFC1918" class="cite xref">RFC1918</a>]</span> addressing may be in use on the resolver, while address translation is not performed, or, similar to the case for IPv6, when the DNS resolver has a global IPv4 address, but that address is not forwarded on the resolver's network.<a href="#section-3.2-2.6.2" class="pilcrow">¶</a></p>
 <p id="section-3.2-2.6.3">
                             IPv6 connectivity for a DNS resolver may experience issues, if, e.g., a client has been assigned a global unicast IPv6 address, but IPv6 traffic is not forwarded on the resolver's network.
+                            Also, a resolver may only have received an <span>[<a href="#RFC4193" class="cite xref">RFC4193</a>]</span> unique local IPv6 unicast address (ULA), which does not allow it to reach global addresses without translation.
                             Similarly, IPv6 connectivity can experience issues when IPv4-IPv6 transition technologies like NAT64 <span>[<a href="#RFC6146" class="cite xref">RFC6146</a>]</span> on IPv6-mostly networks <span>[<a href="#RFC9313" class="cite xref">RFC9313</a>]</span> are in use, where the use of NAT64 can be, e.g., discovered through PREF64 in Router Advertisements (RAs) <span>[<a href="#RFC8781" class="cite xref">RFC8781</a>]</span> or DNS64 <span>[<a href="#RFC7050" class="cite xref">RFC7050</a>]</span>.
                             There, the synthesized IPv6 addresses used in, e.g., 464XLAT <span>[<a href="#RFC6877" class="cite xref">RFC6877</a>]</span> encounter additional PMTU fluctuation due to the difference in header size between IPv4 and IPv6, possibly impacting DNS resolution.<a href="#section-3.2-2.6.3" class="pilcrow">¶</a></p>
 </dd>
@@ -1490,32 +1518,32 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-4.1-1">
                     It is usually recommended that DNS zones contain at least two name servers (Section 4.1 of <span>[<a href="#RFC1034" class="cite xref">RFC1034</a>]</span>).
                     Typically, these servers are geographically diverse and operate under different routing policies <span>[<a href="#RFC2182" class="cite xref">RFC2182</a>]</span>, as also mirrored by, e.g., the IANA requirements for TLD authoritative name servers <span>[<a href="#IANANS" class="cite xref">IANANS</a>]</span>.
-                    To reduce the chance of DNS name space fragmentation, it is <span class="bcp14">RECOMMENDED</span> that at least two IPv4-reachable and two IPv6-reachable name servers are configured for a zone.
+                    To prevent DNS name space fragmentation, at least two IPv4-reachable and two IPv6-reachable name servers <span class="bcp14">MUST</span> be configured for a zone.
                     A single name server that is reachable over both IPv4 and IPv6 counts once per address family.
-                    Specifically, this means that the following minimal requirements <span class="bcp14">SHOULD</span> be implemented for a zone:<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+                    Specifically, key requirements for a zone are:<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlNewline" id="section-4.1-2">
           <dt id="section-4.1-2.1">
                             IPv4 adoption:
           </dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.2">
-                            Every DNS zone <span class="bcp14">SHOULD</span> be served by at least two IPv4-reachable authoritative DNS servers to maintain name space continuity.
-                            To count as IPv4-reachable, the delegation configuration of an NS (Resolution of the parent, resolution of sibling domain names, glue) <span class="bcp14">MUST NOT</span> rely on IPv6 connectivity being available.<a href="#section-4.1-2.2" class="pilcrow">¶</a>
+                            To maintain name space continuity, every DNS zone <span class="bcp14">MUST</span> be served by at least two authoritative DNS servers providing services via IPv4.
+                            Furthermore, the delegation configuration of an NS (Resolution of the parent, resolution of sibling domain names, glue) <span class="bcp14">MUST NOT</span> rely on IPv6 connectivity being available.<a href="#section-4.1-2.2" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-2.3">
                             IPv6 adoption:
           </dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.4">
-                            Every DNS zone <span class="bcp14">SHOULD</span> be served by at least two IPv6-reachable authoritative DNS servers to maintain name space continuity.
-                            To avoid reachability issues, authoritative DNS servers <span class="bcp14">SHOULD NOT</span> use IPv4-embedded addresses <span>[<a href="#RFC6052" class="cite xref">RFC6052</a>]</span> (including IPv4-Mapped IPv6 addresses and deprecated IPv4-Compatible addresses <span>[<a href="#RFC4291" class="cite xref">RFC4291</a>]</span>) for receiving queries.
-                            To count as IPv6-reachable, the delegation configuration of an NS (Resolution of the parent, resolution of sibling domain names, glue) <span class="bcp14">MUST NOT</span> rely on IPv4 connectivity being available.<a href="#section-4.1-2.4" class="pilcrow">¶</a>
+                            To maintain name space continuity, every DNS zone <span class="bcp14">MUST</span> be served by at least two authoritative DNS servers providing services via IPv6.
+                            To avoid reachability issues, authoritative DNS servers <span class="bcp14">MUST NOT</span> use IPv4-embedded addresses <span>[<a href="#RFC6052" class="cite xref">RFC6052</a>]</span> (including IPv4-Mapped IPv6 addresses and deprecated IPv4-Compatible addresses <span>[<a href="#RFC4291" class="cite xref">RFC4291</a>]</span>) for receiving queries.
+                            Furthermore, the delegation configuration of an NS (Resolution of the parent, resolution of sibling domain names, glue) <span class="bcp14">MUST NOT</span> rely on IPv4 connectivity being available.<a href="#section-4.1-2.4" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-2.5">
                             Consistency:
           </dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.6">
-                            Both IPv4 and IPv6 transports <span class="bcp14">SHOULD</span> serve identical DNS data to ensure a consistent resolution experience across different network types.<a href="#section-4.1-2.6" class="pilcrow">¶</a>
+                            Both IPv4 and IPv6 transports <span class="bcp14">MUST</span> serve identical DNS data to ensure a consistent resolution experience across different network types.<a href="#section-4.1-2.6" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-2.7">
@@ -1523,9 +1551,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
           </dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.8">
                             IP fragmentation has been reported to be fragile <span>[<a href="#RFC8900" class="cite xref">RFC8900</a>]</span>.
-                            Furthermore, IPv6 transition technologies can introduce unexpected MTU breaks (e.g., when NAT64 is used (Section 7 of <span>[<a href="#RFC7269" class="cite xref">RFC7269</a>]</span>)).
+                            Furthermore, IPv6 transition technologies can introduce unexpected reductions in the effective PMTU (e.g., when NAT64 is used (Section 7 of <span>[<a href="#RFC7269" class="cite xref">RFC7269</a>]</span>)).
                             Therefore, IP fragmentation <span class="bcp14">SHOULD</span> be avoided by following guidance on maximum DNS payload sizes <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span> and providing TCP fall back options <span>[<a href="#RFC7766" class="cite xref">RFC7766</a>]</span>.
-                            Furthermore, similar to the guidance in <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span>, authoritative DNS servers <span class="bcp14">MAY</span> set an MSS of either 1388 (analogous to <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span>) or 1220 (analogous to the <span>[<a href="#DNSFlagDay2020" class="cite xref">DNSFlagDay2020</a>]</span> suggestions) in TCP sessions carrying DNS responses.<a href="#section-4.1-2.8" class="pilcrow">¶</a>
+                            Similar to the guidance in <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span>, authoritative DNS servers <span class="bcp14">MAY</span> set an MSS of either 1388 (analogous to <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span>) or 1220 (analogous to the <span>[<a href="#DNSFlagDay2020" class="cite xref">DNSFlagDay2020</a>]</span> suggestions) in TCP sessions carrying DNS responses.<a href="#section-4.1-2.8" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -1533,7 +1561,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                     To prevent name space fragmentation, zone validation processes <span class="bcp14">SHOULD</span> ensure that:<a href="#section-4.1-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.1-4.1">
-            <p id="section-4.1-4.1.1">There is at least one IPv4 address record and one IPv6 address record available for the name servers of any child delegation within the zone.<a href="#section-4.1-4.1.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-4.1.1">There are at least two IPv4 address records and two IPv6 address records available for the name servers of any child delegation within the zone.<a href="#section-4.1-4.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-4.1-4.2">
             <p id="section-4.1-4.2.1">The zone's authoritative servers follow <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span> for avoiding fragmentation on DNS-over-UDP.<a href="#section-4.1-4.2.1" class="pilcrow">¶</a></p>
@@ -1553,7 +1581,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-guidelines-for-recursive-dn" class="section-name selfRef">Guidelines for Recursive DNS Resolvers</a>
         </h3>
 <p id="section-4.2-1">
-                    Every recursive DNS resolver <span class="bcp14">SHOULD</span> be dual-stack.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+                    To ensure robust DNS resolution even when facing namespace fragmentation, every recursive DNS resolver <span class="bcp14">SHOULD</span> be dual-stack.
+                    Exceptions apply if one of the below methods to prevent namespace fragmentation are in place.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
 <p id="section-4.2-2">
                     While the zones that IPv6-only recursive DNS resolvers can resolve are growing, they do not yet cover all zones.
                     Hence, a recursive DNS resolver <span class="bcp14">MAY</span> be IPv6-only, if it uses a transition mechanism that allows it to also query IPv4-only authoritative DNS servers or uses a configuration where it forwards queries failing IPv6-only DNS resolution to a dual-stack recursive DNS resolver (i.e., a resolver that is also able to perform DNS resolution over IPv4).
@@ -1561,7 +1590,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-4.2-3">
                     Similarly, a recursive DNS resolver <span class="bcp14">MAY</span> be IPv4-only, if it uses a configuration where such resolvers forward queries failing IPv4-only DNS resolution to a dual-stack recursive DNS resolver (i.e., a resolver that is also able to perform DNS resolution over IPv6).<a href="#section-4.2-3" class="pilcrow">¶</a></p>
 <p id="section-4.2-4">
-                    Finally, when responding to recursive queries, i.e., a query with the RD bit set <span>[<a href="#RFC1035" class="cite xref">RFC1035</a>]</span>, a DNS resolver SHOULD follow the above guidance on fragmentation avoidance (<a href="#guidelines-for-authoritative-dns-configuration" class="auto internal xref">Section 4.1</a>) for communication between authoritative DNS servers and recursive DNS resolvers analogously.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
+                    Finally, when responding to recursive queries (i.e., a query with the RD bit set <span>[<a href="#RFC1035" class="cite xref">RFC1035</a>]</span>), a DNS resolver <span class="bcp14">SHOULD</span> follow the above guidance on fragmentation avoidance (<a href="#guidelines-for-authoritative-dns-configuration" class="auto internal xref">Section 4.1</a>) for communication between authoritative DNS servers and recursive DNS resolvers analogously.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="guidelines-for-dns-stub">
@@ -1611,6 +1640,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 Recommendations for recursive and stub resolvers rely on a correctly discovered PREF64.
                 Security issues may materialize if an incorrect PREF64 is used.
                 Hence, guidance from <span>[<a href="#RFC9872" class="cite xref">RFC9872</a>]</span> on securely discovering PREF64 <span class="bcp14">SHOULD</span> be followed.<a href="#section-5-6" class="pilcrow">¶</a></p>
+<p id="section-5-7">
+                Preventing fragmentation according to the guidance in this document may increase load on DNS servers, as more TCP fallbacks might be required.
+                While measurements have shown this to be (at the time of writing) in the range of 3-5% of connections <span>[<a href="#DNSv6MTU" class="cite xref">DNSv6MTU</a>]</span>, operators <span class="bcp14">SHOULD</span> monitor the actual impact on their servers when implementing guidance from this document to detect unexpected load increases early on.<a href="#section-5-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
@@ -1628,7 +1660,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
 <p id="section-7-1">
-                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp S. Tiesel, Mark Andrews, Stefan Ubbink, Joe Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti, David Farmer, Pieter Lexis, Ralf Weber, Philip Homburg, Marco Davids, Mohamed Boucadair, Thomas Fossati, Aihua Guo, Bernie Volz, David Dong, Roman Danyliw<a href="#section-7-1" class="pilcrow">¶</a></p>
+                Valuable input for this draft was provided by: Bob Harold, Andreas Schulze, Tommy Jensen, Nick Buraglio, Jen Linkova, Tim Chown, Brian E Carpenter, Tom Petch, Philipp S. Tiesel, Mark Andrews, Stefan Ubbink, Joe Abley, Gorry Fairhurst, Paul Vixie, Lorenzo Colitti, David Farmer, Pieter Lexis, Ralf Weber, Philip Homburg, Marco Davids, Mohamed Boucadair, Thomas Fossati, Aihua Guo, Bernie Volz, David Dong, Roman Danyliw, Éric Vyncke<a href="#section-7-1" class="pilcrow">¶</a></p>
 <p id="section-7-2">
                 Thank you for reading this draft.<a href="#section-7-2" class="pilcrow">¶</a></p>
 <p id="section-7-3">
@@ -1703,9 +1735,17 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <dd>
 <span class="refAuthor">Kristoff, J.</span> and <span class="refAuthor">D. Wessels</span>, <span class="refTitle">"DNS Transport over TCP - Operational Requirements"</span>, <span class="seriesInfo">BCP 235</span>, <span class="seriesInfo">RFC 9210</span>, <span class="seriesInfo">DOI 10.17487/RFC9210</span>, <time datetime="2022-03" class="refDate">March 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9210">https://www.rfc-editor.org/info/rfc9210</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC9293">[RFC9293]</dt>
+        <dd>
+<span class="refAuthor">Eddy, W., Ed.</span>, <span class="refTitle">"Transmission Control Protocol (TCP)"</span>, <span class="seriesInfo">STD 7</span>, <span class="seriesInfo">RFC 9293</span>, <span class="seriesInfo">DOI 10.17487/RFC9293</span>, <time datetime="2022-08" class="refDate">August 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9293">https://www.rfc-editor.org/info/rfc9293</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC9471">[RFC9471]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Andrews, M.</span>, <span class="refAuthor">Huque, S.</span>, <span class="refAuthor">Wouters, P.</span>, and <span class="refAuthor">D. Wessels</span>, <span class="refTitle">"DNS Glue Requirements in Referral Responses"</span>, <span class="seriesInfo">RFC 9471</span>, <span class="seriesInfo">DOI 10.17487/RFC9471</span>, <time datetime="2023-09" class="refDate">September 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9471">https://www.rfc-editor.org/info/rfc9471</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9715">[RFC9715]</dt>
+      <dd>
+<span class="refAuthor">Fujiwara, K.</span> and <span class="refAuthor">P. Vixie</span>, <span class="refTitle">"IP Fragmentation Avoidance in DNS over UDP"</span>, <span class="seriesInfo">RFC 9715</span>, <span class="seriesInfo">DOI 10.17487/RFC9715</span>, <time datetime="2025-01" class="refDate">January 2025</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9715">https://www.rfc-editor.org/info/rfc9715</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -1719,6 +1759,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt id="DNSFlagDay2020">[DNSFlagDay2020]</dt>
         <dd>
 <span class="refTitle">"DNS flag day 2020"</span>, <span>&lt;<a href="https://dnsflagday.net/2020/">https://dnsflagday.net/2020/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="DNSv6MTU">[DNSv6MTU]</dt>
+        <dd>
+<span class="refAuthor">Fiebig, T.</span> and <span class="refAuthor">A. Feldmann</span>, <span class="refTitle">"'How I learned to stop worrying and love IPv6': Measuring the Internet's Readiness for DNS over IPv6"</span>, <time datetime="2025-10" class="refDate">October 2025</time>, <span>&lt;<a href="https://doi.org/10.1145/3730567.3764439">https://doi.org/10.1145/3730567.3764439</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-dnsop-ns-revalidation">[I-D.ietf-dnsop-ns-revalidation]</dt>
         <dd>
@@ -1760,6 +1804,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <dd>
 <span class="refAuthor">Arends, R.</span>, <span class="refAuthor">Austein, R.</span>, <span class="refAuthor">Larson, M.</span>, <span class="refAuthor">Massey, D.</span>, and <span class="refAuthor">S. Rose</span>, <span class="refTitle">"Resource Records for the DNS Security Extensions"</span>, <span class="seriesInfo">RFC 4034</span>, <span class="seriesInfo">DOI 10.17487/RFC4034</span>, <time datetime="2005-03" class="refDate">March 2005</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc4034">https://www.rfc-editor.org/info/rfc4034</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC4193">[RFC4193]</dt>
+        <dd>
+<span class="refAuthor">Hinden, R.</span> and <span class="refAuthor">B. Haberman</span>, <span class="refTitle">"Unique Local IPv6 Unicast Addresses"</span>, <span class="seriesInfo">RFC 4193</span>, <span class="seriesInfo">DOI 10.17487/RFC4193</span>, <time datetime="2005-10" class="refDate">October 2005</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc4193">https://www.rfc-editor.org/info/rfc4193</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC6146">[RFC6146]</dt>
         <dd>
 <span class="refAuthor">Bagnulo, M.</span>, <span class="refAuthor">Matthews, P.</span>, and <span class="refAuthor">I. van Beijnum</span>, <span class="refTitle">"Stateful NAT64: Network Address and Protocol Translation from IPv6 Clients to IPv4 Servers"</span>, <span class="seriesInfo">RFC 6146</span>, <span class="seriesInfo">DOI 10.17487/RFC6146</span>, <time datetime="2011-04" class="refDate">April 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc6146">https://www.rfc-editor.org/info/rfc6146</a>&gt;</span>. </dd>
@@ -1792,6 +1840,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <dd>
 <span class="refAuthor">Jeong, J.</span>, <span class="refAuthor">Park, S.</span>, <span class="refAuthor">Beloeil, L.</span>, and <span class="refAuthor">S. Madanapalli</span>, <span class="refTitle">"IPv6 Router Advertisement Options for DNS Configuration"</span>, <span class="seriesInfo">RFC 8106</span>, <span class="seriesInfo">DOI 10.17487/RFC8106</span>, <time datetime="2017-03" class="refDate">March 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8106">https://www.rfc-editor.org/info/rfc8106</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC8201">[RFC8201]</dt>
+        <dd>
+<span class="refAuthor">McCann, J.</span>, <span class="refAuthor">Deering, S.</span>, <span class="refAuthor">Mogul, J.</span>, and <span class="refAuthor">R. Hinden, Ed.</span>, <span class="refTitle">"Path MTU Discovery for IP version 6"</span>, <span class="seriesInfo">STD 87</span>, <span class="seriesInfo">RFC 8201</span>, <span class="seriesInfo">DOI 10.17487/RFC8201</span>, <time datetime="2017-07" class="refDate">July 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8201">https://www.rfc-editor.org/info/rfc8201</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC8415">[RFC8415]</dt>
         <dd>
 <span class="refAuthor">Mrugalski, T.</span>, <span class="refAuthor">Siodelski, M.</span>, <span class="refAuthor">Volz, B.</span>, <span class="refAuthor">Yourtchenko, A.</span>, <span class="refAuthor">Richardson, M.</span>, <span class="refAuthor">Jiang, S.</span>, <span class="refAuthor">Lemon, T.</span>, and <span class="refAuthor">T. Winters</span>, <span class="refTitle">"Dynamic Host Configuration Protocol for IPv6 (DHCPv6)"</span>, <span class="seriesInfo">RFC 8415</span>, <span class="seriesInfo">DOI 10.17487/RFC8415</span>, <time datetime="2018-11" class="refDate">November 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8415">https://www.rfc-editor.org/info/rfc8415</a>&gt;</span>. </dd>
@@ -1819,10 +1871,6 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt id="RFC9499">[RFC9499]</dt>
         <dd>
 <span class="refAuthor">Hoffman, P.</span> and <span class="refAuthor">K. Fujiwara</span>, <span class="refTitle">"DNS Terminology"</span>, <span class="seriesInfo">BCP 219</span>, <span class="seriesInfo">RFC 9499</span>, <span class="seriesInfo">DOI 10.17487/RFC9499</span>, <time datetime="2024-03" class="refDate">March 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9499">https://www.rfc-editor.org/info/rfc9499</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC9715">[RFC9715]</dt>
-        <dd>
-<span class="refAuthor">Fujiwara, K.</span> and <span class="refAuthor">P. Vixie</span>, <span class="refTitle">"IP Fragmentation Avoidance in DNS over UDP"</span>, <span class="seriesInfo">RFC 9715</span>, <span class="seriesInfo">DOI 10.17487/RFC9715</span>, <time datetime="2025-01" class="refDate">January 2025</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9715">https://www.rfc-editor.org/info/rfc9715</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9872">[RFC9872]</dt>
         <dd>
