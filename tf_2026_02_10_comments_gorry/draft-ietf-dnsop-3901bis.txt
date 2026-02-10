@@ -472,12 +472,11 @@ Table of Contents
       (Section 7 of [RFC7269])).  Therefore, IP fragmentation SHOULD be
       avoided by following guidance on maximum DNS payload sizes
       [RFC9715].  Furthermore, as per Section 5 of [RFC7766], DNS-over-
-      TCP service MUST be available as a fall-back option, instead of
-      relying on fragmented UDP packets.  Similar to the guidance in
-      [RFC9715], authoritative DNS servers MAY set an MSS of either 1388
-      (analogous to [RFC9715]) or 1220 (analogous to the
-      [DNSFlagDay2020] suggestions) in TCP sessions carrying DNS
-      responses.
+      TCP MUST be available as a fall-back option, instead of relying on
+      fragmented UDP packets.  Similar to the guidance in [RFC9715],
+      authoritative DNS servers MAY set an MSS of either 1388 (analogous
+      to [RFC9715]) or 1220 (analogous to the [DNSFlagDay2020]
+      suggestions) in TCP sessions carrying DNS responses.
 
    To prevent name space fragmentation, zone validation processes SHOULD
    ensure that:

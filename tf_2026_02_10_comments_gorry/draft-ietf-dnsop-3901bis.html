@@ -1553,7 +1553,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                             IP fragmentation has been reported to be fragile <span>[<a href="#RFC8900" class="cite xref">RFC8900</a>]</span>.
                             Furthermore, IPv6 transition technologies can introduce unexpected reductions in the effective PMTU (e.g., when NAT64 is used (Section 7 of <span>[<a href="#RFC7269" class="cite xref">RFC7269</a>]</span>)).
                             Therefore, IP fragmentation <span class="bcp14">SHOULD</span> be avoided by following guidance on maximum DNS payload sizes <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span>.
-                            Furthermore, as per Section 5 of <span>[<a href="#RFC7766" class="cite xref">RFC7766</a>]</span>, DNS-over-TCP service <span class="bcp14">MUST</span> be available as a fall-back option, instead of relying on fragmented UDP packets.
+                            Furthermore, as per Section 5 of <span>[<a href="#RFC7766" class="cite xref">RFC7766</a>]</span>, DNS-over-TCP <span class="bcp14">MUST</span> be available as a fall-back option, instead of relying on fragmented UDP packets.
                             Similar to the guidance in <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span>, authoritative DNS servers <span class="bcp14">MAY</span> set an MSS of either 1388 (analogous to <span>[<a href="#RFC9715" class="cite xref">RFC9715</a>]</span>) or 1220 (analogous to the <span>[<a href="#DNSFlagDay2020" class="cite xref">DNSFlagDay2020</a>]</span> suggestions) in TCP sessions carrying DNS responses.<a href="#section-4.1-2.8" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
