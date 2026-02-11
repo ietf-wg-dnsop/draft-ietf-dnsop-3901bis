@@ -6,7 +6,7 @@ dnsop                                                             Momoka
 Internet-Draft                                              WIDE Project
 Obsoletes: 3901 (if approved)                                  T. Fiebig
 Intended status: Best Current Practice                           MPI-INF
-Expires: 14 August 2026                                 10 February 2026
+Expires: 15 August 2026                                 11 February 2026
 
 
 Operational Guidelines for DNS Transport in Mixed IPv4/IPv6 Environments
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 August 2026.
+   This Internet-Draft will expire on 15 August 2026.
 
 Copyright Notice
 
@@ -395,8 +395,8 @@ Table of Contents
    UDP).  If DNS servers use an additional protocol layer, e.g., DNS-
    over-TLS [RFC7858] or DNS-over-QUIC [RFC9250], for their
    communication, and that protocol supports additional measures to
-   prevent fragmentation on the IP layer related issues, these measures
-   SHOULD be used for the connection.  Otherwise, if the protocol is not
+   prevent issues related to fragmentation on the IP layer, these
+   measures SHOULD be used for the connection.  If the protocol is not
    resilient to IP layer fragmentation related issues by default, the
    above guidance for TCP and UDP based connections SHOULD be applied
    analogously.
@@ -471,11 +471,12 @@ Table of Contents
       reductions in the effective PMTU (e.g., when NAT64 is used
       (Section 7 of [RFC7269])).  Therefore, IP fragmentation SHOULD be
       avoided by following guidance on maximum DNS payload sizes
-      [RFC9715] and providing TCP fall back options [RFC7766].  Similar
-      to the guidance in [RFC9715], authoritative DNS servers MAY set an
-      MSS of either 1388 (analogous to [RFC9715]) or 1220 (analogous to
-      the [DNSFlagDay2020] suggestions) in TCP sessions carrying DNS
-      responses.
+      [RFC9715].  Furthermore, as per Section 5 of [RFC7766], DNS-over-
+      TCP MUST be available as a fall-back option, instead of relying on
+      fragmented UDP packets.  Similar to the guidance in [RFC9715],
+      authoritative DNS servers MAY set an MSS of either 1388 (analogous
+      to [RFC9715]) or 1220 (analogous to the [DNSFlagDay2020]
+      suggestions) in TCP sessions carrying DNS responses.
 
    To prevent name space fragmentation, zone validation processes SHOULD
    ensure that:
@@ -541,10 +542,17 @@ Table of Contents
    for the network [RFC8781].
 
    When providing multiple DNS servers to stub resolvers, network
-   operators SHOULD consider that various implementations can only
-   configure a small set of possible DNS resolvers, e.g., only up to
-   three for libc [MAN], and additional resolvers provided may be
-   ignored by clients.
+   operators have to consider that, at the time of writing, various
+   implementations can only configure a small set of possible DNS
+   resolvers, e.g., only up to three for libc [MAN], and additional
+   resolvers provided may be ignored by clients.  Hence, when providing
+   more than three DNS servers to stub resolvers, operators SHOULD
+   ensure that no more than two recursive DNS servers supplied to
+   clients are unable to perform dual-stack DNS resolution, and at least
+   one of the supplied recursive DNS servers is able to perform dual-
+   stack DNS resolution.  If this is not done, a client might select a
+   subset of recursive DNS servers that leads to address family based
+   namespace fragmentation.
 
 5.  Security Considerations
 
