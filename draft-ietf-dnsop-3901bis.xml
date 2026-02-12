@@ -410,7 +410,7 @@
                 <name>Guidelines for DNS Stub Resolvers</name>
                 <t>
                     Contrary to authoritative DNS servers and recursive DNS resolvers, stub DNS resolvers are more likely to find themselves in either an IPv6-mostly or IPv4-only environment, as they are usually run on end-hosts / clients.
-                    Furthermore, a stub DNS resolver has to rely on recursive DNS servers discovered for the local network, e.g., using DHCPv4 <xref target="RFC2131"/>, DHCPv6 <xref target="RFC8415"/>, and/or router advertisements <xref target="RFC8106"/>.
+                    Furthermore, a stub DNS resolver has to rely on recursive DNS servers discovered for the local network, e.g., using DHCPv4 <xref target="RFC2131"/>, DHCPv6 <xref target="RFC9915"/>, and/or router advertisements <xref target="RFC8106"/>.
                     In that case, the stub resolver may obtain multiple different IPv4 and IPv6 DNS resolver addresses to use.
                 </t>
                 <t>
@@ -528,7 +528,7 @@
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7858.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8106.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8201.xml"/>
-                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8415.xml"/>
+                <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9915.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8781.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8900.xml"/>
                 <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9250.xml"/>
