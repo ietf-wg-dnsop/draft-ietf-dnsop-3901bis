@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-02-08T03:20:10.346287+00:00",
+  "timestamp": "2026-02-12T02:50:50.858717+00:00",
   "repo": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
   "labels": [
     {
@@ -515,15 +515,15 @@
       "id": "I_kwDOOKHo_M7kLkmw",
       "title": "MTU Discovery (Martin Duke TSV Review)",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/69",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Sec 3.2 says that a DNS server MAY choose to explicitly use MTU path discovery. The example suggests setting the MTU to the minimum MTU. But this is the only way, correct? With anything larger, one must use discovery, no? It's not an example, it's the only case.\n",
       "createdAt": "2026-01-19T06:40:10Z",
-      "updatedAt": "2026-01-19T06:40:10Z",
-      "closedAt": null,
+      "updatedAt": "2026-02-11T08:46:52Z",
+      "closedAt": "2026-02-11T08:46:52Z",
       "comments": []
     },
     {
@@ -531,15 +531,15 @@
       "id": "I_kwDOOKHo_M7kLlat",
       "title": "DoT and DoQ / fragmentation avoidance (Martin Duke TSV Review)",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/70",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "The end of Sec 3.2 provides DoT and DoQ as examples of alternative transports, and implies that they have other means of fragmentation avoidance.\nIn the case of QUIC, this is just PLPMTUD!! Just as with TCP, this is not something the DNS layer needs to worry about if the transport is competently implemented. But the level of service there is exactly the same as TCP modulo some security properties -- there is no additional magic in these protocols.",
       "createdAt": "2026-01-19T06:41:23Z",
-      "updatedAt": "2026-01-19T06:41:23Z",
-      "closedAt": null,
+      "updatedAt": "2026-02-11T08:46:54Z",
+      "closedAt": "2026-02-11T08:46:54Z",
       "comments": []
     },
     {
@@ -547,15 +547,15 @@
       "id": "I_kwDOOKHo_M7k3IQX",
       "title": "Use of \"Name Space Fragmentation\"",
       "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/issues/76",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "moonshiner",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "I kept finding the wording a bit clunky, especially when you also talking about IP Fragmentation \n\nPerhaps \"Address Space Fragmentation\" or \"IP Address Space Fragmentation\" would be more appropriate?  \n\n\"name space fragmentation\" to this DNS person gets me thinking of domains, zones, etc.  \n\nJust a thought",
       "createdAt": "2026-01-21T19:12:20Z",
-      "updatedAt": "2026-01-22T10:03:46Z",
-      "closedAt": null,
+      "updatedAt": "2026-02-11T08:47:01Z",
+      "closedAt": "2026-02-11T08:47:01Z",
       "comments": [
         {
           "author": "ichdasich",
@@ -3489,6 +3489,122 @@
           ]
         }
       ]
+    },
+    {
+      "number": 82,
+      "id": "PR_kwDOOKHo_M7Ctz2w",
+      "title": "Tf 2026 02 10 comments gorry",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/82",
+      "state": "MERGED",
+      "author": "ichdasich",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Addresses additional non-blocking comments and clarifications by Gorry.",
+      "createdAt": "2026-02-10T11:34:01Z",
+      "updatedAt": "2026-02-11T08:44:59Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "5d8dbc7c4762c68ee3d9fa53335294e6938c926c",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "tf_2026_02_10_comments_gorry",
+      "headRefOid": "5c27d26b0506f3154f76f586c8509e91c55370f1",
+      "closedAt": "2026-02-11T08:44:55Z",
+      "mergedAt": "2026-02-11T08:44:55Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "99a4f67178284ad5ba9e73430149b95f12b521ae"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOKHo_M7hRa4p",
+          "commit": {
+            "abbreviatedOid": "9a21fd2"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2026-02-10T14:45:04Z",
+          "updatedAt": "2026-02-10T14:47:54Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "```suggestion\n                            Furthermore, as per Section 5 of <xref target=\"RFC7766\"/>, DNS-over-TCP <bcp14>MUST</bcp14> be available as a fall-back option, instead of relying on fragmented UDP packets.\n```",
+              "createdAt": "2026-02-10T14:45:05Z",
+              "updatedAt": "2026-02-10T14:47:55Z"
+            },
+            {
+              "originalPosition": 27,
+              "body": "Other than imposing that all these are DS, I don't see how the requirement on \"randm subset\" can be fulfilled.\n\nMaybe, rather than formulating this as a requirement, focus more on the implications/risks (similar to what you have in the sentence starting with \"If this is not done\")",
+              "createdAt": "2026-02-10T14:46:10Z",
+              "updatedAt": "2026-02-10T14:47:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7hTAfS",
+          "commit": {
+            "abbreviatedOid": "9a21fd2"
+          },
+          "author": "ichdasich",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-02-10T15:47:05Z",
+          "updatedAt": "2026-02-10T15:47:06Z",
+          "comments": [
+            {
+              "originalPosition": 27,
+              "body": "I adjusted the text to step away from the set-based requirement, and state 'no more than two non-dual-stack, at least one dual stack'.\r\n\r\nI also added the 'currently' Gorry requested, but in the form of 'at the time of writing'.",
+              "createdAt": "2026-02-10T15:47:05Z",
+              "updatedAt": "2026-02-10T15:47:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOOKHo_M7hUfkv",
+          "commit": {
+            "abbreviatedOid": "5c27d26"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-02-10T16:41:44Z",
+          "updatedAt": "2026-02-10T16:41:44Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 83,
+      "id": "PR_kwDOOKHo_M7Cw9XZ",
+      "title": "\"currently\" won't age well",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/83",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-02-10T14:49:51Z",
+      "updatedAt": "2026-02-10T15:41:08Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "5d8dbc7c4762c68ee3d9fa53335294e6938c926c",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "boucadair-patch-1",
+      "headRefOid": "34ce919ce1db9cfd72237bc65511f19c56c5674a",
+      "closedAt": "2026-02-10T15:41:04Z",
+      "mergedAt": "2026-02-10T15:41:04Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "e76f765f204875c5d742114d763d3f075079dcf1"
+      },
+      "comments": [],
+      "reviews": []
     }
   ]
 }
