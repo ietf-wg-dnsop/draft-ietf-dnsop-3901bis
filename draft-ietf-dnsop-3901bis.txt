@@ -6,7 +6,7 @@ dnsop                                                             Momoka
 Internet-Draft                                              WIDE Project
 Obsoletes: 3901 (if approved)                                  T. Fiebig
 Intended status: Best Current Practice                           MPI-INF
-Expires: 15 August 2026                                 11 February 2026
+Expires: 17 August 2026                                 13 February 2026
 
 
 Operational Guidelines for DNS Transport in Mixed IPv4/IPv6 Environments
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 August 2026.
+   This Internet-Draft will expire on 17 August 2026.
 
 Copyright Notice
 
@@ -531,7 +531,7 @@ Table of Contents
    IPv6-mostly or IPv4-only environment, as they are usually run on end-
    hosts / clients.  Furthermore, a stub DNS resolver has to rely on
    recursive DNS servers discovered for the local network, e.g., using
-   DHCPv4 [RFC2131], DHCPv6 [RFC8415], and/or router advertisements
+   DHCPv4 [RFC2131], DHCPv6 [RFC9915], and/or router advertisements
    [RFC8106].  In that case, the stub resolver may obtain multiple
    different IPv4 and IPv6 DNS resolver addresses to use.
 
@@ -813,12 +813,6 @@ Informative References
               DOI 10.17487/RFC8201, July 2017,
               <https://www.rfc-editor.org/info/rfc8201>.
 
-   [RFC8415]  Mrugalski, T., Siodelski, M., Volz, B., Yourtchenko, A.,
-              Richardson, M., Jiang, S., Lemon, T., and T. Winters,
-              "Dynamic Host Configuration Protocol for IPv6 (DHCPv6)",
-              RFC 8415, DOI 10.17487/RFC8415, November 2018,
-              <https://www.rfc-editor.org/info/rfc8415>.
-
    [RFC8781]  Colitti, L. and J. Linkova, "Discovering PREF64 in Router
               Advertisements", RFC 8781, DOI 10.17487/RFC8781, April
               2020, <https://www.rfc-editor.org/info/rfc8781>.
@@ -852,6 +846,11 @@ Informative References
               for Discovering IPv6 Prefix Used for IPv6 Address
               Synthesis", RFC 9872, DOI 10.17487/RFC9872, September
               2025, <https://www.rfc-editor.org/info/rfc9872>.
+
+   [RFC9915]  Mrugalski, T., Volz, B., Richardson, M., Jiang, S., and T.
+              Winters, "Dynamic Host Configuration Protocol for IPv6
+              (DHCPv6)", STD 102, RFC 9915, DOI 10.17487/RFC9915,
+              January 2026, <https://www.rfc-editor.org/info/rfc9915>.
 
    [RIPEV4]   RIPE NCC, "The RIPE NCC has run out of IPv4 Addresses",
               November 2019, <https://www.ripe.net/publications/news/
