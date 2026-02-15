@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-02-12T02:50:50.858717+00:00",
+  "timestamp": "2026-02-15T02:52:09.878923+00:00",
   "repo": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
   "labels": [
     {
@@ -3602,6 +3602,34 @@
       "mergedBy": "ichdasich",
       "mergeCommit": {
         "oid": "e76f765f204875c5d742114d763d3f075079dcf1"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 84,
+      "id": "PR_kwDOOKHo_M7DVehU",
+      "title": "RFC8415 is obsoleted by RFC9915",
+      "url": "https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-3901bis/pull/84",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-02-12T17:02:12Z",
+      "updatedAt": "2026-02-13T07:50:08Z",
+      "baseRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "baseRefName": "main",
+      "baseRefOid": "99a4f67178284ad5ba9e73430149b95f12b521ae",
+      "headRepository": "ietf-wg-dnsop/draft-ietf-dnsop-3901bis",
+      "headRefName": "boucadair-patch-1",
+      "headRefOid": "174572a9cd6d2ea116d49da49830d4b582d1ca42",
+      "closedAt": "2026-02-13T07:49:45Z",
+      "mergedAt": "2026-02-13T07:49:45Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "6f18577d1270b6c3df161708aad560d7441bfe20"
       },
       "comments": [],
       "reviews": []
