@@ -891,7 +891,7 @@ IESG State: I-D Exists as of 05/11/26
                 </li>
 
                 <li>
-                    <t>Expanded name space fragmentation, independently discussing intentional choices, misconfigurations, and network conditions, which lead to name space fragmentation due to differences in IP address family support.
+                    <t>Expanded name space fragmentation, independently discussing intentional choices, misconfigurations, and network conditions, which lead to name space fragmentation due to differences in IP address family support.</t>
                 </li>
                 <li>
                     <t>Now recommends the use of IPv4 and IPv6 for authoritative DNS servers instead of leaving IPv6 optional.</t>
