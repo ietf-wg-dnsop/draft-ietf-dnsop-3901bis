@@ -85,7 +85,7 @@ Guidelines for DNS Transport
             </t>
             <ul spacing="normal">
                 <li>
-                    <t>Guidance on name space fragmentation due to differences in IP address family support and best practices for avoiding it.</t>
+                    <t>Guidance on name space partitioning due to differences in IP address family support and best practices for avoiding it.</t>
                 </li>
                 <li>
                     <t>Guidelines for configuring authoritative DNS servers for zones.</t>
@@ -162,24 +162,24 @@ Please review and let us know if any updates are needed.
                 </dd>
             </dl>
         </section>
-        <section anchor="name-space-fragmentation">
-            <name>Name Space Fragmentation</name>
+        <section anchor="name-space-partitioning">
+            <name>Name Space Partitioning</name>
             <t>
                 When a resolver looks up a name, it starts at the root and follows referrals until it reaches a name server set that is authoritative for the name.
                 However, if the referrals lead to a name server set that only contains name servers reachable via an IP address family not supported by the resolver, the resolver is unable to continue DNS resolution.
             </t>
             <t>
-                If this occurs, the DNS has effectively fragmented due to mismatching IP address family support between the recursive DNS resolver and the authoritative DNS server.
+                If this occurs, the DNS has been effectively partitioned due to mismatching IP address family support between the recursive DNS resolver and the authoritative DNS server.
             </t>
             <t>
-                With the deployment of both IPv4 and IPv6, name space fragmentation can occur for different reasons.
+                With the deployment of both IPv4 and IPv6, name space partitioning can occur for different reasons.
                 One reason is that DNS zones are consistently configured to support only either IPv4 or IPv6.
                 Another reason is misconfigurations that make a zone unresolvable by either IPv4-only or IPv6-only resolvers.
                 The latter is often hard to identify because the impact of misconfigurations affecting one IP address family (IPv4 or IPv6) may be hidden in a dual-stack setting.
                 In the worst case, where both IP address families must be fully supported by a resolver, a specific name may only be resolvable via dual-stack enabled resolvers.
             </t>
-            <section anchor="misconfigurations-causing-ip-version-related-name-space-fragmentation">
-                <name>Misconfigurations Causing Name Space Fragmentation Due to IP Address Family Support</name>
+            <section anchor="misconfigurations-causing-ip-version-related-name-space-partitioning">
+                <name>Misconfigurations Causing Name Space Partitioning Due to IP Address Family Support</name>
                 <t>
                     Even when an administrator assumes that they have enabled support for a specific IP address family on their authoritative DNS server, various misconfigurations may break the DNS delegation chain of a zone for that IP address family, preventing any of its records from being resolved by clients that only support that IP address family.
                     Such misconfigurations may remain undetected if most clients can successfully fall back to the other IP address family.
@@ -277,8 +277,8 @@ pointed to by the NS RR has an associated A or AAAA RR.
                     In the future, alternative, yet related, delegation systems may be available, where other considerations apply.
                 </t>
             </section>
-            <section anchor="misconfigurations-causing-network-related-name-space-fragmentation">
-                <name>Network Conditions Causing Name Space Fragmentation Due to IP Address Family Support</name>
+            <section anchor="misconfigurations-causing-network-related-name-space-partitioning">
+                <name>Network Conditions Causing Name Space Partitioning Due to IP Address Family Support</name>
 
 <!-- [rfced] How may we clarify "are packets requiring fragmentation given a reduced PMTU and MTU discards" in this sentence?
 
@@ -476,8 +476,8 @@ is not forwarded on the resolver's network.
                     </t>
                 </aside>
             </section>
-            <section anchor="reasons-for-intentional-ip-version-related-name-space-fragmentation">
-                <name>Reasons for Intentional Name Space Fragmentation Due to IP Address Family Support</name>
+            <section anchor="reasons-for-intentional-ip-version-related-name-space-partitioning">
+                <name>Reasons for Intentional Name Space Partitioning Due to IP Address Family Support</name>
 
 <!-- [rfced] Should "Intentional IP related name space fragmentation" be updated in one of the following ways?
 
@@ -500,15 +500,15 @@ Perhaps B:
 [auth48tf] Implemented B, with an addition of 'support' after IP address family
 -->
                 <t>
-                    Intentional name space fragmentation due to IP address family support occurs if an operator consciously decides not to deploy IPv4 or IPv6 for a part of the resolution chain.
+                    Intentional name space partitioning due to IP address family support occurs if an operator consciously decides not to deploy IPv4 or IPv6 for a part of the resolution chain.
                     Most commonly, this is realized by intentionally not listing A/AAAA RRs for NS names.
                     Based on a 2023 study, the share of zones not resolvable via IPv4 is negligible, while a little less than 40% of zones are not resolvable via IPv6 <xref target="V6DNSRDY-23"/>.
                     However, as IPv4 address exhaustion progresses, IPv6 adoption is expected to increase.
                 </t>
             </section>
         </section>
-        <section anchor="policy-based-avoidance-of-name-space-fragmentation">
-            <name>Policy-Based Avoidance of Name Space Fragmentation</name>
+        <section anchor="policy-based-avoidance-of-name-space-partitioning">
+            <name>Policy-Based Avoidance of Name Space Partitioning</name>
 
 <!-- [rfced] How may we clarify "while it is observed that the first zones becoming exclusively IPv6 resolvable"?
 
@@ -533,11 +533,11 @@ Perhaps B:
             <t>
                 IPv4 and IPv6 have become comparably relevant with the final exhaustion of IPv4 address pools in Regional Internet Registries (RIRs) (see, e.g., <xref target="RIPEV4"/>) and the progressing deployment of IPv6.
                 Yet, while the first zones that are exclusively IPv6 resolvable can be observed by now, exclusively IPv4 resolvable zones are considerably more frequent <xref target="V6DNSRDY-23"/>.
-                Hence, dual-stack connectivity is still instrumental to be able to resolve zones and avoid name space fragmentation.
+                Hence, dual-stack connectivity is still instrumental to be able to resolve zones and avoid name space partitioning.
             </t>
             <t>
-                Having zones served only by name servers reachable via one IP address family would fragment the DNS.
-                Hence, a way to avoid this fragmentation is needed.
+                Having zones served only by name servers reachable via one IP address family would partition the DNS.
+                Hence, a way to avoid this partitioning is needed.
             </t>
             <t>
                 The recommended approach to maintain name space continuity is to use administrative policies, as described in this section.
@@ -566,8 +566,23 @@ Perhaps:
                 <t>
                     It is usually recommended that DNS zones contain at least two name servers (<xref target="RFC1034" section="4.1"/>).
                     Typically, these servers are geographically diverse and operate under different routing policies <xref target="RFC2182"/>, as also discussed in, e.g., the IANA requirements for Top-Level Domain (TLD) authoritative name servers <xref target="IANANS"/>.
-                    To prevent DNS name space fragmentation, at least two IPv4-reachable and two IPv6-reachable name servers <bcp14>MUST</bcp14> be configured for a zone.
+                    To prevent DNS name space partitioning, at least two IPv4-reachable and two IPv6-reachable name servers <bcp14>MUST</bcp14> be configured for a zone.
                     A single name server that is reachable over both IPv4 and IPv6 counts once per address family.
+                </t>
+<!-- [auth48tf] This is based on a recommendation to clarify this point,
+   even though it is, technically, obvious. The suggestion itself
+   recommended requiring all NS being dual-stack. However, the below
+   issue can also be mitigated by having the NS RR list a name whose A
+   record points to an authoritative server that is IPv4 only and whose
+   AAAA record points to another authoritative DNS server that is IPv6
+   only.
+-->
+                <t>
+                    Please note that a name set in an NS RR who either has only an A or AAAA record may add overhead to the resolution process for resolvers only supporting the IP address family for which no corresponding A or AAAA RR is present.
+                    When selecting such an authoritative name server during DNS resolution, a query for the missing A or AAAA record would return NODATA, requiring the client to query for the A or AAAA record of another NS RR.
+                    To prevent this, it is <bcp14>RECOMMENDED</bcp14> that all names used in NS RRs have an A and AAAA record set.
+                </t>
+                <t>
                     Specifically, the key requirements for a zone are:
                 </t>
                 <dl newline="true" spacing="normal">
@@ -589,8 +604,13 @@ Perhaps:
                     <dt>
                             Consistency:
                     </dt>
+<!-- [auth48tf] This change replaces 'identical' with 'equivalent', as DNS
+   responses may (for various reasons) not be fully identical, even when
+   returned by the same NS. Equivalence is closer aligned with the intended
+   meaning of the text.
+-->
                     <dd>
-                            Both IPv4 and IPv6 transports <bcp14>MUST</bcp14> serve identical DNS data to ensure a consistent resolution experience across different network types.
+                            Both IPv4 and IPv6 transports <bcp14>MUST</bcp14> serve equivalent DNS data to ensure a consistent resolution experience across different network types.
                     </dd>
                     <dt>
                             Avoiding IP Fragmentation:
@@ -604,7 +624,7 @@ Perhaps:
                     </dd>
                 </dl>
                 <t>
-                    To prevent name space fragmentation, zone validation processes <bcp14>SHOULD</bcp14> ensure that:
+                    To prevent name space partitioning, zone validation processes <bcp14>SHOULD</bcp14> ensure that:
                 </t>
                 <ul spacing="normal">
                     <li>
@@ -638,8 +658,8 @@ fragmentation described in this section are in place.
 -->
 
                 <t>
-                    To ensure robust DNS resolution even when facing name space fragmentation, every recursive DNS resolver <bcp14>SHOULD</bcp14> be dual-stack.
-                    Exceptions apply if one of the methods to prevent name space fragmentation described in this section is in place.
+                    To ensure robust DNS resolution even when facing name space partitioning, every recursive DNS resolver <bcp14>SHOULD</bcp14> be dual-stack.
+                    Exceptions apply if one of the methods to prevent name space partitioning described in this section is in place.
                 </t>
 
 <!-- [rfced] FYI - We updated "(e.g., [RFC8781])" as follows. Please review and let us know any concerns.
@@ -695,10 +715,61 @@ Original:
 [auth48tf] This is correct, thank you. The change has been applied.
 -->
 
+
+<!-- [auth48tf] Based on feedback received and in coordination with the AD, the following clarification is being suggested for the below text
+
+Original:
+   When providing multiple DNS servers to stub resolvers, network
+   operators have to consider that, at the time of writing, various
+   implementations can only configure a small set of possible DNS
+   resolvers, e.g., only up to three for glibc [MAN], and additional
+   resolvers provided may be ignored by clients.  Hence, when providing
+   more than three DNS servers to stub resolvers, operators SHOULD
+   ensure that no more than two recursive DNS servers supplied to
+   clients are unable to perform dual-stack DNS resolution and at least
+   one of the supplied recursive DNS servers is able to perform dual-
+   stack DNS resolution.  If this is not done, a client might select a
+   subset of recursive DNS servers that leads to name space
+   fragmentation based on address family.
+
+Updated:
+   When providing multiple recursive DNS servers to stub resolvers,
+   network operators have to consider that, at the time of writing,
+   various implementations can only configure a small set of possible
+   DNS resolver addresses, e.g., only up to three for glibc [MAN], and
+   additional resolver addresses provided may be non-deterministically
+   ignored by clients.
+
+   Hence, when providing more than three recursive server addresses to
+   stub resolvers, operators SHOULD ensure that either:
+
+   1.  all supplied recursive server IPs are from the same address
+       family, based on knowledge as to clients being IPv4-only or
+       IPv6-mostly; or
+   2.  exactly two IPs are from one address family (IPv4 or IPv6) and
+       exactly one is from the other address family.
+
+   Furthermore, all suppled resolvers SHOULD be able to perform dual-
+   stack DNS resolution to avoid address family based namespace
+   fragmentation.
+
+-->
                 <t>
-                    When providing multiple DNS servers to stub resolvers, network operators have to consider that, at the time of writing, various implementations can only configure a small set of possible DNS resolvers, e.g., only up to three for glibc <xref target="MAN"/>, and additional resolvers provided may be ignored by clients.
-                    Hence, when providing more than three DNS servers to stub resolvers, operators <bcp14>SHOULD</bcp14> ensure that no more than two recursive DNS servers supplied to clients are unable to perform dual-stack DNS resolution and at least one of the supplied recursive DNS servers is able to perform dual-stack DNS resolution.
-                    If this is not done, a client might select a subset of recursive DNS servers that leads to name space fragmentation based on address family.
+                    When providing multiple recursive DNS servers to stub resolvers, network operators have to consider that, at the time of writing, various implementations can only configure a small set of possible DNS resolver addresses, e.g., only up to three for glibc <xref target="MAN"/>, and additional resolver addresses provided may be non-deterministically ignored by clients.
+                </t>
+                <t>
+                    Hence, when providing more than three recursive server addresses to stub resolvers, operators <bcp14>SHOULD</bcp14> ensure that either:
+                </t>
+                <ol type="1" spacing="compact">
+                    <li>
+                        all supplied recursive server IPs are from the same address family, based on knowledge as to clients being IPv4-only or IPv6-mostly; or
+                    </li>
+                    <li>
+                        exactly two IPs are from one address family (IPv4 or IPv6) and exactly one is from the other address family.
+                    </li>
+                </ol>
+                <t>
+                    Furthermore, all suppled resolvers <bcp14>SHOULD</bcp14> be able to perform dual-stack DNS resolution to avoid address family based namespace partitioning.
                 </t>
             </section>
         </section>
@@ -891,7 +962,7 @@ IESG State: I-D Exists as of 05/11/26
                 </li>
 
                 <li>
-                    <t>Expanded name space fragmentation, independently discussing intentional choices, misconfigurations, and network conditions, which lead to name space fragmentation due to differences in IP address family support.</t>
+                    <t>Expanded name space partitioning, independently discussing intentional choices, misconfigurations, and network conditions, which lead to name space partitioning due to differences in IP address family support.</t>
                 </li>
                 <li>
                     <t>Now recommends the use of IPv4 and IPv6 for authoritative DNS servers instead of leaving IPv6 optional.</t>
@@ -908,6 +979,7 @@ IESG State: I-D Exists as of 05/11/26
             </ul>
         </section>
 
+<!-- [auth48tf] added Erik Nygren to acknowledgements -->
         <section numbered="false" anchor="acknowledgments">
             <name>Acknowledgments</name>
             <t>Valuable input for this document was provided by the following individuals: <contact
@@ -926,8 +998,8 @@ IESG State: I-D Exists as of 05/11/26
             fullname="Mohamed Boucadair"/>, <contact fullname="Thomas
             Fossati"/>, <contact fullname="Aihua Guo"/>, <contact
             fullname="Bernie Volz"/>, <contact fullname="David Dong"/>,
-            <contact fullname="Roman Danyliw"/>, and <contact fullname="Éric
-            Vyncke"/>.</t>
+            <contact fullname="Roman Danyliw"/>, <contact fullname="Éric
+            Vyncke"/>, and <contact fullname="Erik Nygren"/>.</t>
             <t>Furthermore, the authors express their thanks to the
             authors of <xref target="RFC3901"/>, <contact fullname="Alain
             Durand"/> and <contact fullname="Johan Ihren"/>, and provide their
@@ -1031,6 +1103,13 @@ Note that our script did not flag any words in particular, but this should
 still be reviewed as a best practice.
 
 [auth48tf] After reviewing the style guide no change suggestions came up.
+-->
+
+<!-- [auth48tf] Additional feedback was received that 'fragmentation' being
+   used for both, packet fragmentation and namespace fragmentation is confusing.
+   To address this, name space fragmentation is being changed to name space
+   partitioning throughout the document.
+
 -->
 
 
