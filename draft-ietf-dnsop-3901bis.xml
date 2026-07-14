@@ -7,7 +7,7 @@
     <!ENTITY wj     "&#8288;">
 ]>
 
-<rfc xmlns:xi="http://www.w3.org/2001/XInclude" ipr="trust200902" consensus="true" docName="draft-ietf-dnsop-3901bis-17" number="10001" category="bcp" submissionType="IETF" tocInclude="true" updates="" obsoletes="3901" sortRefs="true" symRefs="true" version="3" xml:lang="en">
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude" ipr="trust200902" consensus="true" docName="draft-ietf-dnsop-3901bis-latest" number="10001" category="bcp" submissionType="IETF" tocInclude="true" updates="" obsoletes="3901" sortRefs="true" symRefs="true" version="3" xml:lang="en">
 
 <!-- [rfced] How may we update the abbreviated title of the document to be more descriptive? The abbreviated title only appears in the running header at the top of each page of the PDF output.
 
@@ -16,10 +16,12 @@ Original:
 
 Perhaps:
 Guidelines for DNS Transport
+
+[auth48tf] Implemented the suggestion
 -->
 
     <front>
-        <title abbrev="3901bis">Operational Guidelines for DNS Transport in Mixed IPv4/IPv6 Environments</title>
+        <title abbrev="Guidelines for DNS Transport">Operational Guidelines for DNS Transport in Mixed IPv4/IPv6 Environments</title>
         <seriesInfo name="RFC" value="10001"/>
         <seriesInfo name="BCP" value="91"/>
         <author fullname="Momoka Yamamoto" initials="" surname="Momoka">
@@ -83,7 +85,7 @@ Guidelines for DNS Transport
             </t>
             <ul spacing="normal">
                 <li>
-                    <t>Guidance on name space fragmentation related to IP address family and best practices for avoiding it.</t>
+                    <t>Guidance on name space fragmentation due to differences in IP address family support and best practices for avoiding it.</t>
                 </li>
                 <li>
                     <t>Guidelines for configuring authoritative DNS servers for zones.</t>
@@ -92,7 +94,7 @@ Guidelines for DNS Transport
                     <t>Guidelines for operating recursive DNS resolvers.</t>
                 </li>
                 <li>
-                    <t>Guidelines for stub DNS resolvers.</t>
+                    <t>Guidelines for DNS stub resolvers.</t>
                 </li>
             </ul>
             <t>
@@ -102,6 +104,8 @@ Guidelines for DNS Transport
             <t>Refer to <xref target="constraints"/> for an overview of the main changes since <xref target="RFC3901"/>.</t>
 
 <!-- [rfced] Section 1.1 contains the boilerplate paragraph about RFC 2119/8174 key words. May we move this paragraph to Section 2 ("Terminology")?
+
+[auth48tf] This may be moved as suggested. Leaving the implementation to you.
 -->
 
             <section anchor="requirements-language">
@@ -110,7 +114,7 @@ Guidelines for DNS Transport
     The key words "<bcp14>MUST</bcp14>", "<bcp14>MUST NOT</bcp14>", "<bcp14>REQUIRED</bcp14>", "<bcp14>SHALL</bcp14>", "<bcp14>SHALL
     NOT</bcp14>", "<bcp14>SHOULD</bcp14>", "<bcp14>SHOULD NOT</bcp14>", "<bcp14>RECOMMENDED</bcp14>", "<bcp14>NOT RECOMMENDED</bcp14>",
     "<bcp14>MAY</bcp14>", and "<bcp14>OPTIONAL</bcp14>" in this document are to be interpreted as
-    described in BCP&nbsp;14 <xref target="RFC2119"/> <xref target="RFC8174"/> 
+    described in BCP&nbsp;14 <xref target="RFC2119"/> <xref target="RFC8174"/>
     when, and only when, they appear in all capitals, as shown here.
         </t>
             </section>
@@ -125,28 +129,30 @@ Guidelines for DNS Transport
 <!-- [rfced] Section 2 ("Terminology") contains definitions for "IPv4 name server", "IPv6 name server", and "Dual-stack name server" and notes that this document uses these terms. However, we do not see these terms used outside of Section 2. We see one instance of "IPv4-reachable and two IPv6-reachable name servers" in Section 4.1.
 
 Please review and let us know if any updates are needed.
+
+[auth48tf] Thank you for spotting this. Terminology has been aligned and clarified, see below.
 -->
 
             <dl newline="true" spacing="normal">
                 <dt>
-                    IPv4 name server:
+                    IPv4-reachable name server:
                 </dt>
                 <dd>
-                    A name server that provides either authoritative or recursive DNS services and is reachable via IPv4.
+                    A name server that provides either authoritative or recursive DNS services via IPv4.
                     This does not imply anything about the DNS data served but rather indicates that the name server receives and answers queries over IPv4.
                 </dd>
                 <dt>
-                    IPv6 name server:
+                    IPv6-reachable name server:
                 </dt>
                 <dd>
-                    A name server that provides either authoritative or recursive DNS services and is reachable via IPv6.
+                    A name server that provides either authoritative or recursive DNS services via IPv6.
                     This does not imply anything about the DNS data served but rather indicates that the name server receives and answers queries over IPv6.
                 </dd>
                 <dt>
                     Dual-stack name server:
                 </dt>
                 <dd>
-                    A name server that is both an "IPv4 name server" and an "IPv6 name server".
+                    A name server that is both an "IPv4-reachable name server" and an "IPv6-reachable name server".
                 </dd>
                 <dt>
                     Effective PMTU:
@@ -173,7 +179,7 @@ Please review and let us know if any updates are needed.
                 In the worst case, where both IP address families must be fully supported by a resolver, a specific name may only be resolvable via dual-stack enabled resolvers.
             </t>
             <section anchor="misconfigurations-causing-ip-version-related-name-space-fragmentation">
-                <name>Misconfigurations Causing Name Space Fragmentation Related to IP Address Family</name>
+                <name>Misconfigurations Causing Name Space Fragmentation Due to IP Address Family Support</name>
                 <t>
                     Even when an administrator assumes that they have enabled support for a specific IP address family on their authoritative DNS server, various misconfigurations may break the DNS delegation chain of a zone for that IP address family, preventing any of its records from being resolved by clients that only support that IP address family.
                     Such misconfigurations may remain undetected if most clients can successfully fall back to the other IP address family.
@@ -221,10 +227,13 @@ but the child zone itself lacks corresponding A or AAAA RRs for
 its in-domain NS names, resolution via the missing IP address
 family will fail during delegation revalidation (see, e.g.,
 [NS-REVALIDATION]).
+
+
+[auth48tf] Chose the first suggestion, adding an additional "the" before names.
 -->
 
                     <dd>
-                        If the parent provides glue records for both IP address families but the child zone itself lacks corresponding A or AAAA RRs for its in-domain NS' names, resolution via the missing IP address family will fail during delegation revalidation (see, e.g., <xref target="I-D.ietf-dnsop-ns-revalidation"/>).
+                        If the parent provides glue records for both IP address families but the child zone itself lacks corresponding A or AAAA RRs for the names of its in-domain NS, resolution via the missing IP address family will fail during delegation revalidation (see, e.g., <xref target="I-D.ietf-dnsop-ns-revalidation"/>).
                     </dd>
                     <dt>
                         Zone of sibling domain NSes not resolving:
@@ -240,11 +249,13 @@ correspondingly.
 Perhaps:
 It is insufficient if the name
 pointed to by the NS RR has an associated A or AAAA RR.
+
+[auth48tf] Implemented the suggestion
 -->
 
                     <dd>
                         If the name from an NS RR for a zone is in a sibling domain, the corresponding zone needs to be resolvable via the IP address family in question as well.
-                        It is insufficient if the name pointed to by the NS RR has an associated A or AAAA RR correspondingly.
+                        It is insufficient if the name pointed to by the NS RR has an associated A or AAAA RR.
                     </dd>
                     <dt>
                         Parent zone not resolvable via one IP address family:
@@ -267,7 +278,7 @@ pointed to by the NS RR has an associated A or AAAA RR.
                 </t>
             </section>
             <section anchor="misconfigurations-causing-network-related-name-space-fragmentation">
-                <name>Network Conditions Causing Name Space Fragmentation Related to IP Address Family</name>
+                <name>Network Conditions Causing Name Space Fragmentation Due to IP Address Family Support</name>
 
 <!-- [rfced] How may we clarify "are packets requiring fragmentation given a reduced PMTU and MTU discards" in this sentence?
 
@@ -282,11 +293,13 @@ The most common issue is that packets requiring
 fragmentation are given reduced PMTU and MTU discards, i.e., packets
 are dropped on-path due to exceeding the MTU of the link to the
 next hop without the sender being notified.
+
+[auth48tf] The suggestions do not preserve the original meaning. I now implemented a rewording which should be more understandable than the original text.
 -->
 
                 <t>
                     In addition to explicit misconfigurations in the served DNS zones, network conditions may also influence a resolver's ability to resolve names in a zone.
-                    The most common issue is packets requiring fragmentation given a reduced PMTU and MTU discards, i.e., packets being dropped on-path due to exceeding the MTU of the link to the next hop without the sender being notified.
+                    The most common issue are silent MTU discards for packets that would require fragmentation to fit a reduced effective PMTU, i.e., packets being dropped on-path when they exceed the MTU of the link to the next hop without the sender being notified.
                     This can manifest in the following ways:
                 </t>
                 <dl newline="true" spacing="normal">
@@ -325,6 +338,8 @@ MTU Discovery (PMTUD) [RFC4821] or Packetization Layer Path MTU
 Discovery (PLPMTUD) [RFC8899].  It can do so, for example, by
 setting IPV6_USE_MIN_MTU=1 from [RFC3542] to avoid the need to
 perform PMTU discovery.
+
+[auth48tf] This change is ok.
 -->
 
                         <t>
@@ -364,10 +379,13 @@ However, as DNS benefits from low latency, performing PMTUD (or
 PLPMTUD [RFC8201] or Datagram PLPMTUD [RFC4821] [RFC8899]) could
 lead to DNS requests timing out before the effective PMTU can be
 established by the server.
+
+[auth48tf] Clarified the sentence instead by splitting it.
 -->
 
                         <t>
-                            However, as DNS benefits from low latency, and performing PMTU (or PLPMTUD <xref target="RFC8201"/> or Datagram PLPMTUD <xref target="RFC4821"/> <xref target="RFC8899"/>) could lead to DNS requests timing out before the effective PMTU can be established by the server.
+                            However, DNS generally benefits from low latency, and performing PMTU (or PLPMTUD <xref target="RFC8201"/> or Datagram PLPMTUD <xref target="RFC4821"/> <xref target="RFC8899"/>) increases the time needed to process a DNS request.
+                            In fact, this overhead could even lead to DNS requests timing out before the effective PMTU can be established by the server.
                             Furthermore, at the time of writing, most DNS messages fit into less than 1280 octets <xref target="DNSv6MTU"/>, which means that the benefits of being able to leverage a larger effective PMTU only affect corner cases, e.g., requests for DNSKEY RRs.
                             Additionally, not having to rely on PMTUD benefits the time budget for DNS, as the time needed for PMTUD could already exceed the timeout budget for DNS resolution, i.e., it could prevent resolution for cases where PMTUD is needed.
                         </t>
@@ -398,6 +416,8 @@ face broken IP connectivity for either IPv4 or IPv6:
 Perhaps:
 Similar to authoritative servers, stub and recursive resolvers may
 face broken IP connectivity for either IPv4 or IPv6.
+
+[auth48tf] This suggestion has been implemented.
 -->
 
 <!-- [rfced] This sentence is difficult to follow. May we split into two separate sentences to improve clarity?
@@ -414,16 +434,19 @@ Similarly, addressing in [RFC1918] may be in use on the resolver, so address
 translation is not performed. Or, similar to the case for IPv6,
 when the DNS resolver has a global IPv4 address, that address
 is not forwarded on the resolver's network.
+
+[auth48tf] This suggestion has been implemented.
 -->
 
                     <dd>
                         <t>
-                            Similar to authoritative servers, (stub) recursive resolvers may face broken IP connectivity for either IPv4 or IPv6.
+                            Similar to authoritative servers, stub and recursive resolvers may face broken IP connectivity for either IPv4 or IPv6.
                         </t>
 
                         <t>
                             IPv4 connectivity for a DNS resolver may experience issues, e.g., if the resolver is deployed behind a Carrier-Grade NAT (CGN) <xref target="RFC6888"/> that implements strict timeouts on active sessions or limits the number of available TCP and UDP ports numbers for connections below the number required by the multiple connections necessary during recursive DNS resolution.
-                            Similarly, addressing in <xref target="RFC1918"/> may be in use on the resolver, while address translation is not performed, or, similar to the case for IPv6, when the DNS resolver has a global IPv4 address, but that address is not forwarded on the resolver's network.
+                            Similarly, addressing in <xref target="RFC1918"/> may be in use on the resolver, while address translation is not performed.
+                            Or, similar to the case for IPv6, when the DNS resolver has a global IPv4 address, but that address is not forwarded on the resolver's network.
                         </t>
 
 <t>
@@ -438,19 +461,23 @@ is not forwarded on the resolver's network.
                 </dl>
 
 <!-- [rfced] Please review whether the note at the end of Section 3.2 should be in the <aside> element. It is defined as "a container for  content that is semantically less important or tangential to the  content that surrounds it" (https://authors.ietf.org/en/rfcxml-vocabulary#aside).
+
+[auth48tf] Thank you for the suggestion, it has been implemented.
 -->
 
-                <t>
-                    Note: This document only explicitly discusses DNS-over-TCP and DNS-over-UDP.
-                    However, several other transport methods between recursive and authoritative DNS servers exist, including DNS over various encrypted transports.
-                    Some of these technologies provide additional mechanisms for preventing the impact of reduced PMTU or MTU discards.
-                    Guidance in this document focuses on IP address family support and the underlying transport protocol (TCP or UDP).
-                    If DNS servers use an additional protocol layer, e.g., DNS-over-TLS <xref target="RFC7858"/> or DNS-over-QUIC <xref target="RFC9250"/>, for their communication and that protocol supports additional measures to prevent issues related to fragmentation on the IP layer, these measures <bcp14>SHOULD</bcp14> be used for the connection.
-                    If the protocol is not resilient to issues related to IP layer fragmentation by default, the above guidance for TCP- and UDP-based connections <bcp14>SHOULD</bcp14> be applied analogously.
-                </t>
+                <aside>
+                    <t>
+                        Note: This document only explicitly discusses DNS-over-TCP and DNS-over-UDP.
+                        However, several other transport methods between recursive and authoritative DNS servers exist, including DNS over various encrypted transports.
+                        Some of these technologies provide additional mechanisms for preventing the impact of reduced PMTU or MTU discards.
+                        Guidance in this document focuses on IP address family support and the underlying transport protocol (TCP or UDP).
+                        If DNS servers use an additional protocol layer, e.g., DNS-over-TLS <xref target="RFC7858"/> or DNS-over-QUIC <xref target="RFC9250"/>, for their communication and that protocol supports additional measures to prevent issues related to fragmentation on the IP layer, these measures <bcp14>SHOULD</bcp14> be used for the connection.
+                        If the protocol is not resilient to issues related to IP layer fragmentation by default, the above guidance for TCP- and UDP-based connections <bcp14>SHOULD</bcp14> be applied analogously.
+                    </t>
+                </aside>
             </section>
             <section anchor="reasons-for-intentional-ip-version-related-name-space-fragmentation">
-                <name>Reasons for Intentional Name Space Fragmentation Related to IP Address Family </name>
+                <name>Reasons for Intentional Name Space Fragmentation Due to IP Address Family Support</name>
 
 <!-- [rfced] Should "Intentional IP related name space fragmentation" be updated in one of the following ways?
 
@@ -469,9 +496,11 @@ Perhaps B:
    occurs if an operator
    consciously decides not to deploy IPv4 or IPv6 for a part of the
    resolution chain.
+
+[auth48tf] Implemented B, with an addition of 'support' after IP address family
 -->
                 <t>
-                    Intentional IP-related name space fragmentation occurs if an operator consciously decides not to deploy IPv4 or IPv6 for a part of the resolution chain.
+                    Intentional name space fragmentation due to IP address family support occurs if an operator consciously decides not to deploy IPv4 or IPv6 for a part of the resolution chain.
                     Most commonly, this is realized by intentionally not listing A/AAAA RRs for NS names.
                     Based on a 2023 study, the share of zones not resolvable via IPv4 is negligible, while a little less than 40% of zones are not resolvable via IPv6 <xref target="V6DNSRDY-23"/>.
                     However, as IPv4 address exhaustion progresses, IPv6 adoption is expected to increase.
@@ -497,11 +526,13 @@ Perhaps B:
    Yet, while the first
    zones are becoming exclusively IPv6 resolvable, a major
    portion of zones still relies solely on IPv4 [V6DNSRDY-23].
+
+[auth48tf] This has been reworded to make the context more clear.
 -->
 
             <t>
                 IPv4 and IPv6 have become comparably relevant with the final exhaustion of IPv4 address pools in Regional Internet Registries (RIRs) (see, e.g., <xref target="RIPEV4"/>) and the progressing deployment of IPv6.
-                Yet, while it is observed that the first zones becoming exclusively IPv6 resolvable, a major portion of zones still relies solely on IPv4 <xref target="V6DNSRDY-23"/>.
+                Yet, while the first zones that are exclusively IPv6 resolvable can be observed by now, exclusively IPv4 resolvable zones are considerably more frequent <xref target="V6DNSRDY-23"/>.
                 Hence, dual-stack connectivity is still instrumental to be able to resolve zones and avoid name space fragmentation.
             </t>
             <t>
@@ -527,11 +558,14 @@ Perhaps:
    geographically diverse and operate under different routing policies
    [RFC2182], as shown in the IANA requirements for Top-Level Domain (TLD)
    authoritative name servers [IANANS].
+
+[auth48tf] 'shown in' has a semantic which is not ideal for this case. I would
+   go for 'as also discussed in'.
 -->
 
                 <t>
                     It is usually recommended that DNS zones contain at least two name servers (<xref target="RFC1034" section="4.1"/>).
-                    Typically, these servers are geographically diverse and operate under different routing policies <xref target="RFC2182"/>, as also mirrored by, e.g., the IANA requirements for Top-Level Domain (TLD) authoritative name servers <xref target="IANANS"/>.
+                    Typically, these servers are geographically diverse and operate under different routing policies <xref target="RFC2182"/>, as also discussed in, e.g., the IANA requirements for Top-Level Domain (TLD) authoritative name servers <xref target="IANANS"/>.
                     To prevent DNS name space fragmentation, at least two IPv4-reachable and two IPv6-reachable name servers <bcp14>MUST</bcp14> be configured for a zone.
                     A single name server that is reachable over both IPv4 and IPv6 counts once per address family.
                     Specifically, the key requirements for a zone are:
@@ -599,11 +633,13 @@ fragmentation are in place.
 Perhaps:
 Exceptions apply if one of the methods to prevent namespace
 fragmentation described in this section are in place.
+
+[auth48tf] Yes, this is a good idea.
 -->
 
                 <t>
-                    To ensure robust DNS resolution even when facing namespace fragmentation, every recursive DNS resolver <bcp14>SHOULD</bcp14> be dual-stack.
-                    Exceptions apply if one of the below methods to prevent namespace fragmentation is in place.
+                    To ensure robust DNS resolution even when facing name space fragmentation, every recursive DNS resolver <bcp14>SHOULD</bcp14> be dual-stack.
+                    Exceptions apply if one of the methods to prevent name space fragmentation described in this section is in place.
                 </t>
 
 <!-- [rfced] FYI - We updated "(e.g., [RFC8781])" as follows. Please review and let us know any concerns.
@@ -619,6 +655,8 @@ If a recursive DNS resolver is aware of a PREF64 to use for NAT64
 [RFC6146], either through static configuration or by discovering it
 (e.g., using the option described in [RFC8781]), it MAY synthesize IPv6 addresses for remote
 authoritative DNS servers.
+
+[auth48tf] Thank you, this reads reasonable.
 -->
 
                 <t>
@@ -636,13 +674,13 @@ authoritative DNS servers.
             <section anchor="guidelines-for-dns-stub">
                 <name>Guidelines for DNS Stub Resolvers</name>
                 <t>
-                    Contrary to authoritative DNS servers and recursive DNS resolvers, stub DNS resolvers are more likely to find themselves in either an IPv6-mostly or IPv4-only environment, as they are usually run on end hosts or clients.
-                    Furthermore, a stub DNS resolver has to rely on recursive DNS servers discovered for the local network, e.g., using DHCPv4 <xref target="RFC2131"/>, DHCPv6 <xref target="RFC9915"/>, and/or router advertisements <xref target="RFC8106"/>.
+                    Contrary to authoritative DNS servers and recursive DNS resolvers, DNS stub resolvers are more likely to find themselves in either an IPv6-mostly or IPv4-only environment, as they are usually run on end hosts or clients.
+                    Furthermore, a DNS stub resolver has to rely on recursive DNS servers discovered for the local network, e.g., using DHCPv4 <xref target="RFC2131"/>, DHCPv6 <xref target="RFC9915"/>, and/or router advertisements <xref target="RFC8106"/>.
                     In that case, the stub resolver may obtain multiple different IPv4 and IPv6 DNS resolver addresses to use.
                 </t>
                 <t>
                     To prioritize different IPv4 and IPv6 DNS resolver addresses, a stub resolver <bcp14>SHOULD</bcp14> follow <xref target="RFC6724"/>.
-                    However, a stub DNS resolver <bcp14>SHOULD NOT</bcp14> utilize IPv4-embedded IPv6 addresses if it is able to identify them as such, e.g., by having discovered the PREF64 in use for the network <xref target="RFC8781"/>.
+                    However, a DNS stub resolver <bcp14>SHOULD NOT</bcp14> utilize IPv4-embedded IPv6 addresses if it is able to identify them as such, e.g., by having discovered the PREF64 in use for the network <xref target="RFC8781"/>.
                 </t>
 
 <!-- [rfced] Please confirm that "libc" is correct here. We see "glibc" in the URL listed for the reference entry [MAN] (i.e., https://man7.org/linux/man-pages/man5/resolv.conf.5.html).
@@ -653,12 +691,14 @@ Original:
    implementations can only configure a small set of possible DNS
    resolvers, e.g., only up to three for libc [MAN], and additional
    resolvers provided may be ignored by clients.
+
+[auth48tf] This is correct, thank you. The change has been applied.
 -->
 
                 <t>
-                    When providing multiple DNS servers to stub resolvers, network operators have to consider that, at the time of writing, various implementations can only configure a small set of possible DNS resolvers, e.g., only up to three for libc <xref target="MAN"/>, and additional resolvers provided may be ignored by clients.
+                    When providing multiple DNS servers to stub resolvers, network operators have to consider that, at the time of writing, various implementations can only configure a small set of possible DNS resolvers, e.g., only up to three for glibc <xref target="MAN"/>, and additional resolvers provided may be ignored by clients.
                     Hence, when providing more than three DNS servers to stub resolvers, operators <bcp14>SHOULD</bcp14> ensure that no more than two recursive DNS servers supplied to clients are unable to perform dual-stack DNS resolution and at least one of the supplied recursive DNS servers is able to perform dual-stack DNS resolution.
-                    If this is not done, a client might select a subset of recursive DNS servers that leads to namespace fragmentation based on address family.
+                    If this is not done, a client might select a subset of recursive DNS servers that leads to name space fragmentation based on address family.
                 </t>
             </section>
         </section>
@@ -757,8 +797,8 @@ Original:
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9499.xml"/>
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9872.xml"/>
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9915.xml"/>
-<!-- [I-D.ietf-dnsop-ns-revalidation] 
-draft-ietf-dnsop-ns-revalidation-12  
+<!-- [I-D.ietf-dnsop-ns-revalidation]
+draft-ietf-dnsop-ns-revalidation-12
 IESG State: I-D Exists as of 05/11/26
 -->
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-ns-revalidation.xml"/>
@@ -851,7 +891,7 @@ IESG State: I-D Exists as of 05/11/26
                 </li>
 
                 <li>
-                    <t>Expanded namespace fragmentation, independently discussing IP address family related namespace fragmentation, network condition based namespace fragmentation, and intentional namespace fragmentation.</t>
+                    <t>Expanded name space fragmentation, independently discussing intentional choices, misconfigurations, and network conditions, which lead to name space fragmentation due to differences in IP address family support.
                 </li>
                 <li>
                     <t>Now recommends the use of IPv4 and IPv6 for authoritative DNS servers instead of leaving IPv6 optional.</t>
@@ -910,11 +950,16 @@ a) Throughout the text, the following terminology appears to be used inconsisten
 name space
 namespace
 
+[auth48tf] This has been unified to 'name space' throughout the text.
+
 DNS stub resolver
 stub DNS resolver
 
+[auth48tf] This has been unified to 'DNS stub resolver'
 
 b) FYI - We updated one instance of "MMS_S" to "MSS_S".
+
+[auth48tf] This works, thank you for spotting this.
 -->
 
 <!-- [rfced] Hyphenation
@@ -939,6 +984,13 @@ Perhaps:
 3.3.  Reasons for Intentional Name Space Fragmentation Related to
       IP Address Family
 
+[auth48tf] I would suggest to make this '[...] Name Space Fragmentation
+   Due to IP Address Family Support', with in-text reading 'name space
+   fragmentation due to differences in IP address family support', where
+   appropriate.
+
+   The corresponding changes have been applied.
+
 
 b) In addition to recasting to avoid awkward hyphenation, should this sentence be updated to align with the titles of Sections 3.1, 3.2, and 3.3? Specifically, should it mention misconfigurations?
 
@@ -952,6 +1004,9 @@ Perhaps:
    *  Expanded namespace fragmentation, independently discussing
       misconfigurations and network conditions causing namespace fragmentation
       related to IP Address Family, as well as intentional namespace fragmentation.
+
+[auth48tf] This has been adjusted based on the above suggestion usind 'due to',
+   drawing from the suggestion.
 -->
 
 <!-- [rfced] FYI - We have added expansions for the following abbreviations
@@ -963,15 +1018,19 @@ Packetization Layer Path MTU Discovery (PLPMTUD)
 Regional Internet Registries (RIRs)
 Top-Level Domain (TLD)
 Recursion Desired (RD)
+
+[auth48tf] Thank you, this is really appreciated.
 -->
 
-<!-- [rfced] Please review the "Inclusive Language" portion of the online 
+<!-- [rfced] Please review the "Inclusive Language" portion of the online
 Style Guide <https://www.rfc-editor.org/styleguide/part2/#inclusive_language>
 and let us know if any changes are needed.  Updates of this nature typically
 result in more precise language, which is helpful for readers.
 
-Note that our script did not flag any words in particular, but this should 
+Note that our script did not flag any words in particular, but this should
 still be reviewed as a best practice.
+
+[auth48tf] After reviewing the style guide no change suggestions came up.
 -->
 
 
