@@ -852,7 +852,7 @@ Table of Contents
 
    [V6DNSRDY-23]
               Streibelt, F., Sattler, P., Lichtblau, F., Hernandez-
-              Gañán, C., Feldmann, M., Gasser, O., and T. Fiebig, "How
+              Gañán, C., Feldmann, A., Gasser, O., and T. Fiebig, "How
               Ready is DNS for an IPv6-Only World?", Passive and Active
               Measurement (PAM 2023), Lecture Notes in Computer Science,
               vol. 13882, pp. 525-549, DOI 10.1007/978-3-031-28486-1_22,
